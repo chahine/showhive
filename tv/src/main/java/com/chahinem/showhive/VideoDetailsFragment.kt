@@ -16,7 +16,6 @@ package com.chahinem.showhive
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v17.leanback.app.DetailsFragment
 import android.support.v17.leanback.app.DetailsFragmentBackgroundController
@@ -39,12 +38,6 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.Toast
-
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.GlideDrawable
-import com.bumptech.glide.request.animation.GlideAnimation
-import com.bumptech.glide.request.target.SimpleTarget
-
 import java.util.Collections
 
 /**
@@ -83,18 +76,18 @@ class VideoDetailsFragment : DetailsFragment() {
 
   private fun initializeBackground(movie: Movie?) {
     mDetailsBackground.enableParallax()
-    Glide.with(activity)
-        .load(movie?.backgroundImageUrl)
-        .asBitmap()
-        .centerCrop()
-        .error(R.drawable.default_background)
-        .into<SimpleTarget<Bitmap>>(object : SimpleTarget<Bitmap>() {
-          override fun onResourceReady(bitmap: Bitmap,
-                                       glideAnimation: GlideAnimation<in Bitmap>) {
-            mDetailsBackground.coverBitmap = bitmap
-            mAdapter.notifyArrayItemRangeChanged(0, mAdapter.size())
-          }
-        })
+//    Glide.with(activity)
+//        .load(movie?.backgroundImageUrl)
+//        .asBitmap()
+//        .centerCrop()
+//        .error(R.drawable.default_background)
+//        .into<SimpleTarget<Bitmap>>(object : SimpleTarget<Bitmap>() {
+//          override fun onResourceReady(bitmap: Bitmap,
+//                                       glideAnimation: GlideAnimation<in Bitmap>) {
+//            mDetailsBackground.coverBitmap = bitmap
+//            mAdapter.notifyArrayItemRangeChanged(0, mAdapter.size())
+//          }
+//        })
   }
 
   private fun setupDetailsOverviewRow() {
@@ -103,18 +96,18 @@ class VideoDetailsFragment : DetailsFragment() {
     row.imageDrawable = ContextCompat.getDrawable(activity, R.drawable.default_background)
     val width = convertDpToPixel(activity, DETAIL_THUMB_WIDTH)
     val height = convertDpToPixel(activity, DETAIL_THUMB_HEIGHT)
-    Glide.with(activity)
-        .load(mSelectedMovie?.cardImageUrl)
-        .centerCrop()
-        .error(R.drawable.default_background)
-        .into<SimpleTarget<GlideDrawable>>(object : SimpleTarget<GlideDrawable>(width, height) {
-          override fun onResourceReady(resource: GlideDrawable,
-                                       glideAnimation: GlideAnimation<in GlideDrawable>) {
-            Log.d(TAG, "details overview card image url ready: " + resource)
-            row.imageDrawable = resource
-            mAdapter.notifyArrayItemRangeChanged(0, mAdapter.size())
-          }
-        })
+//    Glide.with(activity)
+//        .load(mSelectedMovie?.cardImageUrl)
+//        .centerCrop()
+//        .error(R.drawable.default_background)
+//        .into<SimpleTarget<GlideDrawable>>(object : SimpleTarget<GlideDrawable>(width, height) {
+//          override fun onResourceReady(resource: GlideDrawable,
+//                                       glideAnimation: GlideAnimation<in GlideDrawable>) {
+//            Log.d(TAG, "details overview card image url ready: " + resource)
+//            row.imageDrawable = resource
+//            mAdapter.notifyArrayItemRangeChanged(0, mAdapter.size())
+//          }
+//        })
 
     val actionAdapter = ArrayObjectAdapter()
 
