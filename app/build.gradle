@@ -1,0 +1,27 @@
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion 27
+
+  defaultConfig {
+    applicationId "com.chahinem.showhive"
+    minSdkVersion 23
+    targetSdkVersion 27
+    versionCode 1
+    versionName "1.0"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+dependencies {
+  implementation project(':home')
+  implementation project(':base')
+  wearApp project(':wear')
+  implementation 'com.google.android.gms:play-services-wearable:11.8.0'
+}
