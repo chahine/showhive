@@ -1,0 +1,12 @@
+apply plugin: 'com.android.feature'
+apply from: rootProject.file('module.gradle')
+apply from: rootProject.file('config.gradle')
+
+dependencies {
+  implementation project(':base')
+
+  rootProject.archAP.each { kapt it }
+
+  kapt rootProject.daggerCompiler
+  kapt rootProject.daggerAndroidCompiler
+}

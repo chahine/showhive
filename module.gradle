@@ -1,0 +1,77 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+androidExtensions {
+  experimental = true
+}
+
+android {
+  compileSdkVersion rootProject.compileSdkVersion
+  buildToolsVersion rootProject.buildToolsVersion
+
+  defaultConfig {
+    minSdkVersion rootProject.minSdkVersion
+    targetSdkVersion rootProject.targetSdkVersion
+
+    final def versionPropsFile = rootProject.file('version.properties')
+    def buildNumber
+    def version
+    if (versionPropsFile.canRead()) {
+      final Properties versionProps = new Properties()
+      versionProps.load(new FileInputStream(versionPropsFile))
+      buildNumber = versionProps['BUILD_NUMBER'].toInteger()
+      version = versionProps['VERSION']
+    } else {
+      throw new GradleException("Could not read version.properties!")
+    }
+
+    versionCode buildNumber
+    versionName version
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  testOptions.unitTests.all {
+    testLogging {
+      events "passed", "skipped", "failed", "standardOut", "standardError"
+      outputs.upToDateWhen { false }
+      showStandardStreams = true
+    }
+  }
+
+  lintOptions {
+    textReport true
+    abortOnError false
+    textOutput 'stdout'
+    warning 'UnusedResources'
+    warning 'ResourceType'
+    warning 'InvalidPackage'
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  packagingOptions {
+    exclude 'LICENSE.txt'
+    exclude 'META-INF/ASL2.0'
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/LICENSE.txt'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/NOTICE.txt'
+    exclude 'META-INF/rxjava.properties'
+    exclude 'META-INF/services/javax.annotation.processing.Processor'
+    exclude 'protobuf.meta'
+  }
+}
+
+dependencies {
+  implementation rootProject.kotlinStdlib
+
+  rootProject.testLibs.each { testImplementation it }
+
+  androidTestImplementation 'com.android.support.test:runner:1.0.1'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}

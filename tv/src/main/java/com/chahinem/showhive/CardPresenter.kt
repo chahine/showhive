@@ -22,6 +22,7 @@ import android.util.Log
 import android.view.ViewGroup
 
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlin.properties.Delegates
 
 /**
@@ -65,8 +66,8 @@ class CardPresenter : Presenter() {
       cardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT)
       Glide.with(viewHolder.view.context)
           .load(movie.cardImageUrl)
-          .centerCrop()
-          .error(mDefaultCardImage)
+          .apply(RequestOptions.centerCropTransform())
+//          .error(mDefaultCardImage)
           .into(cardView.mainImageView)
     }
   }
