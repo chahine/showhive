@@ -1,0 +1,11 @@
+apply plugin: 'com.android.library'
+apply from: rootProject.file('module.gradle')
+
+dependencies {
+  api project(':trakt-entities')
+
+  api rootProject.timber
+
+  rootProject.api.each { api it }
+  rootProject.rx.each { api it }
+}
