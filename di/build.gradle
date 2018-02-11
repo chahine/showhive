@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply from: rootProject.file('module.gradle')
+apply from: rootProject.file('config.gradle')
+
+dependencies {
+  api project(':qualifiers')
+  api project(':trakt-api')
+
+  api rootProject.dagger
+  kapt rootProject.daggerCompiler
+  kapt rootProject.daggerAndroidCompiler
+
+  api rootProject.picasso
+
+  debugImplementation rootProject.chuck
+  releaseImplementation rootProject.chuckNoOp
+}

@@ -1,14 +1,9 @@
 apply plugin: 'com.android.application'
+apply from: rootProject.file('module.gradle')
 
 android {
-  compileSdkVersion 27
-
   defaultConfig {
-    applicationId "com.chahinem.showhive"
-    minSdkVersion 21
-    targetSdkVersion 27
-    versionCode 1
-    versionName "1.0"
+    applicationId 'com.chahinem.showhive.app'
   }
 
   buildTypes {
@@ -23,6 +18,6 @@ dependencies {
   implementation project(':base')
   rootProject.featureProjects.each { implementation project("$it") }
 
-  wearApp project(':wear')
-  implementation 'com.google.android.gms:play-services-wearable:11.8.0'
+  // wearApp project(':wear')
+  // implementation 'com.google.android.gms:play-services-wearable:11.8.0'
 }

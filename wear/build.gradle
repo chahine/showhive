@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
   compileSdkVersion 27
   defaultConfig {
-    applicationId "com.chahinem.showhive"
+    applicationId "com.chahinem.showhive.app"
     minSdkVersion 21
     targetSdkVersion 27
     versionCode 1
