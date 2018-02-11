@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
+apply from: rootProject.file('config.gradle')
 
 dependencies {
   api project(':trakt-entities')

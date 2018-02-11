@@ -2,15 +2,15 @@ apply plugin: 'com.android.feature'
 apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
-android {
-  baseFeature true
-}
+android.baseFeature true
 
 dependencies {
   application project(':app')
 
   // Feature Modules
   rootProject.featureProjects.each { feature project("$it") }
+
+  api project(':di')
 
   // Android
   rootProject.arch.each { api it }
