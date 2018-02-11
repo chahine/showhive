@@ -26,6 +26,8 @@ dependencies {
   kapt rootProject.daggerCompiler
   kapt rootProject.daggerAndroidCompiler
 
+  // Debugging Tools
+  debugApi rootProject.leakCanary
   debugApi rootProject.chuck
   releaseApi rootProject.chuckNoOp
 
