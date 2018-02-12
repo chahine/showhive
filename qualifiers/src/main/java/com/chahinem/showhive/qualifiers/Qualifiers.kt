@@ -10,6 +10,10 @@ annotation class CacheSize
 
 @Qualifier
 @Retention(RUNTIME)
+annotation class Tmdb
+
+@Qualifier
+@Retention(RUNTIME)
 annotation class Trakt
 
 @Scope

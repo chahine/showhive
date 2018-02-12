@@ -1,4 +1,4 @@
-package com.chahinem.showhive.base.di
+package com.chahinem.showhive.di
 
 import android.app.Application
 import android.content.Context

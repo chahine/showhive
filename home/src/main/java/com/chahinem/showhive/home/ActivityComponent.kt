@@ -1,6 +1,6 @@
 package com.chahinem.showhive.home
 
-import com.chahinem.showhive.base.di.ShowHiveComponent
+import com.chahinem.showhive.di.ShowHiveComponent
 import com.chahinem.showhive.qualifiers.PerActivity
 import dagger.Component
 

@@ -1,6 +1,6 @@
 package com.chahinem.trakt.entities
 
 class TrendingShow(
-    val watchers: Int,
+    val watchers: Int? = null,
     val show: Show
 )

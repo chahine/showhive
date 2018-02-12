@@ -4,6 +4,7 @@ apply from: rootProject.file('config.gradle')
 
 dependencies {
   api project(':qualifiers')
+  api project(':tmdb-api')
   api project(':trakt-api')
 
   api rootProject.dagger

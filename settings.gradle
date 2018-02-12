@@ -1,11 +1,15 @@
-include ':app'
+include ':app', ':api'
 include ':auth'
 include ':base'
 include ':di'
 include ':home'
 include ':instantapp'
 include ':qualifiers'
+include ':tmdb-entities'
+include ':tmdb-api'
 include ':trakt-api'
 include ':trakt-entities'
-include ':tv'
-include ':wear'
+
+// Uncomment when tv and wear are supported
+// include ':tv'
+// include ':wear'

@@ -1,30 +1,34 @@
-package com.chahinem.showhive.base.di
+package com.chahinem.showhive.di
 
 import android.view.inputmethod.InputMethodManager
-import com.chahinem.showhive.di.ApiModule
-import com.chahinem.showhive.di.DataModule
 import com.chahinem.showhive.qualifiers.PerApp
+import com.chahinem.tmdb.api.TmdbApi
 import com.chahinem.trakt.api.TraktApi
 import com.squareup.picasso.Picasso
 import dagger.Component
 
 @PerApp
 @Component(modules = [
-  ShowHiveModule::class,
+  ApiModule::class,
   DataModule::class,
-  ApiModule::class
+  ShowHiveModule::class,
+  TmdbApiModule::class,
+  TraktApiModule::class
 ])
 interface ShowHiveComponent {
   fun inputMethodService(): InputMethodManager
 
   fun picasso(): Picasso
 
+  fun tmdbApi(): TmdbApi
   fun traktApi(): TraktApi
 
   @Component.Builder interface Builder {
     fun apiModule(module: ApiModule): Builder
-    fun showHiveModule(module: ShowHiveModule): Builder
     fun dataModule(module: DataModule): Builder
+    fun showHiveModule(module: ShowHiveModule): Builder
+    fun tmdbApiModule(module: TmdbApiModule): Builder
+    fun traktApiModule(module: TraktApiModule): Builder
 
     fun build(): ShowHiveComponent
   }
