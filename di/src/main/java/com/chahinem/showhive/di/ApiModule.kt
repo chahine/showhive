@@ -6,6 +6,7 @@ import com.chahinem.showhive.qualifiers.Trakt
 import com.chahinem.trakt.api.RxSchedulers
 import com.chahinem.trakt.api.TraktApi
 import com.chahinem.trakt.api.TraktApiClient
+import com.chahinem.trakt.api.TraktAuthInterceptor
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -20,12 +21,13 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @Module
 class ApiModule(private val app: Application) {
 
-//  @Provides
-//  @PerApp
-//  fun provideAuthInterceptor(
-//      @AccessToken accessToken: StringPreference): TraktAuthInterceptor {
-//    return TraktAuthInterceptor(accessToken)
-//  }
+  @Provides
+  @PerApp
+  fun provideAuthInterceptor(
+//      @AccessToken accessToken: StringPreference
+  ): TraktAuthInterceptor {
+    return TraktAuthInterceptor()
+  }
 
 //  @Provides
 //  @PerApp
@@ -50,7 +52,7 @@ class ApiModule(private val app: Application) {
   @Trakt
   fun provideOkHttpClient(
       client: OkHttpClient,
-//      authInterceptor: TraktAuthInterceptor,
+      authInterceptor: TraktAuthInterceptor,
 //      authenticator: TraktAuthenticator,
       chuck: ChuckInterceptor): OkHttpClient {
     val clientBuilder = client.newBuilder()
@@ -61,7 +63,7 @@ class ApiModule(private val app: Application) {
       clientBuilder.addInterceptor(httpLoggingInterceptor)
       clientBuilder.addInterceptor(chuck)
     }
-//    clientBuilder.addNetworkInterceptor(authInterceptor)
+    clientBuilder.addNetworkInterceptor(authInterceptor)
 //    clientBuilder.authenticator(authenticator)
     return clientBuilder.build()
   }

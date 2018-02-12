@@ -1,7 +1,6 @@
 package com.chahinem.showhive.base
 
 import android.app.Activity
-import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
 import com.chahinem.showhive.base.di.DaggerShowHiveComponent
@@ -11,7 +10,7 @@ import com.chahinem.showhive.di.ApiModule
 import com.chahinem.showhive.di.DataModule
 import com.jakewharton.threetenabp.AndroidThreeTen
 
-class ShowHiveApp : Application(), ActivityLifecycleCallbacks {
+class ShowHiveApp : CoreApp(), ActivityLifecycleCallbacks {
 
   lateinit var component: ShowHiveComponent
 

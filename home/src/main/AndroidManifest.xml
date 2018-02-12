@@ -13,7 +13,7 @@
 
         <data
             android:host="chahinem.com"
-            android:pathPattern="/.*"
+            android:pathPattern="/home"
             android:scheme="https"
             />
       </intent-filter>
@@ -24,5 +24,4 @@
       </intent-filter>
     </activity>
   </application>
-
 </manifest>
