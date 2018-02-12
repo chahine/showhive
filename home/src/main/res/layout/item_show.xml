@@ -15,18 +15,4 @@
       android:layout_height="match_parent"
       tools:background="@color/colorPrimaryDark"
       />
-
-  <TextView
-      android:id="@+id/title"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom"
-      android:maxLines="2"
-      android:padding="8dp"
-      android:textColor="#ffffff"
-      tools:text="Game of Thrones"
-      android:alpha=".6"
-      style="@style/TextAppearance.AppCompat.Title"
-      />
-
 </android.support.v7.widget.CardView>
