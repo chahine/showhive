@@ -5,12 +5,12 @@ apply plugin: 'kotlin-kapt'
 androidExtensions.experimental = true
 
 android {
-  compileSdkVersion rootProject.compileSdkVersion
-  buildToolsVersion rootProject.buildToolsVersion
+  compileSdkVersion Versions.compileSdkVersion
+  buildToolsVersion Versions.buildToolsVersion
 
   defaultConfig {
-    minSdkVersion rootProject.minSdkVersion
-    targetSdkVersion rootProject.targetSdkVersion
+    minSdkVersion Versions.minSdkVersion
+    targetSdkVersion Versions.targetSdkVersion
 
     final def versionPropsFile = rootProject.file('version.properties')
     def buildNumber
@@ -68,9 +68,9 @@ android {
 }
 
 dependencies {
-  implementation rootProject.kotlinStdlib
+  implementation Deps.kotlinStdlib
 
-  rootProject.testLibs.each { testImplementation it }
+  Deps.testLibs.each { testImplementation it }
 
   androidTestImplementation 'com.android.support.test:runner:1.0.1'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

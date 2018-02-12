@@ -6,7 +6,7 @@ dependencies {
   api project(':api')
   api project(':tmdb-entities')
 
-  api rootProject.timber
+  api Deps.timber
 
-  rootProject.api.each { api it }
+  Deps.api.each { api it }
 }

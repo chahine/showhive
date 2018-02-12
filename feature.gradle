@@ -5,8 +5,8 @@ apply from: rootProject.file('config.gradle')
 dependencies {
   implementation project(':base')
 
-  rootProject.archAP.each { kapt it }
+  Deps.archAP.each { kapt it }
 
-  kapt rootProject.daggerCompiler
-  kapt rootProject.daggerAndroidCompiler
+  kapt Deps.daggerCompiler
+  kapt Deps.daggerAndroidCompiler
 }
