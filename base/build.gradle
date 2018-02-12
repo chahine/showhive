@@ -8,32 +8,32 @@ dependencies {
   application project(':app')
 
   // Feature Modules
-  rootProject.featureProjects.each { feature project("$it") }
+  Deps.featureProjects.each { feature project("$it") }
 
   api project(':di')
 
   // Android
-  rootProject.arch.each { api it }
-  rootProject.archAP.each { kapt it }
-  rootProject.supportLibs.each { api it }
+  Deps.arch.each { api it }
+  Deps.archAP.each { kapt it }
+  Deps.supportLibs.each { api it }
 
   // RX
-  rootProject.rx.each { api it }
-  rootProject.rxBindings.each { api it }
+  Deps.rx.each { api it }
+  Deps.rxBindings.each { api it }
 
   // Dagger
-  api rootProject.dagger
-  kapt rootProject.daggerCompiler
-  kapt rootProject.daggerAndroidCompiler
+  api Deps.dagger
+  kapt Deps.daggerCompiler
+  kapt Deps.daggerAndroidCompiler
 
   // Debugging Tools
-  debugApi rootProject.leakCanary
-  debugApi rootProject.chuck
-  releaseApi rootProject.chuckNoOp
+  debugApi Deps.leakCanary
+  debugApi Deps.chuck
+  releaseApi Deps.chuckNoOp
 
   // Other
-  api rootProject.timber
-  api rootProject.kotlinStdlib
+  api Deps.timber
+  api Deps.kotlinStdlib
 
-  rootProject.firebase.each { api(it) }
+  Deps.firebase.each { api(it) }
 }

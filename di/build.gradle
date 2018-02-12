@@ -7,12 +7,12 @@ dependencies {
   api project(':tmdb-api')
   api project(':trakt-api')
 
-  api rootProject.dagger
-  kapt rootProject.daggerCompiler
-  kapt rootProject.daggerAndroidCompiler
+  api Deps.dagger
+  kapt Deps.daggerCompiler
+  kapt Deps.daggerAndroidCompiler
 
-  api rootProject.picasso
+  api Deps.picasso
 
-  debugImplementation rootProject.chuck
-  releaseImplementation rootProject.chuckNoOp
+  debugImplementation Deps.chuck
+  releaseImplementation Deps.chuckNoOp
 }

@@ -6,7 +6,7 @@ dependencies {
   api project(':api')
   api project(':trakt-entities')
 
-  api rootProject.timber
+  api Deps.timber
 
-  rootProject.api.each { api it }
+  Deps.api.each { api it }
 }

@@ -16,7 +16,7 @@ android {
 
 dependencies {
   implementation project(':base')
-  rootProject.featureProjects.each { implementation project("$it") }
+  Deps.featureProjects.each { implementation project("$it") }
 
   // wearApp project(':wear')
   // implementation 'com.google.android.gms:play-services-wearable:11.8.0'
