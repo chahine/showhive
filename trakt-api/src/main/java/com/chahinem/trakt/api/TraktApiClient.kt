@@ -1,5 +1,6 @@
 package com.chahinem.trakt.api
 
+import com.chahinem.api.RxSchedulers
 import com.chahinem.trakt.entities.Extended
 import com.chahinem.trakt.entities.Show
 import com.chahinem.trakt.entities.TrendingShow

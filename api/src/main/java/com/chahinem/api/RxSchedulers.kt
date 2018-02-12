@@ -1,4 +1,4 @@
-package com.chahinem.trakt.api
+package com.chahinem.api
 
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers

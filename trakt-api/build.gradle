@@ -3,10 +3,10 @@ apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
 dependencies {
+  api project(':api')
   api project(':trakt-entities')
 
   api rootProject.timber
 
   rootProject.api.each { api it }
-  rootProject.rx.each { api it }
 }

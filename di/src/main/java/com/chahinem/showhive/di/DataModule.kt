@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import com.chahinem.showhive.qualifiers.CacheSize
 import com.chahinem.showhive.qualifiers.PerApp
-import com.chahinem.trakt.api.RxSchedulers
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.picasso.LruCache
@@ -17,28 +16,13 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import timber.log.Timber
 import java.io.File
-import java.util.concurrent.TimeUnit
 
 @Module
 class DataModule(private val app: Application) {
   companion object {
     private const val DISK_CACHE_SIZE = 50L * 1024 * 1024 // 50MB
-
-    /**
-     * Seconds before an IO connection times out.
-     */
-    private const val TIMEOUT = 10L
     private const val PICASSO_CACHE_DIR = "picasso"
-    private const val OKHTTP_CACHE_DIR = "okHttp"
   }
-
-  // This client and cache are shared by Retrofit and Picasso
-  private fun createOkHttpClient() = OkHttpClient.Builder()
-      .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
-      .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-      .readTimeout(TIMEOUT, TimeUnit.SECONDS)
-      .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-      .build()
 
   @Provides
   @PerApp
@@ -55,14 +39,6 @@ class DataModule(private val app: Application) {
   fun provideMoshi(): Moshi = Moshi.Builder()
       .add(KotlinJsonAdapterFactory())
       .build()
-
-  @Provides
-  @PerApp
-  fun provideOkHttpClient(): OkHttpClient = createOkHttpClient()
-
-  @Provides
-  @PerApp
-  fun provideScheduler() = RxSchedulers.DEFAULT
 
   @Provides
   @PerApp

@@ -3,11 +3,11 @@ package com.chahinem.showhive.base
 import android.app.Activity
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
-import com.chahinem.showhive.base.di.DaggerShowHiveComponent
-import com.chahinem.showhive.base.di.ShowHiveComponent
-import com.chahinem.showhive.base.di.ShowHiveModule
 import com.chahinem.showhive.di.ApiModule
+import com.chahinem.showhive.di.DaggerShowHiveComponent
 import com.chahinem.showhive.di.DataModule
+import com.chahinem.showhive.di.ShowHiveComponent
+import com.chahinem.showhive.di.ShowHiveModule
 import com.jakewharton.threetenabp.AndroidThreeTen
 
 class ShowHiveApp : CoreApp(), ActivityLifecycleCallbacks {
@@ -27,8 +27,8 @@ class ShowHiveApp : CoreApp(), ActivityLifecycleCallbacks {
   private fun setUpDependencyInjection() {
     component = DaggerShowHiveComponent.builder()
         .apiModule(ApiModule(this))
-        .showHiveModule(ShowHiveModule(this))
         .dataModule(DataModule(this))
+        .showHiveModule(ShowHiveModule(this))
         .build()
   }
 

@@ -1,0 +1,47 @@
+package com.chahinem.tmdb.entities
+
+class TvShow(
+    val id: Int? = null,
+    val original_name: String? = null,
+    val original_language: String? = null,
+    val overview: String? = null,
+    val name: String? = null,
+    val origin_country: List<String>? = null,
+    val genre_ids: List<Int>? = null,
+//    val first_air_date: ZonedDateTime? = null,
+    val backdrop_path: String? = null,
+    val poster_path: String? = null,
+    val popularity: Double? = null,
+    val vote_average: Double? = null,
+    val vote_count: Int? = null,
+
+    val rating: Int? = null,
+    val media_type: String? = null,
+    val created_by: List<Person>? = null,
+    val networks: List<Network>? = null,
+    val episode_run_time: List<Int>? = null,
+    val genres: List<Genre>? = null,
+    val homepage: String? = null,
+    val in_production: Boolean = false,
+    val languages: List<String>? = null,
+//    val last_air_date: ZonedDateTime? = null,
+    val number_of_episodes: Int? = null,
+    val number_of_seasons: Int? = null,
+    val production_companies: List<BaseCompany>? = null,
+    val seasons: List<TvSeason>? = null,
+    val status: String? = null,
+    val type: String? = null,
+
+    // Following are used with append_to_response
+    val images: Images? = null,
+    val credits: Credits? = null,
+    val external_ids: TvExternalIds? = null,
+    val alternative_titles: AlternativeTitles? = null,
+    val changes: Changes? = null,
+    val keywords: Keywords? = null,
+    val recommendations: TvShowResultsPage? = null,
+    val translations: Translations? = null,
+    val content_ratings: ContentRatings? = null,
+    val similar: TvShowResultsPage? = null,
+    val videos: Videos? = null
+)
