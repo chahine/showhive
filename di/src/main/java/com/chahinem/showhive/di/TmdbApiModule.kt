@@ -28,7 +28,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
   @Provides
   @PerApp
   @Tmdb
-  fun provideTmdbHttpUrl() = HttpUrl.parse("https://api.themoviedb.org/4/")!!
+  fun provideTmdbHttpUrl() = HttpUrl.parse("https://api.themoviedb.org/3/")!!
 
   @Provides
   @PerApp

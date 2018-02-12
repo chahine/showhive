@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import com.chahinem.trakt.entities.Show
 import com.squareup.picasso.Picasso
 
 class ShowItemView {
@@ -24,14 +22,21 @@ class ShowItemView {
 
   class Holder(itemView: View) : ViewHolder(itemView) {
     private val image: ImageView = itemView.findViewById(R.id.image)
-    private val title: TextView = itemView.findViewById(R.id.title)
 
     fun bind(item: Item, picasso: Picasso) {
-      title.text = item.show.title
+      item.image?.let {
+        picasso
+            .load("https://image.tmdb.org/t/p/w500/$it")
+            .placeholder(com.chahinem.showhive.base.R.color.colorAccent)
+            .error(com.chahinem.showhive.base.R.color.colorPrimaryDark)
+            .centerCrop()
+            .fit()
+            .into(image)
+      }
     }
   }
 
-  data class Item(val show: Show) : HomeAdapter.Item {
+  data class Item(val traktId: Int?, val image: String? = null) : HomeAdapter.Item {
     override fun itemViewType() = 1
   }
 }
