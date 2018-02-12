@@ -1,11 +1,12 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.Json
 import org.threeten.bp.OffsetDateTime
 
 open class BaseEpisode(
     val number: Int? = null,
-    val collected_at: OffsetDateTime? = null,
+    @Json(name = "collected_at") val collectedAt: OffsetDateTime? = null,
     val plays: Int? = null,
-    val last_watched_at: OffsetDateTime? = null,
+    @Json(name = "last_watched_at") val lastWatchedAt: OffsetDateTime? = null,
     val completed: Boolean? = null
 )

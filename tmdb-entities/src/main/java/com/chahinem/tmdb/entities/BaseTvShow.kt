@@ -1,20 +1,21 @@
 package com.chahinem.tmdb.entities
 
+import com.squareup.moshi.Json
+
 open class BaseTvShow(
     val id: Int? = null,
-    val original_name: String? = null,
-    val original_language: String? = null,
+    @Json(name = "original_name") val originalName: String? = null,
+    @Json(name = "original_language") val originalLanguage: String? = null,
     val overview: String? = null,
     val name: String? = null,
-    val origin_country: List<String>? = null,
-    val genre_ids: List<Int>? = null,
-//    val first_air_date: ZonedDateTime? = null,
-    val backdrop_path: String? = null,
-    val poster_path: String? = null,
+    @Json(name = "origin_country") val originCountry: List<String>? = null,
+    @Json(name = "genre_ids") val genreIds: List<Int>? = null,
+    // @Json(name = "first_air_date") val firstAirDate: ZonedDateTime? = null,
+    @Json(name = "backdrop_path") val backdropPath: String? = null,
+    @Json(name = "poster_path") val posterPath: String? = null,
     val popularity: Double? = null,
-    val vote_average: Double? = null,
-    val vote_count: Int? = null,
-
+    @Json(name = "vote_average") val voteAverage: Double? = null,
+    @Json(name = "vote_count") val voteCount: Int? = null,
     val rating: Int? = null,
-    val media_type: String? = null
+    @Json(name = "media_type") val mediaType: String? = null
 )

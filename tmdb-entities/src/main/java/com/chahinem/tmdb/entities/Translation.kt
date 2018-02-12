@@ -1,7 +1,9 @@
 package com.chahinem.tmdb.entities
 
+import com.squareup.moshi.Json
+
 class Translation(
-    val iso_639_1: String? = null,
+    @Json(name = "iso_639_1") val iso6391: String? = null,
     val name: String? = null,
-    val english_name: String? = null
+    @Json(name = "english_name") val englishName: String? = null
 )
