@@ -1,5 +1,6 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.Json
 import org.threeten.bp.OffsetDateTime
 
 class Episode(
@@ -7,11 +8,11 @@ class Episode(
     val overview: String? = null,
     val rating: Double? = null,
     val votes: Int? = null,
-    val updated_at: OffsetDateTime? = null,
-    val available_translations: List<String>? = null,
+    @Json(name = "updated_at") val updatedAt: OffsetDateTime? = null,
+    @Json(name = "available_translations") val availableTranslations: List<String>? = null,
     val season: Int? = null,
     val number: Int? = null,
     val ids: EpisodeIds? = null,
-    val number_abs: Int? = null,
-    val first_aired: OffsetDateTime? = null
+    @Json(name = "number_abs") val numberAbs: Int? = null,
+    @Json(name = "first_aired") val firstAired: OffsetDateTime? = null
 )
