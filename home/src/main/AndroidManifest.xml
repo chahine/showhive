@@ -12,9 +12,9 @@
         <category android:name="android.intent.category.DEFAULT"/>
 
         <data
-            android:host="chahinem.com"
-            android:pathPattern="/home"
-            android:scheme="https"
+            android:host="@string/host"
+            android:path="@string/path_home"
+            android:scheme="@string/scheme"
             />
       </intent-filter>
     </activity>

@@ -12,7 +12,6 @@ import dagger.Component
 interface ActivityComponent {
 
   fun inject(activity: HomeActivity)
-//  fun inject(viewModel: FilterViewModel)
 
   @Component.Builder
   interface Builder {
