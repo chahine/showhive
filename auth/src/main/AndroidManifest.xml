@@ -4,21 +4,10 @@
     >
 
   <application>
-    <activity android:name=".TraktOAuthActivity">
-      <intent-filter android:order="1">
-        <action android:name="android.intent.action.VIEW"/>
-
-        <category android:name="android.intent.category.BROWSABLE"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-
-        <data
-            android:host="auth"
-            android:pathPattern="/oauth2callback"
-            android:scheme="showhive"
-            />
-      </intent-filter>
-    </activity>
-    <activity android:name=".SplashActivity">
+    <activity
+        android:name=".SplashActivity"
+        android:launchMode="singleInstance"
+        >
       <intent-filter android:order="1">
         <action android:name="android.intent.action.VIEW"/>
 
@@ -30,12 +19,17 @@
             android:path="/splash"
             android:scheme="https"
             />
+        <data
+            android:host="auth"
+            android:pathPattern="/oauth2callback"
+            android:scheme="showhive"
+            />
       </intent-filter>
-      <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.MAIN"/>-->
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
 
-        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-      <!--</intent-filter>-->
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
     </activity>
   </application>
 

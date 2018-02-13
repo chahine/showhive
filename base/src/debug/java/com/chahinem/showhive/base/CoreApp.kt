@@ -6,7 +6,7 @@ import com.squareup.leakcanary.RefWatcher
 import timber.log.Timber
 
 abstract class CoreApp : Application() {
-  lateinit var refWatcher: RefWatcher
+  private lateinit var refWatcher: RefWatcher
 
   override fun onCreate() {
     super.onCreate()
