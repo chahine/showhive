@@ -1,13 +1,37 @@
 package com.chahinem.trakt.api
 
+import com.chahinem.trakt.entities.AccessToken
 import com.chahinem.trakt.entities.Extended
 import com.chahinem.trakt.entities.Show
 import com.chahinem.trakt.entities.TrendingShow
 import io.reactivex.Observable
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface TraktApi {
+
+  @FormUrlEncoded
+  @POST("https://trakt.tv/oauth/token")
+  fun exchangeCodeForAccessToken(
+      @Field("grant_type") grantType: String,
+      @Field("code") code: String,
+      @Field("client_id") clientId: String,
+      @Field("client_secret") clientSecret: String,
+      @Field("redirect_uri") redirectUri: String
+  ): Observable<AccessToken>
+
+  @FormUrlEncoded
+  @POST("https://trakt.tv/oauth/token")
+  fun refreshAccessToken(
+      @Field("grant_type") grantType: String,
+      @Field("refresh_token") refreshToken: String,
+      @Field("client_id") clientId: String,
+      @Field("client_secret") clientSecret: String,
+      @Field("redirect_uri") redirectUri: String
+  ): Observable<AccessToken>
 
   /**
    * Returns the most popular shows.

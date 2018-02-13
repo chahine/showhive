@@ -1,4 +1,3 @@
-
 object Versions {
   // Android Version
   const val minSdkVersion = 21
