@@ -15,9 +15,9 @@
         <category android:name="android.intent.category.DEFAULT"/>
 
         <data
-            android:host="chahinem.com"
-            android:path="/splash"
-            android:scheme="https"
+            android:host="@string/host"
+            android:path="@string/path_splash"
+            android:scheme="@string/scheme"
             />
         <data
             android:host="auth"
