@@ -1,8 +1,10 @@
 package com.chahinem.showhive.home
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.v7.widget.GridLayoutManager
 import com.chahinem.showhive.base.BaseActivity
+import com.chahinem.showhive.base.Router
 import com.chahinem.tmdb.api.TmdbApi
 import com.chahinem.tmdb.entities.Images
 import com.chahinem.trakt.api.TraktApi
@@ -16,6 +18,7 @@ import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
 
+  @Inject lateinit var router: Router
   @Inject lateinit var traktApi: TraktApi
   @Inject lateinit var tmdbApi: TmdbApi
   @Inject lateinit var adapter: HomeAdapter
@@ -24,6 +27,7 @@ class HomeActivity : BaseActivity() {
 
   override fun setUpDependencyInjection() {
     val component = DaggerActivityComponent.builder()
+        .activity(this)
         .activityModule(ActivityModule())
         .appComponent(appComponent)
         .build()
@@ -33,6 +37,13 @@ class HomeActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+    if (!prefs.contains("access_token")
+        && (!prefs.contains("splash_skipped")
+            || !prefs.getBoolean("splash_skipped", false))) {
+      router.splash()
+    }
 
     list.layoutManager = GridLayoutManager(this, 2)
     list.adapter = adapter

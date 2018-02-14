@@ -3,6 +3,7 @@ package com.chahinem.showhive.auth
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import com.chahinem.showhive.base.BaseActivity
 import com.chahinem.showhive.base.Router
 import com.chahinem.showhive.base.Router.Companion.REDIRECT_URL
@@ -43,6 +44,12 @@ class SplashActivity : BaseActivity() {
     skipBtn
         .clicks()
         .throttleFirst(300, MILLISECONDS)
+        .doOnNext {
+          PreferenceManager.getDefaultSharedPreferences(this)
+              .edit()
+              .putBoolean("splash_skipped", true)
+              .apply()
+        }
         .subscribe({ router.home() }, Timber::e)
   }
 
@@ -61,7 +68,13 @@ class SplashActivity : BaseActivity() {
                 BuildConfig.TRAKT_CLIENT_ID,
                 BuildConfig.TRAKT_CLIENT_SECRET,
                 REDIRECT_URL)
-            // TODO: save access and refresh token into sharedPrefs
+            .doOnNext {
+              PreferenceManager.getDefaultSharedPreferences(this)
+                  .edit()
+                  .putString("access_token", it.accessToken)
+                  .putString("refresh_token", it.refreshToken)
+                  .apply()
+            }
             .subscribe({ router.home() }, Timber::e)
       }
     }
