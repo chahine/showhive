@@ -4,7 +4,10 @@
     >
 
   <application>
-    <activity android:name=".HomeActivity">
+    <activity
+        android:name=".HomeActivity"
+        android:launchMode="singleTop"
+        >
       <intent-filter android:order="1">
         <action android:name="android.intent.action.VIEW"/>
 
@@ -16,6 +19,11 @@
             android:path="@string/path_home"
             android:scheme="@string/scheme"
             />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
   </application>

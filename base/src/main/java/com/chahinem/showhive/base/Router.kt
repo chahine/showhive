@@ -33,6 +33,11 @@ class Router @Inject constructor(private val activity: AppCompatActivity) {
     activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
   }
 
+  fun splash() {
+    val intent = getIntentForPath(setOf(res.getString(R.string.path_splash)))
+    activity.startActivity(intent)
+  }
+
   private fun getIntentForPath(
       path: Set<String> = emptySet(),
       queries: Map<String, String> = emptyMap()): Intent {

@@ -6,7 +6,7 @@
   <application>
     <activity
         android:name=".SplashActivity"
-        android:launchMode="singleInstance"
+        android:launchMode="singleTop"
         >
       <intent-filter android:order="1">
         <action android:name="android.intent.action.VIEW"/>
@@ -24,11 +24,6 @@
             android:pathPattern="/oauth2callback"
             android:scheme="showhive"
             />
-      </intent-filter>
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-
-        <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
   </application>
