@@ -6,13 +6,46 @@ android {
     applicationId 'com.chahinem.showhive.app'
   }
 
+  signingConfigs {
+    debug {
+      if (rootProject.file('debug.properties').exists()) {
+        final def props = new Properties()
+        props.load(new FileInputStream(rootProject.file('debug.properties')))
+
+        storeFile file(props['DEBUG_STORE_FILE'])
+        storePassword props['DEBUG_STORE_PASSWORD']
+        keyAlias props['DEBUG_KEY_ALIAS']
+        keyPassword props['DEBUG_KEY_PASSWORD']
+      }
+    }
+    showhive {
+      if (rootProject.file('release.properties').exists()) {
+        final def props = new Properties()
+        props.load(new FileInputStream(rootProject.file('release.properties')))
+
+        storeFile file(props['RELEASE_STORE_FILE'])
+        storePassword props['RELEASE_STORE_PASSWORD']
+        keyAlias props['RELEASE_KEY_ALIAS']
+        keyPassword props['RELEASE_KEY_PASSWORD']
+        v2SigningEnabled true
+      }
+    }
+  }
+
   buildTypes {
     debug {
       applicationIdSuffix ".debug"
+      signingConfig signingConfigs.debug
     }
     release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      multiDexEnabled false
+      minifyEnabled true
+      shrinkResources true
+      zipAlignEnabled true
+
+      signingConfig signingConfigs.showhive
+
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
 }

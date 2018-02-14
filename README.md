@@ -29,6 +29,31 @@ TRAKT_CLIENT_SECRET =
 TMDB_API_KEY        = 
 ```
 
+You can either uncomment the signing config for both debug and release variant or provide the following properties to sign the build.
+
+### Debug
+
+
+```
+# debug.properties
+
+DEBUG_STORE_FILE     =
+DEBUG_STORE_PASSWORD =
+DEBUG_KEY_ALIAS      =
+DEBUG_KEY_PASSWORD   =
+```
+
+### Release
+
+```
+# release.properties
+
+RELEASE_STORE_FILE     =
+RELEASE_STORE_PASSWORD =
+RELEASE_KEY_ALIAS      =
+RELEASE_KEY_PASSWORD   =
+```
+
 ## Build
 
 ### Clean Build
