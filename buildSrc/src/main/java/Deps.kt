@@ -129,5 +129,5 @@ object Deps {
 
   val testLibs = listOf(jUnit, mockito, hamcrest)
 
-  val featureProjects = listOf(":auth", ":home")
+  val featureProjects = listOf(":auth", ":home", ":show")
 }

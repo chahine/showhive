@@ -26,13 +26,12 @@ class HomeActivity : BaseActivity() {
   override fun getLayoutId() = R.layout.activity_home
 
   override fun setUpDependencyInjection() {
-    val component = DaggerActivityComponent.builder()
+    DaggerActivityComponent.builder()
         .activity(this)
         .activityModule(ActivityModule())
         .appComponent(appComponent)
         .build()
-
-    component.inject(this)
+        .inject(this)
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {

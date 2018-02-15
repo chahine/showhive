@@ -54,6 +54,7 @@ dependencies {
   implementation project(':base')
   Deps.featureProjects.each { implementation project("$it") }
 
+  // Uncomment when wear is supported
   // wearApp project(':wear')
   // implementation 'com.google.android.gms:play-services-wearable:11.8.0'
 }

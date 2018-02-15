@@ -33,9 +33,12 @@ class Router @Inject constructor(private val activity: AppCompatActivity) {
     activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
   }
 
+  fun tvShow(id: String) {
+    activity.startActivity(getIntentForPath(setOf(res.getString(R.string.path_show), id)))
+  }
+
   fun splash() {
-    val intent = getIntentForPath(setOf(res.getString(R.string.path_splash)))
-    activity.startActivity(intent)
+    activity.startActivity(getIntentForPath(setOf(res.getString(R.string.path_splash))))
   }
 
   private fun getIntentForPath(

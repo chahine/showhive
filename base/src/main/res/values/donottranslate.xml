@@ -3,6 +3,7 @@
   <string name="scheme">showhive</string>
   <string name="host">chahinem.com</string>
 
+  <string name="path_show">/show</string>
   <string name="path_splash">/splash</string>
   <string name="path_home">/home</string>
 </resources>
