@@ -7,7 +7,7 @@ import com.chahinem.showhive.base.Router
 import com.chahinem.showhive.home.calendar.CalendarFragment
 import com.chahinem.showhive.home.discover.DiscoverFragment
 import com.chahinem.showhive.home.profile.ProfileFragment
-import com.jakewharton.rxbinding2.support.design.widget.RxBottomNavigationView
+import com.jakewharton.rxbinding2.support.design.widget.itemSelections
 import kotlinx.android.synthetic.main.activity_home.bottomNavigationView
 import timber.log.Timber
 import javax.inject.Inject
@@ -38,8 +38,8 @@ class HomeActivity : BaseActivity() {
       router.splash()
     }
 
-    RxBottomNavigationView
-        .itemSelections(bottomNavigationView)
+    bottomNavigationView
+        .itemSelections()
         .distinctUntilChanged()
         .subscribe({
           val transaction = supportFragmentManager.beginTransaction()

@@ -34,10 +34,11 @@ object Deps {
   val firebaseMessaging = "com.google.firebase:firebase-messaging:$playVersion"
 
   // Architecture Components
-  val archEx = "android.arch.lifecycle:extensions:$archVersion"
-  val archViewModel = "android.arch.lifecycle:viewmodel:$archVersion"
   val archCompiler = "android.arch.lifecycle:compiler:$archVersion"
+  val archEx = "android.arch.lifecycle:extensions:$archVersion"
   val archJava = "android.arch.lifecycle:common-java8:$archVersion"
+  val archRuntime = "android.arch.lifecycle:runtime:$archVersion"
+  val archViewModel = "android.arch.lifecycle:viewmodel:$archVersion"
 
   // Api
   val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -104,7 +105,7 @@ object Deps {
       okio,
       moshi)
 
-  val arch = listOf(archEx, archJava)
+  val arch = listOf(archEx, archJava, archRuntime)
 
   val archAP = listOf(archCompiler)
 
