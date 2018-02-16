@@ -14,7 +14,6 @@ dependencies {
 
   // Android
   Deps.arch.each { api it }
-  Deps.archAP.each { kapt it }
   Deps.supportLibs.each { api it }
 
   // RX
@@ -24,7 +23,6 @@ dependencies {
   // Dagger
   api Deps.dagger
   kapt Deps.daggerCompiler
-  kapt Deps.daggerAndroidCompiler
 
   // Debugging Tools
   debugApi Deps.leakCanary

@@ -24,7 +24,6 @@ interface ActivityComponent {
   @Component.Builder interface Builder {
     @BindsInstance fun activity(activity: Activity): Builder
     fun appComponent(appComponent: ShowHiveComponent): Builder
-    fun activityModule(module: ActivityModule): Builder
     fun build(): ActivityComponent
   }
 }

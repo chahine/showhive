@@ -9,6 +9,7 @@ import javax.inject.Inject
 class CalendarFragment : BaseFragment() {
 
   @Inject lateinit var router: Router
+  @Inject lateinit var viewModel: CalendarViewModel
 
   override fun getLayoutId() = R.layout.fragment_calendar
 
@@ -16,5 +17,11 @@ class CalendarFragment : BaseFragment() {
     if (activity is HomeActivity) {
       (activity as HomeActivity).component.inject(this)
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+
+    viewModel.doSomething()
   }
 }

@@ -7,9 +7,10 @@ dependencies {
   api project(':tmdb-api')
   api project(':trakt-api')
 
+  implementation Deps.archViewModel
+
   api Deps.dagger
   kapt Deps.daggerCompiler
-  kapt Deps.daggerAndroidCompiler
 
   api Deps.picasso
 

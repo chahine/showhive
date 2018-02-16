@@ -12,6 +12,7 @@ import dagger.Component
   ApiModule::class,
   DataModule::class,
   ShowHiveModule::class,
+  ViewModelModule::class,
   TmdbApiModule::class,
   TraktApiModule::class
 ])
