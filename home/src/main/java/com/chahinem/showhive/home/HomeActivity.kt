@@ -2,36 +2,31 @@ package com.chahinem.showhive.home
 
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v7.widget.GridLayoutManager
 import com.chahinem.showhive.base.BaseActivity
 import com.chahinem.showhive.base.Router
-import com.chahinem.tmdb.api.TmdbApi
-import com.chahinem.tmdb.entities.Images
-import com.chahinem.trakt.api.TraktApi
-import com.chahinem.trakt.entities.Extended.NO_SEASONS
-import com.chahinem.trakt.entities.Show
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
-import kotlinx.android.synthetic.main.activity_home.list
+import com.chahinem.showhive.home.calendar.CalendarFragment
+import com.chahinem.showhive.home.discover.DiscoverFragment
+import com.chahinem.showhive.home.profile.ProfileFragment
+import com.jakewharton.rxbinding2.support.design.widget.RxBottomNavigationView
+import kotlinx.android.synthetic.main.activity_home.bottomNavigationView
 import timber.log.Timber
 import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
 
   @Inject lateinit var router: Router
-  @Inject lateinit var traktApi: TraktApi
-  @Inject lateinit var tmdbApi: TmdbApi
-  @Inject lateinit var adapter: HomeAdapter
 
   override fun getLayoutId() = R.layout.activity_home
 
+  lateinit var component: ActivityComponent
+
   override fun setUpDependencyInjection() {
-    DaggerActivityComponent.builder()
+    component = DaggerActivityComponent.builder()
         .activity(this)
         .activityModule(ActivityModule())
         .appComponent(appComponent)
         .build()
-        .inject(this)
+    component.inject(this)
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,33 +39,28 @@ class HomeActivity : BaseActivity() {
       router.splash()
     }
 
-    list.layoutManager = GridLayoutManager(this, 2)
-    list.adapter = adapter
+    RxBottomNavigationView
+        .itemSelections(bottomNavigationView)
+        .distinctUntilChanged()
+        .subscribe({
+          val transaction = supportFragmentManager.beginTransaction()
+          val klass = FRAGMENT_ID_MAP[it.itemId]!!
+          val byTag = supportFragmentManager.findFragmentByTag(klass.simpleName)
+          supportFragmentManager.fragments.forEach { transaction.hide(it) }
+          if (byTag == null) {
+            transaction.add(R.id.container, klass.newInstance(), klass.simpleName)
+          } else {
+            transaction.show(byTag)
+          }
+          transaction.commitNowAllowingStateLoss()
+        }, Timber::e)
   }
 
-  override fun onResume() {
-    super.onResume()
-
-    // TODO: refactor into viewmodel+interactor+repo
-    traktApi.popular(1, 10, NO_SEASONS)
-        .concatMapIterable { it }
-        .filter { it.ids?.tmdb != null }
-        .concatMap {
-          val tmdbId = it.ids?.tmdb
-          when (tmdbId) {
-            null -> Observable.empty<Pair<Show, Images>>()
-            else -> tmdbApi
-                .images(tmdbId, "en")
-                .zipWith(Observable.just(it), BiFunction { a: Images, b: Show -> Pair(b, a) })
-
-          }
-        }
-        .map { (show, image) ->
-          ShowItemView.Item(
-              show.ids?.trakt,
-              image.posters?.firstOrNull()?.filePath.orEmpty())
-        }
-        .toList()
-        .subscribe(adapter::swapData, Timber::e)
+  companion object {
+    private val FRAGMENT_ID_MAP = mapOf(
+        R.id.action_calendar to CalendarFragment::class.java,
+        R.id.action_discover to DiscoverFragment::class.java,
+        R.id.action_profile to ProfileFragment::class.java
+    )
   }
 }

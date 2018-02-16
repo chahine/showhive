@@ -1,6 +1,6 @@
 package com.chahinem.showhive.show
 
-import android.support.v7.app.AppCompatActivity
+import android.app.Activity
 import com.chahinem.showhive.di.ShowHiveComponent
 import com.chahinem.showhive.qualifiers.PerActivity
 import dagger.BindsInstance
@@ -17,7 +17,7 @@ interface ActivityComponent {
 
   @Component.Builder
   interface Builder {
-    @BindsInstance fun activity(activity: AppCompatActivity): Builder
+    @BindsInstance fun activity(activity: Activity): Builder
     fun appComponent(appComponent: ShowHiveComponent): Builder
     fun activityModule(module: ActivityModule): Builder
     fun build(): ActivityComponent

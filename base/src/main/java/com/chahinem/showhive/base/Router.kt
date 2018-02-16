@@ -1,12 +1,12 @@
 package com.chahinem.showhive.base
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject
 
-class Router @Inject constructor(private val activity: AppCompatActivity) {
+class Router @Inject constructor(private val activity: Activity) {
 
   private val res = activity.resources
 
