@@ -8,5 +8,4 @@ dependencies {
   Deps.archAP.each { kapt it }
 
   kapt Deps.daggerCompiler
-  kapt Deps.daggerAndroidCompiler
 }

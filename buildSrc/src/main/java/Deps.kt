@@ -35,6 +35,7 @@ object Deps {
 
   // Architecture Components
   val archEx = "android.arch.lifecycle:extensions:$archVersion"
+  val archViewModel = "android.arch.lifecycle:viewmodel:$archVersion"
   val archCompiler = "android.arch.lifecycle:compiler:$archVersion"
   val archJava = "android.arch.lifecycle:common-java8:$archVersion"
 
@@ -54,8 +55,6 @@ object Deps {
   const val annotationsApi = "javax.annotation:javax.annotation-api:1.2"
   val dagger = "com.google.dagger:dagger:$daggerVersion"
   val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
-  val daggerAndroidSupport = "com.google.dagger:dagger-android-support:$daggerVersion"
-  val daggerAndroidCompiler = "com.google.dagger:dagger-android-processor:$daggerVersion"
 
   // Rx Bindings
   const val rxbindingGroupId = "com.jakewharton.rxbinding2"

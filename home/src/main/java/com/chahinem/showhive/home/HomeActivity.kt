@@ -23,7 +23,6 @@ class HomeActivity : BaseActivity() {
   override fun setUpDependencyInjection() {
     component = DaggerActivityComponent.builder()
         .activity(this)
-        .activityModule(ActivityModule())
         .appComponent(appComponent)
         .build()
     component.inject(this)

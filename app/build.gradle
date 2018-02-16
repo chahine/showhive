@@ -48,6 +48,15 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+
+  applicationVariants.all { variant ->
+    variant.compileConfiguration.resolutionStrategy {
+      force 'android.arch.lifecycle:runtime:1.0.3'
+    }
+    variant.runtimeConfiguration.resolutionStrategy {
+      force 'android.arch.lifecycle:runtime:1.0.3'
+    }
+  }
 }
 
 dependencies {
