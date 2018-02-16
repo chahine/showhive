@@ -12,7 +12,7 @@ import Versions.rxbindingVersion
 import Versions.rxjavaVersion
 import Versions.supportLibraryVersion
 
-@Suppress("MayBeConstant", "MemberVisibilityCanBePrivate")
+@Suppress("MayBeConstant", "MemberVisibilityCanBePrivate", "unused")
 object Deps {
 
   // Support Libraries
