@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.ViewGroup
 
-open class RvAdapter<E : RvItem>(val delegates: Map<Int, RvDelegate<E, ViewHolder>>)
-  : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+open class RvAdapter<E : RvItem> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+  protected val delegates: MutableMap<Int, RvDelegate<E, ViewHolder>> = mutableMapOf()
   protected val items: MutableList<E> = ArrayList()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

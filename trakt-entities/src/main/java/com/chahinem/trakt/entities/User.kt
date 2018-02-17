@@ -1,7 +1,7 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
-import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.ZonedDateTime
 
 class User(
     val username: String? = null,
@@ -11,7 +11,7 @@ class User(
     val vip: Boolean? = null,
     @Json(name = "vip_ep") val vipEp: Boolean? = null,
     val ids: UserIds? = null,
-    @Json(name = "joined_at") val joinedAt: OffsetDateTime? = null,
+    @Json(name = "joined_at") val joinedAt: ZonedDateTime? = null,
     val location: String? = null,
     val about: String? = null,
     val gender: String? = null,
