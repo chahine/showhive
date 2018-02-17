@@ -3,6 +3,10 @@
 -keepattributes *Annotation*
 -keep class javax.inject.** { *; }
 
+# OkHttp
+-dontwarn org.conscrypt.Conscrypt
+-dontwarn org.conscrypt.OpenSSLProvider
+
 # Retrofit 2.X
 ## https://square.github.io/retrofit/ ##
 -dontnote retrofit2.Platform

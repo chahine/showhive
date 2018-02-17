@@ -1,6 +1,7 @@
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply from: rootProject.file('jacoco.gradle')
 
 androidExtensions.experimental = true
 
@@ -72,6 +73,10 @@ dependencies {
 
   Deps.testLibs.each { testImplementation it }
 
+  testImplementation 'org.robolectric:robolectric:3.8'
+  androidTestImplementation Deps.supportAnnotations
+  androidTestImplementation 'com.android.support.test:rules:1.0.1'
   androidTestImplementation 'com.android.support.test:runner:1.0.1'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+  androidTestUtil 'com.android.support.test:orchestrator:1.0.1'
 }
