@@ -1,10 +1,12 @@
 package com.chahinem.showhive.di
 
+import android.app.Application
 import android.view.inputmethod.InputMethodManager
 import com.chahinem.showhive.qualifiers.PerApp
 import com.chahinem.tmdb.api.TmdbApi
 import com.chahinem.trakt.api.TraktApi
 import com.squareup.picasso.Picasso
+import dagger.BindsInstance
 import dagger.Component
 
 @PerApp
@@ -26,11 +28,11 @@ interface ShowHiveComponent {
 
   @Component.Builder interface Builder {
     fun apiModule(module: ApiModule): Builder
+    @BindsInstance fun app(app: Application): Builder
     fun dataModule(module: DataModule): Builder
     fun showHiveModule(module: ShowHiveModule): Builder
     fun tmdbApiModule(module: TmdbApiModule): Builder
     fun traktApiModule(module: TraktApiModule): Builder
-
     fun build(): ShowHiveComponent
   }
 }

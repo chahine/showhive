@@ -18,7 +18,7 @@ import timber.log.Timber
 import java.io.File
 
 @Module
-class DataModule(private val app: Application) {
+class DataModule {
   companion object {
     private const val DISK_CACHE_SIZE = 50L * 1024 * 1024 // 50MB
     private const val PICASSO_CACHE_DIR = "picasso"
@@ -27,7 +27,7 @@ class DataModule(private val app: Application) {
   @Provides
   @PerApp
   @CacheSize
-  fun getCacheSize(): Int {
+  fun getCacheSize(app: Application): Int {
     val am = app.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     val memoryClass = am.memoryClass
     // Target ~25% of the available heap.
@@ -42,12 +42,18 @@ class DataModule(private val app: Application) {
 
   @Provides
   @PerApp
-  fun providePicasso(client: OkHttpClient, @CacheSize cacheSize: Int): Picasso = Picasso.Builder(app)
-      .downloader(OkHttp3Downloader(client
-          .newBuilder()
-          .cache(Cache(File(app.cacheDir, PICASSO_CACHE_DIR), DISK_CACHE_SIZE))
-          .build()))
-      .memoryCache(LruCache(cacheSize))
-      .listener { _, uri, e -> Timber.e(e, "Failed to load image: %s", uri) }
-      .build()
+  fun providePicasso(
+      app: Application,
+      client: OkHttpClient,
+      @CacheSize cacheSize: Int
+  ): Picasso {
+    return Picasso.Builder(app)
+        .downloader(OkHttp3Downloader(client
+            .newBuilder()
+            .cache(Cache(File(app.cacheDir, PICASSO_CACHE_DIR), DISK_CACHE_SIZE))
+            .build()))
+        .memoryCache(LruCache(cacheSize))
+        .listener { _, uri, e -> Timber.e(e, "Failed to load image: %s", uri) }
+        .build()
+  }
 }

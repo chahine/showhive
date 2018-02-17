@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import com.chahinem.showhive.base.BaseActivity
 import com.chahinem.showhive.base.Router
-import com.chahinem.showhive.base.Router.Companion.REDIRECT_URL
 import com.chahinem.trakt.api.TraktApi
+import com.chahinem.trakt.api.TraktV2
 import com.jakewharton.rxbinding2.view.clicks
 import kotlinx.android.synthetic.main.activity_splash.connectBtn
 import kotlinx.android.synthetic.main.activity_splash.skipBtn
@@ -67,7 +67,7 @@ class SplashActivity : BaseActivity() {
                 code,
                 BuildConfig.TRAKT_CLIENT_ID,
                 BuildConfig.TRAKT_CLIENT_SECRET,
-                REDIRECT_URL)
+                TraktV2.REDIRECT_URI)
             .doOnNext {
               PreferenceManager.getDefaultSharedPreferences(this)
                   .edit()

@@ -11,7 +11,7 @@ import okhttp3.OkHttpClient
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-@Module class ApiModule(private val app: Application) {
+@Module class ApiModule {
 
   companion object {
     private const val DISK_CACHE_SIZE = 50L * 1024 * 1024 // 50MB
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
   @Provides
   @PerApp
       // This client and cache are shared by Retrofit and Picasso
-  fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
+  fun provideOkHttpClient(app: Application): OkHttpClient = OkHttpClient.Builder()
       .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
       .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
       .readTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -39,5 +39,5 @@ import java.util.concurrent.TimeUnit
 
   @Provides
   @PerApp
-  fun provideChuck() = ChuckInterceptor(app)
+  fun provideChuck(app: Application) = ChuckInterceptor(app)
 }
