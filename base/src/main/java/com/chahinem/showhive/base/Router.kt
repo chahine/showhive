@@ -3,6 +3,7 @@ package com.chahinem.showhive.base
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import com.chahinem.trakt.api.TraktV2
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ class Router @Inject constructor(private val activity: Activity) {
         .appendPath("authorize")
         .appendQueryParameter("response_type", "code")
         .appendQueryParameter("client_id", BuildConfig.TRAKT_CLIENT_ID)
-        .appendQueryParameter("redirect_uri", REDIRECT_URL)
+        .appendQueryParameter("redirect_uri", TraktV2.REDIRECT_URI)
         .build()
         .toString())
   }
@@ -61,9 +62,5 @@ class Router @Inject constructor(private val activity: Activity) {
     intent.addCategory(Intent.CATEGORY_BROWSABLE)
     Timber.d("intentForPath=$url")
     return intent
-  }
-
-  companion object {
-    const val REDIRECT_URL = "showhive://auth/oauth2callback"
   }
 }

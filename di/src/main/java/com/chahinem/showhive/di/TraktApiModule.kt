@@ -1,11 +1,13 @@
 package com.chahinem.showhive.di
 
+import android.app.Application
 import com.chahinem.api.RxSchedulers
 import com.chahinem.showhive.qualifiers.PerApp
 import com.chahinem.showhive.qualifiers.Trakt
 import com.chahinem.trakt.api.TraktApi
 import com.chahinem.trakt.api.TraktApiClient
-import com.chahinem.trakt.api.TraktAuthInterceptor
+import com.chahinem.trakt.api.TraktAuthenticator
+import com.chahinem.trakt.api.TraktInterceptor
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -21,8 +23,16 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
   @Provides
   @PerApp
-  fun provideAuthInterceptor(): TraktAuthInterceptor {
-    return TraktAuthInterceptor()
+  fun provideTraktInterceptor(app: Application) = TraktInterceptor(app)
+
+  @Provides
+  @PerApp
+  fun provideTraktAuthenticator(
+      app: Application,
+      okHttpClient: OkHttpClient,
+      moshi: Moshi
+  ): TraktAuthenticator {
+    return TraktAuthenticator(app, okHttpClient, moshi)
   }
 
   @Provides
@@ -35,7 +45,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
   @Trakt
   fun provideOkHttpClient(
       client: OkHttpClient,
-      authInterceptor: TraktAuthInterceptor,
+      interceptor: TraktInterceptor,
+      authenticator: TraktAuthenticator,
       chuck: ChuckInterceptor): OkHttpClient {
     val clientBuilder = client.newBuilder()
 
@@ -45,7 +56,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
       clientBuilder.addInterceptor(httpLoggingInterceptor)
       clientBuilder.addInterceptor(chuck)
     }
-    clientBuilder.addNetworkInterceptor(authInterceptor)
+    clientBuilder.authenticator(authenticator)
+    clientBuilder.addNetworkInterceptor(interceptor)
     return clientBuilder.build()
   }
 

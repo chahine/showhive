@@ -8,11 +8,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class ShowHiveModule(val app: Application) {
+class ShowHiveModule {
 
   @Provides
   @PerApp
-  fun provideInputMethodService(): InputMethodManager {
+  fun provideInputMethodService(app: Application): InputMethodManager {
     return app.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
   }
 }

@@ -23,7 +23,7 @@ interface TraktApi {
   // region Authentication
 
   @FormUrlEncoded
-  @POST("https://trakt.tv/oauth/token")
+  @POST(TraktV2.OAUTH2_TOKEN_URL)
   fun exchangeCodeForAccessToken(
       @Field("grant_type") grantType: String,
       @Field("code") code: String,
@@ -33,7 +33,7 @@ interface TraktApi {
   ): Observable<AccessToken>
 
   @FormUrlEncoded
-  @POST("https://trakt.tv/oauth/token")
+  @POST(TraktV2.OAUTH2_TOKEN_URL)
   fun refreshAccessToken(
       @Field("grant_type") grantType: String,
       @Field("refresh_token") refreshToken: String,
