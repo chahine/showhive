@@ -3,6 +3,8 @@ package com.chahinem.trakt.api
 import com.chahinem.api.RxSchedulers
 import com.chahinem.trakt.entities.AccessToken
 import com.chahinem.trakt.entities.BaseShow
+import com.chahinem.trakt.entities.CalendarMovieEntry
+import com.chahinem.trakt.entities.CalendarShowEntry
 import com.chahinem.trakt.entities.Comment
 import com.chahinem.trakt.entities.Credits
 import com.chahinem.trakt.entities.Extended
@@ -47,6 +49,43 @@ class TraktApiClient(
     return api
         .refreshAccessToken(grantType, refreshToken, clientId, clientSecret, redirectUri)
         .compose(applySchedulers())
+  }
+
+  // endregion
+
+  // region Calendars
+
+  override fun myShows(startDate: String, days: Int): Observable<List<CalendarShowEntry>> {
+    return api.myShows(startDate, days).compose(applySchedulers())
+  }
+
+  override fun myNewShows(startDate: String, days: Int): Observable<List<CalendarShowEntry>> {
+    return api.myNewShows(startDate, days).compose(applySchedulers())
+  }
+
+  override fun mySeasonPremieres(startDate: String,
+                                 days: Int): Observable<List<CalendarShowEntry>> {
+    return api.mySeasonPremieres(startDate, days).compose(applySchedulers())
+  }
+
+  override fun myMovies(startDate: String, days: Int): Observable<List<CalendarMovieEntry>> {
+    return api.myMovies(startDate, days).compose(applySchedulers())
+  }
+
+  override fun shows(startDate: String, days: Int): Observable<List<CalendarShowEntry>> {
+    return api.shows(startDate, days).compose(applySchedulers())
+  }
+
+  override fun newShows(startDate: String, days: Int): Observable<List<CalendarShowEntry>> {
+    return api.newShows(startDate, days).compose(applySchedulers())
+  }
+
+  override fun seasonPremieres(startDate: String, days: Int): Observable<List<CalendarShowEntry>> {
+    return api.seasonPremieres(startDate, days).compose(applySchedulers())
+  }
+
+  override fun movies(startDate: String, days: Int): Observable<List<CalendarMovieEntry>> {
+    return api.movies(startDate, days).compose(applySchedulers())
   }
 
   // endregion

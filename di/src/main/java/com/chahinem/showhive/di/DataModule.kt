@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import com.chahinem.showhive.qualifiers.CacheSize
 import com.chahinem.showhive.qualifiers.PerApp
+import com.chahinem.trakt.api.ZonedDateTimeConverter
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.picasso.LruCache
@@ -38,6 +39,7 @@ class DataModule {
   @PerApp
   fun provideMoshi(): Moshi = Moshi.Builder()
       .add(KotlinJsonAdapterFactory())
+      .add(ZonedDateTimeConverter())
       .build()
 
   @Provides

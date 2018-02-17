@@ -1,12 +1,12 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
-import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.ZonedDateTime
 
 class Comment(
     val id: Int? = null,
-    @Json(name="parent_id") val parentId: Int? = null,
-    @Json(name="created_at") val createdAt: OffsetDateTime? = null,
+    @Json(name = "parent_id") val parentId: Int? = null,
+    @Json(name = "created_at") val createdAt: ZonedDateTime? = null,
     val comment: String,
     val spoiler: Boolean? = null,
     val review: Boolean? = null,
