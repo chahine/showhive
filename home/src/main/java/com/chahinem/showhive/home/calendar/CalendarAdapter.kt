@@ -11,6 +11,7 @@ class CalendarAdapter @Inject constructor() : RvAdapter<Item>() {
 
   init {
     delegates[EPISODE] = EpisodeItemView.Delegate()
+    delegates[DATE_HEADER] = DateHeaderItemView.Delegate()
   }
 
   interface Delegate : RvDelegate<Item, ViewHolder>
@@ -18,5 +19,6 @@ class CalendarAdapter @Inject constructor() : RvAdapter<Item>() {
 
   companion object {
     const val EPISODE = 1
+    const val DATE_HEADER = 2
   }
 }
