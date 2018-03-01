@@ -1,0 +1,43 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/android:api-27-alpha
+
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+      - checkout
+      - run:
+          name: Versionning
+          command: |
+            echo "BUILD_NUMBER = $CIRCLE_BUILD_NUM" > version.properties
+            echo "VERSION = alpha" >> version.properties
+      - run:
+          name: Fetch Keystore
+          command: |
+            mkdir keystores
+            curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/debug.properties\"}" > debug.properties
+            curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/release.properties\"}" > release.properties
+            curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
+            curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/release.jks\"}" > keystores/release.jks
+      - restore_cache:
+          key: jars-{{ checksum "buildSrc/src/main/java/Deps.kt" }}-{{ checksum "buildSrc/src/main/java/Versions.kt" }}
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - $HOME/.gradle/caches/
+            - $HOME/.gradle/wrapper/
+            - $HOME/.android/build-cache
+          key: jars-{{ checksum "buildSrc/src/main/java/Deps.kt" }}-{{ checksum "buildSrc/src/main/java/Versions.kt" }}
+      - run:
+          name: Build
+          command: ./gradlew test assembleDebug
