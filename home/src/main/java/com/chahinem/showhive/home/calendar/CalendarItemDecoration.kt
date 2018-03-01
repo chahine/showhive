@@ -4,12 +4,11 @@ import android.app.Activity
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.chahinem.showhive.home.R
 import javax.inject.Inject
 
 class CalendarItemDecoration @Inject constructor(activity: Activity) : RecyclerView.ItemDecoration() {
 
-  private val spacing: Int = activity.resources.getDimensionPixelSize(R.dimen.spacing_standard)
+  private val spacing: Int = activity.resources.getDimensionPixelSize(com.chahinem.showhive.base.R.dimen.spacing_standard)
 
   override fun getItemOffsets(
       outRect: Rect,

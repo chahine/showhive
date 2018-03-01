@@ -78,6 +78,7 @@ class CalendarFragment : BaseFragment() {
     Handler().post {
       list.scrollToPosition(model.items.indexOfFirst {
         it is EpisodeItemView.Item && (it.entry.firstAired?.isAfter(now) ?: false)
+            || it is DateHeaderItemView.Item && (it.dateTime.isAfter(now.toLocalDate()))
       })
     }
   }
