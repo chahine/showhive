@@ -10,6 +10,8 @@ jobs:
     environment:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx2048m -Xms512m
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+
       TERM: dumb
 
     steps:
@@ -27,17 +29,6 @@ jobs:
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/release.properties\"}" > release.properties
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/release.jks\"}" > keystores/release.jks
-      - restore_cache:
-          key: jars-{{ checksum "buildSrc/src/main/java/Deps.kt" }}-{{ checksum "buildSrc/src/main/java/Versions.kt" }}
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - $HOME/.gradle/caches/
-            - $HOME/.gradle/wrapper/
-            - $HOME/.android/build-cache
-          key: jars-{{ checksum "buildSrc/src/main/java/Deps.kt" }}-{{ checksum "buildSrc/src/main/java/Versions.kt" }}
       - run:
           name: Build
-          command: ./gradlew test assembleDebug
+          command: ./gradlew test assembleDebug -PdisablePreDex
