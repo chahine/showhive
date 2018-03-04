@@ -30,5 +30,11 @@ jobs:
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/release.jks\"}" > keystores/release.jks
       - run:
+          name: Clean
+          command: ./gradlew clean -PdisablePreDex
+      - run:
           name: Build
-          command: ./gradlew test assembleDebug -PdisablePreDex
+          command: ./gradlew assembleDebug -PdisablePreDex
+      - run:
+          name: Test
+          command: ./gradlew test -PdisablePreDex

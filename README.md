@@ -1,5 +1,5 @@
-![Build Status](https://img.shields.io/badge/build_status-todo-red.svg)
-![minSdkVersion](https://img.shields.io/badge/minSdk-21-red.svg)
+[![CircleCI](https://circleci.com/gh/chahinem/showhive.svg?style=svg)](https://circleci.com/gh/chahinem/showhive)
+![minSdkVersion](https://img.shields.io/badge/minSdk-23-red.svg)
 ![compileSdkVersion](https://img.shields.io/badge/compileSdkVersion-27-green.svg)
 ![Version](https://img.shields.io/badge/version-alpha-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -64,23 +64,15 @@ $ ./gradlew clean build
 
 ### Release variant
 
-TODO
+```
+$ ./gradlew clean assembleRelease
+```
 
 ### Code analysis
 
 TODO
 
 # Android Specs
-
-### Libraries and Tools Overview
-- [Support libraries](https://developer.android.com/topic/libraries/support-library/index.html)
-- [Android Annotations](https://github.com/androidannotations/androidannotations/wiki)
-- Rx Libraries
-    - [RxAndroid](https://github.com/ReactiveX/RxAndroid): Android specific bindings for RxJava 2
-    - [RxBinding](https://github.com/JakeWharton/RxBinding): RxJava binding APIs for Android UI widgets from the platform and support libraries
-    - [RxJava](https://github.com/ReactiveX/RxJava): Java VM implementation of Reactive Extensions
-- [Retrofit 2](http://square.github.io/retrofit/): A type-safe HTTP client for Android and Java
-- [Timber](https://github.com/JakeWharton/timber): Logger with a small, extensible API
 
 ### Architecture
 
@@ -89,20 +81,6 @@ TODO
 ### Continuous Integration
 
 TODO
-
-## Contributing
-
-1. Create your feature branch (`git checkout -b feature/name`)
-2. Commit your changes (`git commit -am 'Feature - Name [Name](url)'`)
-3. Publish the branch (`git push origin feature/name`)
-4. Create a new Pull Request
-5. Profit! :white_check_mark:
-
-## Contributors
-
-[![Chahine Mouhamad](https://avatars0.githubusercontent.com/u/3603230?s=100)](https://github.com/chahinem/)  
-|:---:|
-[Chahine Mouhamad](https://github.com/chahinem/) 
 
 ## License
 
