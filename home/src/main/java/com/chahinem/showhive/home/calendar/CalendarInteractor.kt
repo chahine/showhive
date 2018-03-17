@@ -25,6 +25,7 @@ class CalendarInteractor @Inject constructor(private val traktApi: TraktApi) {
                   .cast(CalendarAdapter.Item::class.java)
                   .startWith(DateHeaderItemView.Item(group.key!!))
             }
+            .defaultIfEmpty(CalendarEmptyItemView.Item())
             .toList()
             .toObservable()
             .map { CalendarCardSuccess(it) as CalendarModel }

@@ -23,7 +23,7 @@ class ViewModelFactory @Inject constructor(
       }
     }
     if (creator == null) {
-      throw IllegalArgumentException("unknown model class " + modelClass)
+      throw IllegalArgumentException("unknown model class $modelClass")
     }
     try {
       @Suppress("UNCHECKED_CAST")

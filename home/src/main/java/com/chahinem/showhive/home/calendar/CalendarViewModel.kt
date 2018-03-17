@@ -18,6 +18,7 @@ class CalendarViewModel @Inject constructor(
   internal val uiEvents: Subject<CalendarEvent> = PublishSubject.create()
 
   init {
+    Timber.d("CalendarViewModel#${hashCode()} ")
     uiEvents
         .doOnNext { Timber.d("--> event: ${it.javaClass.simpleName} -- $it") }
         .publish { shared ->

@@ -5,14 +5,8 @@ import com.chahinem.showhive.base.rv.RvAdapter
 import com.chahinem.showhive.base.rv.RvDelegate
 import com.chahinem.showhive.base.rv.RvItem
 import com.chahinem.showhive.home.calendar.CalendarAdapter.Item
-import javax.inject.Inject
 
-class CalendarAdapter @Inject constructor() : RvAdapter<Item>() {
-
-  init {
-    delegates[EPISODE] = EpisodeItemView.Delegate()
-    delegates[DATE_HEADER] = DateHeaderItemView.Delegate()
-  }
+class CalendarAdapter(delegates: Map<Int, CalendarAdapter.Delegate>) : RvAdapter<Item>(delegates) {
 
   interface Delegate : RvDelegate<Item, ViewHolder>
   interface Item : RvItem
@@ -20,5 +14,6 @@ class CalendarAdapter @Inject constructor() : RvAdapter<Item>() {
   companion object {
     const val EPISODE = 1
     const val DATE_HEADER = 2
+    const val EMPTY = 3
   }
 }
