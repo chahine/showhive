@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import com.chahinem.showhive.base.BaseActivity
 import com.chahinem.showhive.base.Router
+import com.chahinem.showhive.home.calendar.CalendarAdapter
 import com.chahinem.showhive.home.calendar.CalendarFragment
 import com.chahinem.showhive.home.discover.DiscoverFragment
 import com.chahinem.showhive.home.profile.ProfileFragment

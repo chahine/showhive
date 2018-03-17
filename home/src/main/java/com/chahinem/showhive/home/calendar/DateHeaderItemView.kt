@@ -8,10 +8,11 @@ import com.chahinem.showhive.home.R
 import com.chahinem.showhive.home.R.string
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter.ofPattern
+import javax.inject.Inject
 
 class DateHeaderItemView {
 
-  class Delegate : CalendarAdapter.Delegate {
+  class Delegate @Inject constructor() : CalendarAdapter.Delegate {
 
     override fun layoutId() = R.layout.item_calendar_date_header
 
