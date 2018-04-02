@@ -24,7 +24,7 @@ object Deps {
   val cardView = "com.android.support:cardview-v7:$supportLibraryVersion"
   val customtabs = "com.android.support:customtabs:$supportLibraryVersion"
   val constraintLayout = "com.android.support.constraint:constraint-layout:1.1.0-beta5"
-  val multidex = "com.android.support:multidex:1.0.2"
+  val multidex = "com.android.support:multidex:1.0.3"
 
   // Firebase
   val firebaseConfig = "com.google.firebase:firebase-config:$playVersion"
@@ -43,7 +43,7 @@ object Deps {
   // Api
   val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
   val moshi = "com.squareup.moshi:moshi-kotlin:1.5.0"
-  val converterMoshi = "com.squareup.retrofit2:converter-moshi:2.3.0"
+  val converterMoshi = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
   val adapterRxjava = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
   val okhttp = "com.squareup.okhttp3:okhttp:$okhttpVersion"
   val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
@@ -66,12 +66,12 @@ object Deps {
   val rxbindingRecyclerview = "$rxbindingGroupId:rxbinding-recyclerview-v7:$rxbindingVersion"
 
   // Libraries
-  val picasso = "com.squareup.picasso:picasso:2.6.0-SNAPSHOT"
+  val picasso = "com.squareup.picasso:picasso:2.71828"
   val rxjava = "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
   val rxandroid = "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
   val patrons = "com.prolificinteractive:patrons:0.1.0"
   val conceal = "com.facebook.conceal:conceal:2.0.2@aar"
-  val timber = "com.jakewharton.timber:timber:4.6.1"
+  val timber = "com.jakewharton.timber:timber:4.7.0"
   val chuck = "com.readystatesoftware.chuck:library:$chuckVersion"
   val chuckNoOp = "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
   val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.0.5"
@@ -82,8 +82,9 @@ object Deps {
 
   // Testing
   val jUnit = "junit:junit:$junitVersion"
-  val mockito = "org.mockito:mockito-core:2.15.0"
+  val mockito = "org.mockito:mockito-core:2.17.0"
   val hamcrest = "org.hamcrest:hamcrest-all:1.3"
+  val robolectric = "org.robolectric:robolectric:3.8"
 
   // Dependency Group
   val rx = listOf(rxjava, rxandroid)
@@ -103,13 +104,15 @@ object Deps {
       okhttp,
       loggingInterceptor,
       okio,
-      moshi)
+      moshi
+  )
 
   val arch = listOf(archEx, archJava, archRuntime)
 
   val archAP = listOf(archCompiler)
 
-  val supportLibs = listOf(appcompatV7,
+  val supportLibs = listOf(
+      appcompatV7,
       cardView,
       constraintLayout,
       customtabs,
@@ -125,9 +128,10 @@ object Deps {
       firebaseCore,
       firebaseCrash,
       firebasePerf,
-      firebaseMessaging)
+      firebaseMessaging
+  )
 
-  val testLibs = listOf(jUnit, mockito, hamcrest)
+  val testLibs = listOf(jUnit, mockito, hamcrest, robolectric)
 
   val featureProjects = listOf(":auth", ":home", ":show")
 }
