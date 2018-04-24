@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/chahinem/showhive.svg?style=svg)](https://circleci.com/gh/chahinem/showhive)
+[![CircleCI](https://circleci.com/gh/chahine/showhive.svg?style=svg)](https://circleci.com/gh/chahinem/showhive)
 ![minSdkVersion](https://img.shields.io/badge/minSdk-23-red.svg)
 ![compileSdkVersion](https://img.shields.io/badge/compileSdkVersion-27-green.svg)
 ![Version](https://img.shields.io/badge/version-alpha-blue.svg)

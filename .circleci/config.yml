@@ -26,6 +26,7 @@ jobs:
           command: |
             mkdir keystores
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/debug.properties\"}" > debug.properties
+            curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/gradle.properties\"}" > gradle.properties
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/release.properties\"}" > release.properties
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
             curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/release.jks\"}" > keystores/release.jks

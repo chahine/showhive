@@ -12,7 +12,9 @@ dependencies {
   api Deps.dagger
   kapt Deps.daggerCompiler
 
-  api Deps.picasso
+  api Deps.glide
+  api Deps.glideOkHttp
+  kapt Deps.glideCompiler
 
   debugImplementation Deps.chuck
   releaseImplementation Deps.chuckNoOp

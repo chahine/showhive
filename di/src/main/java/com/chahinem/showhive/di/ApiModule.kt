@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit
 
   @Provides
   @PerApp
-      // This client and cache are shared by Retrofit and Picasso
   fun provideOkHttpClient(app: Application): OkHttpClient = OkHttpClient.Builder()
       .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
       .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
