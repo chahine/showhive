@@ -3,9 +3,8 @@ object Versions {
   const val minSdkVersion = 23
   const val compileSdkVersion = 27
   const val targetSdkVersion = 27
-  const val buildToolsVersion = "27.0.2"
   const val gradleVersion = "3.0.1"
-  const val kotlinVersion = "1.2.30"
+  const val kotlinVersion = "1.2.40"
 
   // Libraries Version
   const val archVersion = "1.1.0"

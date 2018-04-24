@@ -50,7 +50,7 @@ object Deps {
   val okio = "com.squareup.okio:okio:1.14.0"
 
   // Kotlin
-  val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+  val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
 
   // Dagger
   const val annotationsApi = "javax.annotation:javax.annotation-api:1.2"
@@ -65,8 +65,12 @@ object Deps {
   val rxbindingDesign = "$rxbindingGroupId:rxbinding-design-kotlin:$rxbindingVersion"
   val rxbindingRecyclerview = "$rxbindingGroupId:rxbinding-recyclerview-v7:$rxbindingVersion"
 
+  // Glide
+  val glide = "com.github.bumptech.glide:glide:4.6.1"
+  val glideOkHttp = "com.github.bumptech.glide:okhttp3-integration:4.6.1"
+  val glideCompiler = "com.github.bumptech.glide:compiler:4.6.1"
+
   // Libraries
-  val picasso = "com.squareup.picasso:picasso:2.6.0-SNAPSHOT"
   val rxjava = "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
   val rxandroid = "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
   val patrons = "com.prolificinteractive:patrons:0.1.0"

@@ -5,7 +5,6 @@ import android.view.inputmethod.InputMethodManager
 import com.chahinem.showhive.qualifiers.PerApp
 import com.chahinem.tmdb.api.TmdbApi
 import com.chahinem.trakt.api.TraktApi
-import com.squareup.picasso.Picasso
 import dagger.BindsInstance
 import dagger.Component
 
@@ -20,8 +19,6 @@ import dagger.Component
 ])
 interface ShowHiveComponent {
   fun inputMethodService(): InputMethodManager
-
-  fun picasso(): Picasso
 
   fun tmdbApi(): TmdbApi
   fun traktApi(): TraktApi

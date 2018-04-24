@@ -6,11 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.chahinem.showhive.home.R
 import com.chahinem.trakt.entities.CalendarShowEntry
-import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 class EpisodeItemView {
-  class Delegate @Inject constructor(private val picasso: Picasso) : CalendarAdapter.Delegate {
+  class Delegate @Inject constructor() : CalendarAdapter.Delegate {
 
     override fun layoutId() = R.layout.item_calendar_episode
 
