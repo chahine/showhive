@@ -67,3 +67,6 @@ dependencies {
   // wearApp project(':wear')
   // implementation 'com.google.android.gms:play-services-wearable:11.8.0'
 }
+
+// TODO: uncomment once firebase project is setup
+// apply plugin: 'com.google.gms.google-services'

@@ -1,6 +1,7 @@
 import Versions.archVersion
 import Versions.chuckVersion
 import Versions.daggerVersion
+import Versions.glideVersion
 import Versions.junitVersion
 import Versions.kotlinVersion
 import Versions.leakCanaryVersion
@@ -23,7 +24,7 @@ object Deps {
   val supportV4 = "com.android.support:support-v4:$supportLibraryVersion"
   val cardView = "com.android.support:cardview-v7:$supportLibraryVersion"
   val customtabs = "com.android.support:customtabs:$supportLibraryVersion"
-  val constraintLayout = "com.android.support.constraint:constraint-layout:1.1.0-beta5"
+  val constraintLayout = "com.android.support.constraint:constraint-layout:1.1.0"
   val multidex = "com.android.support:multidex:1.0.2"
 
   // Firebase
@@ -41,13 +42,13 @@ object Deps {
   val archViewModel = "android.arch.lifecycle:viewmodel:$archVersion"
 
   // Api
-  val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
-  val moshi = "com.squareup.moshi:moshi-kotlin:1.5.0"
-  val converterMoshi = "com.squareup.retrofit2:converter-moshi:2.3.0"
-  val adapterRxjava = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+  val okio = "com.squareup.okio:okio:1.14.1"
   val okhttp = "com.squareup.okhttp3:okhttp:$okhttpVersion"
   val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-  val okio = "com.squareup.okio:okio:1.14.0"
+  val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+  val converterMoshi = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+  val adapterRxjava = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+  val moshi = "com.squareup.moshi:moshi-kotlin:1.6.0"
 
   // Kotlin
   val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
@@ -66,19 +67,19 @@ object Deps {
   val rxbindingRecyclerview = "$rxbindingGroupId:rxbinding-recyclerview-v7:$rxbindingVersion"
 
   // Glide
-  val glide = "com.github.bumptech.glide:glide:4.6.1"
-  val glideOkHttp = "com.github.bumptech.glide:okhttp3-integration:4.6.1"
-  val glideCompiler = "com.github.bumptech.glide:compiler:4.6.1"
+  val glide = "com.github.bumptech.glide:glide:$glideVersion"
+  val glideOkHttp = "com.github.bumptech.glide:okhttp3-integration:$glideVersion"
+  val glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"
 
   // Libraries
   val rxjava = "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
   val rxandroid = "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
   val patrons = "com.prolificinteractive:patrons:0.1.0"
   val conceal = "com.facebook.conceal:conceal:2.0.2@aar"
-  val timber = "com.jakewharton.timber:timber:4.6.1"
+  val timber = "com.jakewharton.timber:timber:4.7.0"
   val chuck = "com.readystatesoftware.chuck:library:$chuckVersion"
   val chuckNoOp = "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
-  val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.0.5"
+  val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.1.0"
   val inject = "javax.inject:javax.inject:1"
   val leakCanary = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
   val leakCanaryNoOp = "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
@@ -86,7 +87,7 @@ object Deps {
 
   // Testing
   val jUnit = "junit:junit:$junitVersion"
-  val mockito = "org.mockito:mockito-core:2.15.0"
+  val mockito = "org.mockito:mockito-core:2.18.3"
   val hamcrest = "org.hamcrest:hamcrest-all:1.3"
 
   // Dependency Group
@@ -125,11 +126,9 @@ object Deps {
   )
 
   val firebase = listOf(
-      firebaseConfig,
       firebaseCore,
       firebaseCrash,
-      firebasePerf,
-      firebaseMessaging)
+      firebasePerf)
 
   val testLibs = listOf(jUnit, mockito, hamcrest)
 
