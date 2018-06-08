@@ -27,5 +27,5 @@ abstract class BaseActivity : AppCompatActivity() {
     return super.onOptionsItemSelected(item)
   }
 
-  abstract fun setUpDependencyInjection()
+  open fun setUpDependencyInjection() {}
 }

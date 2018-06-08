@@ -10,6 +10,7 @@ dependencies {
   implementation Deps.archViewModel
 
   api Deps.dagger
+  api 'com.google.dagger:dagger-android-support:2.13'
   kapt Deps.daggerCompiler
 
   api Deps.glide

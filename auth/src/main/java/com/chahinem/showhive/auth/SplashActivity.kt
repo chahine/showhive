@@ -4,33 +4,29 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.v4.app.Fragment
 import com.chahinem.showhive.base.BaseActivity
 import com.chahinem.showhive.base.Router
 import com.chahinem.trakt.api.TraktApi
 import com.chahinem.trakt.api.TraktV2
 import com.jakewharton.rxbinding2.view.clicks
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_splash.connectBtn
 import kotlinx.android.synthetic.main.activity_splash.skipBtn
 import timber.log.Timber
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : BaseActivity(), HasSupportFragmentInjector {
 
   @Inject lateinit var router: Router
   @Inject lateinit var traktApi: TraktApi
+  @Inject lateinit var injector: DispatchingAndroidInjector<Fragment>
 
   override fun getLayoutId() = R.layout.activity_splash
 
-  override fun setUpDependencyInjection() {
-    val component = DaggerActivityComponent.builder()
-        .activity(this)
-        .activityModule(ActivityModule())
-        .appComponent(appComponent)
-        .build()
-
-    component.inject(this)
-  }
+  override fun supportFragmentInjector() = injector
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

@@ -23,6 +23,8 @@ dependencies {
   // Dagger
   api Deps.dagger
   kapt Deps.daggerCompiler
+  api 'com.google.dagger:dagger-android-support:2.13'
+  kapt 'com.google.dagger:dagger-android-processor:2.15'
 
   // Debugging Tools
   debugApi Deps.leakCanary

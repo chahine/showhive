@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.chahinem.showhive.base.BaseFragment
 import com.chahinem.showhive.base.Router
-import com.chahinem.showhive.home.HomeActivity
 import com.chahinem.showhive.home.R
 import com.chahinem.showhive.home.calendar.CalendarEvent.LoadCalendar
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarCardSuccess
@@ -26,12 +25,6 @@ class CalendarFragment : BaseFragment() {
   @Inject lateinit var viewModel: CalendarViewModel
 
   override fun getLayoutId() = R.layout.fragment_calendar
-
-  override fun setUpDependencyInjection() {
-    if (activity is HomeActivity) {
-      (activity as HomeActivity).component.inject(this)
-    }
-  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)

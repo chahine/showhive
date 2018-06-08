@@ -7,9 +7,11 @@ import com.chahinem.tmdb.api.TmdbApi
 import com.chahinem.trakt.api.TraktApi
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 
 @PerApp
 @Component(modules = [
+  AndroidInjectionModule::class,
   ApiModule::class,
   DataModule::class,
   ShowHiveModule::class,

@@ -2,32 +2,35 @@ package com.chahinem.showhive.home
 
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.v4.app.Fragment
 import com.chahinem.showhive.base.BaseActivity
 import com.chahinem.showhive.base.Router
-import com.chahinem.showhive.home.calendar.CalendarAdapter
 import com.chahinem.showhive.home.calendar.CalendarFragment
 import com.chahinem.showhive.home.discover.DiscoverFragment
 import com.chahinem.showhive.home.profile.ProfileFragment
 import com.jakewharton.rxbinding2.support.design.widget.itemSelections
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_home.bottomNavigationView
 import timber.log.Timber
 import javax.inject.Inject
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : BaseActivity(), HasSupportFragmentInjector {
 
   @Inject lateinit var router: Router
+  @Inject lateinit var injector: DispatchingAndroidInjector<Fragment>
 
   override fun getLayoutId() = R.layout.activity_home
 
-  lateinit var component: ActivityComponent
-
   override fun setUpDependencyInjection() {
-    component = DaggerActivityComponent.builder()
+    DaggerActivityComponent.builder()
         .activity(this)
         .appComponent(appComponent)
         .build()
-    component.inject(this)
+        .inject(this)
   }
+
+  override fun supportFragmentInjector() = injector
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
