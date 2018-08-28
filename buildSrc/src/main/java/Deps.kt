@@ -87,7 +87,7 @@ object Deps {
 
   // Testing
   val jUnit = "junit:junit:$junitVersion"
-  val mockito = "org.mockito:mockito-core:2.18.3"
+  val mockito = "org.mockito:mockito-core:2.21.0"
   val hamcrest = "org.hamcrest:hamcrest-all:1.3"
 
   // Dependency Group
