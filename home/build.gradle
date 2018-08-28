@@ -1,1 +1,5 @@
 apply from: rootProject.file('feature.gradle')
+
+androidExtensions {
+  experimental = true
+}

@@ -3,12 +3,13 @@ package com.chahinem.showhive.home.calendar
 import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.chahinem.showhive.home.R
 import com.chahinem.showhive.home.R.string
+import kotlinx.android.extensions.LayoutContainer
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter.ofPattern
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.item_calendar_date_header.header
 
 class DateHeaderItemView {
 
@@ -25,9 +26,7 @@ class DateHeaderItemView {
     }
   }
 
-  class Holder(itemView: View) : ViewHolder(itemView) {
-
-    private val header = itemView.findViewById<TextView>(R.id.header)
+  class Holder(override val containerView: View) : ViewHolder(containerView), LayoutContainer {
 
     fun bind(item: Item) {
       val now = LocalDate.now()
