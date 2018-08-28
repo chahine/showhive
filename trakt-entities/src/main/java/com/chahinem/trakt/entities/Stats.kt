@@ -1,7 +1,9 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class Stats(
     val watchers: Int? = null,
     val plays: Int? = null,

@@ -12,6 +12,7 @@ object Versions {
   const val glideVersion = "4.8.0"
   const val junitVersion = "4.12"
   const val leakCanaryVersion = "1.6.1"
+  const val moshiVersion = "1.6.0"
   const val okhttpVersion = "3.11.0"
   const val playVersion = "16.0.0"
   const val retrofitVersion = "2.4.0"

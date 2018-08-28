@@ -1,39 +1,33 @@
 package com.chahinem.tmdb.entities
 
-import java.text.DateFormat
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Date
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class TmdbDate {
 
-  private val date: Date?
+//  private val date: Date? = null
 
-  constructor(date: Date) {
-    this.date = date
-  }
+//  constructor(date: String) {
+//    var parsedDate: Date?
+//    try {
+//      parsedDate = TMDB_DATE_FORMAT.get().parse(date)
+//    } catch (e: ParseException) {
+//      parsedDate = null
+//    }
+//
+//    this.date = parsedDate
+//  }
 
-  constructor(date: String) {
-    var parsedDate: Date?
-    try {
-      parsedDate = TMDB_DATE_FORMAT.get().parse(date)
-    } catch (e: ParseException) {
-      parsedDate = null
-    }
-
-    this.date = parsedDate
-  }
-
-  override fun toString(): String {
-    return TMDB_DATE_FORMAT.get().format(date)
-  }
-
-  companion object {
-
-    private val TMDB_DATE_FORMAT = object : ThreadLocal<DateFormat>() {
-      public override fun initialValue(): DateFormat {
-        return SimpleDateFormat("yyyy-MM-dd")
-      }
-    }
-  }
+//  override fun toString(): String {
+//    return TMDB_DATE_FORMAT.get().format(date)
+//  }
+//
+//  companion object {
+//
+//    private val TMDB_DATE_FORMAT = object : ThreadLocal<DateFormat>() {
+//      public override fun initialValue(): DateFormat {
+//        return SimpleDateFormat("yyyy-MM-dd")
+//      }
+//    }
+//  }
 }

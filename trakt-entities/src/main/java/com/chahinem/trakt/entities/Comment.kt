@@ -1,8 +1,10 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import org.threeten.bp.ZonedDateTime
 
+@JsonClass(generateAdapter = true)
 class Comment(
     val id: Int? = null,
     @Json(name = "parent_id") val parentId: Int? = null,

@@ -1,5 +1,8 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 class ShowIds(
     val trakt: Int,
     val imdb: String,

@@ -5,6 +5,7 @@ import Versions.glideVersion
 import Versions.junitVersion
 import Versions.kotlinVersion
 import Versions.leakCanaryVersion
+import Versions.moshiVersion
 import Versions.okhttpVersion
 import Versions.playVersion
 import Versions.retrofitVersion
@@ -47,7 +48,8 @@ object Deps {
   val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
   val converterMoshi = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
   val adapterRxjava = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-  val moshi = "com.squareup.moshi:moshi-kotlin:1.6.0"
+  val moshi = "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+  val moshiCodeGen = "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
 
   // Kotlin
   val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"

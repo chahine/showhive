@@ -1,7 +1,9 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.JsonClass
 import org.threeten.bp.LocalDate
 
+@JsonClass(generateAdapter = true)
 class Person(
     val name: String? = null,
     val ids: PersonIds? = null,

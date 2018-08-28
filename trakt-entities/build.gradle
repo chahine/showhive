@@ -5,4 +5,5 @@ dependencies {
   api Deps.moshi
   api Deps.supportAnnotations
   api Deps.threetenabp
+  kapt Deps.moshiCodeGen
 }

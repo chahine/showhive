@@ -1,7 +1,9 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.JsonClass
 import org.threeten.bp.LocalDate
 
+@JsonClass(generateAdapter = true)
 class Movie(
     val year: Int? = null,
     val ids: MovieIds? = null,
