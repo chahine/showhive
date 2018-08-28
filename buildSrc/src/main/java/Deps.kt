@@ -23,7 +23,6 @@ object Deps {
   val supportAnnotations = "com.android.support:support-annotations:$supportLibraryVersion"
   val supportV4 = "com.android.support:support-v4:$supportLibraryVersion"
   val cardView = "com.android.support:cardview-v7:$supportLibraryVersion"
-  val customtabs = "com.android.support:customtabs:$supportLibraryVersion"
   val constraintLayout = "com.android.support.constraint:constraint-layout:1.1.0"
   val multidex = "com.android.support:multidex:1.0.2"
 
@@ -42,7 +41,7 @@ object Deps {
   val archViewModel = "android.arch.lifecycle:viewmodel:$archVersion"
 
   // Api
-  val okio = "com.squareup.okio:okio:1.14.1"
+  val okio = "com.squareup.okio:okio:2.0.0"
   val okhttp = "com.squareup.okhttp3:okhttp:$okhttpVersion"
   val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
   val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -74,9 +73,7 @@ object Deps {
   // Libraries
   val rxjava = "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
   val rxandroid = "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
-  val patrons = "com.prolificinteractive:patrons:0.1.0"
-  val conceal = "com.facebook.conceal:conceal:2.0.2@aar"
-  val timber = "com.jakewharton.timber:timber:4.7.0"
+  val timber = "com.jakewharton.timber:timber:4.7.1"
   val chuck = "com.readystatesoftware.chuck:library:$chuckVersion"
   val chuckNoOp = "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
   val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.1.0"
@@ -87,7 +84,7 @@ object Deps {
 
   // Testing
   val jUnit = "junit:junit:$junitVersion"
-  val mockito = "org.mockito:mockito-core:2.18.3"
+  val mockito = "org.mockito:mockito-core:2.21.0"
   val hamcrest = "org.hamcrest:hamcrest-all:1.3"
 
   // Dependency Group
@@ -117,7 +114,6 @@ object Deps {
   val supportLibs = listOf(appcompatV7,
       cardView,
       constraintLayout,
-      customtabs,
       design,
       multidex,
       recyclerviewV7,
