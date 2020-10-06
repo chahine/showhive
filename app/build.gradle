@@ -51,10 +51,10 @@ android {
 
   applicationVariants.all { variant ->
     variant.compileConfiguration.resolutionStrategy {
-      force 'android.arch.lifecycle:runtime:1.1.0'
+      force 'android.arch.lifecycle:runtime:1.1.1'
     }
     variant.runtimeConfiguration.resolutionStrategy {
-      force 'android.arch.lifecycle:runtime:1.1.0'
+      force 'android.arch.lifecycle:runtime:1.1.1'
     }
   }
 }
