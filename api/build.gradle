@@ -2,5 +2,5 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
 
 dependencies {
-  Deps.rx.each { api it }
+    Dependencies.rx.each { api it }
 }

@@ -13,15 +13,15 @@ import java.util.concurrent.TimeUnit
 
 @GlideModule
 class ShowHiveGlideModule : LibraryGlideModule() {
-  override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-    val client = OkHttpClient.Builder()
-        .connectTimeout(15, TimeUnit.SECONDS)
-        .readTimeout(15, TimeUnit.SECONDS)
-        .writeTimeout(15, TimeUnit.SECONDS)
-        .build()
+    override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
+        val client = OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
+            .build()
 
-    val factory = OkHttpUrlLoader.Factory(client)
+        val factory = OkHttpUrlLoader.Factory(client)
 
-    glide.registry.replace(GlideUrl::class.java, InputStream::class.java, factory)
-  }
+        glide.registry.replace(GlideUrl::class.java, InputStream::class.java, factory)
+    }
 }

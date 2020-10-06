@@ -1,6 +1,6 @@
 package com.chahinem.showhive.home.discover
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 class DiscoverViewModel : ViewModel() {
 }

@@ -3,10 +3,9 @@ apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
 dependencies {
-  api project(':api')
-  api project(':tmdb-entities')
+    api project(':api')
+    api project(':tmdb-entities')
 
-  api Deps.timber
-
-  Deps.api.each { api it }
+    api Dependencies.timber
+    api Dependencies.api
 }

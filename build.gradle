@@ -1,43 +1,45 @@
 buildscript {
-  repositories {
-    google()
-    jcenter()
-  }
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
 
-  dependencies {
-    classpath 'com.android.tools.build:gradle:3.1.4'
-    classpath 'com.google.gms:google-services:4.1.0'
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
-  }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.google.gms:google-services:4.3.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    }
 }
 
 plugins {
-  id 'com.github.ben-manes.versions' version '0.20.0'
+    id 'com.github.ben-manes.versions' version '0.33.0'
 }
 
 allprojects {
-  repositories {
-    google()
-    jcenter()
-    maven { url "https://jitpack.io" }
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-  }
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
 }
 
 task clean(type: Delete) {
-  delete rootProject.buildDir
+    delete rootProject.buildDir
 }
 
 task mockitoExtensions {
-  doFirst {
-    rootProject.subprojects.each {
-      def path = "${it.projectDir}/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker"
-      def mockMakerFile = new File(path)
-      mockMakerFile.parentFile.mkdirs()
-      mockMakerFile.createNewFile()
-      mockMakerFile.write("mock-maker-inline")
+    doFirst {
+        rootProject.subprojects.each {
+            def path = "${it.projectDir}/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker"
+            def mockMakerFile = new File(path)
+            mockMakerFile.parentFile.mkdirs()
+            mockMakerFile.createNewFile()
+            mockMakerFile.write("mock-maker-inline")
+        }
     }
-  }
 }
 
 task('test').dependsOn mockitoExtensions

@@ -1,11 +1,11 @@
-apply plugin: 'com.android.feature'
+apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
 dependencies {
-  implementation project(':base')
+    implementation project(':base')
 
-  Deps.archAP.each { kapt it }
+    Dependencies.archAP.each { kapt it }
 
-  kapt Deps.daggerCompiler
+    kapt Dependencies.daggerCompiler
 }

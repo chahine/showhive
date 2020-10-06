@@ -5,10 +5,10 @@ import timber.log.Timber
 
 abstract class CoreApp : Application() {
 
-  override fun onCreate() {
-    super.onCreate()
+    override fun onCreate() {
+        super.onCreate()
 
-    // FIXME: uncomment when Firebase is implemented
-    // Timber.plant(FirebaseTree())
-  }
+        // FIXME: uncomment when Firebase is implemented
+        // Timber.plant(FirebaseTree())
+    }
 }

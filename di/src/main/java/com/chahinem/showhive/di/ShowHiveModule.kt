@@ -10,9 +10,9 @@ import dagger.Provides
 @Module
 class ShowHiveModule {
 
-  @Provides
-  @PerApp
-  fun provideInputMethodService(app: Application): InputMethodManager {
-    return app.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-  }
+    @Provides
+    @PerApp
+    fun provideInputMethodService(app: Application): InputMethodManager {
+        return app.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    }
 }
