@@ -3,19 +3,19 @@ apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
 dependencies {
-  api project(':qualifiers')
-  api project(':tmdb-api')
-  api project(':trakt-api')
+    api project(':qualifiers')
+    api project(':tmdb-api')
+    api project(':trakt-api')
 
-  implementation Deps.archViewModel
+    implementation Dependencies.archViewModel
 
-  api Deps.dagger
-  kapt Deps.daggerCompiler
+    api Dependencies.dagger
+    kapt Dependencies.daggerCompiler
 
-  api Deps.glide
-  api Deps.glideOkHttp
-  kapt Deps.glideCompiler
+    api Dependencies.glide
+    api Dependencies.glideOkHttp
+    kapt Dependencies.glideCompiler
 
-  debugImplementation Deps.chuck
-  releaseImplementation Deps.chuckNoOp
+    debugImplementation Dependencies.chuck
+    releaseImplementation Dependencies.chuckNoOp
 }

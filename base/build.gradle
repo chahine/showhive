@@ -1,37 +1,30 @@
-apply plugin: 'com.android.feature'
+apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
-android.baseFeature true
-
 dependencies {
-  application project(':app')
+    api project(':di')
 
-  // Feature Modules
-  Deps.featureProjects.each { feature project("$it") }
+    // Android
+    api Dependencies.arch
+    api Dependencies.supportLibs
 
-  api project(':di')
+    // RX
+    api Dependencies.rx
+    api Dependencies.rxBindings
 
-  // Android
-  Deps.arch.each { api it }
-  Deps.supportLibs.each { api it }
+    // Dagger
+    api Dependencies.dagger
+    kapt Dependencies.daggerCompiler
 
-  // RX
-  Deps.rx.each { api it }
-  Deps.rxBindings.each { api it }
+    // Debugging Tools
+    debugApi Dependencies.leakCanary
+    debugApi Dependencies.chuck
+    releaseApi Dependencies.chuckNoOp
 
-  // Dagger
-  api Deps.dagger
-  kapt Deps.daggerCompiler
+    // Other
+    api Dependencies.timber
+    api Dependencies.kotlinStdlib
 
-  // Debugging Tools
-  debugApi Deps.leakCanary
-  debugApi Deps.chuck
-  releaseApi Deps.chuckNoOp
-
-  // Other
-  api Deps.timber
-  api Deps.kotlinStdlib
-
-  Deps.firebase.each { api(it) }
+    api Dependencies.firebase
 }

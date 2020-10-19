@@ -2,70 +2,70 @@ apply plugin: 'com.android.application'
 apply from: rootProject.file('module.gradle')
 
 android {
-  defaultConfig {
-    applicationId 'com.chahinem.showhive.app'
-  }
-
-  signingConfigs {
-    debug {
-      if (rootProject.file('debug.properties').exists()) {
-        final def props = new Properties()
-        props.load(new FileInputStream(rootProject.file('debug.properties')))
-
-        storeFile file(props['DEBUG_STORE_FILE'])
-        storePassword props['DEBUG_STORE_PASSWORD']
-        keyAlias props['DEBUG_KEY_ALIAS']
-        keyPassword props['DEBUG_KEY_PASSWORD']
-      }
+    defaultConfig {
+        applicationId 'com.chahinem.showhive.app'
     }
-    showhive {
-      if (rootProject.file('release.properties').exists()) {
-        final def props = new Properties()
-        props.load(new FileInputStream(rootProject.file('release.properties')))
 
-        storeFile file(props['RELEASE_STORE_FILE'])
-        storePassword props['RELEASE_STORE_PASSWORD']
-        keyAlias props['RELEASE_KEY_ALIAS']
-        keyPassword props['RELEASE_KEY_PASSWORD']
-        v2SigningEnabled true
-      }
-    }
-  }
+    signingConfigs {
+        debug {
+            if (rootProject.file('debug.properties').exists()) {
+                final def props = new Properties()
+                props.load(new FileInputStream(rootProject.file('debug.properties')))
 
-  buildTypes {
-    debug {
-      applicationIdSuffix ".debug"
-      signingConfig signingConfigs.debug
-    }
-    release {
-      multiDexEnabled false
-      minifyEnabled true
-      shrinkResources true
-      zipAlignEnabled true
+                storeFile file(props['DEBUG_STORE_FILE'])
+                storePassword props['DEBUG_STORE_PASSWORD']
+                keyAlias props['DEBUG_KEY_ALIAS']
+                keyPassword props['DEBUG_KEY_PASSWORD']
+            }
+        }
+        showhive {
+            if (rootProject.file('release.properties').exists()) {
+                final def props = new Properties()
+                props.load(new FileInputStream(rootProject.file('release.properties')))
 
-      signingConfig signingConfigs.showhive
+                storeFile file(props['RELEASE_STORE_FILE'])
+                storePassword props['RELEASE_STORE_PASSWORD']
+                keyAlias props['RELEASE_KEY_ALIAS']
+                keyPassword props['RELEASE_KEY_PASSWORD']
+                v2SigningEnabled true
+            }
+        }
+    }
 
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-    }
-  }
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            signingConfig signingConfigs.debug
+        }
+        release {
+            multiDexEnabled false
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
 
-  applicationVariants.all { variant ->
-    variant.compileConfiguration.resolutionStrategy {
-      force 'android.arch.lifecycle:runtime:1.1.0'
+            signingConfig signingConfigs.showhive
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
-    variant.runtimeConfiguration.resolutionStrategy {
-      force 'android.arch.lifecycle:runtime:1.1.0'
+
+    applicationVariants.all { variant ->
+        variant.compileConfiguration.resolutionStrategy {
+            force 'android.arch.lifecycle:runtime:1.1.0'
+        }
+        variant.runtimeConfiguration.resolutionStrategy {
+            force 'android.arch.lifecycle:runtime:1.1.0'
+        }
     }
-  }
 }
 
 dependencies {
-  implementation project(':base')
-  Deps.featureProjects.each { implementation project("$it") }
+    implementation project(':base')
+    Dependencies.featureProjects.each { implementation project("$it") }
 
-  // Uncomment when wear is supported
-  // wearApp project(':wear')
-  // implementation 'com.google.android.gms:play-services-wearable:11.8.0'
+    // Uncomment when wear is supported
+    // wearApp project(':wear')
+    // implementation 'com.google.android.gms:play-services-wearable:11.8.0'
 }
 
 // TODO: uncomment once firebase project is setup

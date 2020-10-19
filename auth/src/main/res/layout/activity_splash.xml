@@ -1,64 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.chahinem.showhive.auth.SplashActivity"
-    >
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.chahinem.showhive.auth.SplashActivity">
 
-  <android.support.constraint.Guideline
-      android:id="@+id/guideline"
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      android:orientation="horizontal"
-      app:layout_constraintGuide_percent=".5"
-      />
-  <View
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:background="@color/colorPrimary"
-      app:layout_constraintBottom_toTopOf="@id/guideline"
-      app:layout_constraintTop_toTopOf="parent"
-      />
-  <View
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:background="@color/colorPrimaryDark"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/guideline"
-      />
-  <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@mipmap/ic_launcher_foreground"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      />
-  <Button
-      android:id="@+id/skipBtn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="32dp"
-      android:text="skip"
-      android:textColor="@color/white"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      style="@style/Widget.AppCompat.Button.Borderless.Colored"
-      />
-  <Button
-      android:id="@+id/connectBtn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Connect with Trakt.tv"
-      android:textColor="@color/white"
-      app:layout_constraintBottom_toTopOf="@id/skipBtn"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      style="@style/Widget.AppCompat.Button.Colored"
-      />
+    <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+            android:id="@+id/skipBtn"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="skip"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+            android:id="@+id/connectBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect with Trakt.tv"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/skipBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

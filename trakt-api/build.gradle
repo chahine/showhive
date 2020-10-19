@@ -3,10 +3,10 @@ apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
 dependencies {
-  api project(':api')
-  api project(':trakt-entities')
+    api project(':api')
+    api project(':trakt-entities')
 
-  api Deps.timber
-
-  Deps.api.each { api it }
+    api Dependencies.androidXpreference
+    api Dependencies.timber
+    api Dependencies.api
 }

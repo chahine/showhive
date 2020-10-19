@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
 
 dependencies {
-  api Deps.moshi
-  api Deps.supportAnnotations
-  api Deps.threetenabp
+    api Dependencies.moshi
+    api Dependencies.supportAnnotations
+    api Dependencies.threetenabp
 }

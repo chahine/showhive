@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-30
 
     working_directory: ~/repo
 

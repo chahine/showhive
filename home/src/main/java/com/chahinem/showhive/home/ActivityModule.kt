@@ -10,11 +10,14 @@ import dagger.Provides
 @Module(includes = [ActivityBindingModule::class])
 class ActivityModule {
 
-  @Provides fun provideAdapter(): CalendarAdapter {
-    return CalendarAdapter(mapOf(
-        CalendarAdapter.EMPTY to CalendarEmptyItemView.Delegate(),
-        CalendarAdapter.DATE_HEADER to DateHeaderItemView.Delegate(),
-        CalendarAdapter.EPISODE to EpisodeItemView.Delegate()
-    ))
-  }
+    @Provides
+    fun provideAdapter(): CalendarAdapter {
+        return CalendarAdapter(
+            mapOf(
+                CalendarAdapter.EMPTY to CalendarEmptyItemView.Delegate(),
+                CalendarAdapter.DATE_HEADER to DateHeaderItemView.Delegate(),
+                CalendarAdapter.EPISODE to EpisodeItemView.Delegate()
+            )
+        )
+    }
 }

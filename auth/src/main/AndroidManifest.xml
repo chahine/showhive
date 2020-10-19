@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chahinem.showhive.auth"
-    >
+        package="com.chahinem.showhive.auth">
 
-  <application>
-    <activity
-        android:name=".SplashActivity"
-        android:launchMode="singleTop"
-        >
-      <intent-filter android:order="1">
-        <action android:name="android.intent.action.VIEW"/>
+    <application>
+        <activity
+                android:name=".SplashActivity"
+                android:launchMode="singleTop">
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW" />
 
-        <category android:name="android.intent.category.BROWSABLE"/>
-        <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-        <data
-            android:host="@string/host"
-            android:path="@string/path_splash"
-            android:scheme="@string/scheme"
-            />
-        <data
-            android:host="auth"
-            android:pathPattern="/oauth2callback"
-            android:scheme="showhive"
-            />
-      </intent-filter>
-    </activity>
-  </application>
+                <data
+                        android:host="@string/host"
+                        android:path="@string/path_splash"
+                        android:scheme="@string/scheme" />
+                <data
+                        android:host="auth"
+                        android:pathPattern="/oauth2callback"
+                        android:scheme="showhive" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

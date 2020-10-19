@@ -5,11 +5,11 @@ import com.chahinem.showhive.home.HomeActivity
 import com.chahinem.showhive.home.R
 
 class ProfileFragment : BaseFragment() {
-  override fun getLayoutId() = R.layout.fragment_profile
+    override fun getLayoutId() = R.layout.fragment_profile
 
-  override fun setUpDependencyInjection() {
-    if (activity is HomeActivity) {
-      (activity as HomeActivity).component.inject(this)
+    override fun setUpDependencyInjection() {
+        if (activity is HomeActivity) {
+            (activity as HomeActivity).component.inject(this)
+        }
     }
-  }
 }

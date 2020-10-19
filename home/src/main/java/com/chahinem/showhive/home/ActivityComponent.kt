@@ -16,14 +16,16 @@ import dagger.Component
 )
 interface ActivityComponent {
 
-  fun inject(activity: HomeActivity)
-  fun inject(fragment: CalendarFragment)
-  fun inject(fragment: DiscoverFragment)
-  fun inject(fragment: ProfileFragment)
+    fun inject(activity: HomeActivity)
+    fun inject(fragment: CalendarFragment)
+    fun inject(fragment: DiscoverFragment)
+    fun inject(fragment: ProfileFragment)
 
-  @Component.Builder interface Builder {
-    @BindsInstance fun activity(activity: Activity): Builder
-    fun appComponent(appComponent: ShowHiveComponent): Builder
-    fun build(): ActivityComponent
-  }
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun activity(activity: Activity): Builder
+        fun appComponent(appComponent: ShowHiveComponent): Builder
+        fun build(): ActivityComponent
+    }
 }

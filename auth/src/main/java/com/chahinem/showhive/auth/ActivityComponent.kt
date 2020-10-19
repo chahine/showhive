@@ -13,13 +13,14 @@ import dagger.Component
 )
 interface ActivityComponent {
 
-  fun inject(activity: SplashActivity)
+    fun inject(activity: SplashActivity)
 
-  @Component.Builder
-  interface Builder {
-    @BindsInstance fun activity(activity: Activity): Builder
-    fun activityModule(module: ActivityModule): Builder
-    fun appComponent(appComponent: ShowHiveComponent): Builder
-    fun build(): ActivityComponent
-  }
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun activity(activity: Activity): Builder
+        fun activityModule(module: ActivityModule): Builder
+        fun appComponent(appComponent: ShowHiveComponent): Builder
+        fun build(): ActivityComponent
+    }
 }
