@@ -1,10 +1,8 @@
 package com.chahinem.showhive.di
 
-import com.chahinem.api.RxSchedulers
 import com.chahinem.showhive.qualifiers.PerApp
 import com.chahinem.showhive.qualifiers.Tmdb
 import com.chahinem.tmdb.api.TmdbApi
-import com.chahinem.tmdb.api.TmdbApiClient
 import com.chahinem.tmdb.api.TmdbInterceptor
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
@@ -36,9 +34,9 @@ class TmdbApiModule {
     @PerApp
     @Tmdb
     fun provideOkHttpClient(
-      client: OkHttpClient,
-      interceptor: TmdbInterceptor,
-      chuck: ChuckInterceptor
+        client: OkHttpClient,
+        interceptor: TmdbInterceptor,
+        chuck: ChuckInterceptor
     ): OkHttpClient {
         val clientBuilder = client.newBuilder()
 
@@ -56,9 +54,9 @@ class TmdbApiModule {
     @PerApp
     @Tmdb
     fun provideTmdbRetrofit(
-      moshi: Moshi,
-      @Tmdb baseUrl: HttpUrl,
-      @Tmdb client: OkHttpClient
+        moshi: Moshi,
+        @Tmdb baseUrl: HttpUrl,
+        @Tmdb client: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
             .client(client)
@@ -70,10 +68,7 @@ class TmdbApiModule {
 
     @Provides
     @PerApp
-    fun provideTmdbApiClient(@Tmdb retrofit: Retrofit, scheduler: RxSchedulers): TmdbApi {
-        return TmdbApiClient(
-          retrofit.create(TmdbApi::class.java),
-          scheduler
-        )
+    fun provideTmdbApi(@Tmdb retrofit: Retrofit): TmdbApi {
+        return retrofit.create(TmdbApi::class.java)
     }
 }

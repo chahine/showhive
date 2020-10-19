@@ -11,14 +11,20 @@ import javax.inject.Inject
 
 class CalendarInteractor @Inject constructor(private val traktApi: TraktApi) {
 
+    companion object {
+        // The maximum amount of days you can send is 31
+        private const val DAY_WINDOW = 15
+        private val DAY_FORMATTER = ofPattern("yyyy-MM-dd")
+    }
+
     fun calendar(): ObservableTransformer<in CalendarEvent, out CalendarModel> {
         return ObservableTransformer { event ->
             event.switchMap {
-                val startDate = ZonedDateTime.now()
-                    .minusDays(DAY_WINDOW.toLong()).format(DAY_FORMATTER)
+                val startDate =
+                    ZonedDateTime.now().minusDays(DAY_WINDOW.toLong()).format(DAY_FORMATTER)
                 traktApi
                     .myShows(startDate, DAY_WINDOW * 2)
-                    .concatMapIterable { it }
+                    .flattenAsObservable { it }
                     .groupBy { it.firstAired?.toLocalDate() }
                     .filter { it.key != null }
                     .concatMap { group ->
@@ -30,16 +36,11 @@ class CalendarInteractor @Inject constructor(private val traktApi: TraktApi) {
                     .defaultIfEmpty(CalendarEmptyItemView.Item())
                     .toList()
                     .toObservable()
-                    .map { CalendarCardSuccess(it) as CalendarModel }
+                    .map { CalendarCardSuccess(it) }
+                    .cast(CalendarModel::class.java)
                     .onErrorReturn { CalendarFailure(it) }
-                    .startWithItem(CalendarProgress())
+                    .startWithItem(CalendarProgress)
             }
         }
-    }
-
-    companion object {
-        // The maximum amount of days you can send is 31
-        private const val DAY_WINDOW = 15
-        private val DAY_FORMATTER = ofPattern("yyyy-MM-dd")
     }
 }
