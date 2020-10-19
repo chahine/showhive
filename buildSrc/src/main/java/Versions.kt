@@ -17,6 +17,6 @@ object Versions {
     const val retrofitVersion = "2.9.0"
     const val rxandroidVersion = "3.0.0"
     const val rxbindingVersion = "2.2.0"
-    const val rxjavaVersion = "3.0.0"
+    const val rxjavaVersion = "3.0.7"
     const val supportLibraryVersion = "28.0.0"
 }

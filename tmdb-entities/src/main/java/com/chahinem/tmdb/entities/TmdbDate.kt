@@ -13,16 +13,18 @@ class TmdbDate(date: String) {
     private val date: Date?
 
     init {
-        var parsedDate: Date?
-        try {
-            parsedDate = TMDB_DATE_FORMAT.parse(date)
+        this.date = try {
+            TMDB_DATE_FORMAT.parse(date)
         } catch (e: ParseException) {
-            parsedDate = null
+            null
         }
-        this.date = parsedDate
     }
 
     override fun toString(): String {
-        return TMDB_DATE_FORMAT.format(date)
+        return if (date != null) {
+            TMDB_DATE_FORMAT.format(date)
+        } else {
+            ""
+        }
     }
 }

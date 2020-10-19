@@ -12,7 +12,7 @@ import com.chahinem.trakt.entities.Show
 import com.chahinem.trakt.entities.Stats
 import com.chahinem.trakt.entities.Translation
 import com.chahinem.trakt.entities.TrendingShow
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -32,7 +32,7 @@ interface TraktApi {
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
         @Field("redirect_uri") redirectUri: String
-    ): Observable<AccessToken>
+    ): Single<AccessToken>
 
     @FormUrlEncoded
     @POST(TraktV2.OAUTH2_TOKEN_URL)
@@ -42,7 +42,7 @@ interface TraktApi {
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
         @Field("redirect_uri") redirectUri: String
-    ): Observable<AccessToken>
+    ): Single<AccessToken>
 
     // endregion
 
@@ -57,7 +57,7 @@ interface TraktApi {
     fun myShows(
         @Path("startdate") startDate: String,
         @Path("days") days: Int
-    ): Observable<List<CalendarShowEntry>>
+    ): Single<List<CalendarShowEntry>>
 
     /**
      * **OAuth Required**
@@ -68,7 +68,7 @@ interface TraktApi {
     fun myNewShows(
         @Path("startdate") startDate: String,
         @Path("days") days: Int
-    ): Observable<List<CalendarShowEntry>>
+    ): Single<List<CalendarShowEntry>>
 
     /**
      * **OAuth Required**
@@ -79,7 +79,7 @@ interface TraktApi {
     fun mySeasonPremieres(
         @Path("startdate") startDate: String,
         @Path("days") days: Int
-    ): Observable<List<CalendarShowEntry>>
+    ): Single<List<CalendarShowEntry>>
 
     /**
      * **OAuth Required**
@@ -90,7 +90,7 @@ interface TraktApi {
     fun myMovies(
         @Path("startdate") startDate: String,
         @Path("days") days: Int
-    ): Observable<List<CalendarMovieEntry>>
+    ): Single<List<CalendarMovieEntry>>
 
     /**
      * Returns all shows airing during the time period specified.
@@ -102,7 +102,7 @@ interface TraktApi {
     fun shows(
         @Path("startdate") startDate: String,
         @Path("days") days: Int
-    ): Observable<List<CalendarShowEntry>>
+    ): Single<List<CalendarShowEntry>>
 
     /**
      * Returns all new show premieres (season 1, episode 1) airing during the time period specified.
@@ -114,7 +114,7 @@ interface TraktApi {
     fun newShows(
         @Path("startdate") startDate: String,
         @Path("days") days: Int
-    ): Observable<List<CalendarShowEntry>>
+    ): Single<List<CalendarShowEntry>>
 
     /**
      * Returns all show premieres (any season, episode 1) airing during the time period specified.
@@ -126,7 +126,7 @@ interface TraktApi {
     fun seasonPremieres(
         @Path("startdate") startDate: String,
         @Path("days") days: Int
-    ): Observable<List<CalendarShowEntry>>
+    ): Single<List<CalendarShowEntry>>
 
     /**
      * Returns all movies with a release date during the time period specified.
@@ -138,7 +138,7 @@ interface TraktApi {
     fun movies(
         @Path("startdate") startDate: String,
         @Path("days") days: Int
-    ): Observable<List<CalendarMovieEntry>>
+    ): Single<List<CalendarMovieEntry>>
 
     // endregion
 
@@ -155,7 +155,7 @@ interface TraktApi {
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Observable<List<Show>>
+    ): Single<List<Show>>
 
     /**
      * Returns all shows being watched right now. Shows with the most users are returned first.
@@ -168,7 +168,7 @@ interface TraktApi {
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Observable<List<TrendingShow>>
+    ): Single<List<TrendingShow>>
 
     /**
      * Returns a single shows's details.
@@ -179,7 +179,7 @@ interface TraktApi {
     fun summary(
         @Path("id") showId: String,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Observable<Show>
+    ): Single<Show>
 
     /**
      * Returns all translations for a show, including language and translated values for title and overview.
@@ -189,7 +189,7 @@ interface TraktApi {
     @GET("shows/{id}/translations")
     fun translations(
         @Path("id") showId: String
-    ): Observable<List<Translation>>
+    ): Single<List<Translation>>
 
     /**
      * Returns a single translation for a show. If the translation does not exist, the returned list will be empty.
@@ -201,7 +201,7 @@ interface TraktApi {
     fun translation(
         @Path("id") showId: String,
         @Path("language") language: String
-    ): Observable<List<Translation>>
+    ): Single<List<Translation>>
 
     /**
      * Returns all top level comments for a show. Most recent comments returned first.
@@ -216,7 +216,7 @@ interface TraktApi {
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Observable<List<Comment>>
+    ): Single<List<Comment>>
 
     /**
      * **OAuth Required**
@@ -239,7 +239,7 @@ interface TraktApi {
         @Query("hidden") hidden: Boolean?,
         @Query("specials") specials: Boolean?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Observable<BaseShow>
+    ): Single<BaseShow>
 
     /**
      * **OAuth Required**
@@ -261,7 +261,7 @@ interface TraktApi {
         @Query("hidden") hidden: Boolean?,
         @Query("specials") specials: Boolean?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Observable<BaseShow>
+    ): Single<BaseShow>
 
     /**
      * Returns all actors, directors, writers, and producers for a show.
@@ -271,7 +271,7 @@ interface TraktApi {
     @GET("shows/{id}/people")
     fun people(
         @Path("id") showId: String
-    ): Observable<Credits>
+    ): Single<Credits>
 
     /**
      * Returns rating (between 0 and 10) and distribution for a show.
@@ -281,7 +281,7 @@ interface TraktApi {
     @GET("shows/{id}/ratings")
     fun ratings(
         @Path("id") showId: String
-    ): Observable<Ratings>
+    ): Single<Ratings>
 
     /**
      * Returns lots of show stats.
@@ -289,7 +289,7 @@ interface TraktApi {
     @GET("shows/{id}/stats")
     fun stats(
         @Path("id") showId: String
-    ): Observable<Stats>
+    ): Single<Stats>
 
     /**
      * Returns related and similar shows.
@@ -300,7 +300,7 @@ interface TraktApi {
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Observable<List<Show>>
+    ): Single<List<Show>>
 
     // endregion
 }

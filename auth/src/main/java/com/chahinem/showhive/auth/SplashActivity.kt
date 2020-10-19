@@ -57,8 +57,8 @@ class SplashActivity : BaseActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         setIntent(intent)
-        intent?.data?.let {
-            val uri = Uri.parse(it.toString())
+        intent?.data?.let { data ->
+            val uri = Uri.parse(data.toString())
             if (uri.queryParameterNames.contains("code")) {
                 val code = uri.getQueryParameter("code")
                 // TODO: refactor into viewmodel+interactor+repo
@@ -70,7 +70,7 @@ class SplashActivity : BaseActivity() {
                         BuildConfig.TRAKT_CLIENT_SECRET,
                         TraktV2.REDIRECT_URI
                     )
-                    .doOnNext {
+                    .doOnSuccess {
                         PreferenceManager.getDefaultSharedPreferences(this)
                             .edit()
                             .putString("access_token", it.accessToken)

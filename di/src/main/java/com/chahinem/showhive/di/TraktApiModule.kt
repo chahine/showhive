@@ -1,11 +1,9 @@
 package com.chahinem.showhive.di
 
 import android.app.Application
-import com.chahinem.api.RxSchedulers
 import com.chahinem.showhive.qualifiers.PerApp
 import com.chahinem.showhive.qualifiers.Trakt
 import com.chahinem.trakt.api.TraktApi
-import com.chahinem.trakt.api.TraktApiClient
 import com.chahinem.trakt.api.TraktAuthenticator
 import com.chahinem.trakt.api.TraktInterceptor
 import com.readystatesoftware.chuck.ChuckInterceptor
@@ -82,10 +80,7 @@ class TraktApiModule {
 
     @Provides
     @PerApp
-    fun provideTraktApiClient(@Trakt retrofit: Retrofit, scheduler: RxSchedulers): TraktApi {
-        return TraktApiClient(
-            retrofit.create(TraktApi::class.java),
-            scheduler
-        )
+    fun provideTraktApi(@Trakt retrofit: Retrofit): TraktApi {
+        return retrofit.create(TraktApi::class.java)
     }
 }

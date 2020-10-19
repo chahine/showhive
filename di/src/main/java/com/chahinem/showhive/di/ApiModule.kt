@@ -1,7 +1,6 @@
 package com.chahinem.showhive.di
 
 import android.app.Application
-import com.chahinem.api.RxSchedulers
 import com.chahinem.showhive.qualifiers.PerApp
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
@@ -32,10 +31,6 @@ class ApiModule {
         .readTimeout(TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
         .build()
-
-    @Provides
-    @PerApp
-    fun provideScheduler() = RxSchedulers.DEFAULT
 
     @Provides
     @PerApp

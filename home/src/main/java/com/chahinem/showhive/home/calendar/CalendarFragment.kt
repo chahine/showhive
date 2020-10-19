@@ -55,7 +55,7 @@ class CalendarFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
 
-        viewModel.uiEvents.onNext(LoadCalendar())
+        viewModel.uiEvents.onNext(LoadCalendar)
     }
 
     private fun onModelEvent(model: CalendarModel) {

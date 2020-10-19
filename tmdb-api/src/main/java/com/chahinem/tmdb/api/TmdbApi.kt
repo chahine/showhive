@@ -17,7 +17,7 @@ import com.chahinem.tmdb.entities.TvExternalIds
 import com.chahinem.tmdb.entities.TvShow
 import com.chahinem.tmdb.entities.TvShowResultsPage
 import com.chahinem.tmdb.entities.Videos
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -35,8 +35,8 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}")
     fun tv(
-      @Path("tv_id") tvShowId: Int
-    ): Observable<TvShow>
+        @Path("tv_id") tvShowId: Int
+    ): Single<TvShow>
 
     /**
      * Get the primary information about a TV series by id.
@@ -46,9 +46,9 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}")
     fun tv(
-      @Path("tv_id") tvShowId: Int,
-      @Query("language") language: String
-    ): Observable<TvShow>
+        @Path("tv_id") tvShowId: Int,
+        @Query("language") language: String
+    ): Single<TvShow>
 
     /**
      * Get the primary information about a TV series by id.
@@ -59,10 +59,10 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}")
     fun tv(
-      @Path("tv_id") tvShowId: Int,
-      @Query("language") language: String,
-      @Query("append_to_response") appendToResponse: AppendToResponse
-    ): Observable<TvShow>
+        @Path("tv_id") tvShowId: Int,
+        @Query("language") language: String,
+        @Query("append_to_response") appendToResponse: AppendToResponse
+    ): Single<TvShow>
 
     /**
      * Get the primary information about a TV series by id.
@@ -74,11 +74,11 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}")
     fun tv(
-      @Path("tv_id") tvShowId: Int,
-      @Query("language") language: String,
-      @Query("append_to_response") appendToResponse: AppendToResponse,
-      @QueryMap options: Map<String, String>
-    ): Observable<TvShow>
+        @Path("tv_id") tvShowId: Int,
+        @Query("language") language: String,
+        @Query("append_to_response") appendToResponse: AppendToResponse,
+        @QueryMap options: Map<String, String>
+    ): Single<TvShow>
 
     /**
      * Get the primary information about a TV series by id.
@@ -88,9 +88,9 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}")
     fun tv(
-      @Path("tv_id") tvShowId: Int,
-      @Query("append_to_response") appendToResponse: AppendToResponse
-    ): Observable<TvShow>
+        @Path("tv_id") tvShowId: Int,
+        @Query("append_to_response") appendToResponse: AppendToResponse
+    ): Single<TvShow>
 
     /**
      * Get the primary information about a TV series by id.
@@ -101,10 +101,10 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}")
     fun tv(
-      @Path("tv_id") tvShowId: Int,
-      @Query("append_to_response") appendToResponse: AppendToResponse,
-      @QueryMap options: Map<String, String>
-    ): Observable<TvShow>
+        @Path("tv_id") tvShowId: Int,
+        @Query("append_to_response") appendToResponse: AppendToResponse,
+        @QueryMap options: Map<String, String>
+    ): Single<TvShow>
 
     /**
      * Grab the following account states for a session:
@@ -119,8 +119,8 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/account_states")
     fun accountStates(
-      @Path("tv_id") tvShowId: Int
-    ): Observable<AccountStates>
+        @Path("tv_id") tvShowId: Int
+    ): Single<AccountStates>
 
     /**
      * Get the alternative titles for a specific show ID.
@@ -129,8 +129,8 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/alternative_titles")
     fun alternativeTitles(
-      @Path("tv_id") tvShowId: Int
-    ): Observable<AlternativeTitles>
+        @Path("tv_id") tvShowId: Int
+    ): Single<AlternativeTitles>
 
     /**
      * Get the changes for a TV show. By default only the last 24 hours are returned.
@@ -149,11 +149,11 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/changes")
     fun changes(
-      @Path("tv_id") tvShowId: Int,
-      @Query("start_date") start_date: TmdbDate,
-      @Query("end_date") end_date: TmdbDate,
-      @Query("page") page: Int?
-    ): Observable<Changes>
+        @Path("tv_id") tvShowId: Int,
+        @Query("start_date") startDate: TmdbDate,
+        @Query("end_date") endDate: TmdbDate,
+        @Query("page") page: Int?
+    ): Single<Changes>
 
     /**
      * Get the cast and crew information about a TV series. Just like the website, we pull this information from the
@@ -164,19 +164,19 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/credits")
     fun credits(
-      @Path("tv_id") tvShowId: Int,
-      @Query("language") language: String
-    ): Observable<Credits>
+        @Path("tv_id") tvShowId: Int,
+        @Query("language") language: String
+    ): Single<Credits>
 
     /**
      * Get the content ratings for a specific TV show.
      *
-     * @param tmbdId A Tv Show TMDb id.
+     * @param tmdbId A Tv Show TMDb id.
      */
     @GET("tv/{tv_id}/contentRatings")
     fun contentRatings(
-      @Path("tv_id") tmbdId: Int
-    ): Observable<ContentRatings>
+        @Path("tv_id") tmdbId: Int
+    ): Single<ContentRatings>
 
     /**
      * Get the external ids that we have stored for a TV series.
@@ -186,9 +186,9 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/external_ids")
     fun externalIds(
-      @Path("tv_id") tvShowId: Int,
-      @Query("language") language: String
-    ): Observable<TvExternalIds>
+        @Path("tv_id") tvShowId: Int,
+        @Query("language") language: String
+    ): Single<TvExternalIds>
 
     /**
      * Get the images (posters and backdrops) for a TV series.
@@ -198,9 +198,9 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/images")
     fun images(
-      @Path("tv_id") tvShowId: Int,
-      @Query("language") language: String
-    ): Observable<Images>
+        @Path("tv_id") tvShowId: Int,
+        @Query("language") language: String
+    ): Single<Images>
 
     /**
      * Get the plot keywords for a specific TV show id.
@@ -209,8 +209,8 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/keywords")
     fun keywords(
-      @Path("tv_id") tvShowId: Int
-    ): Observable<Keywords>
+        @Path("tv_id") tvShowId: Int
+    ): Single<Keywords>
 
     /**
      * Get the list of TV show recommendations for this item.
@@ -221,10 +221,10 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/recommendations")
     fun recommendations(
-      @Path("tv_id") tvShowId: Int,
-      @Query("page") page: Int?,
-      @Query("language") language: String
-    ): Observable<TvShowResultsPage>
+        @Path("tv_id") tvShowId: Int,
+        @Query("page") page: Int?,
+        @Query("language") language: String
+    ): Single<TvShowResultsPage>
 
     /**
      * Get the similar TV shows for a specific tv id.
@@ -235,10 +235,10 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/similar")
     fun similar(
-      @Path("tv_id") tvShowId: Int,
-      @Query("page") page: Int?,
-      @Query("language") language: String
-    ): Observable<TvShowResultsPage>
+        @Path("tv_id") tvShowId: Int,
+        @Query("page") page: Int?,
+        @Query("language") language: String
+    ): Single<TvShowResultsPage>
 
     /**
      * Get a list of the translations that exist for a TV show.
@@ -248,9 +248,9 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/translations")
     fun translations(
-      @Path("tv_id") tvShowId: Int,
-      @Query("language") language: String
-    ): Observable<Translations>
+        @Path("tv_id") tvShowId: Int,
+        @Query("language") language: String
+    ): Single<Translations>
 
     /**
      * Get the videos that have been added to a TV series (trailers, opening credits, etc...)
@@ -260,15 +260,15 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/videos")
     fun videos(
-      @Path("tv_id") tvShowId: Int,
-      @Query("language") language: String
-    ): Observable<Videos>
+        @Path("tv_id") tvShowId: Int,
+        @Query("language") language: String
+    ): Single<Videos>
 
     /**
      * Get the latest TV show id.
      */
     @GET("tv/latest")
-    fun latest(): Observable<TvShow>
+    fun latest(): Single<TvShow>
 
     /**
      * Get the list of TV shows that are currently on the air. This query looks for any TV show that has an episode with
@@ -279,9 +279,9 @@ interface TmdbApi {
      */
     @GET("tv/on_the_air")
     fun onTheAir(
-      @Query("page") page: Int?,
-      @Query("language") language: String
-    ): Observable<TvShowResultsPage>
+        @Query("page") page: Int?,
+        @Query("language") language: String
+    ): Single<TvShowResultsPage>
 
     /**
      * Get the list of TV shows that air today. Without a specified timezone, this query defaults to EST (Eastern Time
@@ -292,9 +292,9 @@ interface TmdbApi {
      */
     @GET("tv/airing_today")
     fun airingToday(
-      @Query("page") page: Int?,
-      @Query("language") language: String
-    ): Observable<TvShowResultsPage>
+        @Query("page") page: Int?,
+        @Query("language") language: String
+    ): Single<TvShowResultsPage>
 
     /**
      * Get the list of top rated TV shows. By default, this list will only include TV shows that have 2 or more votes.
@@ -305,9 +305,9 @@ interface TmdbApi {
      */
     @GET("tv/top_rated")
     fun topRated(
-      @Query("page") page: Int?,
-      @Query("language") language: String
-    ): Observable<TvShowResultsPage>
+        @Query("page") page: Int?,
+        @Query("language") language: String
+    ): Single<TvShowResultsPage>
 
     /**
      * Get the list of popular TV shows. This list refreshes every day.
@@ -317,9 +317,9 @@ interface TmdbApi {
      */
     @GET("tv/popular")
     fun popular(
-      @Query("page") page: Int?,
-      @Query("language") language: String
-    ): Observable<TvShowResultsPage>
+        @Query("page") page: Int?,
+        @Query("language") language: String
+    ): Single<TvShowResultsPage>
 
     /**
      * Rate a TV show.
@@ -332,10 +332,10 @@ interface TmdbApi {
      */
     @POST("tv/{tv_id}/rating")
     fun addRating(
-      @Path("tv_id") tvShowId: Int?,
-      @Query("authentication") authenticationType: AuthenticationType,
-      @Body body: RatingObject
-    ): Observable<Status>
+        @Path("tv_id") tvShowId: Int?,
+        @Query("authentication") authenticationType: AuthenticationType,
+        @Body body: RatingObject
+    ): Single<Status>
 
     /**
      * Rate a TV show.
@@ -347,9 +347,9 @@ interface TmdbApi {
      */
     @POST("tv/{tv_id}/rating")
     fun addRating(
-      @Path("tv_id") tvShowId: Int?,
-      @Body body: RatingObject
-    ): Observable<Status>
+        @Path("tv_id") tvShowId: Int?,
+        @Body body: RatingObject
+    ): Single<Status>
 
     /**
      * Remove your rating for a TV show.
@@ -361,9 +361,9 @@ interface TmdbApi {
      */
     @DELETE("tv/{tv_id}/rating")
     fun deleteRating(
-      @Path("tv_id") tvShowId: Int?,
-      @Query("authentication") authenticationType: AuthenticationType
-    ): Observable<Status>
+        @Path("tv_id") tvShowId: Int?,
+        @Query("authentication") authenticationType: AuthenticationType
+    ): Single<Status>
 
     /**
      * Remove your rating for a TV show.
@@ -374,6 +374,6 @@ interface TmdbApi {
      */
     @DELETE("tv/{tv_id}/rating")
     fun deleteRating(
-      @Path("tv_id") tvShowId: Int?
-    ): Observable<Status>
+        @Path("tv_id") tvShowId: Int?
+    ): Single<Status>
 }
