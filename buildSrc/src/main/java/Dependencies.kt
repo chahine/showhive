@@ -61,12 +61,11 @@ object Dependencies {
     val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // Rx Bindings
-    const val rxbindingGroupId = "com.jakewharton.rxbinding2"
-    val rxbinding = "$rxbindingGroupId:rxbinding-kotlin:$rxbindingVersion"
-    val rxbindingSupportV4 = "$rxbindingGroupId:rxbinding-support-v4-kotlin:$rxbindingVersion"
-    val rxbindingAppcompatV7 = "$rxbindingGroupId:rxbinding-appcompat-v7-kotlin:$rxbindingVersion"
-    val rxbindingDesign = "$rxbindingGroupId:rxbinding-design-kotlin:$rxbindingVersion"
-    val rxbindingRecyclerview = "$rxbindingGroupId:rxbinding-recyclerview-v7:$rxbindingVersion"
+    const val rxbindingGroupId = "com.jakewharton.rxbinding4"
+    val rxbinding = "$rxbindingGroupId:rxbinding-core:$rxbindingVersion"
+    val rxbindingAppcompatV7 = "$rxbindingGroupId:rxbinding-appcompat:$rxbindingVersion"
+    val rxbindingRecyclerview = "$rxbindingGroupId:rxbinding-recyclerview:$rxbindingVersion"
+    val rxbindingMaterial = "$rxbindingGroupId:rxbinding-material:$rxbindingVersion"
 
     // Glide
     val glide = "com.github.bumptech.glide:glide:$glideVersion"
@@ -95,10 +94,9 @@ object Dependencies {
 
     val rxBindings = listOf(
         rxbinding,
-        rxbindingSupportV4,
         rxbindingAppcompatV7,
-        rxbindingDesign,
-        rxbindingRecyclerview
+        rxbindingRecyclerview,
+        rxbindingMaterial
     )
 
     val api = listOf(

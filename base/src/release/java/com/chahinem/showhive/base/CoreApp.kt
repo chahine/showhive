@@ -9,6 +9,6 @@ abstract class CoreApp : Application() {
         super.onCreate()
 
         // FIXME: uncomment when Firebase is implemented
-        // Timber.plant(FirebaseTree())
+        Timber.plant(FirebaseTree())
     }
 }
