@@ -6,8 +6,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.chahinem.showhive.home.R
 import com.chahinem.showhive.home.R.string
-import org.threeten.bp.LocalDate
-import org.threeten.bp.format.DateTimeFormatter.ofPattern
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter.ofPattern
 import javax.inject.Inject
 
 class DateHeaderItemView {

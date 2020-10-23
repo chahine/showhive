@@ -27,7 +27,7 @@ class DataModule {
     @Provides
     @PerApp
     fun provideMoshi(): Moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
         .add(ZonedDateTimeConverter())
+        .addLast(KotlinJsonAdapterFactory())
         .build()
 }

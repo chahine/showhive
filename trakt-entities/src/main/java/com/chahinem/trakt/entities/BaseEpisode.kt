@@ -1,7 +1,7 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 open class BaseEpisode(
     val number: Int? = null,

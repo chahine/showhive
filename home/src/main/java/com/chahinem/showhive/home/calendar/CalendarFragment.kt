@@ -13,7 +13,7 @@ import com.chahinem.showhive.home.calendar.CalendarModel.CalendarCardSuccess
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarProgress
 import kotlinx.android.synthetic.main.fragment_calendar.*
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 import timber.log.Timber
 import javax.inject.Inject
 

@@ -1,6 +1,6 @@
 package com.chahinem.trakt.entities
 
-import org.threeten.bp.LocalDate
+import java.time.LocalDate
 
 class Movie(
     val year: Int? = null,
