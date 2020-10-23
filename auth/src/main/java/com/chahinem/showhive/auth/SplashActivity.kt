@@ -8,7 +8,7 @@ import com.chahinem.showhive.base.BaseActivity
 import com.chahinem.showhive.base.Router
 import com.chahinem.trakt.api.TraktApi
 import com.chahinem.trakt.api.TraktV2
-import com.jakewharton.rxbinding2.view.clicks
+import com.jakewharton.rxbinding4.view.clicks
 import kotlinx.android.synthetic.main.activity_splash.*
 import timber.log.Timber
 import java.util.concurrent.TimeUnit.MILLISECONDS

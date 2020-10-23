@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/chahine/showhive.svg?style=svg)](https://circleci.com/gh/chahinem/showhive)
-![minSdkVersion](https://img.shields.io/badge/minSdk-23-red.svg)
-![compileSdkVersion](https://img.shields.io/badge/compileSdkVersion-27-green.svg)
+![minSdkVersion](https://img.shields.io/badge/minSdk-24-red.svg)
+![compileSdkVersion](https://img.shields.io/badge/compileSdkVersion-30-green.svg)
 ![Version](https://img.shields.io/badge/version-alpha-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
@@ -16,8 +16,6 @@ Small Trakt client. WIP
 
 ```
 $ git clone git@github.com:chahinem/showhive.git
-$ echo BUILD_NUMBER = 1 > version.properties
-$ echo VERSION = 1 >> version.properties
 ```
 
 ## Required keys

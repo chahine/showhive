@@ -7,7 +7,7 @@ import com.chahinem.showhive.base.Router
 import com.chahinem.showhive.home.calendar.CalendarFragment
 import com.chahinem.showhive.home.discover.DiscoverFragment
 import com.chahinem.showhive.home.profile.ProfileFragment
-import com.jakewharton.rxbinding2.support.design.widget.itemSelections
+import com.jakewharton.rxbinding4.material.itemSelections
 import kotlinx.android.synthetic.main.activity_home.*
 import timber.log.Timber
 import javax.inject.Inject
