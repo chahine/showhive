@@ -1,20 +1,21 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
+@JsonClass(generateAdapter = true)
 class User(
-    val username: String? = null,
-    @Json(name = "private")
-    val isPrivate: Boolean? = null,
-    val name: String? = null,
-    val vip: Boolean? = null,
-    @Json(name = "vip_ep") val vipEp: Boolean? = null,
-    val ids: UserIds? = null,
-    @Json(name = "joined_at") val joinedAt: ZonedDateTime? = null,
-    val location: String? = null,
-    val about: String? = null,
-    val gender: String? = null,
+    val username: String?,
+    @Json(name = "private") val isPrivate: Boolean?,
+    val name: String?,
+    val vip: Boolean?,
+    @Json(name = "vip_ep") val vipEp: Boolean?,
+    val ids: UserIds?,
+    @Json(name = "joined_at") val joinedAt: ZonedDateTime?,
+    val location: String?,
+    val about: String?,
+    val gender: String?,
     val age: Int = 0,
-    val images: Images? = null
+    val images: Images?
 )

@@ -1,7 +1,9 @@
 package com.chahinem.tmdb.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class TvSeasonExternalIds(
     @Json(name = "freebase_id") val freebaseId: String? = null,
     @Json(name = "freebase_mid") val freebaseMid: String? = null,

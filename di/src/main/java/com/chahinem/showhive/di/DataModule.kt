@@ -7,7 +7,6 @@ import com.chahinem.showhive.qualifiers.CacheSize
 import com.chahinem.showhive.qualifiers.PerApp
 import com.chahinem.trakt.api.ZonedDateTimeConverter
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 
@@ -28,6 +27,5 @@ class DataModule {
     @PerApp
     fun provideMoshi(): Moshi = Moshi.Builder()
         .add(ZonedDateTimeConverter())
-        .addLast(KotlinJsonAdapterFactory())
         .build()
 }

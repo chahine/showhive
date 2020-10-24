@@ -1,26 +1,28 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
+@JsonClass(generateAdapter = true)
 class Show(
-    val title: String? = null,
-    val overview: String? = null,
-    val rating: Double? = null,
-    val votes: Int? = null,
-    @Json(name = "updated_at") val updatedAt: ZonedDateTime? = null,
-    @Json(name = "available_translations") val availableTranslations: List<String>? = null,
-    val year: Int? = null,
-    val ids: ShowIds? = null,
-    @Json(name = "first_aired") val firstAired: ZonedDateTime? = null,
-    val airs: Airs? = null,
-    val runtime: Int? = null,
-    val certification: String? = null,
-    val network: String? = null,
-    val country: String? = null,
-    val trailer: String? = null,
-    val homepage: String? = null,
-    val status: Status? = null,
-    val language: String? = null,
-    val genres: List<String>? = null
+    val title: String?,
+    val overview: String?,
+    val rating: Double?,
+    val votes: Int?,
+    @Json(name = "updated_at") val updatedAt: ZonedDateTime?,
+    @Json(name = "available_translations") val availableTranslations: List<String>?,
+    val year: Int?,
+    val ids: ShowIds?,
+    @Json(name = "first_aired") val firstAired: ZonedDateTime?,
+    val airs: Airs?,
+    val runtime: Int?,
+    val certification: String?,
+    val network: String?,
+    val country: String?,
+    val trailer: String?,
+    val homepage: String?,
+    val status: Status?,
+    val language: String?,
+    val genres: List<String>?
 )

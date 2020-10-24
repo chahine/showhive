@@ -1,12 +1,14 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
+@JsonClass(generateAdapter = true)
 open class BaseEpisode(
-    val number: Int? = null,
-    @Json(name = "collected_at") val collectedAt: ZonedDateTime? = null,
-    val plays: Int? = null,
-    @Json(name = "last_watched_at") val lastWatchedAt: ZonedDateTime? = null,
-    val completed: Boolean? = null
+    val number: Int?,
+    @Json(name = "collected_at") val collectedAt: ZonedDateTime?,
+    val plays: Int?,
+    @Json(name = "last_watched_at") val lastWatchedAt: ZonedDateTime?,
+    val completed: Boolean?
 )

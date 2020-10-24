@@ -1,6 +1,9 @@
 package com.chahinem.tmdb.entities
 
-class AppendToResponse(private val items: Array<AppendToResponseItem>) {
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+class AppendToResponse(val items: Array<AppendToResponseItem>) {
 
     override fun toString(): String {
         if (items.isNotEmpty()) {

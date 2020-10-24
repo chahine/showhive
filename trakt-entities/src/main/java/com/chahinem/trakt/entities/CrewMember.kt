@@ -1,8 +1,11 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 class CrewMember(
-    val job: String? = null,
-    val movie: Movie? = null,
-    val show: Show? = null,
-    val person: Person? = null
+    val job: String?,
+    val movie: Movie?,
+    val show: Show?,
+    val person: Person?
 )

@@ -1,17 +1,19 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
+@JsonClass(generateAdapter = true)
 class Comment(
-    val id: Int? = null,
-    @Json(name = "parent_id") val parentId: Int? = null,
-    @Json(name = "created_at") val createdAt: ZonedDateTime? = null,
+    val id: Int?,
+    @Json(name = "parent_id") val parentId: Int?,
+    @Json(name = "created_at") val createdAt: ZonedDateTime?,
     val comment: String,
-    val spoiler: Boolean? = null,
-    val review: Boolean? = null,
-    val replies: Int? = null,
-    val user: User? = null,
+    val spoiler: Boolean?,
+    val review: Boolean?,
+    val replies: Int?,
+    val user: User?,
     val movie: Movie,
     val show: Show,
     val episode: Episode

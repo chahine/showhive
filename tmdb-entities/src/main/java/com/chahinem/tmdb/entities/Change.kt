@@ -1,7 +1,9 @@
 package com.chahinem.tmdb.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class Change(
     val id: String? = null,
     val action: String? = null,

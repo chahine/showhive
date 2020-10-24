@@ -1,8 +1,11 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 class SeasonIds(
-    val tvdb: Int? = null,
-    val tmdb: Int? = null,
-    val trakt: Int? = null,
-    val tvrage: Int? = null
+    val tvdb: Int?,
+    val tmdb: Int?,
+    val trakt: Int?,
+    val tvrage: Int?
 )
