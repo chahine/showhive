@@ -4,4 +4,5 @@ apply from: rootProject.file('module.gradle')
 dependencies {
     api Dependencies.moshi
     api Dependencies.supportAnnotations
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.11.0"
 }

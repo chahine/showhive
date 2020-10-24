@@ -1,16 +1,17 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.JsonClass
 import java.time.LocalDate
 
-
+@JsonClass(generateAdapter = true)
 class Person(
-    val name: String? = null,
-    val ids: PersonIds? = null,
+    val name: String?,
+    val ids: PersonIds?,
 
     // extended info
-    val biography: String? = null,
-    val birthday: LocalDate? = null,
-    val death: LocalDate? = null,
-    val birthplace: String? = null,
-    val homepage: String? = null
+    val biography: String?,
+    val birthday: LocalDate?,
+    val death: LocalDate?,
+    val birthplace: String?,
+    val homepage: String?
 )

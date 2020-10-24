@@ -1,7 +1,9 @@
 package com.chahinem.tmdb.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class Credits(
     val id: Int? = null,
     val cast: List<CastMember>? = null,

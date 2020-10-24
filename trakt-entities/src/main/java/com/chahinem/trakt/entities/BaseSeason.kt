@@ -1,8 +1,11 @@
 package com.chahinem.trakt.entities
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 open class BaseSeason(
-    val number: Int? = null,
-    val episodes: List<BaseEpisode>? = null,
-    val aired: Int? = null,
-    val completed: Int? = null
+    val number: Int?,
+    val episodes: List<BaseEpisode>?,
+    val aired: Int?,
+    val completed: Int?
 )

@@ -1,7 +1,9 @@
 package com.chahinem.tmdb.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 open class BaseTvShow(
     val id: Int? = null,
     @Json(name = "original_name") val originalName: String? = null,

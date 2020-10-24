@@ -1,20 +1,22 @@
 package com.chahinem.tmdb.entities
 
+import com.squareup.moshi.JsonClass
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TmdbDate(date: String) {
+@JsonClass(generateAdapter = true)
+class TmdbDate(val dateString: String) {
 
     companion object {
-        private val TMDB_DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd")
+        private val TMDB_DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd", Locale.US)
     }
 
-    private val date: Date?
+    val date: Date?
 
     init {
         this.date = try {
-            TMDB_DATE_FORMAT.parse(date)
+            TMDB_DATE_FORMAT.parse(dateString)
         } catch (e: ParseException) {
             null
         }

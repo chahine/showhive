@@ -1,7 +1,9 @@
 package com.chahinem.tmdb.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class Image(
     @Json(name = "file_path") val filePath: String? = null,
     val width: Int? = null,

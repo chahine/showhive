@@ -1,17 +1,19 @@
 package com.chahinem.trakt.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
+@JsonClass(generateAdapter = true)
 class BaseShow(
-    val show: Show? = null,
-    val seasons: List<BaseSeason>? = null,
-    @Json(name = "last_collected_at") val lastCollectedAt: ZonedDateTime? = null,
-    @Json(name = "listed_at") val listedAt: ZonedDateTime? = null,
-    val plays: Int? = null,
-    @Json(name = "last_watched_at") val lastWatchedAt: ZonedDateTime? = null,
-    val aired: Int? = null,
-    val completed: Int? = null,
-    @Json(name = "hidden_seasons") val hiddenSeasons: List<Season>? = null,
-    @Json(name = "next_episode") val nextEpisode: Episode? = null
+    val show: Show?,
+    val seasons: List<BaseSeason>?,
+    @Json(name = "last_collected_at") val lastCollectedAt: ZonedDateTime?,
+    @Json(name = "listed_at") val listedAt: ZonedDateTime?,
+    val plays: Int?,
+    @Json(name = "last_watched_at") val lastWatchedAt: ZonedDateTime?,
+    val aired: Int?,
+    val completed: Int?,
+    @Json(name = "hidden_seasons") val hiddenSeasons: List<Season>?,
+    @Json(name = "next_episode") val nextEpisode: Episode?
 )

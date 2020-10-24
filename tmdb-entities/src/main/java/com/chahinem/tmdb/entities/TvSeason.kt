@@ -1,7 +1,9 @@
 package com.chahinem.tmdb.entities
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class TvSeason(
     val id: Int? = null,
     @Json(name = "poster_path") val posterPath: String? = null,
