@@ -5,8 +5,8 @@ import com.chahinem.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarProgress
 import com.chahinem.trakt.api.TraktApi
 import io.reactivex.rxjava3.core.ObservableTransformer
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter.ofPattern
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter.ofPattern
 import javax.inject.Inject
 
 class CalendarInteractor @Inject constructor(private val traktApi: TraktApi) {

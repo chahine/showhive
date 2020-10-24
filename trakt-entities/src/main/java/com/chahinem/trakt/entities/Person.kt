@@ -1,6 +1,7 @@
 package com.chahinem.trakt.entities
 
-import org.threeten.bp.LocalDate
+import java.time.LocalDate
+
 
 class Person(
     val name: String? = null,

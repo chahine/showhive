@@ -78,7 +78,6 @@ object Dependencies {
     val timber = "com.jakewharton.timber:timber:4.7.1"
     val chuck = "com.readystatesoftware.chuck:library:$chuckVersion"
     val chuckNoOp = "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
-    val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.2.4"
     val inject = "javax.inject:javax.inject:1"
     val leakCanary = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     val leakCanaryNoOp = "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
