@@ -1,4 +1,4 @@
-name: Android CI
+name: Feature Branch
 
 on:
   push:
@@ -35,4 +35,6 @@ jobs:
         curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/keystores/release.jks\"}" > keystores/release.jks
     - name: Assemble Debug
       run: |
-        ./gradlew clean :app:assembleDebug
+        ./gradlew clean
+        ./gradlew :app:assembleDebug
+        ./gradlew test
