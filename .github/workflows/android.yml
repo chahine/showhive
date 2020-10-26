@@ -18,16 +18,13 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Gradle Cache
-      uses: actions/cache@v2
+    - uses: actions/cache@v2
       with:
         path: |
           ~/.gradle/caches/modules-*
           ~/.gradle/caches/jars-*
           ~/.gradle/caches/build-cache-*
         key: gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('buildSrc/src/main/java/*.kt') }}
-        restore-keys: |
-          gradle-
     - name: Fetch Keystore and Properties
       run: |
         mkdir keystores
