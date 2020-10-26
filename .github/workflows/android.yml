@@ -18,13 +18,13 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Cache Gradle packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-        restore-keys: ${{ runner.os }}-gradle
-    - name: Fetch Keystore
+#    - name: Cache Gradle packages
+#      uses: actions/cache@v2
+#      with:
+#        path: ~/.gradle/caches
+#        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+#        restore-keys: ${{ runner.os }}-gradle
+    - name: Assemble Debug
       run: |
         mkdir keystores
         curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/debug.properties\"}" > debug.properties
@@ -33,7 +33,6 @@ jobs:
         curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
         curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer $DROPBOX_SHOWHIVE" --header "Dropbox-API-Arg: {\"path\": \"/keystores/release.jks\"}" > keystores/release.jks
         cat debug.properties
-    - name: Assemble Debug
-      run: |
-        cat debug.properties
+#    - name: Assemble Debug
+#      run: |
         ./gradlew :app:assembleDebug
