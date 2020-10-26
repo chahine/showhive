@@ -21,7 +21,7 @@ $ git clone git@github.com:chahinem/showhive.git
 ## Required keys
 
 ```
-# gradle.properties
+# local.properties
 TRAKT_CLIENT_ID     = 
 TRAKT_CLIENT_SECRET = 
 TMDB_API_KEY        = 
