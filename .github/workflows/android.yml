@@ -25,9 +25,9 @@ jobs:
           ~/.gradle/caches/modules-*
           ~/.gradle/caches/jars-*
           ~/.gradle/caches/build-cache-*
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('buildSrc/src/main/java/*.kt') }}
+        key: gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('buildSrc/src/main/java/*.kt') }}
         restore-keys: |
-          ${{ runner.os }}-gradle-
+          gradle-
     - name: Fetch Keystore and Properties
       run: |
         mkdir keystores
