@@ -31,8 +31,16 @@ jobs:
           curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/debug.properties\"}" > debug.properties
           curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/local.properties\"}" > local.properties
           curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
-      - name: Assemble Debug
+      - name: Assemble and Test Debug
         run: |
           ./gradlew clean
           ./gradlew :app:assembleDebug
           ./gradlew test
+      - name: Lint Debug
+        run: |
+          ./gradlew :app:lintDebug
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: my-artifact
+          path: app/build/reports/
