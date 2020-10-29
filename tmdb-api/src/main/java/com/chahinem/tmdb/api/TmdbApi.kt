@@ -53,8 +53,8 @@ interface TmdbApi {
     /**
      * Get the primary information about a TV series by id.
      *
-     * @param tvShowId         A Tv Show TMDb id.
-     * @param language         *Optional.* ISO 639-1 code.
+     * @param tvShowId A Tv Show TMDb id.
+     * @param language *Optional.* ISO 639-1 code.
      * @param appendToResponse *Optional.* extra requests to append to the result.
      */
     @GET("tv/{tv_id}")
@@ -67,10 +67,10 @@ interface TmdbApi {
     /**
      * Get the primary information about a TV series by id.
      *
-     * @param tvShowId         A Tv Show TMDb id.
-     * @param language         *Optional.* ISO 639-1 code.
+     * @param tvShowId A Tv Show TMDb id.
+     * @param language *Optional.* ISO 639-1 code.
      * @param appendToResponse *Optional.* extra requests to append to the result.
-     * @param options          *Optional.* parameters for the appended extra results.
+     * @param options *Optional.* parameters for the appended extra results.
      */
     @GET("tv/{tv_id}")
     fun tv(
@@ -83,7 +83,7 @@ interface TmdbApi {
     /**
      * Get the primary information about a TV series by id.
      *
-     * @param tvShowId         A Tv Show TMDb id.
+     * @param tvShowId A Tv Show TMDb id.
      * @param appendToResponse *Optional.* extra requests to append to the result.
      */
     @GET("tv/{tv_id}")
@@ -95,9 +95,9 @@ interface TmdbApi {
     /**
      * Get the primary information about a TV series by id.
      *
-     * @param tvShowId         A Tv Show TMDb id.
+     * @param tvShowId A Tv Show TMDb id.
      * @param appendToResponse *Optional.* extra requests to append to the result.
-     * @param options          *Optional.* parameters for the appended extra results.
+     * @param options *Optional.* parameters for the appended extra results.
      */
     @GET("tv/{tv_id}")
     fun tv(
@@ -142,10 +142,10 @@ interface TmdbApi {
      * These keys will contain a series_id and episode_id.
      * You can use the season changes and episode changes methods to look these up individually.
      *
-     * @param tvShowId   A Tv Show TMDb id.
+     * @param tvShowId A Tv Show TMDb id.
      * @param start_date *Optional.* Starting date of changes occurred to a movie.
-     * @param end_date   *Optional.* Ending date of changes occurred to a movie.
-     * @param page       *Optional.* Minimum value is 1, expected value is an integer.
+     * @param end_date *Optional.* Ending date of changes occurred to a movie.
+     * @param page *Optional.* Minimum value is 1, expected value is an integer.
      */
     @GET("tv/{tv_id}/changes")
     fun changes(
@@ -216,7 +216,7 @@ interface TmdbApi {
      * Get the list of TV show recommendations for this item.
      *
      * @param tvShowId A Tv Show TMDb id.
-     * @param page     *Optional.* Minimum value is 1, expected value is an integer.
+     * @param page *Optional.* Minimum value is 1, expected value is an integer.
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/recommendations")
@@ -230,7 +230,7 @@ interface TmdbApi {
      * Get the similar TV shows for a specific tv id.
      *
      * @param tvShowId A Tv Show TMDb id.
-     * @param page     *Optional.* Minimum value is 1, expected value is an integer.
+     * @param page *Optional.* Minimum value is 1, expected value is an integer.
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/similar")
@@ -274,7 +274,7 @@ interface TmdbApi {
      * Get the list of TV shows that are currently on the air. This query looks for any TV show that has an episode with
      * an air date in the next 7 days.
      *
-     * @param page     *Optional.* Minimum value is 1, expected value is an integer.
+     * @param page *Optional.* Minimum value is 1, expected value is an integer.
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/on_the_air")
@@ -287,7 +287,7 @@ interface TmdbApi {
      * Get the list of TV shows that air today. Without a specified timezone, this query defaults to EST (Eastern Time
      * UTC-05:00).
      *
-     * @param page     *Optional.* Minimum value is 1, expected value is an integer.
+     * @param page *Optional.* Minimum value is 1, expected value is an integer.
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/airing_today")
@@ -300,7 +300,7 @@ interface TmdbApi {
      * Get the list of top rated TV shows. By default, this list will only include TV shows that have 2 or more votes.
      * This list refreshes every day.
      *
-     * @param page     *Optional.* Minimum value is 1, expected value is an integer.
+     * @param page *Optional.* Minimum value is 1, expected value is an integer.
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/top_rated")
@@ -312,7 +312,7 @@ interface TmdbApi {
     /**
      * Get the list of popular TV shows. This list refreshes every day.
      *
-     * @param page     *Optional.* Minimum value is 1, expected value is an integer.
+     * @param page *Optional.* Minimum value is 1, expected value is an integer.
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/popular")
@@ -326,9 +326,9 @@ interface TmdbApi {
      *
      * **Requires an active Session.**
      *
-     * @param tvShowId           TMDb id.
+     * @param tvShowId TMDb id.
      * @param authenticationType Authentication Type for this operation. Available Choices: Account, Guest.
-     * @param body               *Required.* A ReviewObject Object. Minimum value is 0.5 and Maximum 10.0, expected value is a number.
+     * @param body *Required.* A ReviewObject Object. Minimum value is 0.5 and Maximum 10.0, expected value is a number.
      */
     @POST("tv/{tv_id}/rating")
     fun addRating(
@@ -343,7 +343,7 @@ interface TmdbApi {
      * **Requires an active Session.**
      *
      * @param tvShowId TMDb id.
-     * @param body     *Required.* A ReviewObject Object. Minimum value is 0.5 and Maximum 10.0, expected value is a number.
+     * @param body *Required.* A ReviewObject Object. Minimum value is 0.5 and Maximum 10.0, expected value is a number.
      */
     @POST("tv/{tv_id}/rating")
     fun addRating(
@@ -356,7 +356,7 @@ interface TmdbApi {
      *
      * **Requires an active Session.**
      *
-     * @param tvShowId           TMDb id.
+     * @param tvShowId TMDb id.
      * @param authenticationType Authentication Type for this operation. Available Choices: Account, Guest.
      */
     @DELETE("tv/{tv_id}/rating")

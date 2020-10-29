@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import com.chahinem.trakt.api.TraktV2
-import timber.log.Timber
 import javax.inject.Inject
+import timber.log.Timber
 
 class Router @Inject constructor(private val activity: Activity) {
 

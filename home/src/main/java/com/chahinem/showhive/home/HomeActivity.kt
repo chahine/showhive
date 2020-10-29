@@ -8,9 +8,9 @@ import com.chahinem.showhive.home.calendar.CalendarFragment
 import com.chahinem.showhive.home.discover.DiscoverFragment
 import com.chahinem.showhive.home.profile.ProfileFragment
 import com.jakewharton.rxbinding4.material.itemSelections
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_home.*
 import timber.log.Timber
-import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
 
@@ -32,9 +32,9 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        if (!prefs.contains("access_token")
-            && (!prefs.contains("splash_skipped")
-                    || !prefs.getBoolean("splash_skipped", false))
+        if (!prefs.contains("access_token") &&
+            (!prefs.contains("splash_skipped") ||
+                    !prefs.getBoolean("splash_skipped", false))
         ) {
             router.splash()
         }

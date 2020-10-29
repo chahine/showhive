@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.preference.PreferenceManager
 import com.chahinem.trakt.entities.AccessToken
 import com.squareup.moshi.Moshi
+import java.io.IOException
 import okhttp3.Authenticator
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
-import java.io.IOException
 
 class TraktAuthenticator(
     context: Context,

@@ -3,7 +3,8 @@ package com.chahinem.tmdb.entities
 import com.squareup.moshi.JsonClass
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 @JsonClass(generateAdapter = true)
 class TmdbDate(val dateString: String) {
