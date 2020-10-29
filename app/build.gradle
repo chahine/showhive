@@ -2,8 +2,33 @@ apply plugin: 'com.android.application'
 apply from: rootProject.file('module.gradle')
 
 android {
+    compileSdkVersion Versions.compileSdkVersion
+
     defaultConfig {
         applicationId 'com.chahinem.showhive.app'
+
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
+
+        final def versionPropsFile = rootProject.file('version.properties')
+        def buildNumber
+        def version
+        if (versionPropsFile.canRead()) {
+            final Properties versionProps = new Properties()
+            versionProps.load(new FileInputStream(versionPropsFile))
+            buildNumber = versionProps['BUILD_NUMBER'].toInteger()
+            version = versionProps['VERSION']
+        } else {
+            buildNumber = 1
+            version = 'local'
+        }
+
+        versionCode buildNumber
+        versionName version
+
+        multiDexEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -48,24 +73,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    applicationVariants.all { variant ->
-        variant.compileConfiguration.resolutionStrategy {
-            force 'android.arch.lifecycle:runtime:1.1.0'
-        }
-        variant.runtimeConfiguration.resolutionStrategy {
-            force 'android.arch.lifecycle:runtime:1.1.0'
-        }
-    }
 }
 
 dependencies {
     implementation project(':base')
+
     Dependencies.featureProjects.each { implementation project("$it") }
 
-    // Uncomment when wear is supported
-    // wearApp project(':wear')
-    // implementation 'com.google.android.gms:play-services-wearable:11.8.0'
 }
 
 // TODO: uncomment once firebase project is setup

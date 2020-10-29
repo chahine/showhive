@@ -53,9 +53,9 @@ interface TraktApi {
      *
      * @see .shows
      */
-    @GET("calendars/my/shows/{startdate}/{days}")
+    @GET("calendars/my/shows/{startDate}/{days}")
     fun myShows(
-        @Path("startdate") startDate: String,
+        @Path("startDate") startDate: String,
         @Path("days") days: Int
     ): Single<List<CalendarShowEntry>>
 
@@ -64,9 +64,9 @@ interface TraktApi {
      *
      * @see .newShows
      */
-    @GET("calendars/my/shows/new/{startdate}/{days}")
+    @GET("calendars/my/shows/new/{startDate}/{days}")
     fun myNewShows(
-        @Path("startdate") startDate: String,
+        @Path("startDate") startDate: String,
         @Path("days") days: Int
     ): Single<List<CalendarShowEntry>>
 
@@ -75,9 +75,9 @@ interface TraktApi {
      *
      * @see .seasonPremieres
      */
-    @GET("calendars/my/shows/premieres/{startdate}/{days}")
+    @GET("calendars/my/shows/premieres/{startDate}/{days}")
     fun mySeasonPremieres(
-        @Path("startdate") startDate: String,
+        @Path("startDate") startDate: String,
         @Path("days") days: Int
     ): Single<List<CalendarShowEntry>>
 
@@ -86,9 +86,9 @@ interface TraktApi {
      *
      * @see .movies
      */
-    @GET("calendars/my/movies/{startdate}/{days}")
+    @GET("calendars/my/movies/{startDate}/{days}")
     fun myMovies(
-        @Path("startdate") startDate: String,
+        @Path("startDate") startDate: String,
         @Path("days") days: Int
     ): Single<List<CalendarMovieEntry>>
 
@@ -98,9 +98,9 @@ interface TraktApi {
      * @param startDate Start the calendar on this date. Example: 2014-09-01.
      * @param days Number of days to display. Example: 7.
      */
-    @GET("calendars/all/shows/{startdate}/{days}")
+    @GET("calendars/all/shows/{startDate}/{days}")
     fun shows(
-        @Path("startdate") startDate: String,
+        @Path("startDate") startDate: String,
         @Path("days") days: Int
     ): Single<List<CalendarShowEntry>>
 
@@ -110,9 +110,9 @@ interface TraktApi {
      * @param startDate Start the calendar on this date. Example: 2014-09-01.
      * @param days Number of days to display. Example: 7.
      */
-    @GET("calendars/all/shows/new/{startdate}/{days}")
+    @GET("calendars/all/shows/new/{startDate}/{days}")
     fun newShows(
-        @Path("startdate") startDate: String,
+        @Path("startDate") startDate: String,
         @Path("days") days: Int
     ): Single<List<CalendarShowEntry>>
 
@@ -122,9 +122,9 @@ interface TraktApi {
      * @param startDate Start the calendar on this date. Example: 2014-09-01.
      * @param days Number of days to display. Example: 7.
      */
-    @GET("calendars/all/shows/premieres/{startdate}/{days}")
+    @GET("calendars/all/shows/premieres/{startDate}/{days}")
     fun seasonPremieres(
-        @Path("startdate") startDate: String,
+        @Path("startDate") startDate: String,
         @Path("days") days: Int
     ): Single<List<CalendarShowEntry>>
 
@@ -134,9 +134,9 @@ interface TraktApi {
      * @param startDate Start the calendar on this date. Example: 2014-09-01.
      * @param days Number of days to display. Example: 7.
      */
-    @GET("calendars/all/movies/{startdate}/{days}")
+    @GET("calendars/all/movies/{startDate}/{days}")
     fun movies(
-        @Path("startdate") startDate: String,
+        @Path("startDate") startDate: String,
         @Path("days") days: Int
     ): Single<List<CalendarMovieEntry>>
 
