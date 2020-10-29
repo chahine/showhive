@@ -19,17 +19,10 @@ import javax.inject.Inject
 
 class CalendarFragment : BaseFragment() {
 
-    @Inject
-    lateinit var router: Router
-
-    @Inject
-    lateinit var adapter: CalendarAdapter
-
-    @Inject
-    lateinit var itemDecoration: CalendarItemDecoration
-
-    @Inject
-    lateinit var viewModel: CalendarViewModel
+    @Inject lateinit var router: Router
+    @Inject lateinit var adapter: CalendarAdapter
+    @Inject lateinit var itemDecoration: CalendarItemDecoration
+    @Inject lateinit var viewModel: CalendarViewModel
 
     override fun getLayoutId() = R.layout.fragment_calendar
 

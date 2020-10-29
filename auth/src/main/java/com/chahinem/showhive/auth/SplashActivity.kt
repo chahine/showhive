@@ -15,10 +15,8 @@ import javax.inject.Inject
 
 class SplashActivity : BaseActivity() {
 
-    @Inject
-    lateinit var router: Router
-    @Inject
-    lateinit var apiClient: TraktApiClient
+    @Inject lateinit var router: Router
+    @Inject lateinit var apiClient: TraktApiClient
 
     override fun getLayoutId() = R.layout.activity_splash
 

@@ -14,8 +14,7 @@ import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
 
-    @Inject
-    lateinit var router: Router
+    @Inject lateinit var router: Router
 
     override fun getLayoutId() = R.layout.activity_home
 
