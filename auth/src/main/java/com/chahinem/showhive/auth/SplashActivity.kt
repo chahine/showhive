@@ -6,8 +6,7 @@ import android.os.Bundle
 import androidx.preference.PreferenceManager
 import com.chahinem.showhive.base.BaseActivity
 import com.chahinem.showhive.base.Router
-import com.chahinem.trakt.api.TraktApi
-import com.chahinem.trakt.api.TraktV2
+import com.chahinem.trakt.api.TraktApiClient
 import com.jakewharton.rxbinding4.view.clicks
 import kotlinx.android.synthetic.main.activity_splash.*
 import timber.log.Timber
@@ -19,7 +18,7 @@ class SplashActivity : BaseActivity() {
     @Inject
     lateinit var router: Router
     @Inject
-    lateinit var traktApi: TraktApi
+    lateinit var apiClient: TraktApiClient
 
     override fun getLayoutId() = R.layout.activity_splash
 
@@ -62,14 +61,8 @@ class SplashActivity : BaseActivity() {
             if (uri.queryParameterNames.contains("code")) {
                 val code = uri.getQueryParameter("code")
                 // TODO: refactor into viewmodel+interactor+repo
-                traktApi
-                    .exchangeCodeForAccessToken(
-                        "authorization_code",
-                        code!!,
-                        BuildConfig.TRAKT_CLIENT_ID,
-                        BuildConfig.TRAKT_CLIENT_SECRET,
-                        TraktV2.REDIRECT_URI
-                    )
+                apiClient
+                    .exchangeCodeForAccessToken(code!!)
                     .doOnSuccess {
                         PreferenceManager.getDefaultSharedPreferences(this)
                             .edit()

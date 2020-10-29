@@ -2,68 +2,26 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-androidExtensions.experimental = true
-
 android {
     compileSdkVersion Versions.compileSdkVersion
 
-    defaultConfig {
-        minSdkVersion Versions.minSdkVersion
-        targetSdkVersion Versions.targetSdkVersion
-
-        final def versionPropsFile = rootProject.file('version.properties')
-        def buildNumber
-        def version
-        if (versionPropsFile.canRead()) {
-            final Properties versionProps = new Properties()
-            versionProps.load(new FileInputStream(versionPropsFile))
-            buildNumber = versionProps['BUILD_NUMBER'].toInteger()
-            version = versionProps['VERSION']
-        } else {
-            buildNumber = 1
-            version = 'local'
-        }
-
-        versionCode buildNumber
-        versionName version
-
-        multiDexEnabled true
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-
     testOptions.unitTests.all {
         testLogging {
-            events "passed", "skipped", "failed", "standardOut", "standardError"
-            outputs.upToDateWhen { false }
-            showStandardStreams = true
+            events "skipped", "failed"
         }
     }
 
     lintOptions {
+        checkDependencies true
         textReport true
-        abortOnError false
+        warningsAsErrors true
+        abortOnError true
         textOutput 'stdout'
-        warning 'UnusedResources'
-        warning 'ResourceType'
-        warning 'InvalidPackage'
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    packagingOptions {
-        exclude 'LICENSE.txt'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/rxjava.properties'
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
-        exclude 'protobuf.meta'
     }
 }
 
@@ -71,7 +29,4 @@ dependencies {
     implementation Dependencies.kotlinStdlib
 
     testImplementation Dependencies.testLibs
-
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

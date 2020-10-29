@@ -10,7 +10,3 @@ include ':tmdb-entities'
 include ':tmdb-api'
 include ':trakt-api'
 include ':trakt-entities'
-
-// Uncomment when tv and wear are supported
-// include ':tv'
-// include ':wear'

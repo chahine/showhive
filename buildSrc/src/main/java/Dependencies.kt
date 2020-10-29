@@ -58,7 +58,8 @@ object Dependencies {
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
 
     // Dagger
-    const val annotationsApi = "javax.annotation:javax.annotation-api:1.2"
+    val javax = "javax.inject:javax.inject:1"
+    val annotationsApi = "javax.annotation:javax.annotation-api:1.2"
     val dagger = "com.google.dagger:dagger:$daggerVersion"
     val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
 
