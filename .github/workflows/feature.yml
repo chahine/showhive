@@ -1,11 +1,6 @@
 name: Feature Branch
 
-on:
-  push:
-    branches:
-      - '*'
-      - '!develop'
-      - '!master'
+on: [push]
 
 jobs:
   build:
