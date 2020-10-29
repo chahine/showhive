@@ -6,8 +6,9 @@ dependencies {
     api project(':api')
     api project(':trakt-entities')
 
+    compileOnly Dependencies.javax
+
     api Dependencies.androidXpreference
     api Dependencies.timber
     api Dependencies.api
-    api Dependencies.javax
 }
