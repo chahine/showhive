@@ -85,6 +85,7 @@ object Dependencies {
     val leakCanary = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     val leakCanaryNoOp = "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
     val pageIndicator = "com.github.chahinem:pageindicator:0.2.4"
+    val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:1.0.10"
 
     // Testing
     val jUnit = "junit:junit:$junitVersion"

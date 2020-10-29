@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+    coreLibraryDesugaring Dependencies.desugarJdkLibs
 
     implementation Dependencies.kotlinStdlib
 
