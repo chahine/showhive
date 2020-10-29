@@ -1,4 +1,4 @@
-name: Develop Branch
+name: Feature Branch
 
 on:
   push:
@@ -11,24 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches/modules-*
-          ~/.gradle/caches/jars-*
-          ~/.gradle/caches/build-cache-*
-        key: gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('buildSrc/src/main/java/*.kt') }}
-    - name: Fetch Keystore and Properties
-      run: |
-        mkdir keystores
-        curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/debug.properties\"}" > debug.properties
-        curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/local.properties\"}" > local.properties
-        curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
-    - name: Assemble Debug
-      run: |
-        ./gradlew :app:assembleDebug
+      - uses: actions/checkout@v2
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/modules-*
+            ~/.gradle/caches/jars-*
+            ~/.gradle/caches/build-cache-*
+          key: gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('buildSrc/src/main/java/*.kt') }}
+      - name: Fetch Keystore and Properties
+        run: |
+          mkdir keystores
+          curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/debug.properties\"}" > debug.properties
+          curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/local.properties\"}" > local.properties
+          curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
+      - name: Assemble Debug
+        run: |
+          ./gradlew clean
+          ./gradlew :app:bundleDebug
