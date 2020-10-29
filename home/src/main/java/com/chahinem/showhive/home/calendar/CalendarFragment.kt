@@ -13,18 +13,21 @@ import com.chahinem.showhive.home.calendar.CalendarModel.CalendarCardSuccess
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarProgress
 import kotlinx.android.synthetic.main.fragment_calendar.*
-import java.time.ZonedDateTime
 import timber.log.Timber
+import java.time.ZonedDateTime
 import javax.inject.Inject
 
 class CalendarFragment : BaseFragment() {
 
     @Inject
     lateinit var router: Router
+
     @Inject
     lateinit var adapter: CalendarAdapter
+
     @Inject
     lateinit var itemDecoration: CalendarItemDecoration
+
     @Inject
     lateinit var viewModel: CalendarViewModel
 
@@ -46,9 +49,9 @@ class CalendarFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.data.observe(requireActivity(), {
-          if (it != null) {
-            onModelEvent(it)
-          }
+            if (it != null) {
+                onModelEvent(it)
+            }
         })
     }
 
@@ -61,9 +64,9 @@ class CalendarFragment : BaseFragment() {
     private fun onModelEvent(model: CalendarModel) {
         Timber.d("--> model: ${model.javaClass.simpleName}")
         when (model) {
-          is CalendarProgress -> onCalendarProgress(model)
-          is CalendarFailure -> onCalendarFailure(model)
-          is CalendarCardSuccess -> onCalendarCardSuccess(model)
+            is CalendarProgress -> onCalendarProgress(model)
+            is CalendarFailure -> onCalendarFailure(model)
+            is CalendarCardSuccess -> onCalendarCardSuccess(model)
         }
     }
 
@@ -78,8 +81,8 @@ class CalendarFragment : BaseFragment() {
         val now = ZonedDateTime.now()
         Handler().post {
             list.scrollToPosition(model.items.indexOfFirst {
-              it is EpisodeItemView.Item && (it.entry.firstAired?.isAfter(now) ?: false)
-                      || it is DateHeaderItemView.Item && (it.dateTime.isAfter(now.toLocalDate()))
+                it is EpisodeItemView.Item && it.entry.firstAired.isAfter(now)
+                        || it is DateHeaderItemView.Item && (it.dateTime.isAfter(now.toLocalDate()))
             })
         }
     }

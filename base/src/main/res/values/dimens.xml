@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Defaults -->
-    <dimen name="match_constraints">0dp</dimen>
-    <dimen name="spacing_none">0dp</dimen>
-    <dimen name="spacing_xthin">1dp</dimen>
-    <dimen name="spacing_thin">2dp</dimen>
     <dimen name="spacing_xsmall">4dp</dimen>
-    <dimen name="spacing_small">8dp</dimen>
-    <dimen name="spacing_medium">12dp</dimen>
     <dimen name="spacing_standard">16dp</dimen>
-    <dimen name="spacing_large">20dp</dimen>
-    <dimen name="spacing_xlarge">24dp</dimen>
-    <dimen name="spacing_xxlarge">36dp</dimen>
-    <dimen name="spacing_xxxlarge">48dp</dimen>
 </resources>

@@ -6,7 +6,7 @@ import java.time.ZonedDateTime
 
 @JsonClass(generateAdapter = true)
 class CalendarShowEntry(
-    @Json(name = "first_aired") val firstAired: ZonedDateTime?,
-    val episode: Episode?,
-    val show: Show?
+    @Json(name = "first_aired") val firstAired: ZonedDateTime,
+    val episode: Episode,
+    val show: Show
 )

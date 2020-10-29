@@ -29,11 +29,13 @@ class EpisodeItemView {
         private val episodeTitle = itemView.findViewById<TextView>(R.id.episodeTitle)
 
         fun bind(item: Item) {
-            showTitle.text = item.entry.show?.title
-            val season = item.entry.episode?.season.toString().padStart(2, '0')
-            val episode = item.entry.episode?.number.toString().padStart(2, '0')
-            episodeNumber.text = "S${season}E$episode"
-            episodeTitle.text = item.entry.episode?.title
+            showTitle.text = item.entry.show.title
+            episodeNumber.text = itemView.resources.getString(
+                R.string.episode_number_format,
+                item.entry.episode.season,
+                item.entry.episode.number
+            )
+            episodeTitle.text = item.entry.episode.title
         }
     }
 

@@ -42,5 +42,5 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: my-artifact
+          name: showhive-lint-debug
           path: app/build/reports/
