@@ -32,7 +32,7 @@ object Dependencies {
 
     // Firebase
     val firebaseConfig = "com.google.firebase:firebase-config:$playVersion"
-    val firebaseCore = "com.google.firebase:firebase-core:17.5.1"
+    val firebaseCore = "com.google.firebase:firebase-core:18.0.0"
     val firebaseCrash = "com.google.firebase:firebase-crash:16.2.1"
     val firebasePerf = "com.google.firebase:firebase-perf:19.0.9"
     val firebaseMessaging = "com.google.firebase:firebase-messaging:$playVersion"

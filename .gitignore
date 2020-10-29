@@ -7,13 +7,18 @@
 *.iml
 
 ## Directory-based project format:
-.idea/
-# if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
-# .idea/workspace.xml
-# .idea/tasks.xml
-# .idea/dictionaries
+.idea/compiler.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/runConfigurations.xml
+.idea/jarRepositories.xml
+.idea/tasks.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/caches
+.idea/dictionaries
 
 # Sensitive or high-churn files:
 # .idea/dataSources.ids
@@ -23,8 +28,8 @@
 # .idea/uiDesigner.xml
 
 # Gradle:
-# .idea/gradle.xml
-# .idea/libraries
+.idea/gradle.xml
+.idea/libraries
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
