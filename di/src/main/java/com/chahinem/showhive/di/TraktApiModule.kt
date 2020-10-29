@@ -4,6 +4,7 @@ import android.app.Application
 import com.chahinem.showhive.qualifiers.PerApp
 import com.chahinem.showhive.qualifiers.Trakt
 import com.chahinem.trakt.api.TraktApi
+import com.chahinem.trakt.api.TraktApiClient
 import com.chahinem.trakt.api.TraktAuthenticator
 import com.chahinem.trakt.api.TraktInterceptor
 import com.readystatesoftware.chuck.ChuckInterceptor
