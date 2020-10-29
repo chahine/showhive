@@ -31,5 +31,4 @@ jobs:
           curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
       - name: Bundle Debug
         run: |
-          ./gradlew clean
           ./gradlew :app:bundleDebug
