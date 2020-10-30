@@ -32,8 +32,8 @@ jobs:
           curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/local.properties\"}" > local.properties
           curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
       - name: Spotless
-          run: |
-            ./gradlew spotlessCheck
+        run: |
+          ./gradlew spotlessCheck
       - name: Assemble and Test Debug
         run: |
           ./gradlew :app:assembleDebug
