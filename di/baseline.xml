@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ClassOrdering:ApiModule.kt$ApiModule$Companion</ID>
+    <ID>ClassOrdering:DataModule.kt$DataModule$Companion</ID>
+    <ID>MagicNumber:ShowHiveGlideModule.kt$ShowHiveGlideModule$15</ID>
+    <ID>TooGenericExceptionCaught:ViewModelFactory.kt$ViewModelFactory$e: Exception</ID>
+    <ID>TooGenericExceptionThrown:ViewModelFactory.kt$ViewModelFactory$throw RuntimeException(e)</ID>
+  </CurrentIssues>
+</SmellBaseline>

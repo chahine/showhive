@@ -16,7 +16,8 @@ buildscript {
 
 plugins {
     id 'com.github.ben-manes.versions' version '0.33.0'
-    id "com.diffplug.spotless" version "5.7.0"
+    id 'com.diffplug.spotless' version '5.7.0'
+    id 'io.gitlab.arturbosch.detekt' version '1.14.2'
 }
 
 allprojects {
@@ -36,6 +37,7 @@ subprojects {
         mavenCentral()
     }
 
+    apply from: rootProject.file('detekt.gradle')
     apply plugin: 'com.diffplug.spotless'
 
     spotless {

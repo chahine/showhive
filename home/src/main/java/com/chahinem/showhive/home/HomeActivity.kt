@@ -16,9 +16,9 @@ class HomeActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
 
-    override fun getLayoutId() = R.layout.activity_home
-
     lateinit var component: ActivityComponent
+
+    override fun getLayoutId() = R.layout.activity_home
 
     override fun setUpDependencyInjection() {
         component = DaggerActivityComponent.builder()

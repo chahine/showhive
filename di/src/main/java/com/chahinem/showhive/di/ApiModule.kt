@@ -15,10 +15,6 @@ class ApiModule {
 
     companion object {
         private const val DISK_CACHE_SIZE = 50L * 1024 * 1024 // 50MB
-
-        /**
-         * Seconds before an IO connection times out.
-         */
         private const val TIMEOUT = 10L
         private const val OKHTTP_CACHE_DIR = "okHttp"
     }

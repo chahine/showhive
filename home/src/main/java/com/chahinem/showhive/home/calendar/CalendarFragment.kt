@@ -63,7 +63,9 @@ class CalendarFragment : BaseFragment() {
         }
     }
 
-    private fun onCalendarProgress(model: CalendarProgress) {}
+    private fun onCalendarProgress(model: CalendarProgress) {
+        // TODO: implement progress state
+    }
 
     private fun onCalendarFailure(model: CalendarFailure) {
         Timber.e(model.error)

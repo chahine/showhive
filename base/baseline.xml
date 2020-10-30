@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ClassOrdering:BaseFragment.kt$BaseFragment$abstract fun setUpDependencyInjection()</ID>
+    <ID>TooManyFunctions:RvAdapter.kt$RvAdapter&lt;E : RvItem&gt; : Adapter</ID>
+    <ID>UseCheckOrError:RvAdapter.kt$RvAdapter$throw IllegalStateException("cant find delegate for view type #$viewType")</ID>
+  </CurrentIssues>
+</SmellBaseline>
