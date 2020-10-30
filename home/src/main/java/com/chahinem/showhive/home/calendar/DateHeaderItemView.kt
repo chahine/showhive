@@ -42,6 +42,7 @@ class DateHeaderItemView {
             }
         }
 
+        @Suppress("MagicNumber")
         private fun getDayOfMonthSuffix(n: Int): String {
             if (n in 11..13) {
                 return "th"

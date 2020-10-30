@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<SmellBaseline>
-  <ManuallySuppressedIssues></ManuallySuppressedIssues>
-  <CurrentIssues>
-    <ID>ComplexInterface:TraktApi.kt$TraktApi</ID>
-    <ID>TooManyFunctions:TraktApi.kt$TraktApi</ID>
-  </CurrentIssues>
-</SmellBaseline>

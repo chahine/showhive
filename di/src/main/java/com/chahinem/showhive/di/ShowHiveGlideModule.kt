@@ -13,11 +13,16 @@ import okhttp3.OkHttpClient
 
 @GlideModule
 class ShowHiveGlideModule : LibraryGlideModule() {
+
+    companion object {
+        private const val TIMEOUT = 15L
+    }
+
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         val client = OkHttpClient.Builder()
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .readTimeout(15, TimeUnit.SECONDS)
-            .writeTimeout(15, TimeUnit.SECONDS)
+            .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+            .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
             .build()
 
         val factory = OkHttpUrlLoader.Factory(client)
