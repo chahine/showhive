@@ -16,6 +16,8 @@ buildscript {
 
 plugins {
     id 'com.github.ben-manes.versions' version '0.33.0'
+    id 'com.diffplug.spotless' version '5.7.0'
+    id 'io.gitlab.arturbosch.detekt' version '1.14.2'
 }
 
 allprojects {
@@ -28,8 +30,38 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+subprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+
+    apply from: rootProject.file('detekt.gradle')
+    apply plugin: 'com.diffplug.spotless'
+
+    spotless {
+        kotlin {
+            target '**/*.kt'
+            ktlint()
+            trimTrailingWhitespace()
+            indentWithSpaces()
+            endWithNewline()
+        }
+        kotlinGradle {
+            target '*.gradle.kts'
+            indentWithSpaces()
+            trimTrailingWhitespace()
+            endWithNewline()
+            ktlint()
+        }
+        format 'xml', {
+            target '**/*.xml'
+            indentWithSpaces()
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
+    }
 }
 
 task mockitoExtensions {

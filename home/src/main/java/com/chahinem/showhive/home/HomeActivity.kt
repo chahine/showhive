@@ -8,17 +8,17 @@ import com.chahinem.showhive.home.calendar.CalendarFragment
 import com.chahinem.showhive.home.discover.DiscoverFragment
 import com.chahinem.showhive.home.profile.ProfileFragment
 import com.jakewharton.rxbinding4.material.itemSelections
-import kotlinx.android.synthetic.main.activity_home.*
-import timber.log.Timber
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_home.bottomNavigationView
+import timber.log.Timber
 
 class HomeActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
 
-    override fun getLayoutId() = R.layout.activity_home
-
     lateinit var component: ActivityComponent
+
+    override fun getLayoutId() = R.layout.activity_home
 
     override fun setUpDependencyInjection() {
         component = DaggerActivityComponent.builder()
@@ -32,10 +32,7 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        if (!prefs.contains("access_token")
-            && (!prefs.contains("splash_skipped")
-                    || !prefs.getBoolean("splash_skipped", false))
-        ) {
+        if (!prefs.contains("access_token") && !prefs.getBoolean("splash_skipped", false)) {
             router.splash()
         }
 

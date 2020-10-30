@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.preference.PreferenceManager
 import com.chahinem.trakt.entities.AccessToken
 import com.squareup.moshi.Moshi
+import java.io.IOException
 import okhttp3.Authenticator
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
-import java.io.IOException
 
 class TraktAuthenticator(
     context: Context,
@@ -53,10 +53,10 @@ class TraktAuthenticator(
         // not a trakt API endpoint (possibly trakt OAuth or other API), give up.
         // failed 2 times, give up.
         // have no refresh token, give up.
-        when {
-            TraktV2.API_HOST != response.request.url.host -> return null
-            responseCount(response) >= 2 -> return null
-            refreshToken.isNullOrEmpty() -> return null
+        return when {
+            TraktV2.API_HOST != response.request.url.host -> null
+            responseCount(response) >= 2 -> null
+            refreshToken.isNullOrEmpty() -> null
 
             else -> {
                 // try to refresh the access token with the refresh token
@@ -69,7 +69,7 @@ class TraktAuthenticator(
                 refreshToken = refreshResponse.body()!!.refreshToken
 
                 // retry request
-                return response.request.newBuilder()
+                response.request.newBuilder()
                     .header(TraktV2.HEADER_AUTHORIZATION, "Bearer " + accessToken)
                     .build()
             }

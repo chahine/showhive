@@ -12,10 +12,10 @@ import com.chahinem.showhive.home.calendar.CalendarEvent.LoadCalendar
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarCardSuccess
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahinem.showhive.home.calendar.CalendarModel.CalendarProgress
-import kotlinx.android.synthetic.main.fragment_calendar.*
-import timber.log.Timber
 import java.time.ZonedDateTime
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_calendar.list
+import timber.log.Timber
 
 class CalendarFragment : BaseFragment() {
 
@@ -63,7 +63,9 @@ class CalendarFragment : BaseFragment() {
         }
     }
 
-    private fun onCalendarProgress(model: CalendarProgress) {}
+    private fun onCalendarProgress(model: CalendarProgress) {
+        // TODO: implement progress state
+    }
 
     private fun onCalendarFailure(model: CalendarFailure) {
         Timber.e(model.error)
@@ -74,8 +76,8 @@ class CalendarFragment : BaseFragment() {
         val now = ZonedDateTime.now()
         Handler().post {
             list.scrollToPosition(model.items.indexOfFirst {
-                it is EpisodeItemView.Item && it.entry.firstAired.isAfter(now)
-                        || it is DateHeaderItemView.Item && (it.dateTime.isAfter(now.toLocalDate()))
+                it is EpisodeItemView.Item && it.entry.firstAired.isAfter(now) ||
+                        it is DateHeaderItemView.Item && (it.dateTime.isAfter(now.toLocalDate()))
             })
         }
     }

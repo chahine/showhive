@@ -2,14 +2,14 @@ package com.chahinem.tmdb.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.time.ZonedDateTime
 
 @JsonClass(generateAdapter = true)
 class TvSeason(
     val id: Int? = null,
     @Json(name = "poster_path") val posterPath: String? = null,
     @Json(name = "season_number") val seasonNumber: Int? = null,
-    val _id: String? = null,
-    // val air_date: ZonedDateTime? = null,
+    @Json(name = "air_date") val airDate: ZonedDateTime? = null,
     val episodes: List<TvEpisode>? = null,
     val name: String? = null,
     val overview: String? = null,

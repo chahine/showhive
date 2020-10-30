@@ -13,6 +13,10 @@ import dagger.Provides
 @Module
 class DataModule {
 
+    companion object {
+        private const val HEAP_TARGET = 1024 * 1024 / 4
+    }
+
     @Provides
     @PerApp
     @CacheSize
@@ -20,7 +24,7 @@ class DataModule {
         val am = app.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val memoryClass = am.memoryClass
         // Target ~25% of the available heap.
-        return 1024 * 1024 * memoryClass / 4
+        return HEAP_TARGET * memoryClass
     }
 
     @Provides

@@ -5,20 +5,16 @@ import com.chahinem.showhive.qualifiers.PerApp
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
-import okhttp3.Cache
-import okhttp3.OkHttpClient
 import java.io.File
 import java.util.concurrent.TimeUnit
+import okhttp3.Cache
+import okhttp3.OkHttpClient
 
 @Module
 class ApiModule {
 
     companion object {
         private const val DISK_CACHE_SIZE = 50L * 1024 * 1024 // 50MB
-
-        /**
-         * Seconds before an IO connection times out.
-         */
         private const val TIMEOUT = 10L
         private const val OKHTTP_CACHE_DIR = "okHttp"
     }
