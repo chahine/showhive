@@ -5,7 +5,7 @@ android {
     compileSdkVersion Versions.compileSdkVersion
 
     defaultConfig {
-        applicationId 'com.chahinem.showhive.app'
+        applicationId 'com.chahine.showhive.app'
 
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion

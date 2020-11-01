@@ -74,15 +74,15 @@
   public *;
 }
 
--keep public class com.chahinem.trakt.entities.** {
+-keep public class com.chahine.trakt.entities.** {
   public protected *;
 }
--dontwarn com.chahinem.trakt.entities.**
+-dontwarn com.chahine.trakt.entities.**
 
--keep public class com.chahinem.tmdb.entities.** {
+-keep public class com.chahine.tmdb.entities.** {
   public protected *;
 }
--dontwarn com.chahinem.tmdb.entities.**
+-dontwarn com.chahine.tmdb.entities.**
 
 -dontwarn android.arch.lifecycle.FullLifecycleObserver
 

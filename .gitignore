@@ -9,6 +9,7 @@
 ## Directory-based project format:
 
 # User-specific stuff:
+.idea/assetWizardSettings.xml
 .idea/compiler.xml
 .idea/misc.xml
 .idea/modules.xml

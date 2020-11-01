@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chahinem.showhive.show.ShowActivity">
+    tools:context="com.chahine.showhive.show.ShowActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
