@@ -153,8 +153,8 @@ interface TraktApi {
      */
     @GET("shows/popular")
     fun popular(
-        @Query("page") page: Int?,
-        @Query("limit") limit: Int?,
+        @Query("page") page: Int,
+        @Query("limit") limit: Int,
         @Query(value = "extended", encoded = true) extended: Extended
     ): Single<List<Show>>
 
@@ -166,8 +166,8 @@ interface TraktApi {
      */
     @GET("shows/trending")
     fun trending(
-        @Query("page") page: Int?,
-        @Query("limit") limit: Int?,
+        @Query("page") page: Int,
+        @Query("limit") limit: Int,
         @Query(value = "extended", encoded = true) extended: Extended
     ): Single<List<TrendingShow>>
 

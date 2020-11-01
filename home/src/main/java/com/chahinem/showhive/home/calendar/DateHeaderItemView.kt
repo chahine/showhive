@@ -2,15 +2,20 @@ package com.chahinem.showhive.home.calendar
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.chahinem.showhive.home.R
 import com.chahinem.showhive.home.R.string
+import com.chahinem.showhive.home.databinding.ItemCalendarDateHeaderBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter.ofPattern
 import javax.inject.Inject
 
 class DateHeaderItemView {
+
+    companion object {
+        private val DATE_FORMATTER = ofPattern("EEEE, MMMM d")
+        private val DAY_FORMATTER = ofPattern("d")
+    }
 
     class Delegate @Inject constructor() : CalendarAdapter.Delegate {
 
@@ -27,9 +32,9 @@ class DateHeaderItemView {
 
     class Holder(itemView: View) : ViewHolder(itemView) {
 
-        private val header = itemView.findViewById<TextView>(R.id.header)
+        private val binding = ItemCalendarDateHeaderBinding.bind(itemView)
 
-        fun bind(item: Item) {
+        fun bind(item: Item) = with(binding) {
             val now = LocalDate.now()
             val localDate = item.dateTime
 
@@ -58,10 +63,5 @@ class DateHeaderItemView {
 
     class Item(val dateTime: LocalDate) : CalendarAdapter.Item {
         override fun itemViewType() = CalendarAdapter.DATE_HEADER
-    }
-
-    companion object {
-        private val DATE_FORMATTER = ofPattern("EEEE, MMMM d")
-        private val DAY_FORMATTER = ofPattern("d")
     }
 }

@@ -27,6 +27,10 @@ android {
         textOutput 'stdout'
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
