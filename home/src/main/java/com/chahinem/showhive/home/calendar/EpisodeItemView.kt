@@ -2,9 +2,9 @@ package com.chahinem.showhive.home.calendar
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.chahinem.showhive.home.R
+import com.chahinem.showhive.home.databinding.ItemCalendarEpisodeBinding
 import com.chahinem.trakt.entities.CalendarShowEntry
 import javax.inject.Inject
 
@@ -24,11 +24,9 @@ class EpisodeItemView {
 
     class Holder(itemView: View) : ViewHolder(itemView) {
 
-        private val showTitle = itemView.findViewById<TextView>(R.id.showTitle)
-        private val episodeNumber = itemView.findViewById<TextView>(R.id.episodeNumber)
-        private val episodeTitle = itemView.findViewById<TextView>(R.id.episodeTitle)
+        private val binding = ItemCalendarEpisodeBinding.bind(itemView)
 
-        fun bind(item: Item) {
+        fun bind(item: Item) = with(binding) {
             showTitle.text = item.entry.show.title
             episodeNumber.text = itemView.resources.getString(
                 R.string.episode_number_format,
