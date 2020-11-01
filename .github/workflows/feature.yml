@@ -33,7 +33,7 @@ jobs:
           curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
       - name: Versionning
         run: |
-          echo "BUILD_NUMBER = $(git rev-list --count $(git rev-parse --abbrev-ref HEAD))" > version.properties
+          echo "BUILD_NUMBER = $(git rev-list --count develop ^origin/master)" > version.properties
           echo "VERSION = $(git rev-parse --abbrev-ref HEAD)" >> version.properties
           echo "-->"
           cat version.properties
