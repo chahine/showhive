@@ -34,8 +34,8 @@ jobs:
       - name: Versionning
         run: |
           echo ${{ GITHUB_HEAD_REF }}
-          echo "BUILD_NUMBER = $(git rev-list --count ${{ GITHUB_HEAD_REF }})" > version.properties
-          echo "VERSION = ${{ GITHUB_HEAD_REF }}" >> version.properties
+          echo "BUILD_NUMBER = $(git rev-list --count ${GITHUB_REF##*/})" > version.properties
+          echo "VERSION = ${GITHUB_REF##*/}" >> version.properties
           echo "-->"
           cat version.properties
           echo "<--"
