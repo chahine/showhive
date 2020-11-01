@@ -4,8 +4,6 @@ apply from: rootProject.file('module.gradle')
 dependencies {
     implementation project(':base')
 
-    implementation Dependencies.supportLibs
-
     kapt Dependencies.archAP
     kapt Dependencies.daggerCompiler
 }
