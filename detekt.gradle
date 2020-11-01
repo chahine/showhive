@@ -4,7 +4,6 @@ detekt {
     failFast = true
     buildUponDefaultConfig = true
     config = files(rootProject.file("detekt.yml"))
-    baseline = file("baseline.xml")
     parallel = true
     reports {
         html.enabled = true

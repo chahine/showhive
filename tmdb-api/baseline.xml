@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<SmellBaseline>
-  <ManuallySuppressedIssues></ManuallySuppressedIssues>
-  <CurrentIssues>
-    <ID>ComplexInterface:TmdbApi.kt$TmdbApi</ID>
-    <ID>MethodOverloading:TmdbApi.kt$TmdbApi</ID>
-    <ID>TooManyFunctions:TmdbApi.kt$TmdbApi</ID>
-  </CurrentIssues>
-</SmellBaseline>

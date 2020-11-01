@@ -26,6 +26,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
+@Suppress("ComplexInterface", "MethodOverloading", "TooManyFunctions")
 interface TmdbApi {
 
     /**
