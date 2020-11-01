@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.chahinem.trakt.api">
+        package="com.chahine.trakt.api">
 
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
