@@ -31,8 +31,12 @@ jobs:
           curl -X POST https://content.dropboxapi.com/2/files/download --header "Authorization: Bearer ${{ secrets.DROPBOX_SHOWHIVE }}" --header "Dropbox-API-Arg: {\"path\": \"/keystores/debug.jks\"}" > keystores/debug.jks
       - name: Versionning
         run: |
-          echo "BUILD_NUMBER = $(git rev-list --count origin/develop)" > version.properties
-          echo "VERSION = develop" >> version.properties
-      - name: Bundle Debug
+          echo "BUILD_NUMBER = $GITHUB_RUN_NUMBER" > version.properties
+          echo "VERSION = $(git rev-parse --abbrev-ref HEAD)" >> version.properties
+      - name: Assemble Debug
         run: |
-          ./gradlew :app:bundleDebug
+          ./gradlew :app:assembleDebug
+      - uses: actions/upload-artifact@v2
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/
