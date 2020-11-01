@@ -40,6 +40,8 @@ complexity:
     ignoreSingleWhenExpression: true
   MethodOverloading:
     active: true
+  LongParameterList:
+    ignoreAnnotated: ["JsonClass"]
 
 exceptions:
   NotImplementedDeclaration:
@@ -106,7 +108,7 @@ potential-bugs:
 
 style:
   ClassOrdering:
-    active: true
+    active: false
   CollapsibleIfStatements:
     active: true
   EqualsNullCall:

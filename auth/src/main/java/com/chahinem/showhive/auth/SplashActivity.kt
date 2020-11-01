@@ -16,6 +16,10 @@ import timber.log.Timber
 
 class SplashActivity : BaseActivity() {
 
+    companion object {
+        private const val WINDOW_DURATION = 300L
+    }
+
     @Inject lateinit var router: Router
     @Inject lateinit var apiClient: TraktApiClient
 
@@ -37,12 +41,12 @@ class SplashActivity : BaseActivity() {
         // FIXME: dispose of these
         connectBtn
             .clicks()
-            .throttleFirst(300, MILLISECONDS)
+            .throttleFirst(WINDOW_DURATION, MILLISECONDS)
             .subscribe({ router.connectWithTrakt() }, Timber::e)
 
         skipBtn
             .clicks()
-            .throttleFirst(300, MILLISECONDS)
+            .throttleFirst(WINDOW_DURATION, MILLISECONDS)
             .doOnNext {
                 PreferenceManager.getDefaultSharedPreferences(this)
                     .edit()

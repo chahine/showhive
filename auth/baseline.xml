@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<SmellBaseline>
-  <ManuallySuppressedIssues></ManuallySuppressedIssues>
-  <CurrentIssues>
-    <ID>MagicNumber:SplashActivity.kt$SplashActivity$300</ID>
-  </CurrentIssues>
-</SmellBaseline>

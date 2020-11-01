@@ -11,8 +11,7 @@ open class RvAdapter<E : RvItem>(private val delegates: Map<Int, RvDelegate<E, V
     protected val items: MutableList<E> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return delegates[viewType]?.create(parent)
-            ?: throw IllegalStateException("cant find delegate for view type #$viewType")
+        return delegates[viewType]?.create(parent) ?: error("cant find delegate for view type #$viewType")
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -31,11 +30,7 @@ open class RvAdapter<E : RvItem>(private val delegates: Map<Int, RvDelegate<E, V
 
     override fun getItemViewType(position: Int) = getItemAt(position).itemViewType()
 
-    fun hasData() = items.size > 0
-
     open fun getItemAt(adapterPosition: Int) = items[adapterPosition]
-
-    fun adapterData(): List<E> = items.toList()
 
     open fun swapData(data: Collection<E>) {
         items.clear()

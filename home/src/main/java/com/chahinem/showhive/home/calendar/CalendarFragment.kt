@@ -57,13 +57,13 @@ class CalendarFragment : BaseFragment() {
     private fun onModelEvent(model: CalendarModel) {
         Timber.d("--> model: ${model.javaClass.simpleName}")
         when (model) {
-            is CalendarProgress -> onCalendarProgress(model)
+            is CalendarProgress -> onCalendarProgress()
             is CalendarFailure -> onCalendarFailure(model)
             is CalendarCardSuccess -> onCalendarCardSuccess(model)
         }
     }
 
-    private fun onCalendarProgress(model: CalendarProgress) {
+    private fun onCalendarProgress() {
         // TODO: implement progress state
     }
 

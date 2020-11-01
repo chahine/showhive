@@ -13,7 +13,9 @@ class CalendarEmptyItemView {
 
         override fun create(parent: ViewGroup) = Holder(itemView(parent))
 
-        override fun bind(item: CalendarAdapter.Item, holder: ViewHolder) {}
+        override fun bind(item: CalendarAdapter.Item, holder: ViewHolder) {
+            // TODO: implement view
+        }
     }
 
     class Holder(itemView: View) : ViewHolder(itemView)
