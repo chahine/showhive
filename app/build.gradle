@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 apply from: rootProject.file('module.gradle')
 
 android {
     compileSdkVersion Versions.compileSdkVersion
 
     defaultConfig {
-        applicationId 'com.chahine.showhive.app'
+        applicationId 'com.chahine.showhive'
 
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
@@ -76,8 +78,4 @@ dependencies {
     implementation project(':base')
 
     Dependencies.featureProjects.each { implementation project("$it") }
-
 }
-
-// TODO: uncomment once firebase project is setup
-// apply plugin: 'com.google.gms.google-services'

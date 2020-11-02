@@ -7,7 +7,6 @@ import Versions.kotlinVersion
 import Versions.leakCanaryVersion
 import Versions.moshiVersion
 import Versions.okhttpVersion
-import Versions.playVersion
 import Versions.retrofitVersion
 import Versions.rxandroidVersion
 import Versions.rxbindingVersion
@@ -30,12 +29,9 @@ object Dependencies {
     // AndroidX
     val androidXpreference = "androidx.preference:preference:1.1.1"
 
-    // Firebase
-    val firebaseConfig = "com.google.firebase:firebase-config:$playVersion"
-    val firebaseCore = "com.google.firebase:firebase-core:18.0.0"
-    val firebaseCrash = "com.google.firebase:firebase-crash:16.2.1"
-    val firebasePerf = "com.google.firebase:firebase-perf:19.0.9"
-    val firebaseMessaging = "com.google.firebase:firebase-messaging:$playVersion"
+    val firebaseBom = "com.google.firebase:firebase-bom:26.0.0"
+    val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+    val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
 
     // Architecture Components
     val archCompiler = "android.arch.lifecycle:compiler:$archVersion"
@@ -125,12 +121,6 @@ object Dependencies {
         recyclerviewV7,
         supportAnnotations,
         supportV4
-    )
-
-    val firebase = listOf(
-        firebaseCore,
-        firebaseCrash,
-        firebasePerf
     )
 
     val testLibs = listOf(jUnit, mockito, hamcrest)

@@ -1,14 +1,10 @@
 package com.chahine.showhive.base
 
-import com.google.firebase.crash.FirebaseCrash
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import timber.log.Timber
 
 class FirebaseTree : Timber.Tree() {
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-        FirebaseCrash.log(message)
-
-        t?.let {
-            FirebaseCrash.report(it)
-        }
+        FirebaseCrashlytics.getInstance().log(message)
     }
 }

@@ -26,5 +26,8 @@ dependencies {
     api Dependencies.timber
     api Dependencies.kotlinStdlib
 
-    api Dependencies.firebase
+    // Firebase
+    implementation platform(Dependencies.firebaseBom)
+    implementation Dependencies.firebaseCrashlytics
+    implementation Dependencies.firebaseAnalytics
 }
