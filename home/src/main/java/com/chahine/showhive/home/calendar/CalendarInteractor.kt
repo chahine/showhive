@@ -23,19 +23,20 @@ class CalendarInteractor @Inject constructor(private val traktApi: TraktApi) {
                 val startDate = ZonedDateTime.now().minusDays(DAY_WINDOW.toLong()).format(DAY_FORMATTER)
                 traktApi
                     .myShows(startDate, DAY_WINDOW * 2)
-                    .flattenAsObservable { it }
-                    .groupBy { it.firstAired?.toLocalDate() }
-                    .filter { it.key != null }
-                    .concatMap { group ->
-                        group
-                            .map { EpisodeItemView.Item(it) }
-                            .cast(CalendarAdapter.Item::class.java)
-                            .startWithItem(DateHeaderItemView.Item(group.key!!))
+                    .map { episodes ->
+                        if (episodes.isEmpty()) {
+                            return@map CalendarEmptyItemView.Item()
+                        }
+                        val items = mutableListOf<CalendarAdapter.Item>()
+                        episodes
+                            .groupBy { it.firstAired.toLocalDate() }
+                            .forEach { (date, episode) ->
+                                items += DateHeaderItemView.Item(date)
+                                items += episode.map { EpisodeItemView.Item(it) }
+                            }
+                        CalendarCardSuccess(items)
                     }
-                    .defaultIfEmpty(CalendarEmptyItemView.Item())
-                    .toList()
                     .toObservable()
-                    .map { CalendarCardSuccess(it) }
                     .cast(CalendarModel::class.java)
                     .onErrorReturn { CalendarFailure(it) }
                     .startWithItem(CalendarProgress)
