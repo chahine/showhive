@@ -1,10 +1,10 @@
 package com.chahine.showhive.home
 
+import com.chahine.showhive.base.rv.RvDiffUtil
 import com.chahine.showhive.home.calendar.CalendarAdapter
 import com.chahine.showhive.home.calendar.CalendarEmptyItemView
 import com.chahine.showhive.home.calendar.DateHeaderItemView
 import com.chahine.showhive.home.calendar.EpisodeItemView
-import com.chahine.showhive.base.rv.RvDiffUtil
 import dagger.Module
 import dagger.Provides
 

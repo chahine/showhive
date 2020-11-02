@@ -15,8 +15,8 @@ import Versions.rxjavaVersion
 object Dependencies {
 
     // AndroidX
-    val appcompatV7 = "androidx.appcompat:appcompat:1.2.0"
-    val recyclerviewV7 = "androidx.recyclerview:recyclerview:1.1.0"
+    val appcompat = "androidx.appcompat:appcompat:1.2.0"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
     val multidex = "androidx.multidex:multidex:2.0.1"
     val preference = "androidx.preference:preference-ktx:1.1.1"
@@ -105,8 +105,8 @@ object Dependencies {
     val archAP = listOf(archCompiler)
 
     val androidX = listOf(
-        appcompatV7,
-        recyclerviewV7,
+        appcompat,
+        recyclerview,
         constraintLayout,
         multidex,
         preference,
