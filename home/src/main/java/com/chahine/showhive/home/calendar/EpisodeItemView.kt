@@ -37,7 +37,7 @@ class EpisodeItemView {
         }
     }
 
-    class Item(val entry: CalendarShowEntry) : CalendarAdapter.Item {
+    data class Item(val entry: CalendarShowEntry) : CalendarAdapter.Item {
         override fun itemViewType() = CalendarAdapter.EPISODE
     }
 }

@@ -20,7 +20,7 @@ class CalendarEmptyItemView {
 
     class Holder(itemView: View) : ViewHolder(itemView)
 
-    class Item : CalendarAdapter.Item {
+    object Item : CalendarAdapter.Item {
         override fun itemViewType() = CalendarAdapter.EMPTY
     }
 }

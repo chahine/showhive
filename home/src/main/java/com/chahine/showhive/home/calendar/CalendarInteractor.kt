@@ -25,7 +25,7 @@ class CalendarInteractor @Inject constructor(private val traktApi: TraktApi) {
                     .myShows(startDate, DAY_WINDOW * 2)
                     .map { episodes ->
                         if (episodes.isEmpty()) {
-                            return@map CalendarEmptyItemView.Item()
+                            return@map CalendarEmptyItemView.Item
                         }
                         val items = mutableListOf<CalendarAdapter.Item>()
                         episodes

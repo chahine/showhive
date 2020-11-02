@@ -61,7 +61,7 @@ class DateHeaderItemView {
         }
     }
 
-    class Item(val dateTime: LocalDate) : CalendarAdapter.Item {
+    data class Item(val dateTime: LocalDate) : CalendarAdapter.Item {
         override fun itemViewType() = CalendarAdapter.DATE_HEADER
     }
 }

@@ -72,7 +72,7 @@ class CalendarFragment : BaseFragment() {
     }
 
     private fun onCalendarCardSuccess(model: CalendarCardSuccess) {
-        adapter.swapData(model.items)
+        adapter.submitList(model.items)
         val now = ZonedDateTime.now()
         Handler().post {
             list.scrollToPosition(model.items.indexOfFirst {
