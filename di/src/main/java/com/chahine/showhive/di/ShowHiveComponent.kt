@@ -1,6 +1,7 @@
 package com.chahine.showhive.di
 
 import android.app.Application
+import android.content.res.Resources
 import android.view.inputmethod.InputMethodManager
 import com.chahine.showhive.qualifiers.PerApp
 import com.chahine.tmdb.api.TmdbApi
@@ -21,6 +22,7 @@ import dagger.Component
 )
 interface ShowHiveComponent {
     fun inputMethodService(): InputMethodManager
+    fun resources(): Resources
 
     fun tmdbApi(): TmdbApi
     fun traktApi(): TraktApi
@@ -28,6 +30,7 @@ interface ShowHiveComponent {
     @Component.Builder
     interface Builder {
         fun apiModule(module: ApiModule): Builder
+
         @BindsInstance
         fun app(app: Application): Builder
         fun dataModule(module: DataModule): Builder

@@ -20,8 +20,7 @@ class CalendarInteractor @Inject constructor(private val traktApi: TraktApi) {
     fun calendar(): ObservableTransformer<in CalendarEvent, out CalendarModel> {
         return ObservableTransformer { event ->
             event.switchMap {
-                val startDate =
-                    ZonedDateTime.now().minusDays(DAY_WINDOW.toLong()).format(DAY_FORMATTER)
+                val startDate = ZonedDateTime.now().minusDays(DAY_WINDOW.toLong()).format(DAY_FORMATTER)
                 traktApi
                     .myShows(startDate, DAY_WINDOW * 2)
                     .flattenAsObservable { it }

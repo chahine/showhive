@@ -7,7 +7,6 @@ abstract class CoreApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         Timber.plant(Timber.DebugTree())
     }
 }
