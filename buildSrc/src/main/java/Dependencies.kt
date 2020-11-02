@@ -32,6 +32,7 @@ object Dependencies {
     val firebaseBom = "com.google.firebase:firebase-bom:26.0.0"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
     val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
+    val firebasePerf = "com.google.firebase:firebase-perf-ktx"
 
     // Architecture Components
     val archCompiler = "android.arch.lifecycle:compiler:$archVersion"
