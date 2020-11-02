@@ -7,7 +7,7 @@ dependencies {
 
     // Android
     api Dependencies.arch
-    api Dependencies.supportLibs
+    api Dependencies.androidX
 
     // RX
     api Dependencies.rx

@@ -1,10 +1,10 @@
 package com.chahine.showhive.home
 
 import com.chahine.showhive.home.calendar.CalendarAdapter
-import com.chahine.showhive.home.calendar.CalendarDiffUtil
 import com.chahine.showhive.home.calendar.CalendarEmptyItemView
 import com.chahine.showhive.home.calendar.DateHeaderItemView
 import com.chahine.showhive.home.calendar.EpisodeItemView
+import com.chahine.showhive.base.rv.RvDiffUtil
 import dagger.Module
 import dagger.Provides
 
@@ -12,7 +12,7 @@ import dagger.Provides
 class ActivityModule {
 
     @Provides
-    fun provideAdapter(diffUtil: CalendarDiffUtil): CalendarAdapter {
+    fun provideAdapter(diffUtil: RvDiffUtil<CalendarAdapter.Item>): CalendarAdapter {
         return CalendarAdapter(
             diffUtil,
             mapOf(
