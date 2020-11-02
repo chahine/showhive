@@ -8,7 +8,7 @@ dependencies {
 
     compileOnly Dependencies.javax
 
-    api Dependencies.androidXpreference
+    api Dependencies.preference
     api Dependencies.timber
     api Dependencies.api
 }

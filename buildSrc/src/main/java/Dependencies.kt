@@ -1,4 +1,3 @@
-import Versions.archVersion
 import Versions.chuckVersion
 import Versions.daggerVersion
 import Versions.glideVersion
@@ -11,35 +10,27 @@ import Versions.retrofitVersion
 import Versions.rxandroidVersion
 import Versions.rxbindingVersion
 import Versions.rxjavaVersion
-import Versions.supportLibraryVersion
 
 @Suppress("MayBeConstant", "MemberVisibilityCanBePrivate", "unused")
 object Dependencies {
 
-    // Support Libraries
-    val appcompatV7 = "com.android.support:appcompat-v7:$supportLibraryVersion"
-    val design = "com.android.support:design:$supportLibraryVersion"
-    val recyclerviewV7 = "com.android.support:recyclerview-v7:$supportLibraryVersion"
-    val supportAnnotations = "com.android.support:support-annotations:$supportLibraryVersion"
-    val supportV4 = "com.android.support:support-v4:$supportLibraryVersion"
-    val cardView = "com.android.support:cardview-v7:$supportLibraryVersion"
-    val constraintLayout = "com.android.support.constraint:constraint-layout:2.0.2"
-    val multidex = "com.android.support:multidex:1.0.3"
-
     // AndroidX
-    val androidXpreference = "androidx.preference:preference:1.1.1"
+    val appcompat = "androidx.appcompat:appcompat:1.2.0"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
+    val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
+    val multidex = "androidx.multidex:multidex:2.0.1"
+    val preference = "androidx.preference:preference-ktx:1.1.1"
+    val archCompiler = "androidx.lifecycle:lifecycle-compiler:2.2.0"
+    val archEx = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    val archJava = "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    val archRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    val archViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    val material = "com.google.android.material:material:1.2.0"
 
     val firebaseBom = "com.google.firebase:firebase-bom:26.0.0"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
     val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
     val firebasePerf = "com.google.firebase:firebase-perf-ktx"
-
-    // Architecture Components
-    val archCompiler = "android.arch.lifecycle:compiler:$archVersion"
-    val archEx = "android.arch.lifecycle:extensions:$archVersion"
-    val archJava = "android.arch.lifecycle:common-java8:$archVersion"
-    val archRuntime = "android.arch.lifecycle:runtime:$archVersion"
-    val archViewModel = "android.arch.lifecycle:viewmodel:$archVersion"
 
     // Api
     val okio = "com.squareup.okio:okio:2.9.0"
@@ -113,15 +104,13 @@ object Dependencies {
 
     val archAP = listOf(archCompiler)
 
-    val supportLibs = listOf(
-        appcompatV7,
-        cardView,
+    val androidX = listOf(
+        appcompat,
+        recyclerview,
         constraintLayout,
-        design,
         multidex,
-        recyclerviewV7,
-        supportAnnotations,
-        supportV4
+        preference,
+        material
     )
 
     val testLibs = listOf(jUnit, mockito, hamcrest)
