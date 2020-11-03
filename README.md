@@ -9,6 +9,8 @@
 
 Small Trakt client. WIP
 
+![](.images/screenshot-1.png "Screen 1") ![](.images/screenshot-2.png "Screen 2")
+
 # Project Setup
 
 ## Cloning
