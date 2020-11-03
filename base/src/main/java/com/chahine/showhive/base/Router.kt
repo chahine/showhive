@@ -41,6 +41,7 @@ class Router @Inject constructor(private val activity: Activity) {
     }
 
     fun splash() {
+        activity.finishAffinity()
         activity.startActivity(getIntentForPath(setOf(res.getString(R.string.path_splash))))
     }
 

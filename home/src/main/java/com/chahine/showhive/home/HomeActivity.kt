@@ -10,7 +10,9 @@ import com.chahine.showhive.home.calendar.CalendarFragment
 import com.chahine.showhive.home.discover.DiscoverFragment
 import com.chahine.showhive.home.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.jakewharton.rxbinding4.material.itemSelections
 import javax.inject.Inject
+import timber.log.Timber
 
 class HomeActivity : BaseActivity() {
 
@@ -38,11 +40,11 @@ class HomeActivity : BaseActivity() {
 
         val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        navView.setupWithNavController(navController)
+        navView.setupWithNavController(findNavController(R.id.nav_host_fragment))
 
-//        bottomNavigationView
+//        navView
 //            .itemSelections()
+//            .take(0) // remove this
 //            .distinctUntilChanged()
 //            .subscribe({
 //                val transaction = supportFragmentManager.beginTransaction()
