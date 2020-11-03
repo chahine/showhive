@@ -9,6 +9,10 @@
 
 Small Trakt client. WIP
 
+Light Theme                    |  Dark Theme
+:-----------------------------:|:------------------------------:
+![](.images/screenshot-1.png)  |  ![](.images/screenshot-2.png)
+
 # Project Setup
 
 ## Cloning
