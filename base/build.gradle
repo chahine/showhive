@@ -6,7 +6,6 @@ dependencies {
     api project(':di')
 
     // Android
-    api Dependencies.arch
     api Dependencies.androidX
 
     // RX

@@ -10,4 +10,8 @@
     <string name="discover_fragment">Discover Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
     <string name="empty_state">empty state</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
