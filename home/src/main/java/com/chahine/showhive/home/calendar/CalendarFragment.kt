@@ -1,7 +1,6 @@
 package com.chahine.showhive.home.calendar
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chahine.showhive.base.BaseFragment
@@ -82,11 +81,9 @@ class CalendarFragment : BaseFragment() {
     private fun onCalendarCardSuccess(model: CalendarCardSuccess) {
         adapter.submitList(model.items)
         val now = ZonedDateTime.now()
-        Handler().post {
-            list.scrollToPosition(model.items.indexOfFirst {
-                it is EpisodeItemView.Item && it.entry.firstAired.isAfter(now) ||
-                        it is DateHeaderItemView.Item && (it.dateTime.isAfter(now.toLocalDate()))
-            })
-        }
+        list.scrollToPosition(model.items.indexOfFirst {
+            it is DateHeaderItemView.Item &&
+                    (it.dateTime.isAfter(now.toLocalDate()) || it.dateTime == now.toLocalDate())
+        })
     }
 }
