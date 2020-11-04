@@ -1,7 +1,7 @@
 package com.chahine.showhive.home
 
 import android.os.Bundle
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.chahine.showhive.base.BaseActivity
@@ -34,7 +34,7 @@ class HomeActivity : BaseActivity() {
         }
 
         val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
-
-        navView.setupWithNavController(findNavController(R.id.nav_host_fragment))
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navView.setupWithNavController(navHostFragment.navController)
     }
 }
