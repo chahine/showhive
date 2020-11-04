@@ -12,6 +12,7 @@ import com.chahine.showhive.home.calendar.CalendarEvent.LoadCalendar
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarCardSuccess
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarProgress
+import com.google.android.material.transition.MaterialFadeThrough
 import java.time.ZonedDateTime
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_calendar.list
@@ -28,6 +29,13 @@ class CalendarFragment : BaseFragment() {
 
     override fun setUpDependencyInjection() {
         (requireActivity() as HomeActivity).component.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
