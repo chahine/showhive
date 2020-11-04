@@ -12,7 +12,7 @@ import com.chahine.showhive.home.calendar.CalendarModel.CalendarCardSuccess
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarProgress
 import com.google.android.material.transition.MaterialFadeThrough
-import java.time.ZonedDateTime
+import java.time.LocalDate
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_calendar.list
 import timber.log.Timber
@@ -80,10 +80,9 @@ class CalendarFragment : BaseFragment() {
 
     private fun onCalendarCardSuccess(model: CalendarCardSuccess) {
         adapter.submitList(model.items)
-        val now = ZonedDateTime.now()
+        val today = LocalDate.now()
         list.scrollToPosition(model.items.indexOfFirst {
-            it is DateHeaderItemView.Item &&
-                    (it.dateTime.isAfter(now.toLocalDate()) || it.dateTime == now.toLocalDate())
+            it is DateHeaderItemView.Item && (it.dateTime.isAfter(today) || it.dateTime == today)
         })
     }
 }
