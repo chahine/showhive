@@ -3,9 +3,9 @@ package com.chahine.showhive.base
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.LayoutRes
-import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseActivity : FragmentActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     protected val appComponent get() = (applicationContext as ShowHiveApp).component
 

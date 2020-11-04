@@ -7,7 +7,7 @@ dependencies {
     api project(':tmdb-api')
     api project(':trakt-api')
 
-    implementation Dependencies.archViewModel
+    implementation Dependencies.lifecycleViewmodel
 
     api Dependencies.dagger
     kapt Dependencies.daggerCompiler

@@ -1,16 +1,13 @@
 package com.chahine.showhive.home
 
 import android.os.Bundle
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
-import com.chahine.showhive.home.calendar.CalendarFragment
-import com.chahine.showhive.home.discover.DiscoverFragment
-import com.chahine.showhive.home.profile.ProfileFragment
-import com.jakewharton.rxbinding4.material.itemSelections
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
-import kotlinx.android.synthetic.main.activity_home.bottomNavigationView
-import timber.log.Timber
 
 class HomeActivity : BaseActivity() {
 
@@ -36,28 +33,8 @@ class HomeActivity : BaseActivity() {
             router.splash()
         }
 
-        bottomNavigationView
-            .itemSelections()
-            .distinctUntilChanged()
-            .subscribe({
-                val transaction = supportFragmentManager.beginTransaction()
-                val klass = FRAGMENT_ID_MAP[it.itemId]!!
-                val byTag = supportFragmentManager.findFragmentByTag(klass.simpleName)
-                supportFragmentManager.fragments.forEach { transaction.hide(it) }
-                if (byTag == null) {
-                    transaction.add(R.id.container, klass.newInstance(), klass.simpleName)
-                } else {
-                    transaction.show(byTag)
-                }
-                transaction.commitNowAllowingStateLoss()
-            }, Timber::e)
-    }
-
-    companion object {
-        private val FRAGMENT_ID_MAP = mapOf(
-            R.id.action_calendar to CalendarFragment::class.java,
-            R.id.action_discover to DiscoverFragment::class.java,
-            R.id.action_profile to ProfileFragment::class.java
-        )
+        val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navView.setupWithNavController(navHostFragment.navController)
     }
 }

@@ -1,7 +1,6 @@
 package com.chahine.showhive.home.calendar
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chahine.showhive.base.BaseFragment
@@ -12,7 +11,8 @@ import com.chahine.showhive.home.calendar.CalendarEvent.LoadCalendar
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarCardSuccess
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarProgress
-import java.time.ZonedDateTime
+import com.google.android.material.transition.MaterialFadeThrough
+import java.time.LocalDate
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_calendar.list
 import timber.log.Timber
@@ -28,6 +28,13 @@ class CalendarFragment : BaseFragment() {
 
     override fun setUpDependencyInjection() {
         (requireActivity() as HomeActivity).component.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,12 +80,9 @@ class CalendarFragment : BaseFragment() {
 
     private fun onCalendarCardSuccess(model: CalendarCardSuccess) {
         adapter.submitList(model.items)
-        val now = ZonedDateTime.now()
-        Handler().post {
-            list.scrollToPosition(model.items.indexOfFirst {
-                it is EpisodeItemView.Item && it.entry.firstAired.isAfter(now) ||
-                        it is DateHeaderItemView.Item && (it.dateTime.isAfter(now.toLocalDate()))
-            })
-        }
+        val today = LocalDate.now()
+        list.scrollToPosition(model.items.indexOfFirst {
+            it is DateHeaderItemView.Item && (it.dateTime.isAfter(today) || it.dateTime == today)
+        })
     }
 }
