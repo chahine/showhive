@@ -62,6 +62,7 @@ android {
         debug {
             applicationIdSuffix ".debug"
             signingConfig signingConfigs.debug
+            FirebasePerformance.instrumentationEnabled false
         }
         release {
             minifyEnabled true
