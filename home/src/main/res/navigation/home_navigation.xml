@@ -9,7 +9,7 @@
         android:id="@+id/navigation_calendar"
         android:name="com.chahine.showhive.home.calendar.CalendarFragment"
         android:label="@string/calendar"
-        tools:layout="@layout/fragment_calendar" >
+        tools:layout="@layout/fragment_calendar">
         <action
             android:id="@+id/action_navigation_calendar_to_navigation_discover"
             app:destination="@id/navigation_discover" />
@@ -22,7 +22,7 @@
         android:id="@+id/navigation_discover"
         android:name="com.chahine.showhive.home.discover.DiscoverFragment"
         android:label="@string/discover"
-        tools:layout="@layout/fragment_discover" >
+        tools:layout="@layout/fragment_discover">
         <action
             android:id="@+id/action_navigation_discover_to_navigation_calendar"
             app:destination="@id/navigation_calendar"
@@ -37,7 +37,7 @@
         android:id="@+id/navigation_profile"
         android:name="com.chahine.showhive.home.profile.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_navigation_profile_to_navigation_calendar"
             app:destination="@id/navigation_calendar" />
