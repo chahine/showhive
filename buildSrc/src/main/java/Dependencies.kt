@@ -4,7 +4,9 @@ import Versions.glideVersion
 import Versions.junitVersion
 import Versions.kotlinVersion
 import Versions.leakCanaryVersion
+import Versions.lifecycleVersion
 import Versions.moshiVersion
+import Versions.navVersion
 import Versions.okhttpVersion
 import Versions.retrofitVersion
 import Versions.rxandroidVersion
@@ -20,15 +22,15 @@ object Dependencies {
     val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
     val multidex = "androidx.multidex:multidex:2.0.1"
     val preference = "androidx.preference:preference-ktx:1.1.1"
-    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:2.2.0"
-    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:2.2.0"
-    val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
-    val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
+    val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     val material = "com.google.android.material:material:1.2.0"
-    val navigationFragment = "androidx.navigation:navigation-fragment-ktx:2.3.1"
-    val navigationUi = "androidx.navigation:navigation-ui-ktx:2.3.1"
+    val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    val navigationUi = "androidx.navigation:navigation-ui-ktx:$navVersion"
 
     val firebaseBom = "com.google.firebase:firebase-bom:26.0.0"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
