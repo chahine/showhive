@@ -14,7 +14,6 @@ dependencies {
 
     // Dagger
     api Dependencies.dagger
-    kapt Dependencies.daggerCompiler
 
     // Debugging Tools
     debugApi Dependencies.leakCanary

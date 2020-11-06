@@ -10,7 +10,6 @@ dependencies {
     implementation Dependencies.lifecycleViewmodel
 
     api Dependencies.dagger
-    kapt Dependencies.daggerCompiler
 
     api Dependencies.glide
     api Dependencies.glideOkHttp

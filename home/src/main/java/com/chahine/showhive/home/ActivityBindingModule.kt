@@ -9,21 +9,21 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-@Module
+//@Module
 interface ActivityBindingModule {
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(CalendarViewModel::class)
-    fun bindCalendarViewModel(vm: CalendarViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(DiscoverViewModel::class)
-    fun bindDiscoverViewModel(vm: DiscoverViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(ProfileViewModel::class)
-    fun bindProfileViewModel(vm: ProfileViewModel): ViewModel
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(CalendarViewModel::class)
+//    fun bindCalendarViewModel(vm: CalendarViewModel): ViewModel
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(DiscoverViewModel::class)
+//    fun bindDiscoverViewModel(vm: DiscoverViewModel): ViewModel
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(ProfileViewModel::class)
+//    fun bindProfileViewModel(vm: ProfileViewModel): ViewModel
 }

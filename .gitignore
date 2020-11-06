@@ -9,28 +9,9 @@
 ## Directory-based project format:
 
 # User-specific stuff:
-.idea/assetWizardSettings.xml
-.idea/compiler.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/runConfigurations.xml
-.idea/jarRepositories.xml
-.idea/tasks.xml
-.idea/vcs.xml
-.idea/workspace.xml
-.idea/caches
-.idea/dictionaries
-
-# Sensitive or high-churn files:
-# .idea/dataSources.ids
-# .idea/dataSources.xml
-# .idea/sqlDataSources.xml
-# .idea/dynamic.xml
-# .idea/uiDesigner.xml
-
-# Gradle:
-.idea/gradle.xml
-.idea/libraries
+.idea
+!.idea/codeStyles/
+!.idea/dictionaries/
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
@@ -69,7 +50,6 @@ gen/
 # Gradle files
 .gradle/
 build/
-ci/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -91,5 +71,3 @@ wiki
 
 # Mockito
 org.mockito.plugins.MockMaker
-.idea/inspectionProfiles/
-.idea/navEditor.xml

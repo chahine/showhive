@@ -11,8 +11,8 @@ abstract class BaseFragment : Fragment() {
     abstract fun getLayoutId(): Int
     abstract fun setUpDependencyInjection()
 
-    protected val appComponent get() = (requireActivity().applicationContext as ShowHiveApp).component
-    protected val fragmentTag get() = this::class.java.canonicalName
+//    protected val appComponent get() = (requireActivity().applicationContext as ShowHiveApp).component
+//    protected val fragmentTag get() = this::class.java.canonicalName
 
     override fun onAttach(context: Context) {
         setUpDependencyInjection()

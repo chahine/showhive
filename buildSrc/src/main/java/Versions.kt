@@ -9,6 +9,7 @@ object Versions {
     const val chuckVersion = "1.1.0"
     const val daggerVersion = "2.29.1"
     const val glideVersion = "4.11.0"
+    const val hiltVersion = "2.29.1-alpha"
     const val junitVersion = "4.13.1"
     const val leakCanaryVersion = "2.5"
     const val moshiVersion = "1.11.0"

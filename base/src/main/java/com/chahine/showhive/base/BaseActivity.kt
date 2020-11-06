@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected val appComponent get() = (applicationContext as ShowHiveApp).component
+//    protected val appComponent get() = (applicationContext as ShowHiveApp).component
 
     @LayoutRes
     abstract fun getLayoutId(): Int

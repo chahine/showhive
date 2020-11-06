@@ -5,12 +5,16 @@ import com.chahine.showhive.qualifiers.PerApp
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.migration.DisableInstallInCheck
 import java.io.File
 import java.util.concurrent.TimeUnit
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class ApiModule {
 
     companion object {
@@ -19,16 +23,14 @@ class ApiModule {
         private const val OKHTTP_CACHE_DIR = "okHttp"
     }
 
-    @Provides
-    @PerApp
-    fun provideOkHttpClient(app: Application): OkHttpClient = OkHttpClient.Builder()
-        .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
-        .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-        .readTimeout(TIMEOUT, TimeUnit.SECONDS)
-        .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-        .build()
-
-    @Provides
-    @PerApp
-    fun provideChuck(app: Application) = ChuckInterceptor(app)
+//    @Provides
+//    fun provideOkHttpClient(app: Application): OkHttpClient = OkHttpClient.Builder()
+//        .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
+//        .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+//        .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+//        .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+//        .build()
+//
+//    @Provides
+//    fun provideChuck(app: Application) = ChuckInterceptor(app)
 }

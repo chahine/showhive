@@ -1,6 +1,7 @@
 import Versions.chuckVersion
 import Versions.daggerVersion
 import Versions.glideVersion
+import Versions.hiltVersion
 import Versions.junitVersion
 import Versions.kotlinVersion
 import Versions.leakCanaryVersion
@@ -53,6 +54,8 @@ object Dependencies {
     val annotationsApi = "javax.annotation:javax.annotation-api:1.2"
     val dagger = "com.google.dagger:dagger:$daggerVersion"
     val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    val hilt = "com.google.dagger:hilt-android:$hiltVersion"
+    val hiltCompiler = "com.google.dagger:hilt-android-compiler:$hiltVersion"
 
     // Rx Bindings
     const val rxbindingGroupId = "com.jakewharton.rxbinding4"

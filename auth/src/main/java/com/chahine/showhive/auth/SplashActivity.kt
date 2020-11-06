@@ -8,12 +8,14 @@ import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
 import com.chahine.trakt.api.TraktApiClient
 import com.jakewharton.rxbinding4.view.clicks
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_splash.connectBtn
 import kotlinx.android.synthetic.main.activity_splash.skipBtn
 import timber.log.Timber
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity() {
 
     companion object {
@@ -26,13 +28,13 @@ class SplashActivity : BaseActivity() {
     override fun getLayoutId() = R.layout.activity_splash
 
     override fun setUpDependencyInjection() {
-        val component = DaggerActivityComponent.builder()
-            .activity(this)
-            .activityModule(ActivityModule())
-            .appComponent(appComponent)
-            .build()
-
-        component.inject(this)
+//        val component = DaggerActivityComponent.builder()
+//            .activity(this)
+//            .activityModule(ActivityModule())
+//            .appComponent(appComponent)
+//            .build()
+//
+//        component.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

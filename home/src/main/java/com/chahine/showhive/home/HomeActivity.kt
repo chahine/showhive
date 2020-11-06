@@ -7,8 +7,10 @@ import androidx.preference.PreferenceManager
 import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
@@ -18,11 +20,11 @@ class HomeActivity : BaseActivity() {
     override fun getLayoutId() = R.layout.activity_home
 
     override fun setUpDependencyInjection() {
-        component = DaggerActivityComponent.builder()
-            .activity(this)
-            .appComponent(appComponent)
-            .build()
-        component.inject(this)
+//        component = DaggerActivityComponent.builder()
+//            .activity(this)
+//            .appComponent(appComponent)
+//            .build()
+//        component.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

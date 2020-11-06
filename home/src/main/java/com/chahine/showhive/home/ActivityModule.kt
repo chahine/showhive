@@ -7,8 +7,12 @@ import com.chahine.showhive.home.calendar.DateHeaderItemView
 import com.chahine.showhive.home.calendar.EpisodeItemView
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 
-@Module(includes = [ActivityBindingModule::class])
+@Module
+@InstallIn(ActivityComponent::class)
+//@Module(includes = [ActivityBindingModule::class])
 class ActivityModule {
 
     @Provides

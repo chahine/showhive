@@ -1,3 +1,4 @@
+import static Versions.hiltVersion
 import static Versions.kotlinVersion
 
 buildscript {
@@ -13,6 +14,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
         classpath 'com.google.firebase:perf-plugin:1.3.3'
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     }
 }
 
