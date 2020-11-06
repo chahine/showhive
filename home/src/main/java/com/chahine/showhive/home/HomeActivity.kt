@@ -15,8 +15,6 @@ class HomeActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
 
-    lateinit var component: ActivityComponent
-
     override fun getLayoutId() = R.layout.activity_home
 
     override fun setUpDependencyInjection() {

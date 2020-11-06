@@ -23,14 +23,14 @@ class ApiModule {
         private const val OKHTTP_CACHE_DIR = "okHttp"
     }
 
-//    @Provides
-//    fun provideOkHttpClient(app: Application): OkHttpClient = OkHttpClient.Builder()
-//        .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
-//        .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-//        .readTimeout(TIMEOUT, TimeUnit.SECONDS)
-//        .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-//        .build()
-//
-//    @Provides
-//    fun provideChuck(app: Application) = ChuckInterceptor(app)
+    @Provides
+    fun provideOkHttpClient(app: Application): OkHttpClient = OkHttpClient.Builder()
+        .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
+        .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+        .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+        .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+        .build()
+
+    @Provides
+    fun provideChuck(app: Application) = ChuckInterceptor(app)
 }

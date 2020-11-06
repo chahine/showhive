@@ -21,17 +21,17 @@ class DataModule {
         private const val HEAP_TARGET = 1024 * 1024 / 4
     }
 
-//    @Provides
-//    @CacheSize
-//    fun getCacheSize(app: Application): Int {
-//        val am = app.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-//        val memoryClass = am.memoryClass
-//        // Target ~25% of the available heap.
-//        return HEAP_TARGET * memoryClass
-//    }
-//
-//    @Provides
-//    fun provideMoshi(): Moshi = Moshi.Builder()
-//        .add(ZonedDateTimeConverter())
-//        .build()
+    @Provides
+    @CacheSize
+    fun getCacheSize(app: Application): Int {
+        val am = app.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val memoryClass = am.memoryClass
+        // Target ~25% of the available heap.
+        return HEAP_TARGET * memoryClass
+    }
+
+    @Provides
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(ZonedDateTimeConverter())
+        .build()
 }

@@ -12,11 +12,13 @@ import com.chahine.showhive.home.calendar.CalendarModel.CalendarCardSuccess
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarProgress
 import com.google.android.material.transition.MaterialFadeThrough
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_calendar.list
 import timber.log.Timber
 
+@AndroidEntryPoint
 class CalendarFragment : BaseFragment() {
 
     @Inject lateinit var router: Router
@@ -27,7 +29,7 @@ class CalendarFragment : BaseFragment() {
     override fun getLayoutId() = R.layout.fragment_calendar
 
     override fun setUpDependencyInjection() {
-        (requireActivity() as HomeActivity).component.inject(this)
+//        (requireActivity() as HomeActivity).component.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -10,6 +10,6 @@ import dagger.hilt.migration.DisableInstallInCheck
 @Module
 @InstallIn(ApplicationComponent::class)
 internal abstract class ViewModelModule {
-//    @Binds
-//    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    @Binds
+    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

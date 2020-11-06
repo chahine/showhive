@@ -21,51 +21,51 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @InstallIn(ApplicationComponent::class)
 class TmdbApiModule {
 
-//    @Provides
-//    fun provideAuthInterceptor(): TmdbInterceptor {
-//        return TmdbInterceptor()
-//    }
-//
-//    @Provides
-//    @Tmdb
-//    fun provideTmdbHttpUrl() = "https://api.themoviedb.org/3/".toHttpUrl()
-//
-//    @Provides
-//    @Tmdb
-//    fun provideOkHttpClient(
-//        client: OkHttpClient,
-//        interceptor: TmdbInterceptor,
-//        chuck: ChuckInterceptor
-//    ): OkHttpClient {
-//        val clientBuilder = client.newBuilder()
-//
-//        if (BuildConfig.DEBUG) {
-//            val httpLoggingInterceptor = HttpLoggingInterceptor()
-//            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-//            clientBuilder.addInterceptor(httpLoggingInterceptor)
-//            clientBuilder.addInterceptor(chuck)
-//        }
-//        clientBuilder.addNetworkInterceptor(interceptor)
-//        return clientBuilder.build()
-//    }
-//
-//    @Provides
-//    @Tmdb
-//    fun provideTmdbRetrofit(
-//        moshi: Moshi,
-//        @Tmdb baseUrl: HttpUrl,
-//        @Tmdb client: OkHttpClient
-//    ): Retrofit {
-//        return Retrofit.Builder()
-//            .client(client)
-//            .baseUrl(baseUrl)
-//            .addConverterFactory(MoshiConverterFactory.create(moshi))
-//            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-//            .build()
-//    }
-//
-//    @Provides
-//    fun provideTmdbApi(@Tmdb retrofit: Retrofit): TmdbApi {
-//        return retrofit.create(TmdbApi::class.java)
-//    }
+    @Provides
+    fun provideAuthInterceptor(): TmdbInterceptor {
+        return TmdbInterceptor()
+    }
+
+    @Provides
+    @Tmdb
+    fun provideTmdbHttpUrl() = "https://api.themoviedb.org/3/".toHttpUrl()
+
+    @Provides
+    @Tmdb
+    fun provideOkHttpClient(
+        client: OkHttpClient,
+        interceptor: TmdbInterceptor,
+        chuck: ChuckInterceptor
+    ): OkHttpClient {
+        val clientBuilder = client.newBuilder()
+
+        if (BuildConfig.DEBUG) {
+            val httpLoggingInterceptor = HttpLoggingInterceptor()
+            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            clientBuilder.addInterceptor(httpLoggingInterceptor)
+            clientBuilder.addInterceptor(chuck)
+        }
+        clientBuilder.addNetworkInterceptor(interceptor)
+        return clientBuilder.build()
+    }
+
+    @Provides
+    @Tmdb
+    fun provideTmdbRetrofit(
+        moshi: Moshi,
+        @Tmdb baseUrl: HttpUrl,
+        @Tmdb client: OkHttpClient
+    ): Retrofit {
+        return Retrofit.Builder()
+            .client(client)
+            .baseUrl(baseUrl)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .build()
+    }
+
+    @Provides
+    fun provideTmdbApi(@Tmdb retrofit: Retrofit): TmdbApi {
+        return retrofit.create(TmdbApi::class.java)
+    }
 }
