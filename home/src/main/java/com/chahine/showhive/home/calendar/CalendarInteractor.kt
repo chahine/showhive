@@ -58,13 +58,13 @@ class CalendarInteractor @Inject constructor(
 
         val episodeNumber = resources.getString(R.string.episode_number_format, episode.season, episode.number)
 
-        val line1 = listOfNotNull(show.title, episodeNumber).joinToString(separator = SEPARATOR)
+        val line1 = listOfNotNull(show.title, episodeNumber).joinToString(SEPARATOR)
         val line2 = episode.title
         val line3 = listOfNotNull(
             show.network,
             show.certification,
-            episode.firstAired?.format(ofPattern("HH:mm a"))
-        ).joinToString(separator = SEPARATOR)
+            episode.firstAired.format(ofPattern("HH:mm a"))
+        ).joinToString(SEPARATOR)
 
         return EpisodeItemView.Item(line1, line2, line3)
     }

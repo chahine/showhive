@@ -8,11 +8,11 @@ import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
 import com.chahine.trakt.api.TraktApiClient
 import com.jakewharton.rxbinding4.view.clicks
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_splash.connectBtn
 import kotlinx.android.synthetic.main.activity_splash.skipBtn
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class SplashActivity : BaseActivity() {
 

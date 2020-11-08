@@ -5,10 +5,10 @@ import com.chahine.showhive.qualifiers.PerApp
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
-import java.io.File
-import java.util.concurrent.TimeUnit
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import java.io.File
+import java.util.concurrent.TimeUnit
 
 @Module
 class ApiModule {

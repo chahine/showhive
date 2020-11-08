@@ -16,5 +16,5 @@ class Episode(
     val number: Int?,
     val ids: EpisodeIds?,
     @Json(name = "number_abs") val numberAbs: Int?,
-    @Json(name = "first_aired") val firstAired: ZonedDateTime?
+    @Json(name = "first_aired") val firstAired: ZonedDateTime
 )
