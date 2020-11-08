@@ -6,9 +6,15 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.ItemCalendarEpisodeBinding
 import com.chahine.trakt.entities.CalendarShowEntry
+import java.time.format.DateTimeFormatter.ofPattern
 import javax.inject.Inject
 
 class EpisodeItemView {
+
+    companion object {
+        private const val SEPARATOR = " • "
+    }
+
     class Delegate @Inject constructor() : CalendarAdapter.Delegate {
 
         override fun layoutId() = R.layout.item_calendar_episode
@@ -27,13 +33,15 @@ class EpisodeItemView {
         private val binding = ItemCalendarEpisodeBinding.bind(itemView)
 
         fun bind(item: Item) = with(binding) {
-            showTitle.text = item.entry.show.title
-            episodeNumber.text = itemView.resources.getString(
+            line1.text = item.entry.show.title + SEPARATOR + itemView.resources.getString(
                 R.string.episode_number_format,
                 item.entry.episode.season,
                 item.entry.episode.number
             )
-            episodeTitle.text = item.entry.episode.title
+            line2.text = item.entry.episode.title
+            line3.text = item.entry.show.network + SEPARATOR +
+                    item.entry.show.certification + SEPARATOR +
+                    item.entry.show.firstAired!!.toLocalTime().format(ofPattern("HH:mm aa"))
         }
     }
 
