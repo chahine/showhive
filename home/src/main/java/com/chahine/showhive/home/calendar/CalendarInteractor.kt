@@ -58,7 +58,7 @@ class CalendarInteractor @Inject constructor(
 
         val episodeNumber = resources.getString(R.string.episode_number_format, episode.season, episode.number)
 
-        val line1 = listOfNotNull(show.title, episodeNumber).joinToString(SEPARATOR)
+        val line1 = listOfNotNull(episodeNumber, show.title).joinToString(SEPARATOR)
         val line2 = episode.title
         val line3 = listOfNotNull(
             show.network,

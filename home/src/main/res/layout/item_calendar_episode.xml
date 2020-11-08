@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cardView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_chainStyle="spread_inside"
         tools:text="Riverdale - S01E03"
         />
 
