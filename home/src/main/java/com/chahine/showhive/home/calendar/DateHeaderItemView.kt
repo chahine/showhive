@@ -42,7 +42,8 @@ class DateHeaderItemView {
                 now -> itemView.context.getString(string.today)
                 now.plusDays(1) -> itemView.context.getString(string.tomorrow)
                 now.minusDays(1) -> itemView.context.getString(string.yesterday)
-                else -> localDate.format(DATE_FORMATTER) +
+                else ->
+                    localDate.format(DATE_FORMATTER) +
                         getDayOfMonthSuffix(localDate.format(DAY_FORMATTER).toInt())
             }
         }

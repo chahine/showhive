@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.ItemCalendarEpisodeBinding
-import com.chahine.trakt.entities.CalendarShowEntry
 import javax.inject.Inject
 
 class EpisodeItemView {
+
     class Delegate @Inject constructor() : CalendarAdapter.Delegate {
 
         override fun layoutId() = R.layout.item_calendar_episode
@@ -27,17 +27,13 @@ class EpisodeItemView {
         private val binding = ItemCalendarEpisodeBinding.bind(itemView)
 
         fun bind(item: Item) = with(binding) {
-            showTitle.text = item.entry.show.title
-            episodeNumber.text = itemView.resources.getString(
-                R.string.episode_number_format,
-                item.entry.episode.season,
-                item.entry.episode.number
-            )
-            episodeTitle.text = item.entry.episode.title
+            line1.text = item.line1
+            line2.text = item.line2
+            line3.text = item.line3
         }
     }
 
-    data class Item(val entry: CalendarShowEntry) : CalendarAdapter.Item {
+    data class Item(val line1: CharSequence, val line2: CharSequence, val line3: CharSequence) : CalendarAdapter.Item {
         override fun itemViewType() = CalendarAdapter.EPISODE
     }
 }

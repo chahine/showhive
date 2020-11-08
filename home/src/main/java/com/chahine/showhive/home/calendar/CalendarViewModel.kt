@@ -7,8 +7,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
-import javax.inject.Inject
 import timber.log.Timber
+import javax.inject.Inject
 
 class CalendarViewModel @Inject constructor(
     private val interactor: CalendarInteractor

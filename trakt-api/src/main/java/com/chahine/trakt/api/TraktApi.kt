@@ -57,7 +57,8 @@ interface TraktApi {
     @GET("calendars/my/shows/{startDate}/{days}")
     fun myShows(
         @Path("startDate") startDate: String,
-        @Path("days") days: Int
+        @Path("days") days: Int,
+        @Query("extended") extended: String
     ): Single<List<CalendarShowEntry>>
 
     /**
