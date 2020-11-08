@@ -7,6 +7,7 @@ import com.chahine.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarProgress
 import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.entities.CalendarShowEntry
+import com.chahine.trakt.entities.Extended
 import io.reactivex.rxjava3.core.ObservableTransformer
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter.ofPattern
@@ -30,7 +31,7 @@ class CalendarInteractor @Inject constructor(
             event.switchMap {
                 val startDate = ZonedDateTime.now().minusDays(DAY_WINDOW.toLong()).format(DAY_FORMATTER)
                 traktApi
-                    .myShows(startDate, DAY_WINDOW * 2, "full")
+                    .myShows(startDate, DAY_WINDOW * 2, Extended.FULL)
                     .map { episodes ->
                         if (episodes.isEmpty()) {
                             return@map CalendarEmptyItemView.Item

@@ -58,7 +58,7 @@ interface TraktApi {
     fun myShows(
         @Path("startDate") startDate: String,
         @Path("days") days: Int,
-        @Query("extended") extended: String
+        @Query(value = "extended", encoded = true) extended: Extended
     ): Single<List<CalendarShowEntry>>
 
     /**
