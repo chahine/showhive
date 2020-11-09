@@ -9,7 +9,7 @@
         android:id="@+id/navigation_calendar"
         android:name="com.chahine.showhive.home.calendar.CalendarFragment"
         android:label="@string/calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_recycler_view" />
 
     <fragment
         android:id="@+id/navigation_discover"

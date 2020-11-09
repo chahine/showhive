@@ -1,28 +1,28 @@
-package com.chahine.showhive.home.calendar
+package com.chahine.showhive.home.discover
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.recyclerview.widget.RecyclerView
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.ItemImageLineThreeBinding
 import javax.inject.Inject
 
-class EpisodeItemView {
+class ShowItemView {
 
-    class Delegate @Inject constructor() : CalendarAdapter.Delegate {
+    class Delegate @Inject constructor() : DiscoverAdapter.Delegate {
 
         override fun layoutId() = R.layout.item_image_line_three
 
         override fun create(parent: ViewGroup) = Holder(itemView(parent))
 
-        override fun bind(item: CalendarAdapter.Item, holder: ViewHolder) {
+        override fun bind(item: DiscoverAdapter.Item, holder: RecyclerView.ViewHolder) {
             if (holder is Holder && item is Item) {
                 holder.bind(item)
             }
         }
     }
 
-    class Holder(itemView: View) : ViewHolder(itemView) {
+    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = ItemImageLineThreeBinding.bind(itemView)
 
@@ -33,7 +33,7 @@ class EpisodeItemView {
         }
     }
 
-    data class Item(val line1: CharSequence, val line2: CharSequence, val line3: CharSequence) : CalendarAdapter.Item {
-        override fun itemViewType() = CalendarAdapter.EPISODE
+    data class Item(val line1: CharSequence, val line2: CharSequence, val line3: CharSequence) : DiscoverAdapter.Item {
+        override fun itemViewType() = DiscoverAdapter.SHOW
     }
 }

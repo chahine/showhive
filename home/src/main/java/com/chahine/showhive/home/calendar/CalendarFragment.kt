@@ -11,8 +11,9 @@ import com.chahine.showhive.home.calendar.CalendarEvent.LoadCalendar
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarCardSuccess
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarFailure
 import com.chahine.showhive.home.calendar.CalendarModel.CalendarProgress
+import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
-import kotlinx.android.synthetic.main.fragment_calendar.list
+import kotlinx.android.synthetic.main.fragment_recycler_view.list
 import timber.log.Timber
 import java.time.LocalDate
 import javax.inject.Inject
@@ -21,10 +22,10 @@ class CalendarFragment : BaseFragment() {
 
     @Inject lateinit var router: Router
     @Inject lateinit var adapter: CalendarAdapter
-    @Inject lateinit var itemDecoration: CalendarItemDecoration
+    @Inject lateinit var itemDecoration: DefaultSpacesItemDecoration
     @Inject lateinit var viewModel: CalendarViewModel
 
-    override fun getLayoutId() = R.layout.fragment_calendar
+    override fun getLayoutId() = R.layout.fragment_recycler_view
 
     override fun setUpDependencyInjection() {
         (requireActivity() as HomeActivity).component.inject(this)
@@ -43,25 +44,14 @@ class CalendarFragment : BaseFragment() {
         list.layoutManager = LinearLayoutManager(context)
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
+
+        viewModel.uiEvents.onNext(LoadCalendar)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.data.observe(
-            requireActivity(),
-            {
-                if (it != null) {
-                    onModelEvent(it)
-                }
-            }
-        )
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        viewModel.uiEvents.onNext(LoadCalendar)
+        viewModel.data.observe(requireActivity()) { model -> onModelEvent(model!!) }
     }
 
     private fun onModelEvent(model: CalendarModel) {

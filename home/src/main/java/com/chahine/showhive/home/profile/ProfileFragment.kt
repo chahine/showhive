@@ -7,7 +7,8 @@ import com.chahine.showhive.home.R
 import com.google.android.material.transition.MaterialFadeThrough
 
 class ProfileFragment : BaseFragment() {
-    override fun getLayoutId() = R.layout.fragment_profile
+
+    override fun getLayoutId() = R.layout.fragment_recycler_view
 
     override fun setUpDependencyInjection() {
         (requireActivity() as HomeActivity).component.inject(this)
