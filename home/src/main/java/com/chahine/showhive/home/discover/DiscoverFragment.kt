@@ -49,11 +49,6 @@ class DiscoverFragment : BaseFragment() {
         viewModel.data.observe(requireActivity()) { model -> onModelEvent(model!!) }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
-
     private fun onModelEvent(model: DiscoverModel) {
         Timber.d("--> model: ${model.javaClass.simpleName}")
         when (model) {

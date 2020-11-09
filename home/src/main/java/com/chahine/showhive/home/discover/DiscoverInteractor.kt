@@ -1,6 +1,5 @@
 package com.chahine.showhive.home.discover
 
-import android.content.res.Resources
 import com.chahine.showhive.home.discover.DiscoverEvent.LoadTrendingShows
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverFailure
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverIdle
@@ -17,11 +16,11 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class DiscoverInteractor @Inject constructor(
-    private val resources: Resources,
     private val traktApi: TraktApi,
 ) {
 
     companion object {
+        private const val PAGE_LIMIT = 20
         private const val SEPARATOR = " • "
     }
 
@@ -29,7 +28,7 @@ class DiscoverInteractor @Inject constructor(
         return ObservableTransformer { event ->
             event.switchMap { loadTrendingShows ->
                 traktApi
-                    .trending(loadTrendingShows.page, 20, Extended.FULL)
+                    .trending(loadTrendingShows.page, PAGE_LIMIT, Extended.FULL)
                     .map { shows -> DiscoverSuccess(shows.map { makeShowItem(it) }) }
                     .toObservable()
                     .cast(DiscoverModel::class.java)

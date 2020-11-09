@@ -13,7 +13,6 @@ import java.time.DayOfWeek.WEDNESDAY
 import java.time.format.TextStyle
 import java.util.Locale
 
-
 class DayOfWeekAdapter {
 
     @ToJson
