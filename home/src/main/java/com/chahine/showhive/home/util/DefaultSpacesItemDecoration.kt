@@ -1,16 +1,16 @@
-package com.chahine.showhive.home.calendar
+package com.chahine.showhive.home.util
 
-import android.app.Activity
+import android.content.res.Resources
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.chahine.showhive.home.R
 import javax.inject.Inject
 
-class CalendarItemDecoration @Inject constructor(activity: Activity) :
+class DefaultSpacesItemDecoration @Inject constructor(resources: Resources) :
     RecyclerView.ItemDecoration() {
 
-    private val spacing: Int = activity.resources.getDimensionPixelSize(R.dimen.spacing_standard)
+    private val spacing: Int = resources.getDimensionPixelSize(R.dimen.spacing_standard)
 
     override fun getItemOffsets(
         outRect: Rect,
