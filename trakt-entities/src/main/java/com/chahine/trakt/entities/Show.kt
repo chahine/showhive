@@ -15,7 +15,7 @@ class Show(
     val year: Int?,
     val ids: ShowIds?,
     @Json(name = "first_aired") val firstAired: ZonedDateTime?,
-    val airs: Airs?,
+    val airs: Airs,
     val runtime: Int?,
     val certification: String?,
     val network: String?,

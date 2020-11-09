@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chahine.showhive.home.R
 import javax.inject.Inject
 
-class DefaultSpacesItemDecoration @Inject constructor(resources: Resources) :
-    RecyclerView.ItemDecoration() {
+class DefaultSpacesItemDecoration @Inject constructor(resources: Resources) : RecyclerView.ItemDecoration() {
 
     private val spacing: Int = resources.getDimensionPixelSize(R.dimen.spacing_standard)
 

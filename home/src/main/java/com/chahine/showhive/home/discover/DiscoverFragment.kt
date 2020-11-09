@@ -40,7 +40,7 @@ class DiscoverFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-        adapter.submitList(IntRange(0, 20).map { ShowItemView.Item("line $it") })
+        viewModel.uiEvents.onNext(DiscoverEvent.LoadTrendingShows())
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -48,6 +48,11 @@ class DiscoverFragment : BaseFragment() {
 
         viewModel.data.observe(requireActivity()) { model -> onModelEvent(model!!) }
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
 
     private fun onModelEvent(model: DiscoverModel) {
         Timber.d("--> model: ${model.javaClass.simpleName}")

@@ -4,14 +4,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chahine.showhive.home.R
-import com.chahine.showhive.home.databinding.ItemShowBinding
+import com.chahine.showhive.home.databinding.ItemImageLineThreeBinding
 import javax.inject.Inject
 
 class ShowItemView {
 
     class Delegate @Inject constructor() : DiscoverAdapter.Delegate {
 
-        override fun layoutId() = R.layout.item_show
+        override fun layoutId() = R.layout.item_image_line_three
 
         override fun create(parent: ViewGroup) = Holder(itemView(parent))
 
@@ -24,14 +24,16 @@ class ShowItemView {
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val binding = ItemShowBinding.bind(itemView)
+        private val binding = ItemImageLineThreeBinding.bind(itemView)
 
         fun bind(item: Item) = with(binding) {
-            body.text = item.body
+            line1.text = item.line1
+            line2.text = item.line2
+            line3.text = item.line3
         }
     }
 
-    data class Item(val body: CharSequence) : DiscoverAdapter.Item {
+    data class Item(val line1: CharSequence, val line2: CharSequence, val line3: CharSequence) : DiscoverAdapter.Item {
         override fun itemViewType() = DiscoverAdapter.SHOW
     }
 }

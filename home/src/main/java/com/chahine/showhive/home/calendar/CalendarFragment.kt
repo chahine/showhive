@@ -44,6 +44,8 @@ class CalendarFragment : BaseFragment() {
         list.layoutManager = LinearLayoutManager(context)
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
+
+        viewModel.uiEvents.onNext(LoadCalendar)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -54,8 +56,6 @@ class CalendarFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-
-        viewModel.uiEvents.onNext(LoadCalendar)
     }
 
     private fun onModelEvent(model: CalendarModel) {

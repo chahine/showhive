@@ -26,7 +26,7 @@ class CalendarInteractor @Inject constructor(
         private const val SEPARATOR = " • "
     }
 
-    fun calendar(): ObservableTransformer<in CalendarEvent, out CalendarModel> {
+    fun calendar(): ObservableTransformer<in CalendarEvent.LoadCalendar, out CalendarModel> {
         return ObservableTransformer { event ->
             event.switchMap {
                 val startDate = ZonedDateTime.now().minusDays(DAY_WINDOW.toLong()).format(DAY_FORMATTER)

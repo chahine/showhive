@@ -4,14 +4,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.chahine.showhive.home.R
-import com.chahine.showhive.home.databinding.ItemCalendarEpisodeBinding
+import com.chahine.showhive.home.databinding.ItemImageLineThreeBinding
 import javax.inject.Inject
 
 class EpisodeItemView {
 
     class Delegate @Inject constructor() : CalendarAdapter.Delegate {
 
-        override fun layoutId() = R.layout.item_calendar_episode
+        override fun layoutId() = R.layout.item_image_line_three
 
         override fun create(parent: ViewGroup) = Holder(itemView(parent))
 
@@ -24,7 +24,7 @@ class EpisodeItemView {
 
     class Holder(itemView: View) : ViewHolder(itemView) {
 
-        private val binding = ItemCalendarEpisodeBinding.bind(itemView)
+        private val binding = ItemImageLineThreeBinding.bind(itemView)
 
         fun bind(item: Item) = with(binding) {
             line1.text = item.line1
