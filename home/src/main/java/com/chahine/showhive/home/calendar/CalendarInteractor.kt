@@ -9,6 +9,7 @@ import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.entities.CalendarShowEntry
 import com.chahine.trakt.entities.Extended
 import io.reactivex.rxjava3.core.ObservableTransformer
+import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter.ofPattern
 import javax.inject.Inject
@@ -64,7 +65,9 @@ class CalendarInteractor @Inject constructor(
         val line3 = listOfNotNull(
             show.network,
             show.certification,
-            episode.firstAired.format(ofPattern("HH:mm a"))
+            episode.firstAired
+                .withZoneSameInstant(ZoneId.systemDefault())
+                .format(ofPattern("hh:mm a"))
         ).joinToString(SEPARATOR)
 
         return EpisodeItemView.Item(line1, line2, line3)

@@ -9,6 +9,11 @@ import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.entities.Extended
 import com.chahine.trakt.entities.TrendingShow
 import io.reactivex.rxjava3.core.ObservableTransformer
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class DiscoverInteractor @Inject constructor(
@@ -36,14 +41,22 @@ class DiscoverInteractor @Inject constructor(
 
     private fun makeShowItem(item: TrendingShow): DiscoverAdapter.Item {
         val show = item.show
+        val airs = show.airs
+
+        val time = if (!airs.time.isNullOrBlank() && !airs.timezone.isNullOrBlank()) {
+            val dateTime = LocalTime
+                .parse(airs.time, DateTimeFormatter.ofPattern("HH:mm"))
+                .atDate(LocalDate.now())
+            ZonedDateTime
+                .ofLocal(dateTime, ZoneId.of(airs.timezone), null)
+                .format(DateTimeFormatter.ofPattern("hh:mm a"))
+        } else {
+            null
+        }
 
         val line1 = listOfNotNull(show.title).joinToString(SEPARATOR)
         val line2 = listOfNotNull(show.overview).joinToString(SEPARATOR)
-        val line3 = listOfNotNull(
-            show.network,
-            show.certification,
-            show.airs.time
-        ).joinToString(SEPARATOR)
+        val line3 = listOfNotNull(show.network, show.certification, time).joinToString(SEPARATOR)
 
         return ShowItemView.Item(line1, line2, line3)
     }

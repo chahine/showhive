@@ -3,6 +3,7 @@ package com.chahine.showhive.di
 import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
+import com.chahine.api.DayOfWeekAdapter
 import com.chahine.showhive.qualifiers.CacheSize
 import com.chahine.showhive.qualifiers.PerApp
 import com.chahine.trakt.api.ZonedDateTimeConverter
@@ -31,5 +32,6 @@ class DataModule {
     @PerApp
     fun provideMoshi(): Moshi = Moshi.Builder()
         .add(ZonedDateTimeConverter())
+        .add(DayOfWeekAdapter())
         .build()
 }
