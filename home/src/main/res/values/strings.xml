@@ -7,7 +7,5 @@
     <string name="calendar">Calendar</string>
     <string name="discover">Discover</string>
     <string name="profile">Profile</string>
-    <string name="discover_fragment">Discover Fragment</string>
-    <string name="profile_fragment">Profile Fragment</string>
     <string name="empty_state">empty state</string>
 </resources>
