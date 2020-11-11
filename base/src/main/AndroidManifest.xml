@@ -14,6 +14,9 @@
         <meta-data
             android:name="aia-compat-api-min-version"
             android:value="1" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
