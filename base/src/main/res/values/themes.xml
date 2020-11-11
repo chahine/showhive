@@ -13,6 +13,7 @@
         <item name="textAppearanceBody2">@style/TextAppearance.ShowHive.Body2</item>
         <item name="textAppearanceCaption">@style/TextAppearance.ShowHive.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.ShowHive.Overline</item>
+        <item name="textAppearanceButton">@style/TextAppearance.ShowHive.Button</item>
     </style>
 
     <style name="Theme.ShowHive" parent="Theme.ShowHive.Base">
