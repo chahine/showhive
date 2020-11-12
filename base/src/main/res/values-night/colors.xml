@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#95e1ad</color>
-    <color name="colorPrimaryVariant">#c0edcd</color>
-    <color name="colorSecondary">#a9b8cc</color>
-    <color name="colorSecondaryVariant">#c8d5e5</color>
+    <color name="colorPrimary">@color/desaturated_green</color>
+    <color name="colorPrimaryVariant">@color/desaturated_dark_green</color>
+    <color name="colorSecondary">@color/desaturated_grey</color>
+    <color name="colorSecondaryVariant">@color/desaturated_dark_grey</color>
 </resources>
