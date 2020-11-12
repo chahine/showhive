@@ -8,7 +8,7 @@
 # Overview
 
 Small Trakt client. WIP
-
+SplashScreen              |  Calendar                        | Discover
 :------------------------:|:--------------------------------:|:--------------------------------:
 ![](art/light-splash.png) | ![](art/light-home-calendar.png) | ![](art/light-home-disvover.png)
 ![](art/dark-splash.png)  | ![](art/dark-home-calendar.png)  | ![](art/dark-home-disvover.png)
