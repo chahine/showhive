@@ -11,9 +11,9 @@
     <color name="dark_grey">#2e3949</color>
 
     <color name="desaturated_green">#95e1ad</color>
-    <color name="desaturated_dark_green">#c0edcd</color>
+    <color name="desaturated_dark_green">#9ddbb1</color>
     <color name="desaturated_grey">#a9b8cc</color>
-    <color name="desaturated_dark_grey">#c8d5e5</color>
+    <color name="desaturated_dark_grey">#b6c2d6</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
