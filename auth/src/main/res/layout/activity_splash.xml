@@ -19,7 +19,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="?colorPrimary"
+        android:background="@color/splash_background"
         app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -27,7 +27,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="?colorPrimaryVariant"
+        android:background="@color/splash_background_variant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline"
         />
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="@string/skip"
-        android:textColor="?colorOnPrimarySurface"
+        android:textColor="?colorOnSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/connect_with_trakt_tv"
-        android:textColor="?colorOnSecondary"
-        app:backgroundTint="?colorSecondary"
+        android:textColor="?colorSurface"
+        app:backgroundTint="@color/splash_background_accent"
         app:layout_constraintBottom_toTopOf="@id/skipBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

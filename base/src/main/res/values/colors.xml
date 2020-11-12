@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2ECC71</color>
-    <color name="colorPrimaryVariant">#29B765</color>
-    <color name="colorSecondary">#2f3f52</color>
-    <color name="colorSecondaryVariant">#2e3949</color>
+    <color name="colorPrimary">@color/green</color>
+    <color name="colorPrimaryVariant">@color/dark_green</color>
+    <color name="colorSecondary">@color/grey</color>
+    <color name="colorSecondaryVariant">@color/dark_grey</color>
+
+    <color name="green">#2ECC71</color>
+    <color name="dark_green">#29B765</color>
+    <color name="grey">#2f3f52</color>
+    <color name="dark_grey">#2e3949</color>
+
+    <color name="desaturated_green">#95e1ad</color>
+    <color name="desaturated_dark_green">#c0edcd</color>
+    <color name="desaturated_grey">#a9b8cc</color>
+    <color name="desaturated_dark_grey">#c8d5e5</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
