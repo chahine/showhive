@@ -21,14 +21,14 @@ class TraktApiClient @Inject constructor(private val api: TraktApi) {
         )
     }
 
-    fun trending(page: Int, limit: Int, extended: Extended): Single<Paged<List<TrendingShow>>> {
+    fun trending(page: Int, limit: Int, extended: Extended): Single<Paged<TrendingShow>> {
         return api
             .trending(page, limit, extended)
             .flatMap { response ->
                 if (response.isSuccessful)
                     Single.just(
                         Paged(
-                            value = response.body()!!,
+                            items = response.body()!!,
                             pagination = Pagination.fromHeaders(response.headers())
                         )
                     )
