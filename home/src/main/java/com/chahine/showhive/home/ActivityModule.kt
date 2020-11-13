@@ -31,11 +31,11 @@ class ActivityModule {
         return DiscoverAdapter(
             object : DiffUtil.ItemCallback<TrendingShow>() {
                 override fun areItemsTheSame(oldItem: TrendingShow, newItem: TrendingShow): Boolean {
-                    return oldItem == newItem
+                    return oldItem.show.ids.trakt == newItem.show.ids.trakt
                 }
 
                 override fun areContentsTheSame(oldItem: TrendingShow, newItem: TrendingShow): Boolean {
-                    return oldItem == newItem
+                    return oldItem.equals(newItem)
                 }
             }
         )
