@@ -46,4 +46,10 @@ class DiscoverFragment : BaseFragment() {
             adapter.submitData(lifecycle, data)
         }
     }
+
+    override fun onStop() {
+        disposable?.dispose()
+        disposable = null
+        super.onStop()
+    }
 }
