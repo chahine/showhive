@@ -1,11 +1,12 @@
 package com.chahine.showhive.home.discover
 
-import com.chahine.showhive.home.discover.DiscoverEvent.LoadTrendingShows
+import androidx.paging.PagingSource
+import androidx.paging.PagingSource.LoadResult
+import com.chahine.showhive.home.discover.DiscoverEvent.RefreshTrendingShows
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverFailure
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverIdle
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverSuccess
 import com.chahine.trakt.api.TraktApiClient
-import com.chahine.trakt.entities.Extended
 import com.chahine.trakt.entities.TrendingShow
 import io.reactivex.rxjava3.core.ObservableTransformer
 import java.time.LocalDate
@@ -17,6 +18,7 @@ import javax.inject.Inject
 
 class DiscoverInteractor @Inject constructor(
     private val traktApiClient: TraktApiClient,
+    private val pagingSource: DiscoverPagingSource,
 ) {
 
     companion object {
@@ -24,15 +26,24 @@ class DiscoverInteractor @Inject constructor(
         private const val SEPARATOR = " • "
     }
 
-    fun trendingShows(): ObservableTransformer<in LoadTrendingShows, out DiscoverModel> {
+    fun refresh(): ObservableTransformer<in RefreshTrendingShows, out DiscoverModel> {
         return ObservableTransformer { event ->
-            event.switchMap { loadTrendingShows ->
-                traktApiClient
-                    .trending(loadTrendingShows.page, PAGE_LIMIT, Extended.FULL)
-                    .map { response -> DiscoverSuccess(response.value.map { makeShowItem(it) }) }
+            event.switchMap {
+
+                val loadParam = PagingSource.LoadParams.Refresh(
+                    key = 1,
+                    loadSize = PAGE_LIMIT,
+                    placeholdersEnabled = false
+                )
+                pagingSource
+                    .loadSingle(loadParam)
+                    .map {
+                        when (it) {
+                            is LoadResult.Error -> DiscoverFailure(it.throwable)
+                            is LoadResult.Page -> DiscoverSuccess(it.data.map(::makeShowItem))
+                        }
+                    }
                     .toObservable()
-                    .cast(DiscoverModel::class.java)
-                    .onErrorReturn { DiscoverFailure(it) }
                     .startWithItem(DiscoverIdle)
             }
         }

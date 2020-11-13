@@ -2,7 +2,7 @@ package com.chahine.showhive.home.discover
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.chahine.showhive.home.discover.DiscoverEvent.LoadTrendingShows
+import com.chahine.showhive.home.discover.DiscoverEvent.RefreshTrendingShows
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -25,8 +25,8 @@ class DiscoverViewModel @Inject constructor(
                 Observable.merge(
                     listOf(
                         shared
-                            .ofType(LoadTrendingShows::class.java)
-                            .compose(interactor.trendingShows())
+                            .ofType(RefreshTrendingShows::class.java)
+                            .compose(interactor.refresh())
                     )
                 )
             }

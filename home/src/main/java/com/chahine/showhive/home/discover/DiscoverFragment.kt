@@ -40,7 +40,7 @@ class DiscoverFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-        viewModel.uiEvents.onNext(DiscoverEvent.LoadTrendingShows())
+        viewModel.uiEvents.onNext(DiscoverEvent.RefreshTrendingShows)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
