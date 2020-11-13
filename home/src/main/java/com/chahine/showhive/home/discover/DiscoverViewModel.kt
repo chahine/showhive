@@ -12,8 +12,6 @@ class DiscoverViewModel @Inject constructor(
 
     init {
         Timber.d("DiscoverViewModel#${hashCode()} ")
-
-        repository.trending().cachedIn(viewModelScope)
     }
 
     fun requestTrendingShows() = repository.trending().cachedIn(viewModelScope)

@@ -42,20 +42,8 @@ class DiscoverFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-//        viewModel.uiEvents.onNext(DiscoverEvent.RefreshTrendingShows)
-
-        // Scroll to top when the list is refreshed from network.
-//        lifecycleScope.launch {
-//            adapter.loadStateFlow
-//                .distinctUntilChangedBy { it.refresh }
-//                .filter { it.refresh is LoadState.NotLoading }
-//                .collect { list.scrollToPosition(0) }
-//        }
-
-        disposable = viewModel
-            .requestTrendingShows()
-            .subscribe { data ->
-                adapter.submitData(lifecycle, data)
-            }
+        disposable = viewModel.requestTrendingShows().subscribe { data ->
+            adapter.submitData(lifecycle, data)
+        }
     }
 }
