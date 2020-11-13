@@ -4,30 +4,52 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.chahine.showhive.base.rv.RvItem
+import androidx.recyclerview.widget.RecyclerView
 import com.chahine.showhive.home.R
+import com.chahine.showhive.home.databinding.ItemImageLineThreeBinding
 import com.chahine.trakt.entities.TrendingShow
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class DiscoverAdapter(
     diffCallback: DiffUtil.ItemCallback<TrendingShow>
-) : PagingDataAdapter<TrendingShow, ShowItemView.Holder>(diffCallback) {
+) : PagingDataAdapter<TrendingShow, RecyclerView.ViewHolder>(diffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowItemView.Holder {
-        return ShowItemView.Holder(
+    companion object {
+        private const val SEPARATOR = " • "
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return object : RecyclerView.ViewHolder(
             LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.item_image_line_three, parent, false)
-        )
+        ) {}
     }
 
-    override fun onBindViewHolder(holder: ShowItemView.Holder, position: Int) {
-        holder.bind(getItem(position)!!)
-    }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        with(ItemImageLineThreeBinding.bind(holder.itemView)) {
+            val item = getItem(position)!!
+            val show = item.show
+            val airs = show.airs
 
-    interface Item : RvItem
+            val time = if (!airs.time.isNullOrBlank() && !airs.timezone.isNullOrBlank()) {
+                val dateTime = LocalTime
+                    .parse(airs.time, DateTimeFormatter.ofPattern("HH:mm"))
+                    .atDate(LocalDate.now())
+                ZonedDateTime
+                    .ofLocal(dateTime, ZoneId.of(airs.timezone), null)
+                    .format(DateTimeFormatter.ofPattern("hh:mm a"))
+            } else {
+                null
+            }
 
-    companion object {
-        const val LOADING = 1
-        const val SHOW = 2
+            line1.text = listOfNotNull(show.title).joinToString(SEPARATOR)
+            line2.text = listOfNotNull(show.overview).joinToString(SEPARATOR)
+            line3.text = listOfNotNull(show.network, show.certification, time).joinToString(SEPARATOR)
+        }
     }
 }

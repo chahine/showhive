@@ -11,7 +11,6 @@ import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
 import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_recycler_view.list
-import timber.log.Timber
 import javax.inject.Inject
 
 class DiscoverFragment : BaseFragment() {
@@ -58,32 +57,5 @@ class DiscoverFragment : BaseFragment() {
             .subscribe { data ->
                 adapter.submitData(lifecycle, data)
             }
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-//        viewModel.data.observe(requireActivity()) { model -> onModelEvent(model!!) }
-    }
-
-    private fun onModelEvent(model: DiscoverModel) {
-        Timber.d("--> model: ${model.javaClass.simpleName}")
-        when (model) {
-            is DiscoverModel.DiscoverIdle -> onDiscoverIdle()
-            is DiscoverModel.DiscoverFailure -> onDiscoverFailure(model)
-            is DiscoverModel.DiscoverSuccess -> onDiscoverSuccess(model)
-        }
-    }
-
-    private fun onDiscoverIdle() {
-        // TODO: render idle state
-    }
-
-    private fun onDiscoverFailure(model: DiscoverModel.DiscoverFailure) {
-        Timber.e(model.error)
-    }
-
-    private fun onDiscoverSuccess(model: DiscoverModel.DiscoverSuccess) {
-        // adapter.submitList(model.items)
     }
 }
