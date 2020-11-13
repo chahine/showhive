@@ -14,7 +14,7 @@ class DiscoverPagingSource @Inject constructor(
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, TrendingShow>> {
         val page = params.key ?: 1
 
-        return traktApiClient.trending(page, 20, Extended.FULL)
+        return traktApiClient.trending(page, params.loadSize, Extended.FULL)
             .map {
                 LoadResult.Page(
                     data = it.items,

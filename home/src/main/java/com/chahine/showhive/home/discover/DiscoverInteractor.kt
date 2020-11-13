@@ -6,7 +6,6 @@ import com.chahine.showhive.home.discover.DiscoverEvent.RefreshTrendingShows
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverFailure
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverIdle
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverSuccess
-import com.chahine.trakt.api.TraktApiClient
 import com.chahine.trakt.entities.TrendingShow
 import io.reactivex.rxjava3.core.ObservableTransformer
 import java.time.LocalDate
@@ -17,7 +16,6 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class DiscoverInteractor @Inject constructor(
-    private val traktApiClient: TraktApiClient,
     private val pagingSource: DiscoverPagingSource,
 ) {
 
