@@ -9,8 +9,8 @@ import com.chahine.showhive.home.HomeActivity
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
+import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_recycler_view.list
-import timber.log.Timber
 import javax.inject.Inject
 
 class DiscoverFragment : BaseFragment() {
@@ -19,6 +19,8 @@ class DiscoverFragment : BaseFragment() {
     @Inject lateinit var adapter: DiscoverAdapter
     @Inject lateinit var itemDecoration: DefaultSpacesItemDecoration
     @Inject lateinit var viewModel: DiscoverViewModel
+
+    private var disposable: Disposable? = null
 
     override fun getLayoutId() = R.layout.fragment_recycler_view
 
@@ -40,33 +42,14 @@ class DiscoverFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-        viewModel.uiEvents.onNext(DiscoverEvent.LoadTrendingShows())
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        viewModel.data.observe(requireActivity()) { model -> onModelEvent(model!!) }
-    }
-
-    private fun onModelEvent(model: DiscoverModel) {
-        Timber.d("--> model: ${model.javaClass.simpleName}")
-        when (model) {
-            is DiscoverModel.DiscoverIdle -> onDiscoverIdle()
-            is DiscoverModel.DiscoverFailure -> onDiscoverFailure(model)
-            is DiscoverModel.DiscoverSuccess -> onDiscoverSuccess(model)
+        disposable = viewModel.requestTrendingShows().subscribe { data ->
+            adapter.submitData(lifecycle, data)
         }
     }
 
-    private fun onDiscoverIdle() {
-        // TODO: render idle state
-    }
-
-    private fun onDiscoverFailure(model: DiscoverModel.DiscoverFailure) {
-        Timber.e(model.error)
-    }
-
-    private fun onDiscoverSuccess(model: DiscoverModel.DiscoverSuccess) {
-        adapter.submitList(model.items)
+    override fun onStop() {
+        disposable?.dispose()
+        disposable = null
+        super.onStop()
     }
 }

@@ -6,6 +6,7 @@ import Versions.kotlinVersion
 import Versions.leakCanaryVersion
 import Versions.moshiVersion
 import Versions.okhttpVersion
+import Versions.pagingVersion
 import Versions.retrofitVersion
 import Versions.rxandroidVersion
 import Versions.rxbindingVersion
@@ -16,10 +17,7 @@ object Dependencies {
 
     // AndroidX
     val appcompat = "androidx.appcompat:appcompat:1.2.0"
-    val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
-    val multidex = "androidx.multidex:multidex:2.0.1"
-    val preference = "androidx.preference:preference-ktx:1.1.1"
     val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:2.2.0"
     val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
     val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:2.2.0"
@@ -27,8 +25,13 @@ object Dependencies {
     val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     val material = "com.google.android.material:material:1.2.0"
+    val multidex = "androidx.multidex:multidex:2.0.1"
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:2.3.1"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:2.3.1"
+    val paging = "androidx.paging:paging-runtime:$pagingVersion"
+    val pagingRxJava = "androidx.paging:paging-rxjava3:$pagingVersion"
+    val preference = "androidx.preference:preference-ktx:1.1.1"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
 
     val firebaseBom = "com.google.firebase:firebase-bom:26.0.0"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"

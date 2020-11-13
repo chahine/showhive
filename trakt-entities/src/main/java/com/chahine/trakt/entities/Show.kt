@@ -13,7 +13,7 @@ class Show(
     @Json(name = "updated_at") val updatedAt: ZonedDateTime?,
     @Json(name = "available_translations") val availableTranslations: List<String>?,
     val year: Int?,
-    val ids: ShowIds?,
+    val ids: ShowIds,
     @Json(name = "first_aired") val firstAired: ZonedDateTime?,
     val airs: Airs,
     val runtime: Int?,
