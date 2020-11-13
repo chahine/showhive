@@ -21,7 +21,7 @@ class DiscoverInteractor @Inject constructor(
 
     companion object {
         private const val PAGE_LIMIT = 20
-        private const val SEPARATOR = " • "
+        public  const val SEPARATOR = " • "
     }
 
     fun refresh(): ObservableTransformer<in RefreshTrendingShows, out DiscoverModel> {
@@ -47,7 +47,7 @@ class DiscoverInteractor @Inject constructor(
         }
     }
 
-    private fun makeShowItem(item: TrendingShow): DiscoverAdapter.Item {
+    fun makeShowItem(item: TrendingShow): DiscoverAdapter.Item {
         val show = item.show
         val airs = show.airs
 

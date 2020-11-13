@@ -14,5 +14,8 @@ enum class Status {
     CANCELED,
 
     @Json(name = "in production")
-    IN_PRODUCTION;
+    IN_PRODUCTION,
+
+    @Json(name = "upcoming")
+    UPCOMING,
 }

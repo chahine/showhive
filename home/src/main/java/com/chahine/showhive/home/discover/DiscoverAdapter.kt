@@ -1,17 +1,29 @@
 package com.chahine.showhive.home.discover
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.chahine.showhive.base.rv.RvAdapter
-import com.chahine.showhive.base.rv.RvDelegate
 import com.chahine.showhive.base.rv.RvItem
+import com.chahine.showhive.home.R
+import com.chahine.trakt.entities.TrendingShow
 
 class DiscoverAdapter(
-    diffCallback: DiffUtil.ItemCallback<Item>,
-    delegates: Map<Int, Delegate>
-) : RvAdapter<DiscoverAdapter.Item>(diffCallback, delegates) {
+    diffCallback: DiffUtil.ItemCallback<TrendingShow>
+) : PagingDataAdapter<TrendingShow, ShowItemView.Holder>(diffCallback) {
 
-    interface Delegate : RvDelegate<Item, RecyclerView.ViewHolder>
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowItemView.Holder {
+        return ShowItemView.Holder(
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.item_image_line_three, parent, false)
+        )
+    }
+
+    override fun onBindViewHolder(holder: ShowItemView.Holder, position: Int) {
+        holder.bind(getItem(position)!!)
+    }
+
     interface Item : RvItem
 
     companion object {

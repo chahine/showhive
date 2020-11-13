@@ -9,6 +9,7 @@ import com.chahine.showhive.home.HomeActivity
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
+import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_recycler_view.list
 import timber.log.Timber
 import javax.inject.Inject
@@ -19,6 +20,8 @@ class DiscoverFragment : BaseFragment() {
     @Inject lateinit var adapter: DiscoverAdapter
     @Inject lateinit var itemDecoration: DefaultSpacesItemDecoration
     @Inject lateinit var viewModel: DiscoverViewModel
+
+    private var disposable: Disposable? = null
 
     override fun getLayoutId() = R.layout.fragment_recycler_view
 
@@ -40,13 +43,27 @@ class DiscoverFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-        viewModel.uiEvents.onNext(DiscoverEvent.RefreshTrendingShows)
+//        viewModel.uiEvents.onNext(DiscoverEvent.RefreshTrendingShows)
+
+        // Scroll to top when the list is refreshed from network.
+//        lifecycleScope.launch {
+//            adapter.loadStateFlow
+//                .distinctUntilChangedBy { it.refresh }
+//                .filter { it.refresh is LoadState.NotLoading }
+//                .collect { list.scrollToPosition(0) }
+//        }
+
+        disposable = viewModel
+            .requestTrendingShows()
+            .subscribe { data ->
+                adapter.submitData(lifecycle, data)
+            }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.data.observe(requireActivity()) { model -> onModelEvent(model!!) }
+//        viewModel.data.observe(requireActivity()) { model -> onModelEvent(model!!) }
     }
 
     private fun onModelEvent(model: DiscoverModel) {
@@ -67,6 +84,6 @@ class DiscoverFragment : BaseFragment() {
     }
 
     private fun onDiscoverSuccess(model: DiscoverModel.DiscoverSuccess) {
-        adapter.submitList(model.items)
+        // adapter.submitList(model.items)
     }
 }

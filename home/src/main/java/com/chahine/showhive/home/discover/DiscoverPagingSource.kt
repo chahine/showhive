@@ -14,7 +14,8 @@ class DiscoverPagingSource @Inject constructor(
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, TrendingShow>> {
         val page = params.key ?: 1
 
-        return traktApiClient.trending(page, params.loadSize, Extended.FULL)
+        return traktApiClient
+            .trending(page, params.loadSize, Extended.FULL)
             .map {
                 LoadResult.Page(
                     data = it.items,
@@ -22,5 +23,6 @@ class DiscoverPagingSource @Inject constructor(
                     nextKey = if (page == it.pagination.pageCount) null else page + 1
                 )
             }
+        // .onErrorReturn { LoadResult.Error(it) } ???
     }
 }
