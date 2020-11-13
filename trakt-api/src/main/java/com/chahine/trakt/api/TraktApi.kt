@@ -13,6 +13,7 @@ import com.chahine.trakt.entities.Stats
 import com.chahine.trakt.entities.Translation
 import com.chahine.trakt.entities.TrendingShow
 import io.reactivex.rxjava3.core.Single
+import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -170,7 +171,7 @@ interface TraktApi {
         @Query("page") page: Int,
         @Query("limit") limit: Int,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<List<TrendingShow>>
+    ): Single<Response<List<TrendingShow>>>
 
     /**
      * Returns a single shows's details.

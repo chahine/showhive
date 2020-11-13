@@ -18,7 +18,7 @@ class DiscoverViewModel @Inject constructor(
     internal val uiEvents: Subject<DiscoverEvent> = PublishSubject.create()
 
     init {
-        Timber.d("DIscoverViewModel#${hashCode()} ")
+        Timber.d("DiscoverViewModel#${hashCode()} ")
         uiEvents
             .doOnNext { Timber.d("--> event: ${it.javaClass.simpleName} -- $it") }
             .publish { shared ->

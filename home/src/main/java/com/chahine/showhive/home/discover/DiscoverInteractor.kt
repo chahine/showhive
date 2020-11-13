@@ -4,7 +4,7 @@ import com.chahine.showhive.home.discover.DiscoverEvent.LoadTrendingShows
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverFailure
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverIdle
 import com.chahine.showhive.home.discover.DiscoverModel.DiscoverSuccess
-import com.chahine.trakt.api.TraktApi
+import com.chahine.trakt.api.TraktApiClient
 import com.chahine.trakt.entities.Extended
 import com.chahine.trakt.entities.TrendingShow
 import io.reactivex.rxjava3.core.ObservableTransformer
@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class DiscoverInteractor @Inject constructor(
-    private val traktApi: TraktApi,
+    private val traktApiClient: TraktApiClient,
 ) {
 
     companion object {
@@ -27,9 +27,9 @@ class DiscoverInteractor @Inject constructor(
     fun trendingShows(): ObservableTransformer<in LoadTrendingShows, out DiscoverModel> {
         return ObservableTransformer { event ->
             event.switchMap { loadTrendingShows ->
-                traktApi
+                traktApiClient
                     .trending(loadTrendingShows.page, PAGE_LIMIT, Extended.FULL)
-                    .map { shows -> DiscoverSuccess(shows.map { makeShowItem(it) }) }
+                    .map { response -> DiscoverSuccess(response.value.map { makeShowItem(it) }) }
                     .toObservable()
                     .cast(DiscoverModel::class.java)
                     .onErrorReturn { DiscoverFailure(it) }

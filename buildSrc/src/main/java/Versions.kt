@@ -13,6 +13,7 @@ object Versions {
     const val leakCanaryVersion = "2.5"
     const val moshiVersion = "1.11.0"
     const val okhttpVersion = "4.9.0"
+    const val pagingVersion = "3.0.0-alpha09"
     const val retrofitVersion = "2.9.0"
     const val rxandroidVersion = "3.0.0"
     const val rxbindingVersion = "4.0.0"

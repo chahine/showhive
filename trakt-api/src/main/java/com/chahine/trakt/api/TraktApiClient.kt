@@ -1,7 +1,12 @@
 package com.chahine.trakt.api
 
+import com.chahine.trakt.api.paging.Paged
+import com.chahine.trakt.api.paging.Pagination
 import com.chahine.trakt.entities.AccessToken
+import com.chahine.trakt.entities.Extended
+import com.chahine.trakt.entities.TrendingShow
 import io.reactivex.rxjava3.core.Single
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class TraktApiClient @Inject constructor(private val api: TraktApi) {
@@ -14,5 +19,22 @@ class TraktApiClient @Inject constructor(private val api: TraktApi) {
             clientSecret = BuildConfig.TRAKT_CLIENT_SECRET,
             redirectUri = TraktV2.REDIRECT_URI
         )
+    }
+
+    fun trending(page: Int, limit: Int, extended: Extended): Single<Paged<List<TrendingShow>>> {
+        return api
+            .trending(page, limit, extended)
+            .flatMap { response ->
+                if (response.isSuccessful)
+                    Single.just(
+                        Paged(
+                            value = response.body()!!,
+                            pagination = Pagination.fromHeaders(response.headers())
+                        )
+                    )
+                else {
+                    Single.error(HttpException(response))
+                }
+            }
     }
 }
