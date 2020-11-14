@@ -1,11 +1,7 @@
 package com.chahine.showhive.home
 
 import androidx.recyclerview.widget.DiffUtil
-import com.chahine.showhive.base.rv.RvDiffUtil
 import com.chahine.showhive.home.calendar.CalendarAdapter
-import com.chahine.showhive.home.calendar.CalendarEmptyItemView
-import com.chahine.showhive.home.calendar.DateHeaderItemView
-import com.chahine.showhive.home.calendar.EpisodeItemView
 import com.chahine.showhive.home.discover.DiscoverAdapter
 import com.chahine.trakt.entities.TrendingShow
 import dagger.Module
@@ -15,15 +11,8 @@ import dagger.Provides
 class ActivityModule {
 
     @Provides
-    fun provideCalendarAdapter(diffUtil: RvDiffUtil<CalendarAdapter.Item>): CalendarAdapter {
-        return CalendarAdapter(
-            diffUtil,
-            mapOf(
-                CalendarAdapter.EMPTY to CalendarEmptyItemView.Delegate(),
-                CalendarAdapter.DATE_HEADER to DateHeaderItemView.Delegate(),
-                CalendarAdapter.EPISODE to EpisodeItemView.Delegate()
-            )
-        )
+    fun provideCalendarAdapter(): CalendarAdapter {
+        return CalendarAdapter()
     }
 
     @Provides

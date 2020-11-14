@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.ItemImageLineThreeBinding
 import com.chahine.trakt.entities.TrendingShow
+import timber.log.Timber
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 class DiscoverAdapter(
     diffCallback: DiffUtil.ItemCallback<TrendingShow>
@@ -37,12 +39,16 @@ class DiscoverAdapter(
             val airs = show.airs
 
             val time = if (!airs.time.isNullOrBlank() && !airs.timezone.isNullOrBlank()) {
-                val dateTime = LocalTime
-                    .parse(airs.time, DateTimeFormatter.ofPattern("HH:mm"))
-                    .atDate(LocalDate.now())
-                ZonedDateTime
-                    .ofLocal(dateTime, ZoneId.of(airs.timezone), null)
-                    .format(DateTimeFormatter.ofPattern("hh:mm a"))
+                try {
+                    val dateTime = LocalTime
+                        .parse(airs.time, DateTimeFormatter.ofPattern("HH:mm[:ss]"))
+                        .atDate(LocalDate.now())
+                    ZonedDateTime
+                        .ofLocal(dateTime, ZoneId.of(airs.timezone), null)
+                        .format(DateTimeFormatter.ofPattern("hh:mm a"))
+                } catch (exception: DateTimeParseException) {
+                    Timber.log(1, exception)
+                }
             } else {
                 null
             }
