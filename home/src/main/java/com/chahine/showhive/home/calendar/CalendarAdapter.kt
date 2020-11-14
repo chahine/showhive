@@ -108,12 +108,12 @@ class CalendarAdapter : PagingDataAdapter<CalendarModel, ViewHolder>(UIMODEL_COM
         private val binding = ItemCalendarDateHeaderBinding.bind(itemView)
 
         fun bind(localDate: LocalDate) = with(binding) {
-            val now = LocalDate.now()
+            val today = LocalDate.now()
 
             header.text = when (localDate) {
-                now -> itemView.context.getString(R.string.today)
-                now.plusDays(1) -> itemView.context.getString(R.string.tomorrow)
-                now.minusDays(1) -> itemView.context.getString(R.string.yesterday)
+                today -> itemView.context.getString(R.string.today)
+                today.plusDays(1) -> itemView.context.getString(R.string.tomorrow)
+                today.minusDays(1) -> itemView.context.getString(R.string.yesterday)
                 else -> localDate.format(DATE_FORMATTER) + getDayOfMonthSuffix(localDate.format(DAY_FORMATTER).toInt())
             }
         }
