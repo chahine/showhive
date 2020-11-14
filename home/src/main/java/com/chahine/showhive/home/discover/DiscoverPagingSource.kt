@@ -16,13 +16,12 @@ class DiscoverPagingSource @Inject constructor(
 
         return traktApiClient
             .trending(page, params.loadSize, Extended.FULL)
-            .map {
-                @Suppress("USELESS_CAST")
+            .map<LoadResult<Int, TrendingShow>> {
                 LoadResult.Page(
                     data = it.items,
                     prevKey = if (page == 1) null else page - 1,
                     nextKey = if (page == it.pagination.pageCount) null else page + 1
-                ) as LoadResult<Int, TrendingShow>
+                )
             }
             .onErrorReturn { LoadResult.Error(it) }
     }

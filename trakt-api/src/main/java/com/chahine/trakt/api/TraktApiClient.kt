@@ -3,6 +3,7 @@ package com.chahine.trakt.api
 import com.chahine.trakt.api.paging.Paged
 import com.chahine.trakt.api.paging.Pagination
 import com.chahine.trakt.entities.AccessToken
+import com.chahine.trakt.entities.CalendarShowEntry
 import com.chahine.trakt.entities.Extended
 import com.chahine.trakt.entities.TrendingShow
 import io.reactivex.rxjava3.core.Single
@@ -19,6 +20,10 @@ class TraktApiClient @Inject constructor(private val api: TraktApi) {
             clientSecret = BuildConfig.TRAKT_CLIENT_SECRET,
             redirectUri = TraktV2.REDIRECT_URI
         )
+    }
+
+    fun myShows(startDate: String, days: Int, extended: Extended): Single<List<CalendarShowEntry>> {
+        return api.myShows(startDate, days, extended)
     }
 
     fun trending(page: Int, limit: Int, extended: Extended): Single<Paged<TrendingShow>> {

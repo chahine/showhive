@@ -1,7 +1,9 @@
 package com.chahine.showhive.home.calendar
 
+import com.chahine.trakt.entities.CalendarShowEntry
+import java.time.LocalDate
+
 sealed class CalendarModel {
-    object CalendarProgress : CalendarModel()
-    class CalendarCardSuccess(val items: List<CalendarAdapter.Item>) : CalendarModel()
-    class CalendarFailure(val error: Throwable) : CalendarModel()
+    data class Episode(val entry: CalendarShowEntry) : CalendarModel()
+    data class Header(val date: LocalDate) : CalendarModel()
 }

@@ -1,36 +1,40 @@
 package com.chahine.showhive.home.calendar
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.chahine.showhive.home.calendar.CalendarEvent.LoadCalendar
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.PagingData.Companion.insertSeparators
+import androidx.paging.map
+import androidx.paging.rxjava3.cachedIn
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.subjects.PublishSubject
-import io.reactivex.rxjava3.subjects.Subject
 import timber.log.Timber
 import javax.inject.Inject
 
 class CalendarViewModel @Inject constructor(
-    private val interactor: CalendarInteractor
+    private val repository: CalendarRepository,
 ) : ViewModel() {
-
-    internal val data: MutableLiveData<CalendarModel> = MutableLiveData()
-    internal val uiEvents: Subject<CalendarEvent> = PublishSubject.create()
 
     init {
         Timber.d("CalendarViewModel#${hashCode()} ")
-        uiEvents
-            .doOnNext { Timber.d("--> event: ${it.javaClass.simpleName} -- $it") }
-            .publish { shared ->
-                Observable.merge(
-                    listOf(
-                        shared
-                            .ofType(LoadCalendar::class.java)
-                            .compose(interactor.calendar())
-                    )
-                )
+    }
+
+    fun requestCalendar(): Observable<PagingData<CalendarModel>> {
+        return repository.calendar()
+            .map { pagingData -> pagingData.map { CalendarModel.Episode(it) } }
+            .map { pagingData ->
+                insertSeparators(pagingData) { before, after ->
+                    when {
+                        // we're at the end of the list
+                        after == null -> null
+                        // we're at the beginning of the list
+                        before == null -> CalendarModel.Header(after.entry.firstAired.toLocalDate())
+                        // no separator
+                        before.entry.firstAired.toLocalDate() == after.entry.firstAired.toLocalDate() -> null
+                        else -> CalendarModel.Header(after.entry.firstAired.toLocalDate())
+                    }
+
+                }
             }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(data::postValue, Timber::e)
+            .cachedIn(viewModelScope)
     }
 }
