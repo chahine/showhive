@@ -42,9 +42,7 @@ class DiscoverFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-        disposable = viewModel.requestTrendingShows().subscribe { data ->
-            adapter.submitData(lifecycle, data)
-        }
+        disposable = viewModel.trending().subscribe { data -> adapter.submitData(lifecycle, data) }
     }
 
     override fun onStop() {

@@ -15,6 +15,8 @@ class CalendarPagingSource @Inject constructor(
 
     companion object {
         private const val DATE_RANGE = 30L
+        private const val MAX_DATE_RANGE = 90L
+
         private val DATE_FORMATTER = ofPattern("yyyy-MM-dd")
     }
 
@@ -23,14 +25,14 @@ class CalendarPagingSource @Inject constructor(
         val startDate = page.format(DATE_FORMATTER)
 
         return traktApiClient
-            .myShows(startDate, 30, Extended.FULL)
+            .myShows(startDate, DATE_RANGE.toInt(), Extended.FULL)
             .map<LoadResult<ZonedDateTime, CalendarShowEntry>> {
                 val now = ZonedDateTime.now()
 
                 LoadResult.Page(
                     data = it,
-                    prevKey = if (now.minusDays(90L).isBefore(page)) page.minusDays(DATE_RANGE) else null,
-                    nextKey = if (now.plusDays(90L).isAfter(page)) page.plusDays(DATE_RANGE) else null
+                    prevKey = if (now.minusDays(MAX_DATE_RANGE).isBefore(page)) page.minusDays(DATE_RANGE) else null,
+                    nextKey = if (now.plusDays(MAX_DATE_RANGE).isAfter(page)) page.plusDays(DATE_RANGE) else null
                 )
             }
             .onErrorReturn { LoadResult.Error(it) }

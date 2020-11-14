@@ -3,7 +3,6 @@ package com.chahine.showhive.home
 import androidx.recyclerview.widget.DiffUtil
 import com.chahine.showhive.home.calendar.CalendarAdapter
 import com.chahine.showhive.home.discover.DiscoverAdapter
-import com.chahine.trakt.entities.CalendarShowEntry
 import com.chahine.trakt.entities.TrendingShow
 import dagger.Module
 import dagger.Provides

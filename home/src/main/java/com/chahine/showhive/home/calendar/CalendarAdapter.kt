@@ -15,14 +15,19 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter.ofPattern
 
-class CalendarAdapter() : PagingDataAdapter<CalendarModel, ViewHolder>(UIMODEL_COMPARATOR) {
+class CalendarAdapter : PagingDataAdapter<CalendarModel, ViewHolder>(UIMODEL_COMPARATOR) {
 
     companion object {
         private const val SEPARATOR = " • "
+
         private val UIMODEL_COMPARATOR = object : DiffUtil.ItemCallback<CalendarModel>() {
             override fun areItemsTheSame(oldItem: CalendarModel, newItem: CalendarModel): Boolean {
-                return (oldItem is CalendarModel.Episode && newItem is CalendarModel.Episode && oldItem.entry == newItem.entry) ||
-                        (oldItem is CalendarModel.Header && newItem is CalendarModel.Header && oldItem.date == newItem.date)
+                return oldItem is CalendarModel.Episode &&
+                    newItem is CalendarModel.Episode &&
+                    oldItem.entry == newItem.entry ||
+                    oldItem is CalendarModel.Header &&
+                    newItem is CalendarModel.Header &&
+                    oldItem.date == newItem.date
             }
 
             override fun areContentsTheSame(oldItem: CalendarModel, newItem: CalendarModel): Boolean =

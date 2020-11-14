@@ -42,9 +42,7 @@ class CalendarFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-        disposable = viewModel.requestCalendar().subscribe { data ->
-            adapter.submitData(lifecycle, data)
-        }
+        disposable = viewModel.myCalendar().subscribe { data -> adapter.submitData(lifecycle, data) }
     }
 
     override fun onStop() {

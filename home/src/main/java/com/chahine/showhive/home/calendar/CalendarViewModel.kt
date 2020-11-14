@@ -15,10 +15,10 @@ class CalendarViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        Timber.d("CalendarViewModel#${hashCode()} ")
+        Timber.d("CalendarViewModel#${hashCode()}")
     }
 
-    fun requestCalendar(): Observable<PagingData<CalendarModel>> {
+    fun myCalendar(): Observable<PagingData<CalendarModel>> {
         return repository.calendar()
             .map { pagingData -> pagingData.map { CalendarModel.Episode(it) } }
             .map { pagingData ->
@@ -32,7 +32,6 @@ class CalendarViewModel @Inject constructor(
                         before.entry.firstAired.toLocalDate() == after.entry.firstAired.toLocalDate() -> null
                         else -> CalendarModel.Header(after.entry.firstAired.toLocalDate())
                     }
-
                 }
             }
             .cachedIn(viewModelScope)
