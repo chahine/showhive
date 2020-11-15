@@ -6,13 +6,12 @@ import com.chahine.trakt.entities.AccessToken
 import com.chahine.trakt.entities.CalendarShowEntry
 import com.chahine.trakt.entities.Extended
 import com.chahine.trakt.entities.TrendingShow
-import io.reactivex.rxjava3.core.Single
 import retrofit2.HttpException
 import javax.inject.Inject
 
 class TraktApiClient @Inject constructor(private val api: TraktApi) {
 
-    fun exchangeCodeForAccessToken(code: String): Single<AccessToken> {
+    suspend fun exchangeCodeForAccessToken(code: String): AccessToken {
         return api.exchangeCodeForAccessToken(
             grantType = "authorization_code",
             code = code,
@@ -22,24 +21,19 @@ class TraktApiClient @Inject constructor(private val api: TraktApi) {
         )
     }
 
-    fun myShows(startDate: String, days: Int, extended: Extended): Single<List<CalendarShowEntry>> {
+    suspend fun myShows(startDate: String, days: Int, extended: Extended): List<CalendarShowEntry> {
         return api.myShows(startDate, days, extended)
     }
 
-    fun trending(page: Int, limit: Int, extended: Extended): Single<Paged<TrendingShow>> {
-        return api
-            .trending(page, limit, extended)
-            .flatMap { response ->
-                if (response.isSuccessful)
-                    Single.just(
-                        Paged(
-                            items = response.body()!!,
-                            pagination = Pagination.fromHeaders(response.headers())
-                        )
-                    )
-                else {
-                    Single.error(HttpException(response))
-                }
-            }
+    suspend fun trending(page: Int, limit: Int, extended: Extended): Paged<TrendingShow> {
+        val response = api.trending(page, limit, extended)
+        if (response.isSuccessful) {
+            return Paged(
+                items = response.body()!!,
+                pagination = Pagination.fromHeaders(response.headers())
+            )
+        } else {
+            throw HttpException(response)
+        }
     }
 }

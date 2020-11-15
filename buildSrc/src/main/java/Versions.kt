@@ -4,6 +4,7 @@ object Versions {
     const val compileSdkVersion = 30
     const val targetSdkVersion = 30
     const val kotlinVersion = "1.4.10"
+    const val coroutinesVersion = "1.4.1"
 
     // Libraries Version
     const val chuckVersion = "1.1.0"

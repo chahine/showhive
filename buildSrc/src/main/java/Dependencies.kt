@@ -1,4 +1,5 @@
 import Versions.chuckVersion
+import Versions.coroutinesVersion
 import Versions.daggerVersion
 import Versions.glideVersion
 import Versions.junitVersion
@@ -50,6 +51,7 @@ object Dependencies {
 
     // Kotlin
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // Dagger
     val javax = "javax.inject:javax.inject:1"

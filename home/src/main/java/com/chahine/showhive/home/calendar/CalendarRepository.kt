@@ -3,16 +3,15 @@ package com.chahine.showhive.home.calendar
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.rxjava3.observable
 import com.chahine.trakt.entities.CalendarShowEntry
-import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CalendarRepository @Inject constructor(
     private val pagingSource: CalendarPagingSource
 ) {
 
-    fun calendar(): Observable<PagingData<CalendarShowEntry>> {
+    fun calendar(): Flow<PagingData<CalendarShowEntry>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 100,
@@ -20,6 +19,6 @@ class CalendarRepository @Inject constructor(
                 initialLoadSize = 100
             ),
             pagingSourceFactory = { pagingSource }
-        ).observable
+        ).flow
     }
 }

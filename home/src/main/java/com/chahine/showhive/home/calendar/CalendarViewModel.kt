@@ -4,9 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.PagingData.Companion.insertSeparators
+import androidx.paging.cachedIn
 import androidx.paging.map
-import androidx.paging.rxjava3.cachedIn
-import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ class CalendarViewModel @Inject constructor(
         Timber.d("CalendarViewModel#${hashCode()}")
     }
 
-    fun myCalendar(): Observable<PagingData<CalendarModel>> {
+    fun myCalendar(): Flow<PagingData<CalendarModel>> {
         return repository.calendar()
             .map { pagingData -> pagingData.map { CalendarModel.Episode(it) } }
             .map { pagingData ->
