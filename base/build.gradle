@@ -8,10 +8,6 @@ dependencies {
     // Android
     api Dependencies.androidX
 
-    // RX
-    api Dependencies.rx
-    api Dependencies.rxBindings
-
     // Dagger
     api Dependencies.dagger
     kapt Dependencies.daggerCompiler

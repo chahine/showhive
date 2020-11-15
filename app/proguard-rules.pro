@@ -12,34 +12,6 @@
 -keepattributes Signature
 -keepattributes Exceptions
 
-# GSON
--keepattributes Signature
--keep class sun.misc.Unsafe { *; }
-
-# RxJava
--keep class rx.schedulers.Schedulers {
-    public static <methods>;
-}
--keep class rx.schedulers.ImmediateScheduler {
-    public <methods>;
-}
--keep class rx.schedulers.TestScheduler {
-    public <methods>;
-}
--keep class rx.schedulers.Schedulers {
-    public static ** test();
-}
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-    long producerIndex;
-    long consumerIndex;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode producerNode;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode consumerNode;
-}
-
 # Missing annotations are harmless.
 -dontwarn sun.misc**
 -dontwarn javax.annotation.**
@@ -85,10 +57,6 @@
 -dontwarn com.chahine.tmdb.entities.**
 
 -dontwarn android.arch.lifecycle.FullLifecycleObserver
-
-# Keep the names of the model and event classes
--keepnames public class * extends **Event
--keepnames public class * extends **Model
 
 # Keep custom exceptions
 -keepnames public class * extends java.lang.Exception
