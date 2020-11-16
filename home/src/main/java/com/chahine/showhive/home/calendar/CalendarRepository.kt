@@ -14,9 +14,9 @@ class CalendarRepository @Inject constructor(
     fun calendar(): Flow<PagingData<CalendarShowEntry>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 100,
+                pageSize = 10,
                 enablePlaceholders = false,
-                initialLoadSize = 100
+                initialLoadSize = 10
             ),
             pagingSourceFactory = { pagingSource }
         ).flow

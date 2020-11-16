@@ -11,9 +11,6 @@ import Versions.navigationVersion
 import Versions.okhttpVersion
 import Versions.pagingVersion
 import Versions.retrofitVersion
-import Versions.rxandroidVersion
-import Versions.rxbindingVersion
-import Versions.rxjavaVersion
 
 @Suppress("MayBeConstant", "MemberVisibilityCanBePrivate", "unused")
 object Dependencies {
