@@ -11,6 +11,7 @@ import javax.inject.Inject
 class DiscoverPagingSource @Inject constructor(
     private val traktApiClient: TraktApiClient,
 ) : PagingSource<Int, TrendingShow>() {
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TrendingShow> {
         val page = params.key ?: 1
 
@@ -22,9 +23,9 @@ class DiscoverPagingSource @Inject constructor(
                 nextKey = if (page == response.pagination.pageCount) null else page + 1
             )
         } catch (exception: IOException) {
-            return LoadResult.Error(exception)
+            LoadResult.Error(exception)
         } catch (exception: HttpException) {
-            return LoadResult.Error(exception)
+            LoadResult.Error(exception)
         }
     }
 }
