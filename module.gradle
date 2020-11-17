@@ -46,6 +46,7 @@ dependencies {
     coreLibraryDesugaring Dependencies.desugarJdkLibs
 
     implementation Dependencies.kotlinStdlib
+    implementation Dependencies.coroutines
 
     testImplementation Dependencies.testLibs
 }

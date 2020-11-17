@@ -12,7 +12,6 @@ import com.chahine.trakt.entities.Show
 import com.chahine.trakt.entities.Stats
 import com.chahine.trakt.entities.Translation
 import com.chahine.trakt.entities.TrendingShow
-import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -28,23 +27,23 @@ interface TraktApi {
 
     @FormUrlEncoded
     @POST(TraktV2.OAUTH2_TOKEN_URL)
-    fun exchangeCodeForAccessToken(
+    suspend fun exchangeCodeForAccessToken(
         @Field("grant_type") grantType: String,
         @Field("code") code: String,
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
         @Field("redirect_uri") redirectUri: String
-    ): Single<AccessToken>
+    ): AccessToken
 
     @FormUrlEncoded
     @POST(TraktV2.OAUTH2_TOKEN_URL)
-    fun refreshAccessToken(
+    suspend fun refreshAccessToken(
         @Field("grant_type") grantType: String,
         @Field("refresh_token") refreshToken: String,
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
         @Field("redirect_uri") redirectUri: String
-    ): Single<AccessToken>
+    ): AccessToken
 
     // endregion
 
@@ -56,11 +55,11 @@ interface TraktApi {
      * @see .shows
      */
     @GET("calendars/my/shows/{startDate}/{days}")
-    fun myShows(
+    suspend fun myShows(
         @Path("startDate") startDate: String,
         @Path("days") days: Int,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<List<CalendarShowEntry>>
+    ): List<CalendarShowEntry>
 
     /**
      * **OAuth Required**
@@ -68,10 +67,10 @@ interface TraktApi {
      * @see .newShows
      */
     @GET("calendars/my/shows/new/{startDate}/{days}")
-    fun myNewShows(
+    suspend fun myNewShows(
         @Path("startDate") startDate: String,
         @Path("days") days: Int
-    ): Single<List<CalendarShowEntry>>
+    ): List<CalendarShowEntry>
 
     /**
      * **OAuth Required**
@@ -79,10 +78,10 @@ interface TraktApi {
      * @see .seasonPremieres
      */
     @GET("calendars/my/shows/premieres/{startDate}/{days}")
-    fun mySeasonPremieres(
+    suspend fun mySeasonPremieres(
         @Path("startDate") startDate: String,
         @Path("days") days: Int
-    ): Single<List<CalendarShowEntry>>
+    ): List<CalendarShowEntry>
 
     /**
      * **OAuth Required**
@@ -90,10 +89,10 @@ interface TraktApi {
      * @see .movies
      */
     @GET("calendars/my/movies/{startDate}/{days}")
-    fun myMovies(
+    suspend fun myMovies(
         @Path("startDate") startDate: String,
         @Path("days") days: Int
-    ): Single<List<CalendarMovieEntry>>
+    ): List<CalendarMovieEntry>
 
     /**
      * Returns all shows airing during the time period specified.
@@ -102,10 +101,10 @@ interface TraktApi {
      * @param days Number of days to display. Example: 7.
      */
     @GET("calendars/all/shows/{startDate}/{days}")
-    fun shows(
+    suspend fun shows(
         @Path("startDate") startDate: String,
         @Path("days") days: Int
-    ): Single<List<CalendarShowEntry>>
+    ): List<CalendarShowEntry>
 
     /**
      * Returns all new show premieres (season 1, episode 1) airing during the time period specified.
@@ -114,10 +113,10 @@ interface TraktApi {
      * @param days Number of days to display. Example: 7.
      */
     @GET("calendars/all/shows/new/{startDate}/{days}")
-    fun newShows(
+    suspend fun newShows(
         @Path("startDate") startDate: String,
         @Path("days") days: Int
-    ): Single<List<CalendarShowEntry>>
+    ): List<CalendarShowEntry>
 
     /**
      * Returns all show premieres (any season, episode 1) airing during the time period specified.
@@ -126,10 +125,10 @@ interface TraktApi {
      * @param days Number of days to display. Example: 7.
      */
     @GET("calendars/all/shows/premieres/{startDate}/{days}")
-    fun seasonPremieres(
+    suspend fun seasonPremieres(
         @Path("startDate") startDate: String,
         @Path("days") days: Int
-    ): Single<List<CalendarShowEntry>>
+    ): List<CalendarShowEntry>
 
     /**
      * Returns all movies with a release date during the time period specified.
@@ -138,10 +137,10 @@ interface TraktApi {
      * @param days Number of days to display. Example: 7.
      */
     @GET("calendars/all/movies/{startDate}/{days}")
-    fun movies(
+    suspend fun movies(
         @Path("startDate") startDate: String,
         @Path("days") days: Int
-    ): Single<List<CalendarMovieEntry>>
+    ): List<CalendarMovieEntry>
 
     // endregion
 
@@ -154,11 +153,11 @@ interface TraktApi {
      * @param limit Number of results to return per page. If `null` defaults to 10.
      */
     @GET("shows/popular")
-    fun popular(
+    suspend fun popular(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<List<Show>>
+    ): List<Show>
 
     /**
      * Returns all shows being watched right now. Shows with the most users are returned first.
@@ -167,11 +166,11 @@ interface TraktApi {
      * @param limit Number of results to return per page. If `null` defaults to 10.
      */
     @GET("shows/trending")
-    fun trending(
+    suspend fun trending(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<Response<List<TrendingShow>>>
+    ): Response<List<TrendingShow>>
 
     /**
      * Returns a single shows's details.
@@ -179,10 +178,10 @@ interface TraktApi {
      * @param showId trakt ID, trakt slug, or IMDB ID. Example: "game-of-thrones".
      */
     @GET("shows/{id}")
-    fun summary(
+    suspend fun summary(
         @Path("id") showId: String,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<Show>
+    ): Show
 
     /**
      * Returns all translations for a show, including language and translated values for title and overview.
@@ -190,9 +189,9 @@ interface TraktApi {
      * @param showId trakt ID, trakt slug, or IMDB ID. Example: "game-of-thrones".
      */
     @GET("shows/{id}/translations")
-    fun translations(
+    suspend fun translations(
         @Path("id") showId: String
-    ): Single<List<Translation>>
+    ): List<Translation>
 
     /**
      * Returns a single translation for a show. If the translation does not exist, the returned list will be empty.
@@ -201,10 +200,10 @@ interface TraktApi {
      * @param language 2-letter language code (ISO 639-1).
      */
     @GET("shows/{id}/translations/{language}")
-    fun translation(
+    suspend fun translation(
         @Path("id") showId: String,
         @Path("language") language: String
-    ): Single<List<Translation>>
+    ): List<Translation>
 
     /**
      * Returns all top level comments for a show. Most recent comments returned first.
@@ -214,12 +213,12 @@ interface TraktApi {
      * @param limit Number of results to return per page. If `null` defaults to 10.
      */
     @GET("shows/{id}/comments")
-    fun comments(
+    suspend fun comments(
         @Path("id") showId: String,
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<List<Comment>>
+    ): List<Comment>
 
     /**
      * **OAuth Required**
@@ -237,12 +236,12 @@ interface TraktApi {
      * @param specials Include specials as season 0.
      */
     @GET("shows/{id}/progress/collection")
-    fun collectedProgress(
+    suspend fun collectedProgress(
         @Path("id") showId: String,
         @Query("hidden") hidden: Boolean?,
         @Query("specials") specials: Boolean?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<BaseShow>
+    ): BaseShow
 
     /**
      * **OAuth Required**
@@ -259,12 +258,12 @@ interface TraktApi {
      * @param specials Include specials as season 0.
      */
     @GET("shows/{id}/progress/watched")
-    fun watchedProgress(
+    suspend fun watchedProgress(
         @Path("id") showId: String,
         @Query("hidden") hidden: Boolean?,
         @Query("specials") specials: Boolean?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<BaseShow>
+    ): BaseShow
 
     /**
      * Returns all actors, directors, writers, and producers for a show.
@@ -272,9 +271,9 @@ interface TraktApi {
      * @param showId trakt ID, trakt slug, or IMDB ID. Example: "game-of-thrones".
      */
     @GET("shows/{id}/people")
-    fun people(
+    suspend fun people(
         @Path("id") showId: String
-    ): Single<Credits>
+    ): Credits
 
     /**
      * Returns rating (between 0 and 10) and distribution for a show.
@@ -282,28 +281,28 @@ interface TraktApi {
      * @param showId trakt ID, trakt slug, or IMDB ID. Example: "game-of-thrones".
      */
     @GET("shows/{id}/ratings")
-    fun ratings(
+    suspend fun ratings(
         @Path("id") showId: String
-    ): Single<Ratings>
+    ): Ratings
 
     /**
      * Returns lots of show stats.
      */
     @GET("shows/{id}/stats")
-    fun stats(
+    suspend fun stats(
         @Path("id") showId: String
-    ): Single<Stats>
+    ): Stats
 
     /**
      * Returns related and similar shows.
      */
     @GET("shows/{id}/related")
-    fun related(
+    suspend fun related(
         @Path("id") showId: String,
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query(value = "extended", encoded = true) extended: Extended
-    ): Single<List<Show>>
+    ): List<Show>
 
     // endregion
 }

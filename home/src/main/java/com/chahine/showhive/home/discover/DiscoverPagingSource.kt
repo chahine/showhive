@@ -1,28 +1,31 @@
 package com.chahine.showhive.home.discover
 
-import androidx.paging.rxjava3.RxPagingSource
+import androidx.paging.PagingSource
 import com.chahine.trakt.api.TraktApiClient
 import com.chahine.trakt.entities.Extended
 import com.chahine.trakt.entities.TrendingShow
-import io.reactivex.rxjava3.core.Single
+import okio.IOException
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class DiscoverPagingSource @Inject constructor(
     private val traktApiClient: TraktApiClient,
-) : RxPagingSource<Int, TrendingShow>() {
+) : PagingSource<Int, TrendingShow>() {
 
-    override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, TrendingShow>> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TrendingShow> {
         val page = params.key ?: 1
 
-        return traktApiClient
-            .trending(page, params.loadSize, Extended.FULL)
-            .map<LoadResult<Int, TrendingShow>> {
-                LoadResult.Page(
-                    data = it.items,
-                    prevKey = if (page == 1) null else page - 1,
-                    nextKey = if (page == it.pagination.pageCount) null else page + 1
-                )
-            }
-            .onErrorReturn { LoadResult.Error(it) }
+        return try {
+            val response = traktApiClient.trending(page, params.loadSize, Extended.FULL)
+            LoadResult.Page(
+                data = response.items,
+                prevKey = if (page == 1) null else page - 1,
+                nextKey = if (page == response.pagination.pageCount) null else page + 1
+            )
+        } catch (exception: IOException) {
+            LoadResult.Error(exception)
+        } catch (exception: HttpException) {
+            LoadResult.Error(exception)
+        }
     }
 }

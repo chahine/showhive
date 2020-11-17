@@ -2,6 +2,7 @@ package com.chahine.showhive.home.discover
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chahine.showhive.base.BaseFragment
 import com.chahine.showhive.base.Router
@@ -9,8 +10,10 @@ import com.chahine.showhive.home.HomeActivity
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
-import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_recycler_view.list
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DiscoverFragment : BaseFragment() {
@@ -20,7 +23,7 @@ class DiscoverFragment : BaseFragment() {
     @Inject lateinit var itemDecoration: DefaultSpacesItemDecoration
     @Inject lateinit var viewModel: DiscoverViewModel
 
-    private var disposable: Disposable? = null
+    private var trendingJob: Job? = null
 
     override fun getLayoutId() = R.layout.fragment_recycler_view
 
@@ -42,12 +45,15 @@ class DiscoverFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-        disposable = viewModel.trending().subscribe { data -> adapter.submitData(lifecycle, data) }
+        trendingJob = lifecycleScope.launch {
+            viewModel.trending().collectLatest {
+                adapter.submitData(it)
+            }
+        }
     }
 
     override fun onStop() {
-        disposable?.dispose()
-        disposable = null
+        trendingJob?.cancel()
         super.onStop()
     }
 }

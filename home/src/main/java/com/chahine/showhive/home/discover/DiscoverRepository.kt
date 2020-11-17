@@ -3,9 +3,8 @@ package com.chahine.showhive.home.discover
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.rxjava3.observable
 import com.chahine.trakt.entities.TrendingShow
-import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DiscoverRepository @Inject constructor(
@@ -16,7 +15,7 @@ class DiscoverRepository @Inject constructor(
         private const val PAGE_SIZE = 20
     }
 
-    fun trending(): Observable<PagingData<TrendingShow>> {
+    fun trending(): Flow<PagingData<TrendingShow>> {
         return Pager(
             config = PagingConfig(
                 pageSize = PAGE_SIZE,
@@ -24,6 +23,6 @@ class DiscoverRepository @Inject constructor(
                 initialLoadSize = PAGE_SIZE
             ),
             pagingSourceFactory = { pagingSource }
-        ).observable
+        ).flow
     }
 }

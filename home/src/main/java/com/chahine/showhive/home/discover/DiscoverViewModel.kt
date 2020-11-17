@@ -2,7 +2,7 @@ package com.chahine.showhive.home.discover
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.rxjava3.cachedIn
+import androidx.paging.cachedIn
 import timber.log.Timber
 import javax.inject.Inject
 
