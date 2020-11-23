@@ -7,30 +7,30 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.ItemCalendarDateHeaderBinding
 import com.chahine.showhive.home.databinding.ItemImageLineThreeBinding
-import com.chahine.trakt.entities.CalendarShowEntry
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter.ofPattern
 
-class CalendarAdapter : PagingDataAdapter<CalendarModel, ViewHolder>(UIMODEL_COMPARATOR) {
+class CalendarAdapter : PagingDataAdapter<CalendarUiModel, ViewHolder>(UIMODEL_COMPARATOR) {
 
     companion object {
         private const val SEPARATOR = " • "
 
-        private val UIMODEL_COMPARATOR = object : DiffUtil.ItemCallback<CalendarModel>() {
-            override fun areItemsTheSame(oldItem: CalendarModel, newItem: CalendarModel): Boolean {
-                return oldItem is CalendarModel.Episode &&
-                    newItem is CalendarModel.Episode &&
+        private val UIMODEL_COMPARATOR = object : DiffUtil.ItemCallback<CalendarUiModel>() {
+            override fun areItemsTheSame(oldItem: CalendarUiModel, newItem: CalendarUiModel): Boolean {
+                return oldItem is CalendarUiModel.Episode &&
+                    newItem is CalendarUiModel.Episode &&
                     oldItem.entry == newItem.entry ||
-                    oldItem is CalendarModel.Header &&
-                    newItem is CalendarModel.Header &&
+                    oldItem is CalendarUiModel.Header &&
+                    newItem is CalendarUiModel.Header &&
                     oldItem.date == newItem.date
             }
 
-            override fun areContentsTheSame(oldItem: CalendarModel, newItem: CalendarModel): Boolean =
+            override fun areContentsTheSame(oldItem: CalendarUiModel, newItem: CalendarUiModel): Boolean =
                 oldItem == newItem
         }
     }
@@ -44,8 +44,8 @@ class CalendarAdapter : PagingDataAdapter<CalendarModel, ViewHolder>(UIMODEL_COM
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is CalendarModel.Episode -> R.layout.item_image_line_three
-            is CalendarModel.Header -> R.layout.item_calendar_date_header
+            is CalendarUiModel.Episode -> R.layout.item_image_line_three
+            is CalendarUiModel.Header -> R.layout.item_calendar_date_header
             null -> throw UnsupportedOperationException("Unknown view")
         }
     }
@@ -54,8 +54,8 @@ class CalendarAdapter : PagingDataAdapter<CalendarModel, ViewHolder>(UIMODEL_COM
         val uiModel = getItem(position)
         uiModel?.let {
             when (uiModel) {
-                is CalendarModel.Episode -> (holder as EpisodeViewHolder).bind(uiModel.entry)
-                is CalendarModel.Header -> (holder as HeaderViewHolder).bind(uiModel.date)
+                is CalendarUiModel.Episode -> (holder as EpisodeViewHolder).bind(uiModel)
+                is CalendarUiModel.Header -> (holder as HeaderViewHolder).bind(uiModel.date)
             }
         }
     }
@@ -72,9 +72,9 @@ class CalendarAdapter : PagingDataAdapter<CalendarModel, ViewHolder>(UIMODEL_COM
 
         private val binding = ItemImageLineThreeBinding.bind(view)
 
-        fun bind(item: CalendarShowEntry) = with(binding) {
-            val show = item.show
-            val episode = item.episode
+        fun bind(item: CalendarUiModel.Episode) = with(binding) {
+            val show = item.entry.show
+            val episode = item.entry.episode
             val resources = itemView.resources
 
             val episodeNumber = resources.getString(R.string.episode_number_format, episode.season, episode.number)
@@ -88,6 +88,12 @@ class CalendarAdapter : PagingDataAdapter<CalendarModel, ViewHolder>(UIMODEL_COM
                     .withZoneSameInstant(ZoneId.systemDefault())
                     .format(ofPattern("MMM d hh:mm a"))
             ).joinToString(SEPARATOR)
+
+            Glide.with(binding.poster.context)
+                .load(item.posterUrl)
+                .centerCrop()
+                .placeholder(R.color.colorSecondary)
+                .into(poster)
         }
     }
 
