@@ -5,11 +5,10 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
+import com.chahine.showhive.auth.databinding.ActivitySplashBinding
 import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
 import com.chahine.trakt.api.TraktApiClient
-import kotlinx.android.synthetic.main.activity_splash.connectBtn
-import kotlinx.android.synthetic.main.activity_splash.skipBtn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,8 +16,6 @@ class SplashActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
     @Inject lateinit var apiClient: TraktApiClient
-
-    override fun getLayoutId() = R.layout.activity_splash
 
     override fun setUpDependencyInjection() {
         val component = DaggerActivityComponent.builder()
@@ -33,11 +30,14 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // FIXME: throttle first by 300ms
-        connectBtn.setOnClickListener { router.connectWithTrakt() }
+        val binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // FIXME: throttle first by 300ms
-        skipBtn.setOnClickListener {
+        binding.connectBtn.setOnClickListener { router.connectWithTrakt() }
+
+        // FIXME: throttle first by 300ms
+        binding.skipBtn.setOnClickListener {
             PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()
                 .putBoolean("splash_skipped", true)

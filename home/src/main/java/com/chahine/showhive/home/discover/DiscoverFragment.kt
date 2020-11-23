@@ -8,9 +8,9 @@ import com.chahine.showhive.base.BaseFragment
 import com.chahine.showhive.base.Router
 import com.chahine.showhive.home.HomeActivity
 import com.chahine.showhive.home.R
+import com.chahine.showhive.home.databinding.FragmentRecyclerViewBinding
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
-import kotlinx.android.synthetic.main.fragment_recycler_view.list
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,9 +38,11 @@ class DiscoverFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        list.layoutManager = LinearLayoutManager(context)
-        list.addItemDecoration(itemDecoration)
-        list.adapter = adapter
+        val binding = FragmentRecyclerViewBinding.bind(view)
+
+        binding.list.layoutManager = LinearLayoutManager(context)
+        binding.list.addItemDecoration(itemDecoration)
+        binding.list.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.trending().collectLatest { adapter.submitData(it) }

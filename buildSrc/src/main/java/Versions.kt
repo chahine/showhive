@@ -3,12 +3,12 @@ object Versions {
     const val minSdkVersion = 24
     const val compileSdkVersion = 30
     const val targetSdkVersion = 30
-    const val kotlinVersion = "1.4.10"
+    const val kotlinVersion = "1.4.20"
     const val coroutinesVersion = "1.4.1"
 
     // Libraries Version
     const val chuckVersion = "1.1.0"
-    const val daggerVersion = "2.29.1"
+    const val daggerVersion = "2.30"
     const val glideVersion = "4.11.0"
     const val junitVersion = "4.13.1"
     const val leakCanaryVersion = "2.5"
