@@ -6,7 +6,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.chahine.showhive.home.databinding.ActivityHomeBinding
 import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
@@ -14,8 +14,6 @@ class HomeActivity : BaseActivity() {
     @Inject lateinit var router: Router
 
     lateinit var component: ActivityComponent
-
-    override fun getLayoutId() = R.layout.activity_home
 
     override fun setUpDependencyInjection() {
         component = DaggerActivityComponent.builder()
@@ -33,8 +31,10 @@ class HomeActivity : BaseActivity() {
             router.splash()
         }
 
-        val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+        val binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navView.setupWithNavController(navHostFragment.navController)
+        binding.bottomNavigationView.setupWithNavController(navHostFragment.navController)
     }
 }

@@ -33,7 +33,7 @@ object Dependencies {
     val preference = "androidx.preference:preference-ktx:1.1.1"
     val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
 
-    val firebaseBom = "com.google.firebase:firebase-bom:26.0.0"
+    val firebaseBom = "com.google.firebase:firebase-bom:26.1.0"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
     val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
     val firebasePerf = "com.google.firebase:firebase-perf-ktx"
@@ -73,7 +73,7 @@ object Dependencies {
 
     // Testing
     val jUnit = "junit:junit:$junitVersion"
-    val mockito = "org.mockito:mockito-core:3.5.13"
+    val mockito = "org.mockito:mockito-core:3.6.0"
     val hamcrest = "org.hamcrest:hamcrest-all:1.3"
 
     val api = listOf(
