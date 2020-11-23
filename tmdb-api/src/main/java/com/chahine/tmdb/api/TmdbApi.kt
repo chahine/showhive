@@ -17,7 +17,6 @@ import com.chahine.tmdb.entities.TvExternalIds
 import com.chahine.tmdb.entities.TvShow
 import com.chahine.tmdb.entities.TvShowResultsPage
 import com.chahine.tmdb.entities.Videos
-import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -35,9 +34,9 @@ interface TmdbApi {
      * @param tvShowId A Tv Show TMDb id.
      */
     @GET("tv/{tv_id}")
-    fun tv(
+    suspend fun tv(
         @Path("tv_id") tvShowId: Int
-    ): Single<TvShow>
+    ): TvShow
 
     /**
      * Get the primary information about a TV series by id.
@@ -46,10 +45,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}")
-    fun tv(
+    suspend fun tv(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String
-    ): Single<TvShow>
+    ): TvShow
 
     /**
      * Get the primary information about a TV series by id.
@@ -59,11 +58,11 @@ interface TmdbApi {
      * @param appendToResponse *Optional.* extra requests to append to the result.
      */
     @GET("tv/{tv_id}")
-    fun tv(
+    suspend fun tv(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String,
         @Query("append_to_response") appendToResponse: AppendToResponse
-    ): Single<TvShow>
+    ): TvShow
 
     /**
      * Get the primary information about a TV series by id.
@@ -74,12 +73,12 @@ interface TmdbApi {
      * @param options *Optional.* parameters for the appended extra results.
      */
     @GET("tv/{tv_id}")
-    fun tv(
+    suspend fun tv(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String,
         @Query("append_to_response") appendToResponse: AppendToResponse,
         @QueryMap options: Map<String, String>
-    ): Single<TvShow>
+    ): TvShow
 
     /**
      * Get the primary information about a TV series by id.
@@ -88,10 +87,10 @@ interface TmdbApi {
      * @param appendToResponse *Optional.* extra requests to append to the result.
      */
     @GET("tv/{tv_id}")
-    fun tv(
+    suspend fun tv(
         @Path("tv_id") tvShowId: Int,
         @Query("append_to_response") appendToResponse: AppendToResponse
-    ): Single<TvShow>
+    ): TvShow
 
     /**
      * Get the primary information about a TV series by id.
@@ -101,11 +100,11 @@ interface TmdbApi {
      * @param options *Optional.* parameters for the appended extra results.
      */
     @GET("tv/{tv_id}")
-    fun tv(
+    suspend fun tv(
         @Path("tv_id") tvShowId: Int,
         @Query("append_to_response") appendToResponse: AppendToResponse,
         @QueryMap options: Map<String, String>
-    ): Single<TvShow>
+    ): TvShow
 
     /**
      * Grab the following account states for a session:
@@ -119,9 +118,9 @@ interface TmdbApi {
      * @param tvShowId TMDb id.
      */
     @GET("tv/{tv_id}/account_states")
-    fun accountStates(
+    suspend fun accountStates(
         @Path("tv_id") tvShowId: Int
-    ): Single<AccountStates>
+    ): AccountStates
 
     /**
      * Get the alternative titles for a specific show ID.
@@ -129,9 +128,9 @@ interface TmdbApi {
      * @param tvShowId A Tv Show TMDb id.
      */
     @GET("tv/{tv_id}/alternative_titles")
-    fun alternativeTitles(
+    suspend fun alternativeTitles(
         @Path("tv_id") tvShowId: Int
-    ): Single<AlternativeTitles>
+    ): AlternativeTitles
 
     /**
      * Get the changes for a TV show. By default only the last 24 hours are returned.
@@ -149,12 +148,12 @@ interface TmdbApi {
      * @param page *Optional.* Minimum value is 1, expected value is an integer.
      */
     @GET("tv/{tv_id}/changes")
-    fun changes(
+    suspend fun changes(
         @Path("tv_id") tvShowId: Int,
         @Query("start_date") startDate: TmdbDate,
         @Query("end_date") endDate: TmdbDate,
         @Query("page") page: Int?
-    ): Single<Changes>
+    ): Changes
 
     /**
      * Get the cast and crew information about a TV series. Just like the website, we pull this information from the
@@ -164,10 +163,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/credits")
-    fun credits(
+    suspend fun credits(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String
-    ): Single<Credits>
+    ): Credits
 
     /**
      * Get the content ratings for a specific TV show.
@@ -175,9 +174,9 @@ interface TmdbApi {
      * @param tmdbId A Tv Show TMDb id.
      */
     @GET("tv/{tv_id}/contentRatings")
-    fun contentRatings(
+    suspend fun contentRatings(
         @Path("tv_id") tmdbId: Int
-    ): Single<ContentRatings>
+    ): ContentRatings
 
     /**
      * Get the external ids that we have stored for a TV series.
@@ -186,10 +185,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/external_ids")
-    fun externalIds(
+    suspend fun externalIds(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String
-    ): Single<TvExternalIds>
+    ): TvExternalIds
 
     /**
      * Get the images (posters and backdrops) for a TV series.
@@ -198,10 +197,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/images")
-    fun images(
+    suspend fun images(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String
-    ): Single<Images>
+    ): Images
 
     /**
      * Get the plot keywords for a specific TV show id.
@@ -209,9 +208,9 @@ interface TmdbApi {
      * @param tvShowId A Tv Show TMDb id.
      */
     @GET("tv/{tv_id}/keywords")
-    fun keywords(
+    suspend fun keywords(
         @Path("tv_id") tvShowId: Int
-    ): Single<Keywords>
+    ): Keywords
 
     /**
      * Get the list of TV show recommendations for this item.
@@ -221,11 +220,11 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/recommendations")
-    fun recommendations(
+    suspend fun recommendations(
         @Path("tv_id") tvShowId: Int,
         @Query("page") page: Int?,
         @Query("language") language: String
-    ): Single<TvShowResultsPage>
+    ): TvShowResultsPage
 
     /**
      * Get the similar TV shows for a specific tv id.
@@ -235,11 +234,11 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/similar")
-    fun similar(
+    suspend fun similar(
         @Path("tv_id") tvShowId: Int,
         @Query("page") page: Int?,
         @Query("language") language: String
-    ): Single<TvShowResultsPage>
+    ): TvShowResultsPage
 
     /**
      * Get a list of the translations that exist for a TV show.
@@ -248,10 +247,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/translations")
-    fun translations(
+    suspend fun translations(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String
-    ): Single<Translations>
+    ): Translations
 
     /**
      * Get the videos that have been added to a TV series (trailers, opening credits, etc...)
@@ -260,16 +259,16 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/videos")
-    fun videos(
+    suspend fun videos(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String
-    ): Single<Videos>
+    ): Videos
 
     /**
      * Get the latest TV show id.
      */
     @GET("tv/latest")
-    fun latest(): Single<TvShow>
+    suspend fun latest(): TvShow
 
     /**
      * Get the list of TV shows that are currently on the air. This query looks for any TV show that has an episode with
@@ -279,10 +278,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/on_the_air")
-    fun onTheAir(
+    suspend fun onTheAir(
         @Query("page") page: Int?,
         @Query("language") language: String
-    ): Single<TvShowResultsPage>
+    ): TvShowResultsPage
 
     /**
      * Get the list of TV shows that air today. Without a specified timezone, this query defaults to EST (Eastern Time
@@ -292,10 +291,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/airing_today")
-    fun airingToday(
+    suspend fun airingToday(
         @Query("page") page: Int?,
         @Query("language") language: String
-    ): Single<TvShowResultsPage>
+    ): TvShowResultsPage
 
     /**
      * Get the list of top rated TV shows. By default, this list will only include TV shows that have 2 or more votes.
@@ -305,10 +304,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/top_rated")
-    fun topRated(
+    suspend fun topRated(
         @Query("page") page: Int?,
         @Query("language") language: String
-    ): Single<TvShowResultsPage>
+    ): TvShowResultsPage
 
     /**
      * Get the list of popular TV shows. This list refreshes every day.
@@ -317,10 +316,10 @@ interface TmdbApi {
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/popular")
-    fun popular(
+    suspend fun popular(
         @Query("page") page: Int?,
         @Query("language") language: String
-    ): Single<TvShowResultsPage>
+    ): TvShowResultsPage
 
     /**
      * Rate a TV show.
@@ -332,11 +331,11 @@ interface TmdbApi {
      * @param body *Required.* A ReviewObject Object. Minimum value is 0.5 and Maximum 10.0, expected value is a number.
      */
     @POST("tv/{tv_id}/rating")
-    fun addRating(
+    suspend fun addRating(
         @Path("tv_id") tvShowId: Int?,
         @Query("authentication") authenticationType: AuthenticationType,
         @Body body: RatingObject
-    ): Single<Status>
+    ): Status
 
     /**
      * Rate a TV show.
@@ -347,10 +346,10 @@ interface TmdbApi {
      * @param body *Required.* A ReviewObject Object. Minimum value is 0.5 and Maximum 10.0, expected value is a number.
      */
     @POST("tv/{tv_id}/rating")
-    fun addRating(
+    suspend fun addRating(
         @Path("tv_id") tvShowId: Int?,
         @Body body: RatingObject
-    ): Single<Status>
+    ): Status
 
     /**
      * Remove your rating for a TV show.
@@ -361,10 +360,10 @@ interface TmdbApi {
      * @param authenticationType Authentication Type for this operation. Available Choices: Account, Guest.
      */
     @DELETE("tv/{tv_id}/rating")
-    fun deleteRating(
+    suspend fun deleteRating(
         @Path("tv_id") tvShowId: Int?,
         @Query("authentication") authenticationType: AuthenticationType
-    ): Single<Status>
+    ): Status
 
     /**
      * Remove your rating for a TV show.
@@ -374,7 +373,7 @@ interface TmdbApi {
      * @param tvShowId TMDb id.
      */
     @DELETE("tv/{tv_id}/rating")
-    fun deleteRating(
+    suspend fun deleteRating(
         @Path("tv_id") tvShowId: Int?
-    ): Single<Status>
+    ): Status
 }

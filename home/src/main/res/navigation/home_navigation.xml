@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_calendar">
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="com.chahine.showhive.home.calendar.CalendarFragment"
+        android:label="@string/calendar"
+        tools:layout="@layout/fragment_recycler_view" />
+
+    <fragment
+        android:id="@+id/navigation_discover"
+        android:name="com.chahine.showhive.home.discover.DiscoverFragment"
+        android:label="@string/discover"
+        tools:layout="@layout/fragment_discover" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.chahine.showhive.home.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

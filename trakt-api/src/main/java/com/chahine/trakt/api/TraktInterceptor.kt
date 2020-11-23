@@ -2,10 +2,10 @@ package com.chahine.trakt.api
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import java.io.IOException
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import java.io.IOException
 
 class TraktInterceptor(context: Context) : Interceptor {
 

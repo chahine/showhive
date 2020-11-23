@@ -6,12 +6,7 @@ dependencies {
     api project(':di')
 
     // Android
-    api Dependencies.arch
     api Dependencies.androidX
-
-    // RX
-    api Dependencies.rx
-    api Dependencies.rxBindings
 
     // Dagger
     api Dependencies.dagger

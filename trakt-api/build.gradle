@@ -6,7 +6,8 @@ dependencies {
     api project(':api')
     api project(':trakt-entities')
 
-    compileOnly Dependencies.javax
+    implementation Dependencies.dagger
+    kapt Dependencies.daggerCompiler
 
     api Dependencies.preference
     api Dependencies.timber

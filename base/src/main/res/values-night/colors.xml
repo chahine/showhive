@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/desaturated_green</color>
+    <color name="colorPrimaryVariant">@color/desaturated_dark_green</color>
+    <color name="colorSecondary">@color/desaturated_grey</color>
+    <color name="colorSecondaryVariant">@color/desaturated_dark_grey</color>
+</resources>

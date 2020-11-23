@@ -4,6 +4,6 @@ apply from: rootProject.file('module.gradle')
 dependencies {
     implementation project(':base')
 
-    kapt Dependencies.archAP
+    kapt Dependencies.lifecycleCompiler
     kapt Dependencies.daggerCompiler
 }

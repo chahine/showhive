@@ -9,9 +9,11 @@
 
 Small Trakt client. WIP
 
-Light Theme                    |  Dark Theme
-:-----------------------------:|:------------------------------:
-![](.images/screenshot-1.png)  |  ![](.images/screenshot-2.png)
+Light Theme                |  Dark Theme
+:-------------------------:|:-------------------------:
+![](art/light-splash.png)  |  ![](art/dark-splash.png)
+![](art/light-home-calendar.png)  |  ![](art/dark-home-calendar.png)
+![](art/light-home-discover.png)  |  ![](art/dark-home-discover.png)
 
 # Project Setup
 

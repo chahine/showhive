@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_calendar"
+        android:id="@+id/navigation_calendar"
         android:enabled="true"
         android:icon="@drawable/ic_calendar"
         android:title="@string/calendar"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_discover"
+        android:id="@+id/navigation_discover"
         android:enabled="true"
         android:icon="@drawable/ic_television_classic"
         android:title="@string/discover"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_profile"
+        android:id="@+id/navigation_profile"
         android:enabled="true"
         android:icon="@drawable/ic_menu"
         android:title="@string/profile"

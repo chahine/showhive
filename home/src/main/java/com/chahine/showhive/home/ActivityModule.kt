@@ -1,10 +1,9 @@
 package com.chahine.showhive.home
 
-import com.chahine.showhive.base.rv.RvDiffUtil
+import androidx.recyclerview.widget.DiffUtil
 import com.chahine.showhive.home.calendar.CalendarAdapter
-import com.chahine.showhive.home.calendar.CalendarEmptyItemView
-import com.chahine.showhive.home.calendar.DateHeaderItemView
-import com.chahine.showhive.home.calendar.EpisodeItemView
+import com.chahine.showhive.home.discover.DiscoverAdapter
+import com.chahine.showhive.home.discover.DiscoverUiModel
 import dagger.Module
 import dagger.Provides
 
@@ -12,14 +11,22 @@ import dagger.Provides
 class ActivityModule {
 
     @Provides
-    fun provideAdapter(diffUtil: RvDiffUtil<CalendarAdapter.Item>): CalendarAdapter {
-        return CalendarAdapter(
-            diffUtil,
-            mapOf(
-                CalendarAdapter.EMPTY to CalendarEmptyItemView.Delegate(),
-                CalendarAdapter.DATE_HEADER to DateHeaderItemView.Delegate(),
-                CalendarAdapter.EPISODE to EpisodeItemView.Delegate()
-            )
+    fun provideCalendarAdapter(): CalendarAdapter {
+        return CalendarAdapter()
+    }
+
+    @Provides
+    fun provideDiscoverAdapter(): DiscoverAdapter {
+        return DiscoverAdapter(
+            object : DiffUtil.ItemCallback<DiscoverUiModel>() {
+                override fun areItemsTheSame(oldItem: DiscoverUiModel, newItem: DiscoverUiModel): Boolean {
+                    return oldItem.show.ids.trakt == newItem.show.ids.trakt
+                }
+
+                override fun areContentsTheSame(oldItem: DiscoverUiModel, newItem: DiscoverUiModel): Boolean {
+                    return oldItem == newItem
+                }
+            }
         )
     }
 }

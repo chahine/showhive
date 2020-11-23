@@ -1,11 +1,21 @@
 package com.chahine.trakt.entities
 
-enum class Status(private val value: String) {
+import com.squareup.moshi.Json
 
-    ENDED("ended"),
-    RETURNING("returning series"),
-    CANCELED("canceled"),
-    IN_PRODUCTION("in production");
+enum class Status {
 
-    override fun toString() = value
+    @Json(name = "ended")
+    ENDED,
+
+    @Json(name = "returning series")
+    RETURNING,
+
+    @Json(name = "canceled")
+    CANCELED,
+
+    @Json(name = "in production")
+    IN_PRODUCTION,
+
+    @Json(name = "upcoming")
+    UPCOMING,
 }
