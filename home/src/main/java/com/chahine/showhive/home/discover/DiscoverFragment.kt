@@ -11,7 +11,6 @@ import com.chahine.showhive.home.R
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
 import kotlinx.android.synthetic.main.fragment_recycler_view.list
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,8 +21,6 @@ class DiscoverFragment : BaseFragment() {
     @Inject lateinit var adapter: DiscoverAdapter
     @Inject lateinit var itemDecoration: DefaultSpacesItemDecoration
     @Inject lateinit var viewModel: DiscoverViewModel
-
-    private var trendingJob: Job? = null
 
     override fun getLayoutId() = R.layout.fragment_recycler_view
 
@@ -45,15 +42,8 @@ class DiscoverFragment : BaseFragment() {
         list.addItemDecoration(itemDecoration)
         list.adapter = adapter
 
-        trendingJob = lifecycleScope.launch {
-            viewModel.trending().collectLatest {
-                adapter.submitData(it)
-            }
+        lifecycleScope.launch {
+            viewModel.trending().collectLatest { adapter.submitData(it) }
         }
-    }
-
-    override fun onStop() {
-        trendingJob?.cancel()
-        super.onStop()
     }
 }

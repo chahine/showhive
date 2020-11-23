@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.ItemImageLineThreeBinding
-import com.chahine.trakt.entities.TrendingShow
 import timber.log.Timber
 import java.time.LocalDate
 import java.time.LocalTime
@@ -17,8 +17,8 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
 class DiscoverAdapter(
-    diffCallback: DiffUtil.ItemCallback<TrendingShow>
-) : PagingDataAdapter<TrendingShow, RecyclerView.ViewHolder>(diffCallback) {
+    diffCallback: DiffUtil.ItemCallback<DiscoverUiModel>
+) : PagingDataAdapter<DiscoverUiModel, RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {
         private const val SEPARATOR = " • "
@@ -56,6 +56,12 @@ class DiscoverAdapter(
             line1.text = listOfNotNull(show.title).joinToString(SEPARATOR)
             line2.text = listOfNotNull(show.overview).joinToString(SEPARATOR)
             line3.text = listOfNotNull(show.network, show.certification, time).joinToString(SEPARATOR)
+
+            Glide.with(holder.itemView.context)
+                .load(item.posterUrl)
+                .centerCrop()
+                .placeholder(R.color.colorSecondary)
+                .into(poster)
         }
     }
 }

@@ -12,7 +12,7 @@ class DiscoverRepository @Inject constructor(
 ) {
 
     companion object {
-        private const val PAGE_SIZE = 20
+        private const val PAGE_SIZE = 10
     }
 
     fun trending(): Flow<PagingData<TrendingShow>> {

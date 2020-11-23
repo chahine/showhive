@@ -16,7 +16,7 @@ class DiscoverPagingSource @Inject constructor(
         val page = params.key ?: 1
 
         return try {
-            val response = traktApiClient.trending(page, params.loadSize, Extended.FULL)
+            val response = traktApiClient.trending(page, 20, Extended.FULL)
             LoadResult.Page(
                 data = response.items,
                 prevKey = if (page == 1) null else page - 1,

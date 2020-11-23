@@ -11,6 +11,7 @@ import Versions.navigationVersion
 import Versions.okhttpVersion
 import Versions.pagingVersion
 import Versions.retrofitVersion
+import Versions.roomVersion
 
 @Suppress("MayBeConstant", "MemberVisibilityCanBePrivate", "unused")
 object Dependencies {
@@ -32,6 +33,9 @@ object Dependencies {
     val pagingRxJava = "androidx.paging:paging-rxjava3:$pagingVersion"
     val preference = "androidx.preference:preference-ktx:1.1.1"
     val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
+    val room = "androidx.room:room-runtime:$roomVersion"
+    val roomKtx = "androidx.room:room-ktx:$roomVersion"
+    val roomCompiler = "androidx.room:room-compiler:$roomVersion"
 
     val firebaseBom = "com.google.firebase:firebase-bom:26.0.0"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
