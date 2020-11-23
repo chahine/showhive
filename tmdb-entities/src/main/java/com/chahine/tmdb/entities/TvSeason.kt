@@ -2,7 +2,6 @@ package com.chahine.tmdb.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.time.ZonedDateTime
 
 @JsonClass(generateAdapter = true)
 class TvSeason(
