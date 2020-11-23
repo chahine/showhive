@@ -3,7 +3,7 @@ package com.chahine.showhive.home
 import androidx.recyclerview.widget.DiffUtil
 import com.chahine.showhive.home.calendar.CalendarAdapter
 import com.chahine.showhive.home.discover.DiscoverAdapter
-import com.chahine.trakt.entities.TrendingShow
+import com.chahine.showhive.home.discover.DiscoverUiModel
 import dagger.Module
 import dagger.Provides
 
@@ -18,13 +18,13 @@ class ActivityModule {
     @Provides
     fun provideDiscoverAdapter(): DiscoverAdapter {
         return DiscoverAdapter(
-            object : DiffUtil.ItemCallback<TrendingShow>() {
-                override fun areItemsTheSame(oldItem: TrendingShow, newItem: TrendingShow): Boolean {
+            object : DiffUtil.ItemCallback<DiscoverUiModel>() {
+                override fun areItemsTheSame(oldItem: DiscoverUiModel, newItem: DiscoverUiModel): Boolean {
                     return oldItem.show.ids.trakt == newItem.show.ids.trakt
                 }
 
-                override fun areContentsTheSame(oldItem: TrendingShow, newItem: TrendingShow): Boolean {
-                    return oldItem.equals(newItem)
+                override fun areContentsTheSame(oldItem: DiscoverUiModel, newItem: DiscoverUiModel): Boolean {
+                    return oldItem == newItem
                 }
             }
         )
