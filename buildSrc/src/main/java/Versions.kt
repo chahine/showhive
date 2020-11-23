@@ -18,5 +18,4 @@ object Versions {
     const val okhttpVersion = "4.9.0"
     const val pagingVersion = "3.0.0-alpha09"
     const val retrofitVersion = "2.9.0"
-    const val roomVersion = "2.2.5"
 }
