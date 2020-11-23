@@ -15,11 +15,10 @@ class ImageRepository @Inject constructor(
     private val cache = HashMap<Int, String>()
 
     suspend fun image(tvShowId: Int): String {
-        if (tvShowId in cache) return cache[tvShowId]!!
-
-        val posterPath = tmdbApi.tv(tvShowId).posterPath
-        val posterUrl = BASE_URL + posterPath
-        cache[tvShowId] = posterUrl
-        return posterUrl
+        if (tvShowId !in cache) {
+            val posterPath = tmdbApi.tv(tvShowId).posterPath
+            cache[tvShowId] = BASE_URL + posterPath
+        }
+        return cache[tvShowId]!!
     }
 }
