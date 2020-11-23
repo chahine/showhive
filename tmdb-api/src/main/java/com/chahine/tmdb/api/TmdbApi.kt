@@ -194,16 +194,6 @@ interface TmdbApi {
      * Get the images (posters and backdrops) for a TV series.
      *
      * @param tvShowId A Tv Show TMDb id.
-     */
-    @GET("tv/{tv_id}/images")
-    suspend fun images(
-        @Path("tv_id") tvShowId: Int
-    ): Images
-
-    /**
-     * Get the images (posters and backdrops) for a TV series.
-     *
-     * @param tvShowId A Tv Show TMDb id.
      * @param language *Optional.* ISO 639-1 code.
      */
     @GET("tv/{tv_id}/images")
