@@ -1,6 +1,7 @@
 package com.chahine.showhive.di
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.content.res.Resources
 import android.view.inputmethod.InputMethodManager
 import com.chahine.showhive.di.repo.ImageRepository
@@ -26,6 +27,8 @@ interface ShowHiveComponent {
     fun resources(): Resources
 
     fun imageRepository(): ImageRepository
+    fun sharedPreferences(): SharedPreferences
+
     fun tmdbApi(): TmdbApi
     fun traktApi(): TraktApi
 

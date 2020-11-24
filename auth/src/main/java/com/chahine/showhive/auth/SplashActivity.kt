@@ -1,6 +1,7 @@
 package com.chahine.showhive.auth
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +17,7 @@ class SplashActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
     @Inject lateinit var apiClient: TraktApiClient
+    @Inject lateinit var sharedPreferences: SharedPreferences
 
     override fun setUpDependencyInjection() {
         val component = DaggerActivityComponent.builder()
@@ -56,11 +58,13 @@ class SplashActivity : BaseActivity() {
                 // TODO: refactor into viewmodel+interactor+repo
                 lifecycleScope.launch {
                     val accessToken = apiClient.exchangeCodeForAccessToken(code!!)
-                    PreferenceManager.getDefaultSharedPreferences(applicationContext)
-                        .edit()
-                        .putString("access_token", accessToken.accessToken)
-                        .putString("refresh_token", accessToken.refreshToken)
-                        .apply()
+
+                    with(sharedPreferences.edit()) {
+                        putString("access_token", accessToken.accessToken)
+                        putString("refresh_token", accessToken.refreshToken)
+                        apply()
+                    }
+
                     router.home()
                 }
             }
