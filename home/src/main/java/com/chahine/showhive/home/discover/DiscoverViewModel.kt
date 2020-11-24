@@ -5,12 +5,14 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.chahine.showhive.home.util.ImageRepository
+import com.chahine.showhive.di.repo.ImageRepository
+import com.chahine.showhive.qualifiers.ActivityScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import javax.inject.Inject
 
+@ActivityScope
 class DiscoverViewModel @Inject constructor(
     private val repository: DiscoverRepository,
     private val imageRepository: ImageRepository,

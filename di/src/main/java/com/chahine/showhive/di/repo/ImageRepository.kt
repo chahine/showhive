@@ -1,8 +1,11 @@
-package com.chahine.showhive.home.util
+package com.chahine.showhive.di.repo
 
 import com.chahine.tmdb.api.TmdbApi
+import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ImageRepository @Inject constructor(
     private val tmdbApi: TmdbApi
 ) {
@@ -11,7 +14,11 @@ class ImageRepository @Inject constructor(
         private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
 
-    // TODO: replace with disk storage
+    init {
+        Timber.d("ImageRepository#${hashCode()}")
+    }
+
+    // TODO: replace with disk storage and invalidate strategy
     private val cache = HashMap<Int, String>()
 
     suspend fun image(tvShowId: Int): String {

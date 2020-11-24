@@ -11,19 +11,21 @@ import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.FragmentRecyclerViewBinding
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class CalendarFragment : BaseFragment() {
+
+    init {
+        Timber.d("CalendarFragment#${hashCode()}")
+    }
 
     @Inject lateinit var router: Router
     @Inject lateinit var adapter: CalendarAdapter
     @Inject lateinit var itemDecoration: DefaultSpacesItemDecoration
     @Inject lateinit var viewModel: CalendarViewModel
-
-    private var calendarJob: Job? = null
 
     override fun getLayoutId() = R.layout.fragment_recycler_view
 
@@ -47,15 +49,10 @@ class CalendarFragment : BaseFragment() {
         binding.list.addItemDecoration(itemDecoration)
         binding.list.adapter = adapter
 
-        calendarJob = lifecycleScope.launch {
+        lifecycleScope.launch {
             viewModel.myCalendar().collectLatest {
                 adapter.submitData(it)
             }
         }
-    }
-
-    override fun onStop() {
-        calendarJob?.cancel()
-        super.onStop()
     }
 }

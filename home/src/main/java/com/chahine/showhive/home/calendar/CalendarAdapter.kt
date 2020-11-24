@@ -15,24 +15,11 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter.ofPattern
 
-class CalendarAdapter : PagingDataAdapter<CalendarUiModel, ViewHolder>(UIMODEL_COMPARATOR) {
+class CalendarAdapter(diffCallback: DiffUtil.ItemCallback<CalendarUiModel>) :
+    PagingDataAdapter<CalendarUiModel, ViewHolder>(diffCallback) {
 
     companion object {
         private const val SEPARATOR = " • "
-
-        private val UIMODEL_COMPARATOR = object : DiffUtil.ItemCallback<CalendarUiModel>() {
-            override fun areItemsTheSame(oldItem: CalendarUiModel, newItem: CalendarUiModel): Boolean {
-                return oldItem is CalendarUiModel.Episode &&
-                    newItem is CalendarUiModel.Episode &&
-                    oldItem.entry == newItem.entry ||
-                    oldItem is CalendarUiModel.Header &&
-                    newItem is CalendarUiModel.Header &&
-                    oldItem.date == newItem.date
-            }
-
-            override fun areContentsTheSame(oldItem: CalendarUiModel, newItem: CalendarUiModel): Boolean =
-                oldItem == newItem
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -51,8 +38,7 @@ class CalendarAdapter : PagingDataAdapter<CalendarUiModel, ViewHolder>(UIMODEL_C
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val uiModel = getItem(position)
-        uiModel?.let {
+        getItem(position)?.let { uiModel ->
             when (uiModel) {
                 is CalendarUiModel.Episode -> (holder as EpisodeViewHolder).bind(uiModel)
                 is CalendarUiModel.Header -> (holder as HeaderViewHolder).bind(uiModel.date)

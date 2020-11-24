@@ -5,11 +5,11 @@ import com.chahine.showhive.di.ShowHiveComponent
 import com.chahine.showhive.home.calendar.CalendarFragment
 import com.chahine.showhive.home.discover.DiscoverFragment
 import com.chahine.showhive.home.profile.ProfileFragment
-import com.chahine.showhive.qualifiers.PerActivity
+import com.chahine.showhive.qualifiers.ActivityScope
 import dagger.BindsInstance
 import dagger.Component
 
-@PerActivity
+@ActivityScope
 @Component(
     modules = [ActivityModule::class],
     dependencies = [ShowHiveComponent::class]

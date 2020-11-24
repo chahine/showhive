@@ -1,7 +1,6 @@
 package com.chahine.showhive.di
 
 import android.app.Application
-import com.chahine.showhive.qualifiers.PerApp
 import com.chahine.showhive.qualifiers.Trakt
 import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.api.TraktAuthenticator
@@ -16,16 +15,17 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
 class TraktApiModule {
 
     @Provides
-    @PerApp
+    @Singleton
     fun provideTraktInterceptor(app: Application) = TraktInterceptor(app)
 
     @Provides
-    @PerApp
+    @Singleton
     fun provideTraktAuthenticator(
         app: Application,
         okHttpClient: OkHttpClient,
@@ -35,12 +35,12 @@ class TraktApiModule {
     }
 
     @Provides
-    @PerApp
+    @Singleton
     @Trakt
     fun provideTraktHttpUrl() = "https://api.trakt.tv/".toHttpUrl()
 
     @Provides
-    @PerApp
+    @Singleton
     @Trakt
     fun provideOkHttpClient(
         client: OkHttpClient,
@@ -62,7 +62,7 @@ class TraktApiModule {
     }
 
     @Provides
-    @PerApp
+    @Singleton
     @Trakt
     fun provideTraktRetrofit(
         moshi: Moshi,
@@ -77,7 +77,7 @@ class TraktApiModule {
     }
 
     @Provides
-    @PerApp
+    @Singleton
     fun provideTraktApi(@Trakt retrofit: Retrofit): TraktApi {
         return retrofit.create(TraktApi::class.java)
     }
