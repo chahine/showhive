@@ -44,33 +44,19 @@ class DataModule {
     @Provides
     @Singleton
     fun provideMasterKey(app: Application): MasterKey {
-        return MasterKey.Builder(app)
-            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-            .build()
+        return MasterKey(app)
     }
 
     @Provides
     @Singleton
     fun provideSharedPreferences(app: Application, masterKey: MasterKey): SharedPreferences {
-        return EncryptedSharedPreferences.create(
-            app,
-            SHARED_PREFS_FILE,
-            masterKey,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+        return EncryptedSharedPreferences(app, SHARED_PREFS_FILE, masterKey)
     }
 
     @Provides
     @Singleton
     @ImageRepo
     fun provideImageRepoSharedPreferences(app: Application, masterKey: MasterKey): SharedPreferences {
-        return EncryptedSharedPreferences.create(
-            app,
-            IMAGE_REPO_PREFS_FILE,
-            masterKey,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+        return EncryptedSharedPreferences(app, IMAGE_REPO_PREFS_FILE, masterKey)
     }
 }
