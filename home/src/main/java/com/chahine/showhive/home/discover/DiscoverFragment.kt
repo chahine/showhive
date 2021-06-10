@@ -11,11 +11,13 @@ import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.FragmentRecyclerViewBinding
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class DiscoverFragment : BaseFragment() {
 
     init {
