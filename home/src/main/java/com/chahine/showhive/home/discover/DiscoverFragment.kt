@@ -13,9 +13,14 @@ import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class DiscoverFragment : BaseFragment() {
+
+    init {
+        Timber.d("DiscoverFragment#${hashCode()}")
+    }
 
     @Inject lateinit var router: Router
     @Inject lateinit var adapter: DiscoverAdapter

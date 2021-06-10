@@ -1,6 +1,5 @@
 package com.chahine.showhive.di
 
-import com.chahine.showhive.qualifiers.PerApp
 import com.chahine.showhive.qualifiers.Tmdb
 import com.chahine.tmdb.api.TmdbApi
 import com.chahine.tmdb.api.TmdbInterceptor
@@ -14,23 +13,24 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
 class TmdbApiModule {
 
     @Provides
-    @PerApp
+    @Singleton
     fun provideAuthInterceptor(): TmdbInterceptor {
         return TmdbInterceptor()
     }
 
     @Provides
-    @PerApp
+    @Singleton
     @Tmdb
     fun provideTmdbHttpUrl() = "https://api.themoviedb.org/3/".toHttpUrl()
 
     @Provides
-    @PerApp
+    @Singleton
     @Tmdb
     fun provideOkHttpClient(
         client: OkHttpClient,
@@ -50,7 +50,7 @@ class TmdbApiModule {
     }
 
     @Provides
-    @PerApp
+    @Singleton
     @Tmdb
     fun provideTmdbRetrofit(
         moshi: Moshi,
@@ -65,7 +65,7 @@ class TmdbApiModule {
     }
 
     @Provides
-    @PerApp
+    @Singleton
     fun provideTmdbApi(@Tmdb retrofit: Retrofit): TmdbApi {
         return retrofit.create(TmdbApi::class.java)
     }

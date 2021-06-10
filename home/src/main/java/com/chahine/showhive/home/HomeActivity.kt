@@ -1,9 +1,9 @@
 package com.chahine.showhive.home
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import androidx.preference.PreferenceManager
 import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
 import com.chahine.showhive.home.databinding.ActivityHomeBinding
@@ -12,6 +12,7 @@ import javax.inject.Inject
 class HomeActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
+    @Inject lateinit var sharedPreferences: SharedPreferences
 
     lateinit var component: ActivityComponent
 
@@ -26,8 +27,7 @@ class HomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        if (!prefs.contains("access_token") && !prefs.getBoolean("splash_skipped", false)) {
+        if (!sharedPreferences.contains("access_token") && !sharedPreferences.getBoolean("splash_skipped", false)) {
             router.splash()
         }
 

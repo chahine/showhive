@@ -6,7 +6,7 @@ import java.time.ZonedDateTime
 
 @JsonClass(generateAdapter = true)
 class Episode(
-    val title: String,
+    val title: String?,
     val overview: String?,
     val rating: Double?,
     val votes: Int?,

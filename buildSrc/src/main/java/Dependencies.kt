@@ -31,6 +31,7 @@ object Dependencies {
     val pagingRxJava = "androidx.paging:paging-rxjava3:$pagingVersion"
     val preference = "androidx.preference:preference-ktx:1.1.1"
     val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
+    val security = "androidx.security:security-crypto-ktx:1.1.0-alpha02"
 
     val firebaseBom = "com.google.firebase:firebase-bom:28.1.0"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
@@ -99,7 +100,8 @@ object Dependencies {
         lifecycleLivedata,
         material,
         navigationFragment,
-        navigationUi
+        navigationUi,
+        security
     )
 
     val testLibs = listOf(jUnit, mockito, hamcrest)

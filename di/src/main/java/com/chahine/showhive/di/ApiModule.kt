@@ -1,7 +1,6 @@
 package com.chahine.showhive.di
 
 import android.app.Application
-import com.chahine.showhive.qualifiers.PerApp
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
@@ -9,6 +8,7 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import java.io.File
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 class ApiModule {
@@ -20,7 +20,7 @@ class ApiModule {
     }
 
     @Provides
-    @PerApp
+    @Singleton
     fun provideOkHttpClient(app: Application): OkHttpClient = OkHttpClient.Builder()
         .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
         .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -29,6 +29,6 @@ class ApiModule {
         .build()
 
     @Provides
-    @PerApp
+    @Singleton
     fun provideChuck(app: Application) = ChuckInterceptor(app)
 }

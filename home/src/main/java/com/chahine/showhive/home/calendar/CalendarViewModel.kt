@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.PagingData.Companion.insertSeparators
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.chahine.showhive.home.util.ImageRepository
+import com.chahine.showhive.di.repo.ImageRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
