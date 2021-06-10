@@ -1,5 +1,4 @@
 import Versions.chuckVersion
-import Versions.coroutinesVersion
 import Versions.daggerVersion
 import Versions.glideVersion
 import Versions.junitVersion
@@ -31,9 +30,9 @@ object Dependencies {
     val paging = "androidx.paging:paging-runtime:$pagingVersion"
     val pagingRxJava = "androidx.paging:paging-rxjava3:$pagingVersion"
     val preference = "androidx.preference:preference-ktx:1.1.1"
-    val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
 
-    val firebaseBom = "com.google.firebase:firebase-bom:26.1.0"
+    val firebaseBom = "com.google.firebase:firebase-bom:28.1.0"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
     val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
     val firebasePerf = "com.google.firebase:firebase-perf-ktx"
@@ -49,7 +48,7 @@ object Dependencies {
 
     // Kotlin
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinVersion"
 
     // Dagger
     val javax = "javax.inject:javax.inject:1"
@@ -73,7 +72,7 @@ object Dependencies {
 
     // Testing
     val jUnit = "junit:junit:$junitVersion"
-    val mockito = "org.mockito:mockito-core:3.6.0"
+    val mockito = "org.mockito:mockito-core:3.11.0"
     val hamcrest = "org.hamcrest:hamcrest-all:1.3"
 
     val api = listOf(
