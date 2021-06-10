@@ -7,21 +7,22 @@ import androidx.navigation.ui.setupWithNavController
 import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
 import com.chahine.showhive.home.databinding.ActivityHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
     @Inject lateinit var sharedPreferences: SharedPreferences
-
-    lateinit var component: ActivityComponent
+//    lateinit var component: ActivityComponent
 
     override fun setUpDependencyInjection() {
-        component = DaggerActivityComponent.builder()
-            .activity(this)
-            .appComponent(appComponent)
-            .build()
-        component.inject(this)
+//        component = DaggerActivityComponent.builder()
+//            .activity(this)
+//            .appComponent(appComponent)
+//            .build()
+//        component.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

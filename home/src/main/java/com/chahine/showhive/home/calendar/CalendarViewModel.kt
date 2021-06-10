@@ -7,11 +7,13 @@ import androidx.paging.PagingData.Companion.insertSeparators
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.chahine.showhive.di.repo.ImageRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import javax.inject.Inject
 
+@HiltViewModel
 class CalendarViewModel @Inject constructor(
     private val repository: CalendarRepository,
     private val imageRepository: ImageRepository,

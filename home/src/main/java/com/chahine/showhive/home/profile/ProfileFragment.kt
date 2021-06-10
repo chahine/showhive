@@ -11,7 +11,7 @@ class ProfileFragment : BaseFragment() {
     override fun getLayoutId() = R.layout.fragment_recycler_view
 
     override fun setUpDependencyInjection() {
-        (requireActivity() as HomeActivity).component.inject(this)
+//        (requireActivity() as HomeActivity).component.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

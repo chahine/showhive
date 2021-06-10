@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'dagger.hilt.android.plugin'
 apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
@@ -9,8 +10,10 @@ dependencies {
     api Dependencies.androidX
 
     // Dagger
-    api Dependencies.dagger
+    implementation Dependencies.dagger
+    implementation Dependencies.hilt
     kapt Dependencies.daggerCompiler
+    kapt Dependencies.hiltCompiler
 
     // Debugging Tools
     debugApi Dependencies.leakCanary

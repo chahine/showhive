@@ -12,16 +12,16 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(
-    modules = [
-        ApiModule::class,
-        DataModule::class,
-        ShowHiveModule::class,
-        ViewModelModule::class,
-        TmdbApiModule::class,
-        TraktApiModule::class
-    ]
-)
+//@Component(
+//    modules = [
+//        ApiModule::class,
+//        DataModule::class,
+//        ShowHiveModule::class,
+//        ViewModelModule::class,
+//        TmdbApiModule::class,
+//        TraktApiModule::class
+//    ]
+//)
 interface ShowHiveComponent {
     fun inputMethodService(): InputMethodManager
     fun resources(): Resources
@@ -32,17 +32,17 @@ interface ShowHiveComponent {
     fun tmdbApi(): TmdbApi
     fun traktApi(): TraktApi
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun app(app: Application): Builder
-
-        fun apiModule(module: ApiModule): Builder
-        fun dataModule(module: DataModule): Builder
-        fun showHiveModule(module: ShowHiveModule): Builder
-        fun tmdbApiModule(module: TmdbApiModule): Builder
-        fun traktApiModule(module: TraktApiModule): Builder
-
-        fun build(): ShowHiveComponent
-    }
+//    @Component.Builder
+//    interface Builder {
+//        @BindsInstance
+//        fun app(app: Application): Builder
+//
+//        fun apiModule(module: ApiModule): Builder
+//        fun dataModule(module: DataModule): Builder
+//        fun showHiveModule(module: ShowHiveModule): Builder
+//        fun tmdbApiModule(module: TmdbApiModule): Builder
+//        fun traktApiModule(module: TraktApiModule): Builder
+//
+//        fun build(): ShowHiveComponent
+//    }
 }

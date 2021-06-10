@@ -51,11 +51,13 @@ object Dependencies {
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinVersion"
 
-    // Dagger
+    // Dagger - Hilt
     val javax = "javax.inject:javax.inject:1"
     val annotationsApi = "javax.annotation:javax.annotation-api:1.2"
     val dagger = "com.google.dagger:dagger:$daggerVersion"
     val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    val hilt = "com.google.dagger:hilt-android:$daggerVersion"
+    val hiltCompiler = "com.google.dagger:hilt-compiler:$daggerVersion"
 
     // Glide
     val glide = "com.github.bumptech.glide:glide:$glideVersion"
@@ -91,7 +93,6 @@ object Dependencies {
         constraintLayout,
         multidex,
         preference,
-        material,
         lifecycleCompiler,
         lifecycleExtensions,
         lifecycleCommonJava8,

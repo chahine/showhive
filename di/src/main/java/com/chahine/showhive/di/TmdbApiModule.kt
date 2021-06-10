@@ -7,30 +7,29 @@ import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
 
 @Module
-class TmdbApiModule {
+@InstallIn(SingletonComponent::class)
+object TmdbApiModule {
 
     @Provides
-    @Singleton
     fun provideAuthInterceptor(): TmdbInterceptor {
         return TmdbInterceptor()
     }
 
     @Provides
-    @Singleton
     @Tmdb
     fun provideTmdbHttpUrl() = "https://api.themoviedb.org/3/".toHttpUrl()
 
     @Provides
-    @Singleton
     @Tmdb
     fun provideOkHttpClient(
         client: OkHttpClient,
@@ -50,7 +49,6 @@ class TmdbApiModule {
     }
 
     @Provides
-    @Singleton
     @Tmdb
     fun provideTmdbRetrofit(
         moshi: Moshi,
@@ -65,7 +63,6 @@ class TmdbApiModule {
     }
 
     @Provides
-    @Singleton
     fun provideTmdbApi(@Tmdb retrofit: Retrofit): TmdbApi {
         return retrofit.create(TmdbApi::class.java)
     }

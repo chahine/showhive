@@ -2,11 +2,11 @@ package com.chahine.showhive.home.discover
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chahine.showhive.base.BaseFragment
 import com.chahine.showhive.base.Router
-import com.chahine.showhive.home.HomeActivity
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.FragmentRecyclerViewBinding
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
@@ -25,12 +25,13 @@ class DiscoverFragment : BaseFragment() {
     @Inject lateinit var router: Router
     @Inject lateinit var adapter: DiscoverAdapter
     @Inject lateinit var itemDecoration: DefaultSpacesItemDecoration
-    @Inject lateinit var viewModel: DiscoverViewModel
+
+    private val viewModel: DiscoverViewModel by viewModels()
 
     override fun getLayoutId() = R.layout.fragment_recycler_view
 
     override fun setUpDependencyInjection() {
-        (requireActivity() as HomeActivity).component.inject(this)
+//        (requireActivity() as HomeActivity).component.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

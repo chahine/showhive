@@ -1,6 +1,8 @@
 package com.chahine.showhive.auth
 
 import dagger.Module
+import dagger.hilt.InstallIn
 
-@Module
-class ActivityModule
+//@Module
+//@InstallIn(ActivityComponent::class)
+//class ActivityModule

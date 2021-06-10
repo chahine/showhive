@@ -9,23 +9,23 @@ import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
 
 @Module
-class TraktApiModule {
+@InstallIn(SingletonComponent::class)
+object TraktApiModule {
 
     @Provides
-    @Singleton
     fun provideTraktInterceptor(app: Application) = TraktInterceptor(app)
 
     @Provides
-    @Singleton
     fun provideTraktAuthenticator(
         app: Application,
         okHttpClient: OkHttpClient,
@@ -35,12 +35,10 @@ class TraktApiModule {
     }
 
     @Provides
-    @Singleton
     @Trakt
     fun provideTraktHttpUrl() = "https://api.trakt.tv/".toHttpUrl()
 
     @Provides
-    @Singleton
     @Trakt
     fun provideOkHttpClient(
         client: OkHttpClient,
@@ -62,7 +60,6 @@ class TraktApiModule {
     }
 
     @Provides
-    @Singleton
     @Trakt
     fun provideTraktRetrofit(
         moshi: Moshi,
@@ -77,7 +74,6 @@ class TraktApiModule {
     }
 
     @Provides
-    @Singleton
     fun provideTraktApi(@Trakt retrofit: Retrofit): TraktApi {
         return retrofit.create(TraktApi::class.java)
     }

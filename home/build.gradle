@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'dagger.hilt.android.plugin'
 apply from: rootProject.file('module.gradle')
 
 dependencies {
@@ -7,6 +8,10 @@ dependencies {
     implementation Dependencies.paging
     implementation Dependencies.pagingRxJava
 
+    implementation Dependencies.dagger
+    implementation Dependencies.hilt
+
     kapt Dependencies.lifecycleCompiler
     kapt Dependencies.daggerCompiler
+    kapt Dependencies.hiltCompiler
 }

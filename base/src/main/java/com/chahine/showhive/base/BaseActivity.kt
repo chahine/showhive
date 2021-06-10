@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected val appComponent get() = (applicationContext as ShowHiveApp).component
+//    protected val appComponent get() = (applicationContext as ShowHiveApp).component
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setUpDependencyInjection()

@@ -13,19 +13,18 @@ import com.chahine.trakt.api.ZonedDateTimeConverter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
 @Module
-class DataModule {
+@InstallIn(SingletonComponent::class)
+object DataModule {
 
-    companion object {
-        private const val HEAP_TARGET = 1024 * 1024 / 4
-        private const val SHARED_PREFS_FILE = "showhive"
-        private const val IMAGE_REPO_PREFS_FILE = "image_repo"
-    }
+    private const val HEAP_TARGET = 1024 * 1024 / 4
+    private const val SHARED_PREFS_FILE = "showhive"
+    private const val IMAGE_REPO_PREFS_FILE = "image_repo"
 
     @Provides
-    @Singleton
     @CacheSize
     fun getCacheSize(app: Application): Int {
         val am = app.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
@@ -35,26 +34,22 @@ class DataModule {
     }
 
     @Provides
-    @Singleton
     fun provideMoshi(): Moshi = Moshi.Builder()
         .add(ZonedDateTimeConverter())
         .add(DayOfWeekAdapter())
         .build()
 
     @Provides
-    @Singleton
     fun provideMasterKey(app: Application): MasterKey {
         return MasterKey(app)
     }
 
     @Provides
-    @Singleton
     fun provideSharedPreferences(app: Application, masterKey: MasterKey): SharedPreferences {
         return EncryptedSharedPreferences(app, SHARED_PREFS_FILE, masterKey)
     }
 
     @Provides
-    @Singleton
     @ImageRepo
     fun provideImageRepoSharedPreferences(app: Application, masterKey: MasterKey): SharedPreferences {
         return EncryptedSharedPreferences(app, IMAGE_REPO_PREFS_FILE, masterKey)

@@ -10,9 +10,11 @@ import com.chahine.showhive.auth.databinding.ActivitySplashBinding
 import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
 import com.chahine.trakt.api.TraktApiClient
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity() {
 
     @Inject lateinit var router: Router
@@ -20,13 +22,13 @@ class SplashActivity : BaseActivity() {
     @Inject lateinit var sharedPreferences: SharedPreferences
 
     override fun setUpDependencyInjection() {
-        val component = DaggerActivityComponent.builder()
-            .activity(this)
-            .activityModule(ActivityModule())
-            .appComponent(appComponent)
-            .build()
-
-        component.inject(this)
+//        val component = DaggerActivityComponent.builder()
+//            .activity(this)
+//            .activityModule(ActivityModule())
+//            .appComponent(appComponent)
+//            .build()
+//
+//        component.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

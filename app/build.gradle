@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'dagger.hilt.android.plugin'
+//plugins {
+//    id 'com.android.application'
+//    id 'kotlin-android'
+//    id 'kotlin-kapt'
+//    id 'dagger.hilt.android.plugin'
+//}
 apply from: rootProject.file('module.gradle')
 
 android {
@@ -74,12 +81,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
     implementation project(':base')
 
     Dependencies.featureProjects.each { implementation project("$it") }
+
+    implementation Dependencies.dagger
+    implementation Dependencies.hilt
+
+    kapt Dependencies.daggerCompiler
+    kapt Dependencies.hiltCompiler
 
     // Firebase
     implementation platform(Dependencies.firebaseBom)

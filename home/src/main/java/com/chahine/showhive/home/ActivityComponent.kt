@@ -10,22 +10,22 @@ import dagger.BindsInstance
 import dagger.Component
 
 @ActivityScope
-@Component(
-    modules = [ActivityModule::class],
-    dependencies = [ShowHiveComponent::class]
-)
-interface ActivityComponent {
+//@Component(
+//    modules = [ActivityModule::class],
+//    dependencies = [ShowHiveComponent::class]
+//)
+interface ActivityComponentLegacy {
 
     fun inject(activity: HomeActivity)
     fun inject(fragment: CalendarFragment)
     fun inject(fragment: DiscoverFragment)
     fun inject(fragment: ProfileFragment)
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun activity(activity: Activity): Builder
-        fun appComponent(appComponent: ShowHiveComponent): Builder
-        fun build(): ActivityComponent
-    }
+//    @Component.Builder
+//    interface Builder {
+//        @BindsInstance
+//        fun activity(activity: Activity): Builder
+//        fun appComponent(appComponent: ShowHiveComponent): Builder
+//        fun build(): ActivityComponent
+//    }
 }

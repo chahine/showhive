@@ -6,9 +6,12 @@ import android.content.res.Resources
 import android.view.inputmethod.InputMethodManager
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
 @Module
-class ShowHiveModule {
+@InstallIn(SingletonComponent::class)
+object ShowHiveModule {
 
     @Provides
     fun provideInputMethodService(app: Application): InputMethodManager {
