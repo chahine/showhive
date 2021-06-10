@@ -3,7 +3,6 @@ import static Versions.kotlinVersion
 buildscript {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
 
@@ -25,7 +24,6 @@ plugins {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
@@ -35,7 +33,6 @@ allprojects {
 subprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
 
@@ -45,7 +42,7 @@ subprojects {
     spotless {
         kotlin {
             target '**/*.kt'
-            ktlint("0.39.0")
+            ktlint("0.41.0")
             trimTrailingWhitespace()
             indentWithSpaces()
             endWithNewline()
