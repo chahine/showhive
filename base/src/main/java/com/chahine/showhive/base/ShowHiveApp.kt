@@ -5,6 +5,7 @@ import com.chahine.showhive.di.ShowHiveComponent
 import timber.log.Timber
 
 class ShowHiveApp : CoreApp() {
+
     lateinit var component: ShowHiveComponent
 
     override fun onCreate() {

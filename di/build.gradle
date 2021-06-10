@@ -8,6 +8,7 @@ dependencies {
     api project(':trakt-api')
 
     implementation Dependencies.lifecycleViewmodel
+    implementation Dependencies.security
 
     api Dependencies.dagger
     kapt Dependencies.daggerCompiler
