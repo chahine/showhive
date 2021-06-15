@@ -2,7 +2,7 @@ package com.chahine.trakt.api
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import com.chahine.trakt.entities.AccessToken
+import com.chahine.trakt.api.entities.AccessToken
 import com.squareup.moshi.Moshi
 import okhttp3.Authenticator
 import okhttp3.FormBody
