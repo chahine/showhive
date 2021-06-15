@@ -1,22 +1,22 @@
 package com.chahine.tmdb.api
 
-import com.chahine.tmdb.entities.AccountStates
-import com.chahine.tmdb.entities.AlternativeTitles
-import com.chahine.tmdb.entities.AppendToResponse
-import com.chahine.tmdb.entities.AuthenticationType
-import com.chahine.tmdb.entities.Changes
-import com.chahine.tmdb.entities.ContentRatings
-import com.chahine.tmdb.entities.Credits
-import com.chahine.tmdb.entities.Images
-import com.chahine.tmdb.entities.Keywords
-import com.chahine.tmdb.entities.RatingObject
-import com.chahine.tmdb.entities.Status
-import com.chahine.tmdb.entities.TmdbDate
-import com.chahine.tmdb.entities.Translations
-import com.chahine.tmdb.entities.TvExternalIds
-import com.chahine.tmdb.entities.TvShow
-import com.chahine.tmdb.entities.TvShowResultsPage
-import com.chahine.tmdb.entities.Videos
+import com.chahine.tmdb.api.entities.AccountStates
+import com.chahine.tmdb.api.entities.AlternativeTitles
+import com.chahine.tmdb.api.entities.AppendToResponse
+import com.chahine.tmdb.api.entities.AuthenticationType
+import com.chahine.tmdb.api.entities.Changes
+import com.chahine.tmdb.api.entities.ContentRatings
+import com.chahine.tmdb.api.entities.Credits
+import com.chahine.tmdb.api.entities.Images
+import com.chahine.tmdb.api.entities.Keywords
+import com.chahine.tmdb.api.entities.RatingObject
+import com.chahine.tmdb.api.entities.Status
+import com.chahine.tmdb.api.entities.TmdbDate
+import com.chahine.tmdb.api.entities.Translations
+import com.chahine.tmdb.api.entities.TvExternalIds
+import com.chahine.tmdb.api.entities.TvShow
+import com.chahine.tmdb.api.entities.TvShowResultsPage
+import com.chahine.tmdb.api.entities.Videos
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -35,7 +35,7 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}")
     suspend fun tv(
-        @Path("tv_id") tvShowId: Int
+        @Path("tv_id") tvShowId: Int,
     ): TvShow
 
     /**
@@ -47,7 +47,7 @@ interface TmdbApi {
     @GET("tv/{tv_id}")
     suspend fun tv(
         @Path("tv_id") tvShowId: Int,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): TvShow
 
     /**
@@ -61,7 +61,7 @@ interface TmdbApi {
     suspend fun tv(
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String,
-        @Query("append_to_response") appendToResponse: AppendToResponse
+        @Query("append_to_response") appendToResponse: AppendToResponse,
     ): TvShow
 
     /**
@@ -77,7 +77,7 @@ interface TmdbApi {
         @Path("tv_id") tvShowId: Int,
         @Query("language") language: String,
         @Query("append_to_response") appendToResponse: AppendToResponse,
-        @QueryMap options: Map<String, String>
+        @QueryMap options: Map<String, String>,
     ): TvShow
 
     /**
@@ -89,7 +89,7 @@ interface TmdbApi {
     @GET("tv/{tv_id}")
     suspend fun tv(
         @Path("tv_id") tvShowId: Int,
-        @Query("append_to_response") appendToResponse: AppendToResponse
+        @Query("append_to_response") appendToResponse: AppendToResponse,
     ): TvShow
 
     /**
@@ -103,7 +103,7 @@ interface TmdbApi {
     suspend fun tv(
         @Path("tv_id") tvShowId: Int,
         @Query("append_to_response") appendToResponse: AppendToResponse,
-        @QueryMap options: Map<String, String>
+        @QueryMap options: Map<String, String>,
     ): TvShow
 
     /**
@@ -119,7 +119,7 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/account_states")
     suspend fun accountStates(
-        @Path("tv_id") tvShowId: Int
+        @Path("tv_id") tvShowId: Int,
     ): AccountStates
 
     /**
@@ -129,7 +129,7 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/alternative_titles")
     suspend fun alternativeTitles(
-        @Path("tv_id") tvShowId: Int
+        @Path("tv_id") tvShowId: Int,
     ): AlternativeTitles
 
     /**
@@ -152,7 +152,7 @@ interface TmdbApi {
         @Path("tv_id") tvShowId: Int,
         @Query("start_date") startDate: TmdbDate,
         @Query("end_date") endDate: TmdbDate,
-        @Query("page") page: Int?
+        @Query("page") page: Int?,
     ): Changes
 
     /**
@@ -165,7 +165,7 @@ interface TmdbApi {
     @GET("tv/{tv_id}/credits")
     suspend fun credits(
         @Path("tv_id") tvShowId: Int,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): Credits
 
     /**
@@ -175,7 +175,7 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/contentRatings")
     suspend fun contentRatings(
-        @Path("tv_id") tmdbId: Int
+        @Path("tv_id") tmdbId: Int,
     ): ContentRatings
 
     /**
@@ -187,7 +187,7 @@ interface TmdbApi {
     @GET("tv/{tv_id}/external_ids")
     suspend fun externalIds(
         @Path("tv_id") tvShowId: Int,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): TvExternalIds
 
     /**
@@ -199,7 +199,7 @@ interface TmdbApi {
     @GET("tv/{tv_id}/images")
     suspend fun images(
         @Path("tv_id") tvShowId: Int,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): Images
 
     /**
@@ -209,7 +209,7 @@ interface TmdbApi {
      */
     @GET("tv/{tv_id}/keywords")
     suspend fun keywords(
-        @Path("tv_id") tvShowId: Int
+        @Path("tv_id") tvShowId: Int,
     ): Keywords
 
     /**
@@ -223,7 +223,7 @@ interface TmdbApi {
     suspend fun recommendations(
         @Path("tv_id") tvShowId: Int,
         @Query("page") page: Int?,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): TvShowResultsPage
 
     /**
@@ -237,7 +237,7 @@ interface TmdbApi {
     suspend fun similar(
         @Path("tv_id") tvShowId: Int,
         @Query("page") page: Int?,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): TvShowResultsPage
 
     /**
@@ -249,7 +249,7 @@ interface TmdbApi {
     @GET("tv/{tv_id}/translations")
     suspend fun translations(
         @Path("tv_id") tvShowId: Int,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): Translations
 
     /**
@@ -261,7 +261,7 @@ interface TmdbApi {
     @GET("tv/{tv_id}/videos")
     suspend fun videos(
         @Path("tv_id") tvShowId: Int,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): Videos
 
     /**
@@ -280,7 +280,7 @@ interface TmdbApi {
     @GET("tv/on_the_air")
     suspend fun onTheAir(
         @Query("page") page: Int?,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): TvShowResultsPage
 
     /**
@@ -293,7 +293,7 @@ interface TmdbApi {
     @GET("tv/airing_today")
     suspend fun airingToday(
         @Query("page") page: Int?,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): TvShowResultsPage
 
     /**
@@ -306,7 +306,7 @@ interface TmdbApi {
     @GET("tv/top_rated")
     suspend fun topRated(
         @Query("page") page: Int?,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): TvShowResultsPage
 
     /**
@@ -318,7 +318,7 @@ interface TmdbApi {
     @GET("tv/popular")
     suspend fun popular(
         @Query("page") page: Int?,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): TvShowResultsPage
 
     /**
@@ -334,7 +334,7 @@ interface TmdbApi {
     suspend fun addRating(
         @Path("tv_id") tvShowId: Int?,
         @Query("authentication") authenticationType: AuthenticationType,
-        @Body body: RatingObject
+        @Body body: RatingObject,
     ): Status
 
     /**
@@ -348,7 +348,7 @@ interface TmdbApi {
     @POST("tv/{tv_id}/rating")
     suspend fun addRating(
         @Path("tv_id") tvShowId: Int?,
-        @Body body: RatingObject
+        @Body body: RatingObject,
     ): Status
 
     /**
@@ -362,7 +362,7 @@ interface TmdbApi {
     @DELETE("tv/{tv_id}/rating")
     suspend fun deleteRating(
         @Path("tv_id") tvShowId: Int?,
-        @Query("authentication") authenticationType: AuthenticationType
+        @Query("authentication") authenticationType: AuthenticationType,
     ): Status
 
     /**
@@ -374,6 +374,6 @@ interface TmdbApi {
      */
     @DELETE("tv/{tv_id}/rating")
     suspend fun deleteRating(
-        @Path("tv_id") tvShowId: Int?
+        @Path("tv_id") tvShowId: Int?,
     ): Status
 }

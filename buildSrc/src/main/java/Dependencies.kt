@@ -107,5 +107,5 @@ object Dependencies {
 
     val testLibs = listOf(jUnit, mockito, hamcrest)
 
-    val featureProjects = listOf(":auth", ":home", ":show")
+    val featureProjects = listOf(":features:auth", ":features:home", ":features:show")
 }

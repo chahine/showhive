@@ -4,10 +4,12 @@ apply from: rootProject.file('config.gradle')
 
 dependencies {
     api project(':api')
-    api project(':trakt-entities')
 
     implementation Dependencies.dagger
     kapt Dependencies.daggerCompiler
+
+    api Dependencies.moshi
+    kapt Dependencies.moshiCodeGen
 
     api Dependencies.preference
     api Dependencies.timber

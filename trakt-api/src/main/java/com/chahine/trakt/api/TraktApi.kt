@@ -1,17 +1,17 @@
 package com.chahine.trakt.api
 
-import com.chahine.trakt.entities.AccessToken
-import com.chahine.trakt.entities.BaseShow
-import com.chahine.trakt.entities.CalendarMovieEntry
-import com.chahine.trakt.entities.CalendarShowEntry
-import com.chahine.trakt.entities.Comment
-import com.chahine.trakt.entities.Credits
-import com.chahine.trakt.entities.Extended
-import com.chahine.trakt.entities.Ratings
-import com.chahine.trakt.entities.Show
-import com.chahine.trakt.entities.Stats
-import com.chahine.trakt.entities.Translation
-import com.chahine.trakt.entities.TrendingShow
+import com.chahine.trakt.api.entities.AccessToken
+import com.chahine.trakt.api.entities.BaseShow
+import com.chahine.trakt.api.entities.CalendarMovieEntry
+import com.chahine.trakt.api.entities.CalendarShowEntry
+import com.chahine.trakt.api.entities.Comment
+import com.chahine.trakt.api.entities.Credits
+import com.chahine.trakt.api.entities.Extended
+import com.chahine.trakt.api.entities.Ratings
+import com.chahine.trakt.api.entities.Show
+import com.chahine.trakt.api.entities.Stats
+import com.chahine.trakt.api.entities.Translation
+import com.chahine.trakt.api.entities.TrendingShow
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -32,7 +32,7 @@ interface TraktApi {
         @Field("code") code: String,
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
-        @Field("redirect_uri") redirectUri: String
+        @Field("redirect_uri") redirectUri: String,
     ): AccessToken
 
     @FormUrlEncoded
@@ -42,7 +42,7 @@ interface TraktApi {
         @Field("refresh_token") refreshToken: String,
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
-        @Field("redirect_uri") redirectUri: String
+        @Field("redirect_uri") redirectUri: String,
     ): AccessToken
 
     // endregion
@@ -58,7 +58,7 @@ interface TraktApi {
     suspend fun myShows(
         @Path("startDate") startDate: String,
         @Path("days") days: Int,
-        @Query(value = "extended", encoded = true) extended: Extended
+        @Query(value = "extended", encoded = true) extended: Extended,
     ): List<CalendarShowEntry>
 
     /**
@@ -69,7 +69,7 @@ interface TraktApi {
     @GET("calendars/my/shows/new/{startDate}/{days}")
     suspend fun myNewShows(
         @Path("startDate") startDate: String,
-        @Path("days") days: Int
+        @Path("days") days: Int,
     ): List<CalendarShowEntry>
 
     /**
@@ -80,7 +80,7 @@ interface TraktApi {
     @GET("calendars/my/shows/premieres/{startDate}/{days}")
     suspend fun mySeasonPremieres(
         @Path("startDate") startDate: String,
-        @Path("days") days: Int
+        @Path("days") days: Int,
     ): List<CalendarShowEntry>
 
     /**
@@ -91,7 +91,7 @@ interface TraktApi {
     @GET("calendars/my/movies/{startDate}/{days}")
     suspend fun myMovies(
         @Path("startDate") startDate: String,
-        @Path("days") days: Int
+        @Path("days") days: Int,
     ): List<CalendarMovieEntry>
 
     /**
@@ -103,7 +103,7 @@ interface TraktApi {
     @GET("calendars/all/shows/{startDate}/{days}")
     suspend fun shows(
         @Path("startDate") startDate: String,
-        @Path("days") days: Int
+        @Path("days") days: Int,
     ): List<CalendarShowEntry>
 
     /**
@@ -115,7 +115,7 @@ interface TraktApi {
     @GET("calendars/all/shows/new/{startDate}/{days}")
     suspend fun newShows(
         @Path("startDate") startDate: String,
-        @Path("days") days: Int
+        @Path("days") days: Int,
     ): List<CalendarShowEntry>
 
     /**
@@ -127,7 +127,7 @@ interface TraktApi {
     @GET("calendars/all/shows/premieres/{startDate}/{days}")
     suspend fun seasonPremieres(
         @Path("startDate") startDate: String,
-        @Path("days") days: Int
+        @Path("days") days: Int,
     ): List<CalendarShowEntry>
 
     /**
@@ -139,7 +139,7 @@ interface TraktApi {
     @GET("calendars/all/movies/{startDate}/{days}")
     suspend fun movies(
         @Path("startDate") startDate: String,
-        @Path("days") days: Int
+        @Path("days") days: Int,
     ): List<CalendarMovieEntry>
 
     // endregion
@@ -156,7 +156,7 @@ interface TraktApi {
     suspend fun popular(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
-        @Query(value = "extended", encoded = true) extended: Extended
+        @Query(value = "extended", encoded = true) extended: Extended,
     ): List<Show>
 
     /**
@@ -169,7 +169,7 @@ interface TraktApi {
     suspend fun trending(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
-        @Query(value = "extended", encoded = true) extended: Extended
+        @Query(value = "extended", encoded = true) extended: Extended,
     ): Response<List<TrendingShow>>
 
     /**
@@ -180,7 +180,7 @@ interface TraktApi {
     @GET("shows/{id}")
     suspend fun summary(
         @Path("id") showId: String,
-        @Query(value = "extended", encoded = true) extended: Extended
+        @Query(value = "extended", encoded = true) extended: Extended,
     ): Show
 
     /**
@@ -190,7 +190,7 @@ interface TraktApi {
      */
     @GET("shows/{id}/translations")
     suspend fun translations(
-        @Path("id") showId: String
+        @Path("id") showId: String,
     ): List<Translation>
 
     /**
@@ -202,7 +202,7 @@ interface TraktApi {
     @GET("shows/{id}/translations/{language}")
     suspend fun translation(
         @Path("id") showId: String,
-        @Path("language") language: String
+        @Path("language") language: String,
     ): List<Translation>
 
     /**
@@ -217,7 +217,7 @@ interface TraktApi {
         @Path("id") showId: String,
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
-        @Query(value = "extended", encoded = true) extended: Extended
+        @Query(value = "extended", encoded = true) extended: Extended,
     ): List<Comment>
 
     /**
@@ -240,7 +240,7 @@ interface TraktApi {
         @Path("id") showId: String,
         @Query("hidden") hidden: Boolean?,
         @Query("specials") specials: Boolean?,
-        @Query(value = "extended", encoded = true) extended: Extended
+        @Query(value = "extended", encoded = true) extended: Extended,
     ): BaseShow
 
     /**
@@ -262,7 +262,7 @@ interface TraktApi {
         @Path("id") showId: String,
         @Query("hidden") hidden: Boolean?,
         @Query("specials") specials: Boolean?,
-        @Query(value = "extended", encoded = true) extended: Extended
+        @Query(value = "extended", encoded = true) extended: Extended,
     ): BaseShow
 
     /**
@@ -272,7 +272,7 @@ interface TraktApi {
      */
     @GET("shows/{id}/people")
     suspend fun people(
-        @Path("id") showId: String
+        @Path("id") showId: String,
     ): Credits
 
     /**
@@ -282,7 +282,7 @@ interface TraktApi {
      */
     @GET("shows/{id}/ratings")
     suspend fun ratings(
-        @Path("id") showId: String
+        @Path("id") showId: String,
     ): Ratings
 
     /**
@@ -290,7 +290,7 @@ interface TraktApi {
      */
     @GET("shows/{id}/stats")
     suspend fun stats(
-        @Path("id") showId: String
+        @Path("id") showId: String,
     ): Stats
 
     /**
@@ -301,7 +301,7 @@ interface TraktApi {
         @Path("id") showId: String,
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
-        @Query(value = "extended", encoded = true) extended: Extended
+        @Query(value = "extended", encoded = true) extended: Extended,
     ): List<Show>
 
     // endregion
