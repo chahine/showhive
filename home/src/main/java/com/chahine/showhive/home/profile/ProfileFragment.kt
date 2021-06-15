@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.chahine.showhive.base.BaseFragment
 import com.chahine.showhive.home.R
 import com.google.android.material.transition.MaterialFadeThrough
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

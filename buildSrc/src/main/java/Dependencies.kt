@@ -55,6 +55,8 @@ object Dependencies {
     val annotationsApi = "javax.annotation:javax.annotation-api:1.2"
     val dagger = "com.google.dagger:dagger:$daggerVersion"
     val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    val hilt = "com.google.dagger:hilt-android:$daggerVersion"
+    val hiltCompiler = "com.google.dagger:hilt-compiler:$daggerVersion"
 
     // Glide
     val glide = "com.github.bumptech.glide:glide:$glideVersion"

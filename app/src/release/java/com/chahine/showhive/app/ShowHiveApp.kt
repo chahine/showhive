@@ -13,4 +13,3 @@ class ShowHiveApp : Application() {
         Timber.plant(FirebaseTree())
     }
 }
-

@@ -47,8 +47,8 @@ dependencies {
 
     implementation Dependencies.kotlinStdlib
     implementation Dependencies.coroutines
-    implementation "com.google.dagger:hilt-android:2.36"
-    kapt "com.google.dagger:hilt-compiler:2.36"
+    implementation Dependencies.hilt
+    kapt Dependencies.hiltCompiler
 
     testImplementation Dependencies.testLibs
 }
