@@ -1,11 +1,11 @@
 package com.chahine.trakt.api
 
-import com.chahine.trakt.api.paging.Paged
-import com.chahine.trakt.api.paging.Pagination
 import com.chahine.trakt.api.entities.AccessToken
 import com.chahine.trakt.api.entities.CalendarShowEntry
 import com.chahine.trakt.api.entities.Extended
 import com.chahine.trakt.api.entities.TrendingShow
+import com.chahine.trakt.api.paging.Paged
+import com.chahine.trakt.api.paging.Pagination
 import retrofit2.HttpException
 import javax.inject.Inject
 
