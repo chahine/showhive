@@ -1,6 +1,7 @@
 package com.chahine.showhive.di
 
 import android.app.Application
+import android.content.Context
 import com.chahine.showhive.qualifiers.Trakt
 import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.api.TraktAuthenticator
@@ -9,6 +10,9 @@ import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
@@ -18,6 +22,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class TraktApiModule {
 
     @Provides
@@ -27,11 +32,11 @@ class TraktApiModule {
     @Provides
     @Singleton
     fun provideTraktAuthenticator(
-        app: Application,
+        @ApplicationContext context: Context,
         okHttpClient: OkHttpClient,
-        moshi: Moshi
+        moshi: Moshi,
     ): TraktAuthenticator {
-        return TraktAuthenticator(app, okHttpClient, moshi)
+        return TraktAuthenticator(context, okHttpClient, moshi)
     }
 
     @Provides
@@ -46,7 +51,7 @@ class TraktApiModule {
         client: OkHttpClient,
         interceptor: TraktInterceptor,
         authenticator: TraktAuthenticator,
-        chuck: ChuckInterceptor
+        chuck: ChuckInterceptor,
     ): OkHttpClient {
         val clientBuilder = client.newBuilder()
 
@@ -67,7 +72,7 @@ class TraktApiModule {
     fun provideTraktRetrofit(
         moshi: Moshi,
         @Trakt baseUrl: HttpUrl,
-        @Trakt client: OkHttpClient
+        @Trakt client: OkHttpClient,
     ): Retrofit {
         return Retrofit.Builder()
             .client(client)

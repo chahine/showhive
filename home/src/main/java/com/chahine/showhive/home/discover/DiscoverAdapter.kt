@@ -15,13 +15,23 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
+import javax.inject.Inject
 
-class DiscoverAdapter(
-    diffCallback: DiffUtil.ItemCallback<DiscoverUiModel>
-) : PagingDataAdapter<DiscoverUiModel, RecyclerView.ViewHolder>(diffCallback) {
+class DiscoverAdapter @Inject constructor() :
+    PagingDataAdapter<DiscoverUiModel, RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {
         private const val SEPARATOR = " • "
+
+        private val diffCallback = object : DiffUtil.ItemCallback<DiscoverUiModel>() {
+            override fun areItemsTheSame(oldItem: DiscoverUiModel, newItem: DiscoverUiModel): Boolean {
+                return oldItem.show.ids.trakt == newItem.show.ids.trakt
+            }
+
+            override fun areContentsTheSame(oldItem: DiscoverUiModel, newItem: DiscoverUiModel): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

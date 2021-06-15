@@ -81,6 +81,11 @@ dependencies {
 
     Dependencies.featureProjects.each { implementation project("$it") }
 
+    implementation Dependencies.paging
+
+    kapt Dependencies.lifecycleCompiler
+    kapt Dependencies.daggerCompiler
+
     // Firebase
     implementation platform(Dependencies.firebaseBom)
     implementation Dependencies.firebasePerf

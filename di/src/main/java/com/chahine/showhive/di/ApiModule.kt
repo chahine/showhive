@@ -1,9 +1,12 @@
 package com.chahine.showhive.di
 
-import android.app.Application
+import android.content.Context
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import java.io.File
@@ -11,6 +14,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class ApiModule {
 
     companion object {
@@ -21,8 +25,8 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(app: Application): OkHttpClient = OkHttpClient.Builder()
-        .cache(Cache(File(app.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
+    fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient = OkHttpClient.Builder()
+        .cache(Cache(File(context.cacheDir, OKHTTP_CACHE_DIR), DISK_CACHE_SIZE))
         .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
         .readTimeout(TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -30,5 +34,5 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideChuck(app: Application) = ChuckInterceptor(app)
+    fun provideChuck(@ApplicationContext context: Context) = ChuckInterceptor(context)
 }
