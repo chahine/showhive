@@ -14,12 +14,26 @@ import com.chahine.showhive.home.databinding.ItemImageLineThreeBinding
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter.ofPattern
+import javax.inject.Inject
 
-class CalendarAdapter(diffCallback: DiffUtil.ItemCallback<CalendarUiModel>) :
-    PagingDataAdapter<CalendarUiModel, ViewHolder>(diffCallback) {
+class CalendarAdapter @Inject constructor() : PagingDataAdapter<CalendarUiModel, ViewHolder>(diffCallback) {
 
     companion object {
         private const val SEPARATOR = " • "
+
+        private val diffCallback = object : DiffUtil.ItemCallback<CalendarUiModel>() {
+            override fun areItemsTheSame(oldItem: CalendarUiModel, newItem: CalendarUiModel): Boolean {
+                return oldItem is CalendarUiModel.Episode &&
+                    newItem is CalendarUiModel.Episode &&
+                    oldItem.entry == newItem.entry ||
+                    oldItem is CalendarUiModel.Header &&
+                    newItem is CalendarUiModel.Header &&
+                    oldItem.date == newItem.date
+            }
+
+            override fun areContentsTheSame(oldItem: CalendarUiModel, newItem: CalendarUiModel): Boolean =
+                oldItem == newItem
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

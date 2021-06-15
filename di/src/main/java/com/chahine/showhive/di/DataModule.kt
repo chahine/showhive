@@ -1,7 +1,6 @@
 package com.chahine.showhive.di
 
 import android.app.ActivityManager
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
@@ -13,9 +12,13 @@ import com.chahine.trakt.api.ZonedDateTimeConverter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class DataModule {
 
     companion object {
@@ -27,8 +30,8 @@ class DataModule {
     @Provides
     @Singleton
     @CacheSize
-    fun getCacheSize(app: Application): Int {
-        val am = app.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    fun getCacheSize(@ApplicationContext context: Context): Int {
+        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val memoryClass = am.memoryClass
         // Target ~25% of the available heap.
         return HEAP_TARGET * memoryClass
@@ -43,20 +46,23 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideMasterKey(app: Application): MasterKey {
-        return MasterKey(app)
+    fun provideMasterKey(@ApplicationContext context: Context): MasterKey {
+        return MasterKey(context)
     }
 
     @Provides
     @Singleton
-    fun provideSharedPreferences(app: Application, masterKey: MasterKey): SharedPreferences {
-        return EncryptedSharedPreferences(app, SHARED_PREFS_FILE, masterKey)
+    fun provideSharedPreferences(@ApplicationContext context: Context, masterKey: MasterKey): SharedPreferences {
+        return EncryptedSharedPreferences(context, SHARED_PREFS_FILE, masterKey)
     }
 
     @Provides
     @Singleton
     @ImageRepo
-    fun provideImageRepoSharedPreferences(app: Application, masterKey: MasterKey): SharedPreferences {
-        return EncryptedSharedPreferences(app, IMAGE_REPO_PREFS_FILE, masterKey)
+    fun provideImageRepoSharedPreferences(
+        @ApplicationContext context: Context,
+        masterKey: MasterKey,
+    ): SharedPreferences {
+        return EncryptedSharedPreferences(context, IMAGE_REPO_PREFS_FILE, masterKey)
     }
 }

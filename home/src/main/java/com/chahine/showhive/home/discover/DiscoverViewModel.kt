@@ -6,13 +6,13 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.chahine.showhive.di.repo.ImageRepository
-import com.chahine.showhive.qualifiers.ActivityScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import javax.inject.Inject
 
-@ActivityScope
+@HiltViewModel
 class DiscoverViewModel @Inject constructor(
     private val repository: DiscoverRepository,
     private val imageRepository: ImageRepository,
