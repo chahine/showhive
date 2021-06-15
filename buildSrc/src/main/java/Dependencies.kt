@@ -28,7 +28,6 @@ object Dependencies {
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
     val paging = "androidx.paging:paging-runtime:$pagingVersion"
-    val pagingRxJava = "androidx.paging:paging-rxjava3:$pagingVersion"
     val preference = "androidx.preference:preference-ktx:1.1.1"
     val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
     val security = "androidx.security:security-crypto-ktx:1.1.0-alpha02"
