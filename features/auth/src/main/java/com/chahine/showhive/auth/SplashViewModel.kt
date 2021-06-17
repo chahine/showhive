@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,13 +44,14 @@ class SplashViewModel @Inject constructor(
             val code = uri.getQueryParameter("code")
             viewModelScope.launch {
                 val accessToken = apiClient.exchangeCodeForAccessToken(code!!)
-
+                Timber.d("accessToken: $accessToken")
                 with(sharedPreferences.edit()) {
                     putString("access_token", accessToken.accessToken)
                     putString("refresh_token", accessToken.refreshToken)
                     apply()
                 }
 
+                Timber.d("accessToken from prefs : ${sharedPreferences.getString("access_token", null)}")
                 _navigateToHome.emit(Unit)
             }
         }
