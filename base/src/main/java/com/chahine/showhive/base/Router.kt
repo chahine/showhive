@@ -2,6 +2,7 @@ package com.chahine.showhive.base
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import com.chahine.trakt.api.TraktV2
@@ -9,10 +10,12 @@ import dagger.hilt.android.qualifiers.ActivityContext
 import timber.log.Timber
 import javax.inject.Inject
 
-class Router @Inject constructor(@ActivityContext val context: Context) {
+class Router @Inject constructor(
+    @ActivityContext context: Context,
+    private val resources: Resources,
+) {
 
     private val activity = context as AppCompatActivity
-    private val resources = context.resources
 
     fun connectWithTrakt() {
         openUrl(
