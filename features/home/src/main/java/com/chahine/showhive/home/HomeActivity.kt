@@ -11,7 +11,6 @@ import com.chahine.showhive.home.databinding.ActivityHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -30,12 +29,7 @@ class HomeActivity : BaseActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         binding.bottomNavigationView.setupWithNavController(navHostFragment.navController)
 
-        lifecycleScope.launch {
-            viewModel.navigateToSplash.collectLatest {
-                Timber.d("onCreate() called splash")
-                router.splash()
-            }
-        }
+        lifecycleScope.launch { viewModel.navigateToSplash.collectLatest { router.splash() } }
 
         viewModel.checkAuthStatus()
     }
