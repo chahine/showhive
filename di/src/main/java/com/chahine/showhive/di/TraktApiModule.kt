@@ -1,6 +1,5 @@
 package com.chahine.showhive.di
 
-import android.app.Application
 import android.content.Context
 import com.chahine.showhive.qualifiers.Trakt
 import com.chahine.trakt.api.TraktApi
@@ -24,10 +23,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class TraktApiModule {
-
-    @Provides
-    @Singleton
-    fun provideTraktInterceptor(app: Application) = TraktInterceptor(app)
 
     @Provides
     @Singleton
