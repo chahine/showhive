@@ -53,11 +53,7 @@ class DataModule {
     @Provides
     @Singleton
     fun provideSharedPreferences(@ApplicationContext context: Context, masterKey: MasterKey): SharedPreferences {
-        return if (BuildConfig.DEBUG) {
-            context.getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
-        } else {
-            EncryptedSharedPreferences(context, SHARED_PREFS_FILE, masterKey)
-        }
+        return EncryptedSharedPreferences(context, SHARED_PREFS_FILE, masterKey)
     }
 
     @Provides
@@ -67,10 +63,6 @@ class DataModule {
         @ApplicationContext context: Context,
         masterKey: MasterKey,
     ): SharedPreferences {
-        return if (BuildConfig.DEBUG) {
-            context.getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
-        } else {
-            EncryptedSharedPreferences(context, IMAGE_REPO_PREFS_FILE, masterKey)
-        }
+        return EncryptedSharedPreferences(context, IMAGE_REPO_PREFS_FILE, masterKey)
     }
 }
