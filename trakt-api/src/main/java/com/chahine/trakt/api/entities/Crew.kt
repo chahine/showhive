@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class Crew(
+data class Crew(
     val writing: List<CrewMember>?,
     val production: List<CrewMember>?,
     val directing: List<CrewMember>?,

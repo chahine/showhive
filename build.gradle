@@ -63,6 +63,14 @@ subprojects {
             endWithNewline()
         }
     }
+
+    tasks.withType(Test) {
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+            outputs.upToDateWhen { false }
+            showStandardStreams = true
+        }
+    }
 }
 
 task mockitoExtensions {

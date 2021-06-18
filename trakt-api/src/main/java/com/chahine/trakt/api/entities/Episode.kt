@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
 @JsonClass(generateAdapter = true)
-class Episode(
+data class Episode(
     val title: String?,
     val overview: String?,
     val rating: Double?,

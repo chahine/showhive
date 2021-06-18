@@ -14,4 +14,6 @@ dependencies {
     api Dependencies.preference
     api Dependencies.timber
     api Dependencies.api
+
+    testImplementation Dependencies.testLibs
 }

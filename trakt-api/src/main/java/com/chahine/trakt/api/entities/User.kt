@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
 @JsonClass(generateAdapter = true)
-class User(
+data class User(
     val username: String?,
     @Json(name = "private") val isPrivate: Boolean?,
     val name: String?,

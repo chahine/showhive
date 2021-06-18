@@ -13,19 +13,10 @@ class TraktInterceptor @Inject constructor(
     private val prefs: SharedPreferences,
 ) : Interceptor {
 
-    private var accessToken: String? = null
+    private val accessToken: String?
         get() {
             return prefs.getString("access_token", null)
         }
-
-    @Throws(IOException::class)
-    override fun intercept(chain: Interceptor.Chain): Response {
-        return handleIntercept(
-            chain,
-            BuildConfig.TRAKT_CLIENT_ID,
-            accessToken
-        )
-    }
 
     /**
      * If the host matches [TraktV2.API_HOST] adds a header for the current [TraktV2.API_VERSION],
@@ -33,11 +24,7 @@ class TraktInterceptor @Inject constructor(
      * and if not present an Authorization header using the given access token.
      */
     @Throws(IOException::class)
-    private fun handleIntercept(
-        chain: Interceptor.Chain,
-        apiKey: String,
-        accessToken: String?,
-    ): Response {
+    override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         if (TraktV2.API_HOST != request.url.host) {
             // do not intercept requests for other hosts
@@ -49,12 +36,12 @@ class TraktInterceptor @Inject constructor(
 
         // set required content type, api key and request specific API version
         builder.header(TraktV2.HEADER_CONTENT_TYPE, TraktV2.CONTENT_TYPE_JSON)
-        builder.header(TraktV2.HEADER_TRAKT_API_KEY, apiKey)
+        builder.header(TraktV2.HEADER_TRAKT_API_KEY, BuildConfig.TRAKT_CLIENT_ID)
         builder.header(TraktV2.HEADER_TRAKT_API_VERSION, TraktV2.API_VERSION)
 
         // add authorization header
         if (hasNoAuthorizationHeader(request) && accessTokenIsNotEmpty(accessToken)) {
-            builder.header(TraktV2.HEADER_AUTHORIZATION, "Bearer " + accessToken)
+            builder.header(TraktV2.HEADER_AUTHORIZATION, "Bearer $accessToken")
         }
         return chain.proceed(builder.build())
     }

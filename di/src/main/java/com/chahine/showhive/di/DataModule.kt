@@ -5,10 +5,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.chahine.api.DayOfWeekAdapter
 import com.chahine.showhive.qualifiers.CacheSize
 import com.chahine.showhive.qualifiers.ImageRepo
-import com.chahine.trakt.api.ZonedDateTimeConverter
+import com.chahine.trakt.api.MoshiFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -39,10 +38,7 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder()
-        .add(ZonedDateTimeConverter())
-        .add(DayOfWeekAdapter())
-        .build()
+    fun provideMoshi(factory: MoshiFactory): Moshi = factory.make()
 
     @Provides
     @Singleton

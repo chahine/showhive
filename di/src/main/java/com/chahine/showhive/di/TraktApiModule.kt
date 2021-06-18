@@ -1,6 +1,5 @@
 package com.chahine.showhive.di
 
-import android.content.Context
 import com.chahine.showhive.qualifiers.Trakt
 import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.api.TraktAuthenticator
@@ -10,7 +9,6 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
@@ -23,16 +21,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class TraktApiModule {
-
-    @Provides
-    @Singleton
-    fun provideTraktAuthenticator(
-        @ApplicationContext context: Context,
-        okHttpClient: OkHttpClient,
-        moshi: Moshi,
-    ): TraktAuthenticator {
-        return TraktAuthenticator(context, okHttpClient, moshi)
-    }
 
     @Provides
     @Singleton

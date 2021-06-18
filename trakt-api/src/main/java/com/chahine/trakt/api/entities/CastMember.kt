@@ -3,7 +3,7 @@ package com.chahine.trakt.api.entities
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class CastMember(
+data class CastMember(
     val character: String?,
     val movie: Movie?,
     val show: Show?,
