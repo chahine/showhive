@@ -1,15 +1,17 @@
 package com.chahine.trakt.api
 
-import android.content.Context
-import androidx.preference.PreferenceManager
+import android.content.SharedPreferences
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class TraktInterceptor(context: Context) : Interceptor {
-
-    private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+@Singleton
+class TraktInterceptor @Inject constructor(
+    private val prefs: SharedPreferences,
+) : Interceptor {
 
     private var accessToken: String? = null
         get() {
@@ -34,7 +36,7 @@ class TraktInterceptor(context: Context) : Interceptor {
     private fun handleIntercept(
         chain: Interceptor.Chain,
         apiKey: String,
-        accessToken: String?
+        accessToken: String?,
     ): Response {
         val request = chain.request()
         if (TraktV2.API_HOST != request.url.host) {

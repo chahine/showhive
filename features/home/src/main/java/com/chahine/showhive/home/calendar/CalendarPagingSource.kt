@@ -1,7 +1,7 @@
 package com.chahine.showhive.home.calendar
 
 import androidx.paging.PagingSource
-import com.chahine.trakt.api.TraktApiClient
+import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.api.entities.CalendarShowEntry
 import com.chahine.trakt.api.entities.Extended
 import okio.IOException
@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter.ofPattern
 import javax.inject.Inject
 
 class CalendarPagingSource @Inject constructor(
-    private val traktApiClient: TraktApiClient,
+    private val traktApi: TraktApi,
 ) : PagingSource<ZonedDateTime, CalendarShowEntry>() {
 
     companion object {
@@ -27,7 +27,7 @@ class CalendarPagingSource @Inject constructor(
 
         return try {
             val now = ZonedDateTime.now()
-            val response = traktApiClient.myShows(startDate, DATE_RANGE.toInt(), Extended.FULL)
+            val response = traktApi.myShows(startDate, DATE_RANGE.toInt(), Extended.FULL)
             LoadResult.Page(
                 data = response,
                 prevKey = if (now.minusDays(MAX_DATE_RANGE).isBefore(page)) page.minusDays(DATE_RANGE) else null,

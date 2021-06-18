@@ -6,6 +6,12 @@ dependencies {
     api project(':api')
     api project(':tmdb-entities')
 
+    implementation Dependencies.dagger
+    kapt Dependencies.daggerCompiler
+
+    api Dependencies.moshi
+    kapt Dependencies.moshiCodeGen
+
     api Dependencies.timber
     api Dependencies.api
 }

@@ -1,21 +1,27 @@
 package com.chahine.showhive.base
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import com.chahine.trakt.api.TraktV2
+import dagger.hilt.android.qualifiers.ActivityContext
 import timber.log.Timber
 import javax.inject.Inject
 
-class Router @Inject constructor(private val activity: Activity) {
+class Router @Inject constructor(
+    @ActivityContext context: Context,
+    private val resources: Resources,
+) {
 
-    private val res = activity.resources
+    private val activity = context as AppCompatActivity
 
     fun connectWithTrakt() {
         openUrl(
             Uri.Builder()
                 .scheme("https")
-                .authority("api.trakt.tv")
+                .authority("trakt.tv")
                 .appendPath("oauth")
                 .appendPath("authorize")
                 .appendQueryParameter("response_type", "code")
@@ -27,7 +33,7 @@ class Router @Inject constructor(private val activity: Activity) {
     }
 
     fun home() {
-        val intent = getIntentForPath(setOf(res.getString(R.string.path_home)))
+        val intent = getIntentForPath(setOf(resources.getString(R.string.path_home)))
         activity.finishAffinity()
         activity.startActivity(intent)
     }
@@ -37,21 +43,21 @@ class Router @Inject constructor(private val activity: Activity) {
     }
 
     fun tvShow(id: String) {
-        activity.startActivity(getIntentForPath(setOf(res.getString(R.string.path_show), id)))
+        activity.startActivity(getIntentForPath(setOf(resources.getString(R.string.path_show), id)))
     }
 
     fun splash() {
         activity.finishAffinity()
-        activity.startActivity(getIntentForPath(setOf(res.getString(R.string.path_splash))))
+        activity.startActivity(getIntentForPath(setOf(resources.getString(R.string.path_splash))))
     }
 
     private fun getIntentForPath(
         path: Set<String> = emptySet(),
-        queries: Map<String, String> = emptyMap()
+        queries: Map<String, String> = emptyMap(),
     ): Intent {
         val builder = Uri.EMPTY.buildUpon()
-            .scheme(res.getString(R.string.scheme))
-            .authority(res.getString(R.string.host))
+            .scheme(resources.getString(R.string.scheme))
+            .authority(resources.getString(R.string.host))
 
         // need to strip off the leading / needed for Manifest.xml for first path segment
         path.forEach { builder.appendPath(it.removePrefix("/")) }
