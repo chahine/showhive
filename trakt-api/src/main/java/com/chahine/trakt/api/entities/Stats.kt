@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class Stats(
+data class Stats(
     val watchers: Int?,
     val plays: Int?,
     val collectors: Int?,

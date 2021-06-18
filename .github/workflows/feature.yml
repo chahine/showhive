@@ -42,7 +42,7 @@ jobs:
       - name: Assemble and Test Debug
         run: |
           ./gradlew :app:assembleDebug
-          ./gradlew :app:testDebugUnitTest
+          ./gradlew testDebugUnitTest
       - name: Lint Debug
         run: |
           ./gradlew :app:lintDebug

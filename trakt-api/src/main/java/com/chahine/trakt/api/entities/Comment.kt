@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
 @JsonClass(generateAdapter = true)
-class Comment(
+data class Comment(
     val id: Int?,
     @Json(name = "parent_id") val parentId: Int?,
     @Json(name = "created_at") val createdAt: ZonedDateTime?,

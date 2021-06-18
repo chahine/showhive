@@ -1,7 +1,6 @@
 package com.chahine.trakt.api
 
-import android.content.Context
-import androidx.preference.PreferenceManager
+import android.content.SharedPreferences
 import com.chahine.trakt.api.entities.AccessToken
 import com.squareup.moshi.Moshi
 import okhttp3.Authenticator
@@ -10,30 +9,33 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
+import retrofit2.Response.error
+import retrofit2.Response.success
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class TraktAuthenticator(
-    context: Context,
+@Singleton
+class TraktAuthenticator @Inject constructor(
+    private val sharedPreferences: SharedPreferences,
     private val okHttpClient: OkHttpClient,
-    private val moshi: Moshi
+    private val moshi: Moshi,
 ) : Authenticator {
-
-    private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
 
     private var accessToken: String?
         get() {
-            return prefs.getString("access_token", null)
+            return sharedPreferences.getString("access_token", null)
         }
         set(value) {
-            prefs.edit().putString("access_token", value).apply()
+            sharedPreferences.edit().putString("access_token", value).apply()
         }
 
     private var refreshToken: String?
         get() {
-            return prefs.getString("refresh_token", null)
+            return sharedPreferences.getString("refresh_token", null)
         }
         set(value) {
-            prefs.edit().putString("refresh_token", value).apply()
+            sharedPreferences.edit().putString("refresh_token", value).apply()
         }
 
     @Throws(IOException::class)
@@ -50,12 +52,12 @@ class TraktAuthenticator(
      */
     @Throws(IOException::class)
     private fun handleAuthenticate(response: Response): Request? {
-        // not a trakt API endpoint (possibly trakt OAuth or other API), give up.
-        // failed 2 times, give up.
-        // have no refresh token, give up.
         return when {
+            // not a trakt API endpoint (possibly trakt OAuth or other API), give up.
             TraktV2.API_HOST != response.request.url.host -> null
+            // failed 2 times, give up.
             responseCount(response) >= 2 -> null
+            // have no refresh token, give up.
             refreshToken.isNullOrEmpty() -> null
 
             else -> {
@@ -70,7 +72,7 @@ class TraktAuthenticator(
 
                 // retry request
                 response.request.newBuilder()
-                    .header(TraktV2.HEADER_AUTHORIZATION, "Bearer " + accessToken)
+                    .header(TraktV2.HEADER_AUTHORIZATION, "Bearer $accessToken")
                     .build()
             }
         }
@@ -95,11 +97,9 @@ class TraktAuthenticator(
 
         val response = okHttpClient.newCall(request).execute()
         return if (response.isSuccessful) {
-            retrofit2.Response.success(
-                moshi.adapter(AccessToken::class.java).fromJson(response.body?.string().orEmpty())
-            )
+            success(moshi.adapter(AccessToken::class.java).fromJson(response.body?.string().orEmpty()))
         } else {
-            retrofit2.Response.error(response.code, response.body!!)
+            error(response.code, response.body!!)
         }
     }
 

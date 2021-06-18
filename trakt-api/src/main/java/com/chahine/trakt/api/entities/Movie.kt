@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 import java.time.LocalDate
 
 @JsonClass(generateAdapter = true)
-class Movie(
+data class Movie(
     val year: Int?,
     val ids: MovieIds?,
     val certification: String?,

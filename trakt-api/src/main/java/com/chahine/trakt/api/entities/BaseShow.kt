@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime
 
 @JsonClass(generateAdapter = true)
-class BaseShow(
+data class BaseShow(
     val show: Show?,
     val seasons: List<BaseSeason>?,
     @Json(name = "last_collected_at") val lastCollectedAt: ZonedDateTime?,

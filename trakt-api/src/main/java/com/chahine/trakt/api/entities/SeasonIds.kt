@@ -3,7 +3,7 @@ package com.chahine.trakt.api.entities
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class SeasonIds(
+data class SeasonIds(
     val tvdb: Int?,
     val tmdb: Int?,
     val trakt: Int?,

@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class Season(
+data class Season(
     val number: Int?,
     val ids: SeasonIds?,
     val overview: String?,

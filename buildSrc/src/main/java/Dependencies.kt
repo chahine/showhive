@@ -76,6 +76,11 @@ object Dependencies {
     val jUnit = "junit:junit:$junitVersion"
     val mockito = "org.mockito:mockito-core:3.11.0"
     val hamcrest = "org.hamcrest:hamcrest-all:1.3"
+    val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:3.2.0"
+    val mockitoInline = "org.mockito:mockito-inline:2.28.2"
+    val mockk = "io.mockk:mockk:1.10.6"
+    val aaa = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
 
     val api = listOf(
         retrofit,
@@ -105,7 +110,15 @@ object Dependencies {
         security
     )
 
-    val testLibs = listOf(jUnit, mockito, hamcrest)
+    val testLibs = listOf(
+        jUnit,
+        mockito,
+        hamcrest,
+        mockitoKotlin,
+        mockitoInline,
+        mockk,
+        coroutinesTest
+    )
 
     val featureProjects = listOf(":features:auth", ":features:home", ":features:show")
 }
