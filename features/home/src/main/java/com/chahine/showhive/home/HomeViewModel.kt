@@ -19,7 +19,11 @@ class HomeViewModel @Inject constructor(
 
     val navigateToSplash = _navigateToSplash.asSharedFlow()
 
-    fun checkAuthStatus() = viewModelScope.launch {
+    init {
+        checkAuthStatus()
+    }
+
+    internal fun checkAuthStatus() = viewModelScope.launch {
         if (!sharedPreferences.contains("access_token") &&
             !sharedPreferences.getBoolean("splash_skipped", false)
         ) {

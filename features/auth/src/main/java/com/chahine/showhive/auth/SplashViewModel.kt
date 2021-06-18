@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chahine.trakt.api.TraktApiClient
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -36,21 +37,19 @@ class SplashViewModel @Inject constructor(
         _navigateToHome.emit(Unit)
     }
 
-    fun onNewIntent(intent: Intent?) {
-        val data = intent?.data ?: return
+    fun onNewIntent(intent: Intent?) = viewModelScope.launch(Dispatchers.IO) {
+        val data = intent?.data ?: return@launch
         val uri = Uri.parse(data.toString())
         if (uri.queryParameterNames.contains("code")) {
             val code = uri.getQueryParameter("code")
-            viewModelScope.launch {
-                val accessToken = apiClient.exchangeCodeForAccessToken(code!!)
-                with(sharedPreferences.edit()) {
-                    putString("access_token", accessToken.accessToken)
-                    putString("refresh_token", accessToken.refreshToken)
-                    apply()
-                }
-
-                _navigateToHome.emit(Unit)
+            val accessToken = apiClient.exchangeCodeForAccessToken(code!!)
+            with(sharedPreferences.edit()) {
+                putString("access_token", accessToken.accessToken)
+                putString("refresh_token", accessToken.refreshToken)
+                apply()
             }
+
+            _navigateToHome.emit(Unit)
         }
     }
 }

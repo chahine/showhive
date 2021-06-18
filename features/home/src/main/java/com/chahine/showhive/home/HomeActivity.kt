@@ -30,7 +30,5 @@ class HomeActivity : BaseActivity() {
         binding.bottomNavigationView.setupWithNavController(navHostFragment.navController)
 
         lifecycleScope.launch { viewModel.navigateToSplash.collectLatest { router.splash() } }
-
-        viewModel.checkAuthStatus()
     }
 }
