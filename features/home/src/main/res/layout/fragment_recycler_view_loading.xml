@@ -17,8 +17,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/spinner"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/spinner_size"
+        android:layout_height="@dimen/spinner_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
