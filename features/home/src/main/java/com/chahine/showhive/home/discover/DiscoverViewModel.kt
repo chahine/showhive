@@ -22,7 +22,7 @@ class DiscoverViewModel @Inject constructor(
         Timber.d("DiscoverViewModel#${hashCode()}")
     }
 
-    fun trending(): Flow<PagingData<DiscoverUiModel>> {
+    suspend fun trending(): Flow<PagingData<DiscoverUiModel>> {
         return repository.trending()
             .map { data ->
                 data.map {

@@ -15,7 +15,7 @@
         android:id="@+id/navigation_discover"
         android:name="com.chahine.showhive.home.discover.DiscoverFragment"
         android:label="@string/discover"
-        tools:layout="@layout/fragment_discover" />
+        tools:layout="@layout/fragment_recycler_view_loading" />
 
     <fragment
         android:id="@+id/navigation_profile"

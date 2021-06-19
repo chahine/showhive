@@ -12,6 +12,7 @@ object Versions {
     const val junitVersion = "4.13.2"
     const val leakCanaryVersion = "2.7"
     const val lifecycleVersion = "2.2.0"
+    const val lottieVersion = "3.7.0"
     const val moshiVersion = "1.12.0"
     const val navigationVersion = "2.3.1"
     const val okhttpVersion = "4.9.0"

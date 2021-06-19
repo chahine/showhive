@@ -5,6 +5,7 @@ import Versions.junitVersion
 import Versions.kotlinVersion
 import Versions.leakCanaryVersion
 import Versions.lifecycleVersion
+import Versions.lottieVersion
 import Versions.moshiVersion
 import Versions.navigationVersion
 import Versions.okhttpVersion
@@ -70,6 +71,7 @@ object Dependencies {
     val inject = "javax.inject:javax.inject:1"
     val leakCanary = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     val leakCanaryNoOp = "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    val lottie = "com.airbnb.android:lottie:$lottieVersion"
     val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:1.0.10"
 
     // Testing

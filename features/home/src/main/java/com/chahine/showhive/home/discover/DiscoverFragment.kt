@@ -2,13 +2,14 @@ package com.chahine.showhive.home.discover
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chahine.showhive.base.BaseFragment
 import com.chahine.showhive.base.Router
 import com.chahine.showhive.home.R
-import com.chahine.showhive.home.databinding.FragmentRecyclerViewBinding
+import com.chahine.showhive.home.databinding.FragmentRecyclerViewLoadingBinding
 import com.chahine.showhive.home.util.DefaultSpacesItemDecoration
 import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,12 +26,12 @@ class DiscoverFragment : BaseFragment() {
     }
 
     @Inject lateinit var router: Router
-    @Inject lateinit var adapter: DiscoverAdapter
+    @Inject lateinit var discoverAdapter: DiscoverAdapter
     @Inject lateinit var itemDecoration: DefaultSpacesItemDecoration
 
     private val viewModel: DiscoverViewModel by viewModels()
 
-    override fun getLayoutId() = R.layout.fragment_recycler_view
+    override fun getLayoutId() = R.layout.fragment_recycler_view_loading
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,14 +43,19 @@ class DiscoverFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentRecyclerViewBinding.bind(view)
+        val binding = FragmentRecyclerViewLoadingBinding.bind(view)
 
-        binding.list.layoutManager = LinearLayoutManager(context)
-        binding.list.addItemDecoration(itemDecoration)
-        binding.list.adapter = adapter
+        with(binding.list) {
+            layoutManager = LinearLayoutManager(context)
+            addItemDecoration(itemDecoration)
+            adapter = discoverAdapter
+        }
 
         lifecycleScope.launch {
-            viewModel.trending().collectLatest { adapter.submitData(it) }
+            viewModel.trending().collectLatest {
+                binding.spinner.isVisible = false
+                discoverAdapter.submitData(it)
+            }
         }
     }
 }
