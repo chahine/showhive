@@ -21,12 +21,13 @@ class ImageRepository @Inject constructor(
         Timber.d("ImageRepository#${hashCode()}")
     }
 
-    suspend fun image(tvShowId: Int): String {
+    suspend fun image(tvShowId: Int): String? {
         val key = tvShowId.toString()
         if (key !in prefs) {
-            val posterPath = tmdbApi.tv(tvShowId).posterPath
-            prefs.edit().putString(key, BASE_URL + posterPath).apply()
+            tmdbApi.tv(tvShowId).posterPath?.let { posterPath ->
+                prefs.edit().putString(key, BASE_URL + posterPath).apply()
+            }
         }
-        return prefs.getString(key, null)!!
+        return prefs.getString(key, null)
     }
 }
