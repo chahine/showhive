@@ -7,6 +7,6 @@ import com.squareup.moshi.JsonClass
 data class Account(
     val timezone: String,
     @Json(name = "date_format") val dateFormat: String,
-    @Json(name = "time_24hr") val Time24hr: Boolean,
+    @Json(name = "time_24hr") val time24hr: Boolean,
     @Json(name = "cover_image") val coverImage: String?,
 )

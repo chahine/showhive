@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.chahine.showhive.base.BaseFragment
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.FragmentRecyclerViewLoadingBinding
-import com.chahine.showhive.home.profile.ProfileViewModel.ProfileUiState
+import com.chahine.showhive.home.util.LoadedValue
 import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -46,12 +45,16 @@ class ProfileFragment : BaseFragment() {
 
         lifecycleScope.launch {
             viewModel.profileFlow.collectLatest {
-                Timber.d("profileFlow() called $it")
-                binding.spinner.isVisible = false
-                if (it is ProfileUiState.Success) {
-                    profileAdapter.submitList(it.items)
-                } else if (it is ProfileUiState.Error) {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                when (it) {
+                    is LoadedValue.Loading -> binding.spinner.isVisible = true
+                    is LoadedValue.Success -> {
+                        binding.spinner.isVisible = false
+                        profileAdapter.submitList(it.value)
+                    }
+                    is LoadedValue.Error -> {
+                        binding.spinner.isVisible = false
+                        Toast.makeText(requireContext(), it.error.message, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }

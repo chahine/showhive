@@ -40,7 +40,6 @@ class ProfileAdapter @Inject constructor() : ListAdapter<ProfileItem, RecyclerVi
             about.text = item.user.about
             about.isVisible = !item.user.about.isNullOrBlank()
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -52,9 +51,4 @@ class ProfileAdapter @Inject constructor() : ListAdapter<ProfileItem, RecyclerVi
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as UserCardHolder).bind(getItem(holder.absoluteAdapterPosition) as ProfileItem.UserCard)
     }
-
-    override fun getItemViewType(position: Int): Int = getItem(position).ordinal()
-
-    inline fun <reified T : Any> T.ordinal() =
-        T::class.java.superclass.classes.indexOfFirst { sub -> sub == this@ordinal::class.java }
 }
