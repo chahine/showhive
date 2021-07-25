@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.ItemProfileUserCardBinding
-import javax.inject.Inject
 
-class ProfileAdapter @Inject constructor() : ListAdapter<ProfileItem, RecyclerView.ViewHolder>(diffCallback) {
+class ProfileAdapter(
+    private val signOutListener: () -> Unit,
+) : ListAdapter<ProfileItem, RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<ProfileItem>() {
@@ -25,10 +26,11 @@ class ProfileAdapter @Inject constructor() : ListAdapter<ProfileItem, RecyclerVi
         }
     }
 
-    class UserCardHolder(private val binding: ItemProfileUserCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class UserCardHolder(private val binding: ItemProfileUserCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ProfileItem.UserCard) = with(binding) {
-            Glide.with(binding.avatar.context)
+            Glide.with(avatar.context)
                 .load(item.user.images?.avatar?.full)
                 .circleCrop()
                 .placeholder(R.drawable.avatar_placeholder)
@@ -39,6 +41,7 @@ class ProfileAdapter @Inject constructor() : ListAdapter<ProfileItem, RecyclerVi
             location.isVisible = !item.user.location.isNullOrBlank()
             about.text = item.user.about
             about.isVisible = !item.user.about.isNullOrBlank()
+            signOutCta.setOnClickListener { signOutListener() }
         }
     }
 
