@@ -15,20 +15,20 @@ class TraktTokenManager @Inject constructor(
         private const val KEY_REFRESH_TOKEN = "refresh_token"
     }
 
-    val accessToken: String?
-        get() {
-            return sharedPreferences.getString(KEY_ACCESS_TOKEN, null)
-        }
+    var accessToken: String?
+        get() = sharedPreferences.getString(KEY_ACCESS_TOKEN, null)
+        private set(value) = sharedPreferences.edit().putString(KEY_ACCESS_TOKEN, value).apply()
 
-    val refreshToken: String?
-        get() {
-            return sharedPreferences.getString(KEY_REFRESH_TOKEN, null)
-        }
+    var refreshToken: String?
+        get() = sharedPreferences.getString(KEY_REFRESH_TOKEN, null)
+        private set(value) = sharedPreferences.edit().putString(KEY_REFRESH_TOKEN, value).apply()
 
-    fun saveTokens(accessToken: AccessToken) = with(sharedPreferences.edit()) {
-        putString(KEY_ACCESS_TOKEN, accessToken.accessToken)
-        putString(KEY_REFRESH_TOKEN, accessToken.refreshToken)
-        apply()
+    val isLoggedIn: Boolean
+        get() = !accessToken.isNullOrEmpty()
+
+    fun saveTokens(token: AccessToken) {
+        accessToken = token.accessToken
+        refreshToken = token.refreshToken
     }
 
     fun signOut() = with(sharedPreferences.edit()) {
