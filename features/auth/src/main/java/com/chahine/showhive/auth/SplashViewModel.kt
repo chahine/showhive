@@ -32,11 +32,11 @@ class SplashViewModel @Inject constructor(
     val navigateToTrakt = _navigateToTrakt.asSharedFlow()
     val navigateToHome = _navigateToHome.asSharedFlow()
 
-    fun onConnectButtonClick() = viewModelScope.launch {
+    fun onConnectButtonClick() = viewModelScope.launch(Dispatchers.Main) {
         _navigateToTrakt.emit(Unit)
     }
 
-    fun onSkipButtonClick() = viewModelScope.launch {
+    fun onSkipButtonClick() = viewModelScope.launch(Dispatchers.Main) {
         appManager.hasSkippedSplash = true
         _navigateToHome.emit(Unit)
     }
