@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.chahine.trakt.api.TraktTokenManager
 import com.chahine.trakt.api.TraktApiClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences,
+    private val traktTokenManager: TraktTokenManager,
     private val apiClient: TraktApiClient,
 ) : ViewModel() {
 
@@ -43,11 +45,7 @@ class SplashViewModel @Inject constructor(
         if (uri.queryParameterNames.contains("code")) {
             val code = uri.getQueryParameter("code")
             val accessToken = apiClient.exchangeCodeForAccessToken(code!!)
-            with(sharedPreferences.edit()) {
-                putString("access_token", accessToken.accessToken)
-                putString("refresh_token", accessToken.refreshToken)
-                apply()
-            }
+            traktTokenManager.saveTokens(accessToken)
 
             _navigateToHome.emit(Unit)
         }

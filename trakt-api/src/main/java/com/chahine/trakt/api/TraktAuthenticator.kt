@@ -1,6 +1,5 @@
 package com.chahine.trakt.api
 
-import android.content.SharedPreferences
 import com.chahine.trakt.api.entities.AccessToken
 import com.squareup.moshi.Moshi
 import okhttp3.Authenticator
@@ -17,26 +16,10 @@ import javax.inject.Singleton
 
 @Singleton
 class TraktAuthenticator @Inject constructor(
-    private val sharedPreferences: SharedPreferences,
     private val okHttpClient: OkHttpClient,
     private val moshi: Moshi,
+    private val tokenManager: TraktTokenManager,
 ) : Authenticator {
-
-    private var accessToken: String?
-        get() {
-            return sharedPreferences.getString("access_token", null)
-        }
-        set(value) {
-            sharedPreferences.edit().putString("access_token", value).apply()
-        }
-
-    private var refreshToken: String?
-        get() {
-            return sharedPreferences.getString("refresh_token", null)
-        }
-        set(value) {
-            sharedPreferences.edit().putString("refresh_token", value).apply()
-        }
 
     @Throws(IOException::class)
     override fun authenticate(route: Route?, response: Response): Request? {
@@ -58,7 +41,7 @@ class TraktAuthenticator @Inject constructor(
             // failed 2 times, give up.
             responseCount(response) >= 2 -> null
             // have no refresh token, give up.
-            refreshToken.isNullOrEmpty() -> null
+            tokenManager.refreshToken.isNullOrEmpty() -> null
 
             else -> {
                 // try to refresh the access token with the refresh token
@@ -67,12 +50,12 @@ class TraktAuthenticator @Inject constructor(
                     return null // failed to retrieve a token, give up.
                 }
                 // store the new tokens
-                accessToken = refreshResponse.body()!!.accessToken
-                refreshToken = refreshResponse.body()!!.refreshToken
+                val accessToken = refreshResponse.body()!!
+                tokenManager.saveTokens(accessToken)
 
                 // retry request
                 response.request.newBuilder()
-                    .header(TraktV2.HEADER_AUTHORIZATION, "Bearer $accessToken")
+                    .header(TraktV2.HEADER_AUTHORIZATION, "Bearer ${tokenManager.accessToken}")
                     .build()
             }
         }
@@ -87,7 +70,7 @@ class TraktAuthenticator @Inject constructor(
             .post(
                 FormBody.Builder()
                     .add("grant_type", "refresh_token")
-                    .add("refresh_token", refreshToken.orEmpty())
+                    .add("refresh_token", tokenManager.refreshToken.orEmpty())
                     .add("client_id", BuildConfig.TRAKT_CLIENT_ID)
                     .add("client_secret", BuildConfig.TRAKT_CLIENT_SECRET)
                     .add("redirect_uri", TraktV2.REDIRECT_URI)

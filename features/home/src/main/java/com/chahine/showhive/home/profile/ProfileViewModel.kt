@@ -1,8 +1,8 @@
 package com.chahine.showhive.home.profile
 
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.chahine.trakt.api.TraktTokenManager
 import com.chahine.showhive.home.util.LoadedValue
 import com.chahine.trakt.api.TraktApi
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,8 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val sharedPreferences: SharedPreferences,
     private val traktApi: TraktApi,
+    private val traktTokenManager: TraktTokenManager,
 ) : ViewModel() {
 
     private val _profileFlow = MutableStateFlow<LoadedValue<List<ProfileItem>, Exception>>(LoadedValue.Loading)
@@ -28,7 +28,7 @@ class ProfileViewModel @Inject constructor(
     val navigateToSplash = _navigateToSplash.asSharedFlow()
 
     @Suppress("TooGenericExceptionCaught")
-    fun fetchProfile() = viewModelScope.launch {
+    fun fetchProfile() = viewModelScope.launch(Dispatchers.Main) {
         _profileFlow.emit(LoadedValue.Loading)
         try {
             val settings = traktApi.settings()
@@ -40,11 +40,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun onSignOutClick() = viewModelScope.launch(Dispatchers.Main) {
-        with(sharedPreferences.edit()) {
-            remove("access_token")
-            remove("refresh_token")
-            apply()
-        }
+        traktTokenManager.signOut()
         _navigateToSplash.emit(Unit)
     }
 }

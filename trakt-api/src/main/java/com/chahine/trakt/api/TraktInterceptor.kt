@@ -1,6 +1,5 @@
 package com.chahine.trakt.api
 
-import android.content.SharedPreferences
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -10,12 +9,12 @@ import javax.inject.Singleton
 
 @Singleton
 class TraktInterceptor @Inject constructor(
-    private val prefs: SharedPreferences,
+    private val tokenManager: TraktTokenManager,
 ) : Interceptor {
 
     private val accessToken: String?
         get() {
-            return prefs.getString("access_token", null)
+            return tokenManager.accessToken
         }
 
     /**
