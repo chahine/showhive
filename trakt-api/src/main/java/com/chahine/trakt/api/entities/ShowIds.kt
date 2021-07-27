@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 data class ShowIds(
     val trakt: Int,
     val imdb: String,
-    val tmdb: Int,
+    val tmdb: Int?,
     val slug: String?,
     val tvdb: Int?,
     val tvrage: Int?

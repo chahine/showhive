@@ -1,0 +1,19 @@
+apply plugin: 'com.android.library'
+apply from: rootProject.file('module.gradle')
+apply from: rootProject.file('config.gradle')
+
+dependencies {
+    api project(':api')
+
+    implementation Dependencies.dagger
+    kapt Dependencies.daggerCompiler
+
+    api Dependencies.moshi
+    kapt Dependencies.moshiCodeGen
+
+    api Dependencies.preference
+    api Dependencies.timber
+    api Dependencies.api
+
+    testImplementation Dependencies.testLibs
+}

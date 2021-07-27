@@ -27,7 +27,7 @@ class CalendarViewModel @Inject constructor(
         return repository.calendar()
             .map { pagingData ->
                 pagingData.map {
-                    val posterPath = imageRepository.image(it.show.ids.tmdb)
+                    val posterPath = imageRepository.image(it.show.ids)
                     CalendarUiModel.Episode(it, posterPath)
                 }
             }

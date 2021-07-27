@@ -3,6 +3,7 @@ package com.chahine.showhive.di.repo
 import android.content.SharedPreferences
 import com.chahine.showhive.qualifiers.ImageRepo
 import com.chahine.tmdb.api.TmdbApi
+import com.chahine.trakt.api.entities.ShowIds
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,18 +15,24 @@ class ImageRepository @Inject constructor(
 ) {
 
     companion object {
-        private const val BASE_URL = "https://image.tmdb.org/t/p/w500"
+        private const val TMDB_BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
 
     init {
         Timber.d("ImageRepository#${hashCode()}")
     }
 
-    suspend fun image(tvShowId: Int): String? {
-        val key = tvShowId.toString()
+    suspend fun image(ids: ShowIds): String? {
+        val key = ids.slug ?: return null
         if (key !in prefs) {
-            tmdbApi.tv(tvShowId).posterPath?.let { posterPath ->
-                prefs.edit().putString(key, BASE_URL + posterPath).apply()
+            val tmdb = ids.tmdb
+            val imdb = ids.imdb
+            if (tmdb != null) {
+                tmdbApi.tv(tmdb).posterPath?.let { posterPath ->
+                    prefs.edit().putString(key, TMDB_BASE_URL + posterPath).apply()
+                }
+            } else if (imdb != null) {
+
             }
         }
         return prefs.getString(key, null)
