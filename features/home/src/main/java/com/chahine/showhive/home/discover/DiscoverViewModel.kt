@@ -26,7 +26,7 @@ class DiscoverViewModel @Inject constructor(
         return repository.trending()
             .map { data ->
                 data.map {
-                    val posterPath = imageRepository.image(it.show.ids.tmdb)
+                    val posterPath = imageRepository.image(it.show.ids)
                     DiscoverUiModel(it.show, posterPath)
                 }
             }
