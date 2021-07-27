@@ -7,4 +7,5 @@
     <string name="calendar">Calendar</string>
     <string name="discover">Discover</string>
     <string name="profile">Profile</string>
+    <string name="sign_out_cta">Sign Out</string>
 </resources>

@@ -307,7 +307,7 @@ interface TraktApi {
 
     // endregion
 
-    // region Shows
+    // region User
 
     /**
      * Get the user's settings so you can align your app's experience with what they're used to on the trakt website.

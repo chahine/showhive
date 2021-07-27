@@ -1,8 +1,9 @@
 package com.chahine.showhive.home
 
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.chahine.showhive.base.util.AppManager
+import com.chahine.trakt.api.TraktTokenManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val sharedPreferences: SharedPreferences,
+    private val appManager: AppManager,
+    private val traktTokenManager: TraktTokenManager,
 ) : ViewModel() {
 
     private val _navigateToSplash = MutableSharedFlow<Unit>(replay = 1, onBufferOverflow = DROP_OLDEST)
@@ -24,9 +26,7 @@ class HomeViewModel @Inject constructor(
     }
 
     internal fun checkAuthStatus() = viewModelScope.launch {
-        if (!sharedPreferences.contains("access_token") &&
-            !sharedPreferences.getBoolean("splash_skipped", false)
-        ) {
+        if (!traktTokenManager.isLoggedIn && !appManager.hasSkippedSplash) {
             _navigateToSplash.emit(Unit)
         }
     }

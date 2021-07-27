@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chahine.showhive.base.BaseFragment
+import com.chahine.showhive.base.Router
 import com.chahine.showhive.home.R
 import com.chahine.showhive.home.databinding.FragmentRecyclerViewLoadingBinding
 import com.chahine.showhive.home.util.LoadedValue
@@ -20,9 +21,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment() {
 
-    @Inject lateinit var profileAdapter: ProfileAdapter
+    @Inject lateinit var router: Router
 
     override fun getLayoutId() = R.layout.fragment_recycler_view_loading
+
+    lateinit var profileAdapter: ProfileAdapter
 
     private val viewModel: ProfileViewModel by viewModels()
 
@@ -31,6 +34,8 @@ class ProfileFragment : BaseFragment() {
 
         enterTransition = MaterialFadeThrough()
         exitTransition = MaterialFadeThrough()
+
+        profileAdapter = ProfileAdapter(viewModel::onSignOutClick)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,6 +46,12 @@ class ProfileFragment : BaseFragment() {
         with(binding.list) {
             layoutManager = LinearLayoutManager(context)
             adapter = profileAdapter
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.navigateToSplash.collectLatest {
+                router.splash()
+            }
         }
 
         lifecycleScope.launch {
