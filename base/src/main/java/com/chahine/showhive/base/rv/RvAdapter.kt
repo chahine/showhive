@@ -15,13 +15,13 @@ open class RvAdapter<E : RvItem>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val adapterPosition = holder.adapterPosition
+        val adapterPosition = holder.bindingAdapterPosition
         val viewType = getItemViewType(adapterPosition)
         delegates[viewType]?.bind(getItem(adapterPosition), holder)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: List<Any>) {
-        val adapterPosition = holder.adapterPosition
+        val adapterPosition = holder.bindingAdapterPosition
         val viewType = getItemViewType(adapterPosition)
         delegates[viewType]?.bind(getItem(adapterPosition), holder, payloads)
     }

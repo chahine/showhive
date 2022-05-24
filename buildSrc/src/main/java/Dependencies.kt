@@ -16,7 +16,7 @@ import Versions.retrofitVersion
 object Dependencies {
 
     // AndroidX
-    val appcompat = "androidx.appcompat:appcompat:1.2.0"
+    val appcompat = "androidx.appcompat:appcompat:1.3.1"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
     val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
     val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
@@ -33,7 +33,7 @@ object Dependencies {
     val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
     val security = "androidx.security:security-crypto-ktx:1.1.0-alpha02"
 
-    val firebaseBom = "com.google.firebase:firebase-bom:28.1.0"
+    val firebaseBom = "com.google.firebase:firebase-bom:30.0.2"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
     val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
     val firebasePerf = "com.google.firebase:firebase-perf-ktx"
@@ -72,7 +72,7 @@ object Dependencies {
     val leakCanary = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     val leakCanaryNoOp = "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
     val lottie = "com.airbnb.android:lottie:$lottieVersion"
-    val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:1.0.10"
+    val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:1.1.5"
 
     // Testing
     val jUnit = "junit:junit:$junitVersion"
