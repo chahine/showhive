@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chahine.showhive.home">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
         <activity
             android:name=".HomeActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:exported="true">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 

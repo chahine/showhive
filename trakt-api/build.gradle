@@ -2,6 +2,10 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
+android {
+    namespace 'com.chahine.trakt.api'
+}
+
 dependencies {
     api project(':api')
 

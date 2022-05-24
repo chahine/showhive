@@ -2,6 +2,10 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
+android {
+    namespace 'com.chahine.showhive.di'
+}
+
 dependencies {
     api project(':qualifiers')
     api project(':tmdb-api')
@@ -16,7 +20,4 @@ dependencies {
     api Dependencies.glide
     api Dependencies.glideOkHttp
     kapt Dependencies.glideCompiler
-
-    debugImplementation Dependencies.chuck
-    releaseImplementation Dependencies.chuckNoOp
 }

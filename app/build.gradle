@@ -5,6 +5,7 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply from: rootProject.file('module.gradle')
 
 android {
+    namespace 'com.chahine.showhive.app'
     compileSdkVersion Versions.compileSdkVersion
 
     defaultConfig {
@@ -74,6 +75,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
 }
 
 dependencies {
@@ -89,4 +94,6 @@ dependencies {
     // Firebase
     implementation platform(Dependencies.firebaseBom)
     implementation Dependencies.firebasePerf
+
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 }

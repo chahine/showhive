@@ -16,10 +16,10 @@ import Versions.retrofitVersion
 object Dependencies {
 
     // AndroidX
-    val appcompat = "androidx.appcompat:appcompat:1.3.1"
-    val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
+    val appcompat = "androidx.appcompat:appcompat:1.4.1"
+    val constraintLayout = "androidx.constraintlayout:constraintlayout:2.2.0-alpha01"
     val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
-    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
     val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
@@ -29,9 +29,9 @@ object Dependencies {
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
     val paging = "androidx.paging:paging-runtime:$pagingVersion"
-    val preference = "androidx.preference:preference-ktx:1.1.1"
-    val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
-    val security = "androidx.security:security-crypto-ktx:1.1.0-alpha02"
+    val preference = "androidx.preference:preference-ktx:1.2.0"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.3.0-alpha02"
+    val security = "androidx.security:security-crypto-ktx:1.1.0-alpha03"
 
     val firebaseBom = "com.google.firebase:firebase-bom:30.0.2"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
@@ -49,7 +49,7 @@ object Dependencies {
 
     // Kotlin
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinVersion"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1"
 
     // Dagger
     val javax = "javax.inject:javax.inject:1"
@@ -96,9 +96,6 @@ object Dependencies {
         appcompat,
         recyclerview,
         constraintLayout,
-        multidex,
-        preference,
-        material,
         lifecycleCompiler,
         lifecycleExtensions,
         lifecycleCommonJava8,
@@ -106,8 +103,10 @@ object Dependencies {
         lifecycleViewmodel,
         lifecycleLivedata,
         material,
+        multidex,
         navigationFragment,
         navigationUi,
+        preference,
         security
     )
 

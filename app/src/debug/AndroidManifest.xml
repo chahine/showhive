@@ -1,11 +1,7 @@
 <manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.chahine.showhive.app">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application
-        android:allowBackup="false"
-        tools:replace="android:allowBackup">
+    <application android:icon="@mipmap/ic_launcher">
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />

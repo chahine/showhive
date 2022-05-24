@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.chahine.showhive.show">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-        <activity android:name=".ShowActivity">
+        <activity
+            android:name=".ShowActivity"
+            android:exported="true">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -11,9 +13,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
-                        android:host="@string/host"
-                        android:pathPrefix="@string/path_show"
-                        android:scheme="@string/scheme" />
+                    android:host="@string/host"
+                    android:pathPrefix="@string/path_show"
+                    android:scheme="@string/scheme" />
             </intent-filter>
         </activity>
     </application>

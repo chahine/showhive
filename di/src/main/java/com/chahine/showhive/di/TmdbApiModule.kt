@@ -3,7 +3,6 @@ package com.chahine.showhive.di
 import com.chahine.showhive.qualifiers.Tmdb
 import com.chahine.tmdb.api.TmdbApi
 import com.chahine.tmdb.api.TmdbInterceptor
-import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -38,7 +37,6 @@ class TmdbApiModule {
     fun provideOkHttpClient(
         client: OkHttpClient,
         interceptor: TmdbInterceptor,
-        chuck: ChuckInterceptor
     ): OkHttpClient {
         val clientBuilder = client.newBuilder()
 
@@ -46,7 +44,6 @@ class TmdbApiModule {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             clientBuilder.addInterceptor(httpLoggingInterceptor)
-            clientBuilder.addInterceptor(chuck)
         }
         clientBuilder.addNetworkInterceptor(interceptor)
         return clientBuilder.build()

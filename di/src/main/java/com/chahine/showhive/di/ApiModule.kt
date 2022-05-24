@@ -1,7 +1,6 @@
 package com.chahine.showhive.di
 
 import android.content.Context
-import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,8 +30,4 @@ class ApiModule {
         .readTimeout(TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
         .build()
-
-    @Provides
-    @Singleton
-    fun provideChuck(@ApplicationContext context: Context) = ChuckInterceptor(context)
 }

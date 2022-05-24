@@ -1,6 +1,7 @@
 package com.chahine.showhive.home.discover
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.chahine.trakt.api.TraktApiClient
 import com.chahine.trakt.api.entities.Extended
 import com.chahine.trakt.api.entities.TrendingShow
@@ -30,6 +31,13 @@ class DiscoverPagingSource @Inject constructor(
             LoadResult.Error(exception)
         } catch (exception: HttpException) {
             LoadResult.Error(exception)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, TrendingShow>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 }
