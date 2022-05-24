@@ -2,6 +2,10 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
 apply from: rootProject.file('config.gradle')
 
+android {
+    namespace 'com.chahine.showhive.base'
+}
+
 dependencies {
     api project(':di')
 

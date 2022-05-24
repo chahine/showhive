@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file('module.gradle')
 
+android {
+    namespace 'com.chahine.showhive.auth'
+}
+
 dependencies {
     implementation project(':base')
 

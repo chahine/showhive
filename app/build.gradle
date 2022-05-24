@@ -5,6 +5,7 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply from: rootProject.file('module.gradle')
 
 android {
+    namespace 'com.chahine.showhive.app'
     compileSdkVersion Versions.compileSdkVersion
 
     defaultConfig {
