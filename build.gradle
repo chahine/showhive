@@ -7,6 +7,7 @@ buildscript {
     }
 
     dependencies {
+        classpath 'com.android.tools:r8:3.3.28'
         classpath 'com.android.tools.build:gradle:4.2.2'
         classpath 'com.google.gms:google-services:4.3.10'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0"
@@ -17,7 +18,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.ben-manes.versions' version '0.39.0'
+    id 'com.github.ben-manes.versions' version '0.42.0'
     id 'com.diffplug.spotless' version '5.8.2'
     id 'io.gitlab.arturbosch.detekt' version '1.17.1'
 }

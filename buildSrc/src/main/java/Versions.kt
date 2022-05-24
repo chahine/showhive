@@ -8,7 +8,7 @@ object Versions {
     // Libraries Version
     const val chuckVersion = "1.1.0"
     const val daggerVersion = "2.42"
-    const val glideVersion = "4.12.0"
+    const val glideVersion = "4.13.2"
     const val junitVersion = "4.13.2"
     const val leakCanaryVersion = "2.7"
     const val lifecycleVersion = "2.2.0"

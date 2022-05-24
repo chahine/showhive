@@ -93,3 +93,4 @@ wiki
 org.mockito.plugins.MockMaker
 .idea/inspectionProfiles/
 .idea/navEditor.xml
+.idea/deploymentTargetDropDown.xml
