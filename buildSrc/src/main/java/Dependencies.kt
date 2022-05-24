@@ -96,9 +96,6 @@ object Dependencies {
         appcompat,
         recyclerview,
         constraintLayout,
-        multidex,
-        preference,
-        material,
         lifecycleCompiler,
         lifecycleExtensions,
         lifecycleCommonJava8,
@@ -106,8 +103,10 @@ object Dependencies {
         lifecycleViewmodel,
         lifecycleLivedata,
         material,
+        multidex,
         navigationFragment,
         navigationUi,
+        preference,
         security
     )
 
