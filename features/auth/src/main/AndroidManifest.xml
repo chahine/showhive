@@ -7,7 +7,8 @@
         <activity
             android:name=".SplashActivity"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.ShowHive.Splash">
+            android:theme="@style/Theme.ShowHive.Splash"
+            android:exported="true">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 

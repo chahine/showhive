@@ -14,8 +14,6 @@ dependencies {
 
     // Debugging Tools
     debugApi Dependencies.leakCanary
-    debugApi Dependencies.chuck
-    releaseApi Dependencies.chuckNoOp
 
     // Other
     api Dependencies.timber

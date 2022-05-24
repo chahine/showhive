@@ -4,7 +4,6 @@ import com.chahine.showhive.qualifiers.Trakt
 import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.api.TraktAuthenticator
 import com.chahine.trakt.api.TraktInterceptor
-import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -34,7 +33,6 @@ class TraktApiModule {
         client: OkHttpClient,
         interceptor: TraktInterceptor,
         authenticator: TraktAuthenticator,
-        chuck: ChuckInterceptor,
     ): OkHttpClient {
         val clientBuilder = client.newBuilder()
 
@@ -42,7 +40,6 @@ class TraktApiModule {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             clientBuilder.addInterceptor(httpLoggingInterceptor)
-            clientBuilder.addInterceptor(chuck)
         }
         clientBuilder.authenticator(authenticator)
         clientBuilder.addNetworkInterceptor(interceptor)

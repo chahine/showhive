@@ -1,4 +1,3 @@
-import Versions.chuckVersion
 import Versions.daggerVersion
 import Versions.glideVersion
 import Versions.junitVersion
@@ -16,22 +15,22 @@ import Versions.retrofitVersion
 object Dependencies {
 
     // AndroidX
-    val appcompat = "androidx.appcompat:appcompat:1.3.1"
-    val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
+    val appcompat = "androidx.appcompat:appcompat: 1.6.0-alpha04"
+    val constraintLayout = "androidx.constraintlayout:constraintlayout:2.2.0-alpha01"
     val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
-    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
     val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-    val material = "com.google.android.material:material:1.2.0"
+    val material = "com.google.android.material:material:1.6.0"
     val multidex = "androidx.multidex:multidex:2.0.1"
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
     val paging = "androidx.paging:paging-runtime:$pagingVersion"
-    val preference = "androidx.preference:preference-ktx:1.1.1"
-    val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
-    val security = "androidx.security:security-crypto-ktx:1.1.0-alpha02"
+    val preference = "androidx.preference:preference-ktx:1.2.0"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.3.0-alpha02"
+    val security = "androidx.security:security-crypto-ktx:1.1.0-alpha03"
 
     val firebaseBom = "com.google.firebase:firebase-bom:30.0.2"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
@@ -49,7 +48,7 @@ object Dependencies {
 
     // Kotlin
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinVersion"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1"
 
     // Dagger
     val javax = "javax.inject:javax.inject:1"
@@ -66,8 +65,6 @@ object Dependencies {
 
     // Libraries
     val timber = "com.jakewharton.timber:timber:4.7.1"
-    val chuck = "com.readystatesoftware.chuck:library:$chuckVersion"
-    val chuckNoOp = "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
     val inject = "javax.inject:javax.inject:1"
     val leakCanary = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     val leakCanaryNoOp = "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
@@ -80,8 +77,8 @@ object Dependencies {
     val hamcrest = "org.hamcrest:hamcrest-all:1.3"
     val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:3.2.0"
     val mockitoInline = "org.mockito:mockito-inline:2.28.2"
-    val mockk = "io.mockk:mockk:1.10.6"
-    val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
+    val mockk = "io.mockk:mockk:1.12.4"
+    val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1"
 
     val api = listOf(
         retrofit,
@@ -98,7 +95,6 @@ object Dependencies {
         constraintLayout,
         multidex,
         preference,
-        material,
         lifecycleCompiler,
         lifecycleExtensions,
         lifecycleCommonJava8,

@@ -1,6 +1,7 @@
 package com.chahine.showhive.home.calendar
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.chahine.trakt.api.TraktApi
 import com.chahine.trakt.api.entities.CalendarShowEntry
 import com.chahine.trakt.api.entities.Extended
@@ -37,6 +38,13 @@ class CalendarPagingSource @Inject constructor(
             LoadResult.Error(exception)
         } catch (exception: HttpException) {
             LoadResult.Error(exception)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<ZonedDateTime, CalendarShowEntry>): ZonedDateTime? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition) ?: return null
+            anchorPage.prevKey?.plusDays(DATE_RANGE) ?: anchorPage.nextKey?.minusDays(DATE_RANGE)
         }
     }
 }
