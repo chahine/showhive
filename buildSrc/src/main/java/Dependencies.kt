@@ -16,7 +16,7 @@ import Versions.retrofitVersion
 object Dependencies {
 
     // AndroidX
-    val appcompat = "androidx.appcompat:appcompat:1.2.0"
+    val appcompat = "androidx.appcompat:appcompat:1.3.1"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
     val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
     val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
