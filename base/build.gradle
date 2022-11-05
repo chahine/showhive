@@ -4,6 +4,10 @@ apply from: rootProject.file('config.gradle')
 
 android {
     namespace 'com.chahine.showhive.base'
+
+    buildFeatures {
+        compose true
+    }
 }
 
 dependencies {
@@ -11,6 +15,10 @@ dependencies {
 
     // Android
     api Dependencies.androidX
+
+    // Compose
+    implementation Dependencies.compose
+    debugImplementation Dependencies.composeUiTooling
 
     // Dagger
     api Dependencies.dagger

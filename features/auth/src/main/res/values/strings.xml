@@ -1,4 +1,4 @@
 <resources>
-    <string name="skip">skip</string>
+    <string name="skip">Skip</string>
     <string name="connect_with_trakt_tv">Connect with Trakt.tv</string>
 </resources>

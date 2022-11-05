@@ -1,5 +1,5 @@
 ![minSdkVersion](https://img.shields.io/badge/minSdk-24-red.svg)
-![compileSdkVersion](https://img.shields.io/badge/compileSdkVersion-30-green.svg)
+![compileSdkVersion](https://img.shields.io/badge/compileSdkVersion-33-green.svg)
 ![Version](https://img.shields.io/badge/version-alpha-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
@@ -9,11 +9,11 @@
 
 Small Trakt client. WIP
 
-Light Theme                |  Dark Theme
-:-------------------------:|:-------------------------:
-![](art/light-splash.png)  |  ![](art/dark-splash.png)
-![](art/light-home-calendar.png)  |  ![](art/dark-home-calendar.png)
-![](art/light-home-discover.png)  |  ![](art/dark-home-discover.png)
+|           Light Theme            |           Dark Theme            |
+|:--------------------------------:|:-------------------------------:|
+|    ![](art/light-splash.png)     |    ![](art/dark-splash.png)     |
+| ![](art/light-home-calendar.png) | ![](art/dark-home-calendar.png) |
+| ![](art/light-home-discover.png) | ![](art/dark-home-discover.png) |
 
 # Project Setup
 
@@ -32,10 +32,10 @@ TRAKT_CLIENT_SECRET =
 TMDB_API_KEY        = 
 ```
 
-You can either uncomment the signing config for both debug and release variant or provide the following properties to sign the build.
+You can either uncomment the signing config for both debug and release variant or provide the following properties to
+sign the build.
 
 ### Debug
-
 
 ```
 # debug.properties
