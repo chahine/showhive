@@ -67,6 +67,8 @@ class SplashActivity : BaseActivity() {
     }
 }
 
+private const val HALF_FRACTION = .5f
+
 @Composable
 fun SplashScreen(onConnectClick: () -> Unit, onSkipClick: () -> Unit) {
     Box(
@@ -77,14 +79,14 @@ fun SplashScreen(onConnectClick: () -> Unit, onSkipClick: () -> Unit) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(.5f)
+                .fillMaxHeight(HALF_FRACTION)
                 .background(colorResource(R.color.splash_background)),
             content = {},
         )
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(.5f)
+                .fillMaxHeight(HALF_FRACTION)
                 .background(colorResource(R.color.splash_background_variant))
                 .align(Alignment.BottomCenter),
             content = {},
