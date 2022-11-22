@@ -2,4 +2,5 @@
 <resources>
     <color name="splash_background">@color/grey</color>
     <color name="splash_background_variant">@color/dark_grey</color>
+    <color name="splash_background_accent">@color/desaturated_green</color>
 </resources>

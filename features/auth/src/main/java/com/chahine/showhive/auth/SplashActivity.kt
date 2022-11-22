@@ -2,6 +2,7 @@ package com.chahine.showhive.auth
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -106,8 +108,12 @@ fun SplashScreen(onConnectClick: () -> Unit, onSkipClick: () -> Unit) {
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Button(onClick = onConnectClick) {
-                Text(text = stringResource(id = R.string.connect_with_trakt_tv))
+            Button(
+                shape = RoundedCornerShape(4.dp),
+                colors = ButtonDefaults.buttonColors(colorResource(R.color.splash_background_accent)),
+                onClick = onConnectClick
+            ) {
+                Text(stringResource(R.string.connect_with_trakt_tv).uppercase())
             }
             TextButton(
                 onClick = onSkipClick,
@@ -117,7 +123,8 @@ fun SplashScreen(onConnectClick: () -> Unit, onSkipClick: () -> Unit) {
             ) {
                 Text(
                     modifier = Modifier.padding(horizontal = 24.dp),
-                    text = stringResource(id = R.string.skip),
+                    text = stringResource(R.string.skip).uppercase(),
+                    color = Color.White,
                 )
             }
         }
@@ -127,6 +134,14 @@ fun SplashScreen(onConnectClick: () -> Unit, onSkipClick: () -> Unit) {
 @Preview
 @Composable
 fun SplashScreenPreview() {
+    ShowHiveTheme {
+        SplashScreen({}, {})
+    }
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun SplashScreenPreviewDark() {
     ShowHiveTheme {
         SplashScreen({}, {})
     }

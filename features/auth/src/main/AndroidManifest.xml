@@ -14,14 +14,12 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data
-                    android:host="@string/host"
-                    android:path="@string/path_splash"
-                    android:scheme="@string/scheme" />
-                <data
-                    android:host="auth"
-                    android:pathPattern="/oauth2callback"
-                    android:scheme="showhive" />
+                <data android:scheme="@string/scheme" />
+                <data android:host="@string/host" />
+                <data android:path="@string/path_splash" />
+                <data android:scheme="showhive" />
+                <data android:host="auth" />
+                <data android:pathPattern="/oauth2callback" />
             </intent-filter>
         </activity>
     </application>
