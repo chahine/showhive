@@ -1,4 +1,5 @@
 import Versions.chuckVersion
+import Versions.composeVersion
 import Versions.daggerVersion
 import Versions.glideVersion
 import Versions.junitVersion
@@ -33,6 +34,16 @@ object Dependencies {
     val recyclerview = "androidx.recyclerview:recyclerview:1.3.0-alpha02"
     val security = "androidx.security:security-crypto-ktx:1.1.0-alpha03"
 
+    // Compose
+    val composeMaterial = "androidx.compose.material3:material3:1.0.0"
+    val composeFoundation = "androidx.compose.foundation:foundation:$composeVersion"
+    val composeRuntime = "androidx.compose.runtime:runtime:$composeVersion"
+    val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
+    val composeUiTooling = "androidx.compose.ui:ui-tooling:$composeVersion"
+    val composeActivity = "androidx.activity:activity-compose:1.6.1"
+    val composeLifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+
+    // Firebase
     val firebaseBom = "com.google.firebase:firebase-bom:30.0.2"
     val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
     val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
@@ -82,6 +93,15 @@ object Dependencies {
     val mockitoInline = "org.mockito:mockito-inline:2.28.2"
     val mockk = "io.mockk:mockk:1.10.6"
     val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
+
+    val compose = listOf(
+        composeMaterial,
+        composeFoundation,
+        composeRuntime,
+        composeUiToolingPreview,
+        composeActivity,
+        composeLifecycleViewmodel,
+    )
 
     val api = listOf(
         retrofit,

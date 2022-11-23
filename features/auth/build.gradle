@@ -8,6 +8,10 @@ android {
 dependencies {
     implementation project(':base')
 
+    // Compose
+    implementation Dependencies.compose
+    debugImplementation Dependencies.composeUiTooling
+
     kapt Dependencies.lifecycleCompiler
     kapt Dependencies.daggerCompiler
 }

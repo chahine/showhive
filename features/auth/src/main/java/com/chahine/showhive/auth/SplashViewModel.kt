@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,8 +30,8 @@ class SplashViewModel @Inject constructor(
     private val _navigateToTrakt = MutableSharedFlow<Unit>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     private val _navigateToHome = MutableSharedFlow<Unit>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
 
-    val navigateToTrakt = _navigateToTrakt.asSharedFlow()
-    val navigateToHome = _navigateToHome.asSharedFlow()
+    val navigateToTrakt: SharedFlow<Unit> = _navigateToTrakt.asSharedFlow()
+    val navigateToHome: SharedFlow<Unit> = _navigateToHome.asSharedFlow()
 
     fun onConnectButtonClick() = viewModelScope.launch(Dispatchers.Main) {
         _navigateToTrakt.emit(Unit)
@@ -44,11 +45,10 @@ class SplashViewModel @Inject constructor(
     fun onNewIntent(intent: Intent?) = viewModelScope.launch(Dispatchers.IO) {
         val data = intent?.data ?: return@launch
         val uri = Uri.parse(data.toString())
-        uri.getQueryParameter(KEY_CODE)?.let { code ->
-            val accessToken = apiClient.exchangeCodeForAccessToken(code)
-            traktTokenManager.saveTokens(accessToken)
+        val code = uri.getQueryParameter(KEY_CODE) ?: return@launch
+        val accessToken = apiClient.exchangeCodeForAccessToken(code)
 
-            _navigateToHome.emit(Unit)
-        }
+        traktTokenManager.saveTokens(accessToken)
+        _navigateToHome.emit(Unit)
     }
 }
