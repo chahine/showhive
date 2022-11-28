@@ -112,10 +112,11 @@ fun HomeNavigation(selectedItem: Int, onTabSelected: (Int) -> Unit) {
             NavigationBarItem(
                 icon = {
                     Icon(
-                        painter = painterResource(id = iconResId), contentDescription = null
+                        painter = painterResource(iconResId),
+                        contentDescription = null,
                     )
                 },
-                label = { Text(stringResource(id = textResId)) },
+                label = { Text(stringResource(textResId)) },
                 selected = selectedItem == index,
                 onClick = { onTabSelected(index) },
             )
