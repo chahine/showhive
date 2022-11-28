@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -33,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.chahine.showhive.base.BaseActivity
 import com.chahine.showhive.base.Router
-import com.chahine.showhive.base.theme.ShowHiveTheme
+import com.chahine.showhive.base.theme.SplashTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -50,7 +49,7 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            ShowHiveTheme {
+            SplashTheme {
                 SplashScreen(
                     viewModel::onConnectButtonClick,
                     viewModel::onSkipButtonClick,
@@ -73,11 +72,7 @@ private const val HALF_FRACTION = .5f
 
 @Composable
 fun SplashScreen(onConnectClick: () -> Unit, onSkipClick: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .safeContentPadding(),
-    ) {
+    Box(modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -132,17 +127,10 @@ fun SplashScreen(onConnectClick: () -> Unit, onSkipClick: () -> Unit) {
 }
 
 @Preview
-@Composable
-fun SplashScreenPreview() {
-    ShowHiveTheme {
-        SplashScreen({}, {})
-    }
-}
-
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
-fun SplashScreenPreviewDark() {
-    ShowHiveTheme {
+fun SplashScreenPreview() {
+    SplashTheme {
         SplashScreen({}, {})
     }
 }

@@ -8,8 +8,14 @@ android {
 dependencies {
     implementation project(':base')
 
+    // Compose
+    implementation Dependencies.compose
+    debugImplementation Dependencies.composeUiTooling
+    implementation Dependencies.glideCompose
+
     implementation Dependencies.lottie
     implementation Dependencies.paging
+    implementation "androidx.paging:paging-compose:1.0.0-alpha17"
 
     kapt Dependencies.lifecycleCompiler
     kapt Dependencies.daggerCompiler
