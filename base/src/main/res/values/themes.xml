@@ -12,8 +12,4 @@
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorOnSecondary">@color/white</item>
     </style>
-
-    <style name="Theme.ShowHive.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.ShowHive.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
