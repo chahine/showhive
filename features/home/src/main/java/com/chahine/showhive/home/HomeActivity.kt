@@ -72,7 +72,6 @@ class HomeActivity : BaseActivity() {
                 )
             }
         }
-
     }
 }
 
@@ -123,7 +122,6 @@ fun HomeNavigation(selectedItem: Int, onTabSelected: (Int) -> Unit) {
         }
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
