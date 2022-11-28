@@ -25,7 +25,7 @@ object Dependencies {
     val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-    val material = "com.google.android.material:material:1.2.0"
+    val material = "com.google.android.material:material:1.7.0"
     val multidex = "androidx.multidex:multidex:2.0.1"
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
@@ -74,6 +74,7 @@ object Dependencies {
     val glide = "com.github.bumptech.glide:glide:$glideVersion"
     val glideOkHttp = "com.github.bumptech.glide:okhttp3-integration:$glideVersion"
     val glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"
+    val glideCompose = "com.github.bumptech.glide:compose:1.0.0-alpha.1"
 
     // Libraries
     val timber = "com.jakewharton.timber:timber:4.7.1"

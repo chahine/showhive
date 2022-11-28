@@ -1,20 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.ShowHive.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="textAppearanceHeadline1">@style/TextAppearance.ShowHive.Headline1</item>
-        <item name="textAppearanceHeadline2">@style/TextAppearance.ShowHive.Headline2</item>
-        <item name="textAppearanceHeadline3">@style/TextAppearance.ShowHive.Headline3</item>
-        <item name="textAppearanceHeadline4">@style/TextAppearance.ShowHive.Headline4</item>
-        <item name="textAppearanceHeadline5">@style/TextAppearance.ShowHive.Headline5</item>
-        <item name="textAppearanceHeadline6">@style/TextAppearance.ShowHive.Headline6</item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearance.ShowHive.Subtitle1</item>
-        <item name="textAppearanceSubtitle2">@style/TextAppearance.ShowHive.Subtitle2</item>
-        <item name="textAppearanceBody1">@style/TextAppearance.ShowHive.Body1</item>
-        <item name="textAppearanceBody2">@style/TextAppearance.ShowHive.Body2</item>
-        <item name="textAppearanceCaption">@style/TextAppearance.ShowHive.Caption</item>
-        <item name="textAppearanceOverline">@style/TextAppearance.ShowHive.Overline</item>
-        <item name="textAppearanceButton">@style/TextAppearance.ShowHive.Button</item>
-    </style>
+    <style name="Theme.ShowHive.Base" parent="@style/Theme.Material3.DayNight.NoActionBar" />
 
     <style name="Theme.ShowHive" parent="Theme.ShowHive.Base">
         <!-- Primary brand color. -->
@@ -25,14 +11,5 @@
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorOnSecondary">@color/white</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">?colorSurface</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
-
-    <style name="Theme.ShowHive.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.ShowHive.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
