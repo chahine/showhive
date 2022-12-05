@@ -30,7 +30,7 @@ class CalendarPagingSource @Inject constructor(
             val now = ZonedDateTime.now()
             val response = traktApi.myShows(startDate, DATE_RANGE.toInt(), Extended.FULL)
             LoadResult.Page(
-                data = map(response),
+                data = response.insertHeaders(),
                 prevKey = if (now.minusDays(MAX_DATE_RANGE).isBefore(page)) page.minusDays(DATE_RANGE) else null,
                 nextKey = if (now.plusDays(MAX_DATE_RANGE).isAfter(page)) page.plusDays(DATE_RANGE) else null
             )
@@ -48,13 +48,12 @@ class CalendarPagingSource @Inject constructor(
         }
     }
 
-    private fun map(shows: List<CalendarShowEntry>): List<CalendarUiModel> {
-        return shows.groupBy { it.firstAired.toLocalDate() }.toSortedMap()
-            .map { (key, entries) ->
-                val items = mutableListOf<CalendarUiModel>()
-                items += CalendarUiModel.Header(key)
-                items += entries.map { CalendarUiModel.Episode(it, null) }
-                items
-            }.flatten()
+    private fun List<CalendarShowEntry>.insertHeaders(): List<CalendarUiModel> {
+        return this.groupBy { it.firstAired.toLocalDate() }.toSortedMap().map { (key, entries) ->
+            val items = mutableListOf<CalendarUiModel>()
+            items += CalendarUiModel.Header(key)
+            items += entries.map { CalendarUiModel.Episode(it, null) }
+            items
+        }.flatten()
     }
 }
