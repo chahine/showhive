@@ -105,11 +105,12 @@ fun ShowHiveTheme(
             (view.context as? Activity)?.let { activity ->
                 val window = activity.window
                 val insetsController = WindowCompat.getInsetsController(window, view)
+                val systemBarsColor = colorScheme.surfaceColorAtElevation(3.dp)
 
                 WindowCompat.setDecorFitsSystemWindows(window, false)
 
-                window.statusBarColor = Color.Transparent.toArgb()
-                window.navigationBarColor = colorScheme.surfaceColorAtElevation(3.dp).toArgb()
+                window.statusBarColor = systemBarsColor.toArgb()
+                window.navigationBarColor = systemBarsColor.toArgb()
 
                 insetsController.isAppearanceLightStatusBars = !useDarkTheme
                 insetsController.isAppearanceLightNavigationBars = !useDarkTheme

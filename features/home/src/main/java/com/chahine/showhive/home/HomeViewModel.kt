@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.insertSeparators
 import androidx.paging.map
 import com.chahine.showhive.base.util.AppManager
 import com.chahine.showhive.di.repo.ImageRepository
@@ -49,34 +48,39 @@ class HomeViewModel @Inject constructor(
     }
 
     fun myCalendar(): Flow<PagingData<CalendarUiModel>> {
-        return calendarRepository.calendar().map { pagingData ->
-            pagingData.map {
-                val posterPath = imageRepository.image(it.show.ids.tmdb)
-                CalendarUiModel.Episode(it, posterPath)
-            }.insertSeparators { before, after ->
-                when {
-                    // we're at the end of the list
-                    after == null -> null
-                    // we're at the beginning of the list
-                    before == null -> CalendarUiModel.Header(after.entry.firstAired.toLocalDate())
-                    // no separator
-                    before.entry.firstAired.toLocalDate() == after.entry.firstAired.toLocalDate() -> null
-                    else -> CalendarUiModel.Header(after.entry.firstAired.toLocalDate())
+        return calendarRepository.calendar()
+            .map { pagingData ->
+                pagingData.map {
+                    when (val uiModel = it) {
+                        is CalendarUiModel.Episode -> {
+                            val posterPath = imageRepository.image(uiModel.entry.show.ids.tmdb)
+                            CalendarUiModel.Episode(uiModel.entry, posterPath)
+                        }
+                        is CalendarUiModel.Header -> uiModel
+                    }
                 }
             }
-        }.cachedIn(viewModelScope)
+            .cachedIn(viewModelScope)
     }
 
     fun trending(): Flow<PagingData<DiscoverUiModel>> {
         return discoverRepository.trending().map { data ->
             data.map {
                 val posterPath = imageRepository.image(it.show.ids.tmdb)
-                DiscoverUiModel(it.show, posterPath)
+                DiscoverUiModel(show = it.show, posterUrl = posterPath)
             }
         }.cachedIn(viewModelScope)
     }
 
-    fun profile(): Flow<LoadedValue<List<ProfileItem>, Exception>> = _profileFlow.asStateFlow()
+    fun profile(): Flow<List<ProfileItem>> {
+        return _profileFlow.asStateFlow().map { loadedValue ->
+            when (loadedValue) {
+                is LoadedValue.Error -> listOf<ProfileItem>(ProfileItem.Error(""))
+                LoadedValue.Loading -> listOf<ProfileItem>(ProfileItem.Loading)
+                is LoadedValue.Success -> loadedValue.value
+            }
+        }
+    }
 
     @Suppress("TooGenericExceptionCaught")
     fun fetchProfile() = viewModelScope.launch(Dispatchers.Main) {

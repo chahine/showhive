@@ -54,9 +54,7 @@ fun CalendarScreen(episodes: Flow<PagingData<CalendarUiModel>>) {
                     val show = model.entry.show
                     val episode = model.entry.episode
                     val episodeNumber = stringResource(
-                        R.string.episode_number_format,
-                        episode.season ?: 0,
-                        episode.number ?: 0
+                        R.string.episode_number_format, episode.season ?: 0, episode.number ?: 0
                     )
 
                     val line1Text = listOfNotNull(episodeNumber, show.title).joinToString(SEPARATOR)

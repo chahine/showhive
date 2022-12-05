@@ -34,7 +34,6 @@ import com.chahine.showhive.home.discover.DiscoverScreen
 import com.chahine.showhive.home.discover.DiscoverUiModel
 import com.chahine.showhive.home.profile.ProfileItem
 import com.chahine.showhive.home.profile.ProfileScreen
-import com.chahine.showhive.home.util.LoadedValue
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
@@ -68,7 +67,7 @@ class HomeActivity : BaseActivity() {
                     viewModel.myCalendar(),
                     viewModel.trending(),
                     viewModel.profile(),
-                    viewModel::onSignOutClick
+                    viewModel::onSignOutClick,
                 )
             }
         }
@@ -80,7 +79,7 @@ class HomeActivity : BaseActivity() {
 fun HomeScreen(
     calendarFlow: Flow<PagingData<CalendarUiModel>>,
     discoverFlow: Flow<PagingData<DiscoverUiModel>>,
-    profileFlow: Flow<LoadedValue<List<ProfileItem>, Exception>>,
+    profileFlow: Flow<List<ProfileItem>>,
     signOutListener: () -> Unit,
 ) {
     var selectedItem: Int by rememberSaveable { mutableStateOf(0) }
