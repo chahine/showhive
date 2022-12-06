@@ -13,6 +13,8 @@ class DiscoverPagingSource @Inject constructor(
     private val traktApiClient: TraktApiClient,
 ) : PagingSource<Int, TrendingShow>() {
 
+    private val showIds = mutableSetOf<Int>()
+
     companion object {
         private const val PAGE_LIMIT = 20
     }
@@ -22,8 +24,12 @@ class DiscoverPagingSource @Inject constructor(
 
         return try {
             val response = traktApiClient.trending(page, PAGE_LIMIT, Extended.FULL)
+            val uniqueItems = response.items.filter { it.show.ids.trakt !in showIds }
+
+            showIds += response.items.map { it.show.ids.trakt }
+
             LoadResult.Page(
-                data = response.items,
+                data = uniqueItems,
                 prevKey = if (page == 1) null else page - 1,
                 nextKey = if (page == response.pagination.pageCount) null else page + 1
             )

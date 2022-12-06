@@ -94,3 +94,5 @@ org.mockito.plugins.MockMaker
 .idea/inspectionProfiles/
 .idea/navEditor.xml
 .idea/deploymentTargetDropDown.xml
+/.idea/kotlinc.xml
+/.idea/ktfmt.xml

@@ -46,7 +46,7 @@ fun DiscoverScreen(shows: Flow<PagingData<DiscoverUiModel>>) {
         contentPadding = PaddingValues(vertical = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        items(items = showItems) { model: DiscoverUiModel? ->
+        items(items = showItems, key = { it.show.ids.trakt }) { model: DiscoverUiModel? ->
             model ?: return@items
             val show = model.show
             val airs = show.airs
